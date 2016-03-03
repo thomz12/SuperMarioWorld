@@ -17,6 +17,12 @@ namespace SuperMarioWorld
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont font;
+
+        //FPS Counter
+        int totalFrames;
+        float elapsedTime;
+        int fps;
 
         public MainGame()
         {
@@ -27,7 +33,7 @@ namespace SuperMarioWorld
             graphics.PreferredBackBufferWidth = 256;
 
             //Make game fullscreen
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
 
             //Make sure mouse is visable
             IsMouseVisible = true;
@@ -57,7 +63,8 @@ namespace SuperMarioWorld
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            //Get default font from content project
+            font = Content.Load<SpriteFont>("DefaultFont");
         }
 
         /// <summary>
@@ -76,6 +83,15 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //FPS Counter
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsedTime > 1000.0f)
+            {
+                fps = totalFrames;
+                totalFrames = 0;
+                elapsedTime = 0;
+            }
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
@@ -97,9 +113,15 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //Only count frames we actualy draw
+            totalFrames++;
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, "fps: " + fps, new Vector2(10,10), Color.Black);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
