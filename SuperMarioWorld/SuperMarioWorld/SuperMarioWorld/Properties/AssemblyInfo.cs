@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Super Mario World")]
 [assembly: AssemblyProduct("Super Mario World")]
 [assembly: AssemblyDescription("Super Mario World")]
-[assembly: AssemblyCompany("Daan Hofmans & Thom Zeilstra")]
+[assembly: AssemblyCompany("Thom Zeilstra & Daan Hofmans")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
