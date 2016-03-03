@@ -14,14 +14,25 @@ namespace SuperMarioWorld
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class MainGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            //Set default resolution (SNES resolution)
+            graphics.PreferredBackBufferHeight = 224;
+            graphics.PreferredBackBufferWidth = 256;
+
+            //Make game fullscreen
+            graphics.IsFullScreen = true;
+
+            //Make sure mouse is visable
+            IsMouseVisible = true;
+
             Content.RootDirectory = "Content";
         }
 
@@ -67,8 +78,14 @@ namespace SuperMarioWorld
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+
+            //Toggle Fullscreen when F11 is pressed
+            if (Keyboard.GetState().IsKeyDown(Keys.F11))
+            {
+                graphics.ToggleFullScreen();
+            }
 
             // TODO: Add your update logic here
 
