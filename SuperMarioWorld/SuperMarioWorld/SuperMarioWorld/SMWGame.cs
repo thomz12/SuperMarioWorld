@@ -19,6 +19,8 @@ namespace SuperMarioWorld
         SpriteBatch _spriteBatch;
         SpriteFont _font;
 
+        Level _level;
+
         int scale = 3;
 
         //FPS Counter
@@ -43,6 +45,8 @@ namespace SuperMarioWorld
 
             //Make sure mouse is visable
             IsMouseVisible = true;
+
+            _level = new Level(_spriteBatch);
 
             Content.RootDirectory = "Content";
         }
@@ -126,6 +130,9 @@ namespace SuperMarioWorld
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
+
+            _level.Draw();
+
             _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10,10), Color.Black);
             _spriteBatch.End();
 
