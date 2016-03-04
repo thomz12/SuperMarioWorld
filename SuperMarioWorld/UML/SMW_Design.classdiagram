@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
-    <comment Id="9f26f6ad-c8ca-4d1c-bcb0-6cfcd977c810">
-      <elementDefinition Id="1a38622b-0d6a-4842-abb1-017c7edaddbd" />
-      <body>Needs some kind of association</body>
-    </comment>
     <comment Id="e2f990e7-6046-454c-ac54-ad122f547125">
       <elementDefinition Id="817ed165-ef06-4032-9ef8-7cf96afaac55" />
-      <body>Path is the path to a level file (.sml)</body>
+      <body>Path is the path to 
+a level file (.sml)</body>
+    </comment>
+    <comment Id="5b8dd42e-c307-4aab-b758-2a0ceb336d21">
+      <elementDefinition Id="07f1494e-f1a8-4406-806d-513f006c073f" />
+      <body>Todo
+</body>
     </comment>
   </ownedCommentsInternal>
   <packagedElements>
@@ -202,6 +204,19 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation Id="9bb5c8a1-0e0e-443d-9714-ea9ff0765aba" name="Collision" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9de11127-2d7a-4466-866d-70a7bf3b8e3e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="249ecd98-ab8d-43ee-8197-86b8391a2393" name="collider" direction="In" isUnique="false">
+                  <elementDefinition Id="cfa3520c-0d31-40bc-b018-2bbfce7d5d57" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -209,9 +224,9 @@
       <class Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" name="Entity" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="4158a942-7217-4424-bfa2-8c09bb986f31" />
         <suppliersInternal>
-          <dependency Id="135c58ad-0f53-4194-ab1e-57ccbe4ac245">
+          <dependency Id="f9159b2e-b374-4057-b845-3d25c7f2be02">
             <classMoniker Id="301de717-52cc-4218-816d-89feb61f3c3f" LastKnownName="GameObject" />
-            <elementDefinition Id="ba756e97-a8d4-4fa1-9479-c61e2cdb12de" />
+            <elementDefinition Id="8b80eae9-fff2-4d25-a442-4ebdb1fad317" />
           </dependency>
         </suppliersInternal>
         <generalsInternal>
@@ -250,19 +265,6 @@
           <operation Id="f9056e0f-4e76-42da-ba6a-304ae5d64372" name="Movement" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="7549923a-36dd-4926-8c4e-ac5ec9bdbb36" />
           </operation>
-          <operation Id="6a79be39-616e-443e-ad4e-6478af8a8abb" name="Collision" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="25d96315-1d8c-4e92-8930-64e55ac89a80" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="ee371b4e-26ba-40da-9999-72e0dcdb86b4" name="collider" direction="In" isUnique="false">
-                  <elementDefinition Id="8ac234fb-2888-4b05-8d97-a3acb6f0da4e" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="061a060c-4d30-44b5-ba85-e4445ead3257" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="c849825a-52aa-49b8-a506-34713e56d19c" />
           </operation>
@@ -278,6 +280,14 @@
             <elementDefinition Id="e7efd2a5-f016-4034-82e4-af3cb8f9246b" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="d40651cb-58d0-4047-92d2-666aa16664ea" name="blocking" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5b46e40b-19fd-45f1-98a2-c87dff6affac" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -413,17 +423,6 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="2b680fcf-bbf1-49af-b961-1a34a402f2bc" name="Block" isAbstract="true" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="4705e806-7384-49fe-975e-b3904d065f14" />
-        <generalsInternal>
-          <generalization Id="19b835ae-afe8-4f61-b349-87c24d267b37" isSubstitutable="false">
-            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
-            <elementDefinition Id="efba6ef9-7d16-4121-9153-f68ec1fe9bdb" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
       <class Id="cb969569-3277-47ef-8ef7-4d8a29ea82c2" name="Finish" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="866de2c2-2745-4fde-8557-0414217e8fe3" />
         <generalsInternal>
@@ -448,16 +447,31 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="d316d3df-c03e-4758-98cc-6db476ba022c" name="MysteryBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="836d9907-2d50-467a-8060-39314740fa64" />
+        <generalsInternal>
+          <generalization Id="442c7c3b-affb-46dc-9bdc-f552a0145811" isSubstitutable="false">
+            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
+            <elementDefinition Id="f2c357ca-9548-47d3-8684-3a9c2670c0f6" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="b9f6ce4f-e324-49b0-8bf6-17f200e4848b" name="content" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4e18b091-a96a-4607-b139-8dc629dbed52" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="418011e6-8147-48ed-8e38-f5fd6e618cd4" name="BreakableBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="4c1f8c24-1906-4c5e-9816-782ecfcef91e" />
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="b997efac-8b9d-452c-afd7-eea48115fda2" name="FloorBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="a1f88d41-d196-4b93-9b84-b2586ef075a2" />
+        <generalsInternal>
+          <generalization Id="d2d5837b-b061-4801-a4c4-527028c04575" isSubstitutable="false">
+            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
+            <elementDefinition Id="e2be1287-9fb6-4d42-af48-b52f905fa91d" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -544,6 +558,12 @@
             <elementDefinition Id="8bab724e-4f39-418c-babd-3ae839e797c7" />
             <type_NamedElement>
               <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+            </type_NamedElement>
+          </property>
+          <property Id="1997bedd-e4a7-415e-aa67-60507a9326a9" name="background" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7e97f93f-b2f9-4695-81d1-82a1d3794efd" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="45ac6b8c-2b17-4b5e-8cf0-7bb262052b95" LastKnownName="Texture2D" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -636,7 +656,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="b72d751f-4033-478b-b462-148ca20d9e10" name="ShelllllllessKoopa" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="b72d751f-4033-478b-b462-148ca20d9e10" name="ShelllessKoopa" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c7b180c7-e138-4917-a3f9-30cdb1633ea5" />
         <generalsInternal>
           <generalization Id="ccb8de90-62b9-41ef-a978-b20a52abde91" isSubstitutable="false">
@@ -649,6 +669,63 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="74d9447f-c6ff-4b39-8f7c-854a2ede47d6" name="Camera2D" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="ccf91c2d-c841-4d19-85af-c867aac83cc2" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="32d20118-45da-4baf-bea6-9558c988162d" name="Platform" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1f1a445b-ba4b-4b63-8d55-c8105c14ef90" />
+        <generalsInternal>
+          <generalization Id="ea14d7cc-b5a4-4675-8c0a-8cc64322b204" isSubstitutable="false">
+            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
+            <elementDefinition Id="592ecdc1-fe4b-4745-8a60-ebcadb9345f4" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e4ad735a-b82a-4881-811d-06f599e26e92" name="Block" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5e2ba612-c7e1-4ce6-93eb-6740dccd297c" />
+        <generalsInternal>
+          <generalization Id="b1da5dbb-7262-4aec-bc83-f2b617f6d2c0" isSubstitutable="false">
+            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
+            <elementDefinition Id="dce768ec-bcdc-4439-b578-d4095eb36fd3" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="f9f384c0-16d5-44a4-a1ba-c4be71f5f971" name="type" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3f5706d0-b0a7-45c7-a139-e97ca642241d" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d5c2ce7d-5e2c-4cdf-b292-6996ef52b5a5" name="HelpBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2a907f00-659a-4c13-9002-2919d88dc306" />
+        <generalsInternal>
+          <generalization Id="646290f9-6b39-4370-8f8f-fec4105e522a" isSubstitutable="false">
+            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
+            <elementDefinition Id="71f355aa-9956-4f31-80b8-335a57f1be13" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="002af808-f627-4ef6-945c-3dd5d38c03ab" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="75e89e7e-9a3a-41e0-8e4e-a47d2d12c542" name="FireFlower" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="141bd3f7-5143-4bb7-9cee-e60d4afbda77" />
+        <generalsInternal>
+          <generalization Id="3eb1426a-8510-4121-b721-494d88aacbe4" isSubstitutable="false">
+            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
+            <elementDefinition Id="69892b20-a537-4416-a7e2-b59017da9d80" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

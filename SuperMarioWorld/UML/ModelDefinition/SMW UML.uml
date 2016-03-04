@@ -5,12 +5,14 @@
   name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <ownedCommentsInternal>
     <comment
-      Id="1a38622b-0d6a-4842-abb1-017c7edaddbd">
-      <body>Needs some kind of association</body>
+      Id="817ed165-ef06-4032-9ef8-7cf96afaac55">
+      <body>Path is the path to 
+a level file (.sml)</body>
     </comment>
     <comment
-      Id="817ed165-ef06-4032-9ef8-7cf96afaac55">
-      <body>Path is the path to a level file (.sml)</body>
+      Id="07f1494e-f1a8-4406-806d-513f006c073f">
+      <body>Todo
+</body>
     </comment>
   </ownedCommentsInternal>
   <profileInstances>
@@ -458,6 +460,31 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="9de11127-2d7a-4466-866d-70a7bf3b8e3e"
+            name="Collision"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cfa3520c-0d31-40bc-b018-2bbfce7d5d57"
+                  name="collider"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                      LastKnownName="GameObject"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -470,7 +497,7 @@
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="ba756e97-a8d4-4fa1-9479-c61e2cdb12de">
+            Id="8b80eae9-fff2-4d25-a442-4ebdb1fad317">
             <classMoniker
               Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
               LastKnownName="GameObject"
@@ -575,32 +602,6 @@
             concurrency="Sequential"
             isQuery="false" />
           <operation
-            Id="25d96315-1d8c-4e92-8930-64e55ac89a80"
-            name="Collision"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="8ac234fb-2888-4b05-8d97-a3acb6f0da4e"
-                  name="collider"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <classMoniker
-                      Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
-                      LastKnownName="GameObject"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
             Id="c849825a-52aa-49b8-a506-34713e56d19c"
             name="Update"
             isLeaf="false"
@@ -628,6 +629,27 @@
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="5b46e40b-19fd-45f1-98a2-c87dff6affac"
+            name="blocking"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                LastKnownName="bool"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1080,7 +1102,39 @@
         name="MysteryBlock"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="f2c357ca-9548-47d3-8684-3a9c2670c0f6"
+            isSubstitutable="false">
+            <classMoniker
+              Id="050db200-4532-45ae-a654-22e2fa376615"
+              LastKnownName="Object"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="4e18b091-a96a-4607-b139-8dc629dbed52"
+            name="content"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                LastKnownName="GameObject"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -1088,7 +1142,18 @@
         name="BreakableBlock"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="e2be1287-9fb6-4d42-af48-b52f905fa91d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="050db200-4532-45ae-a654-22e2fa376615"
+              LastKnownName="Object"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -1399,6 +1464,25 @@
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="7e97f93f-b2f9-4695-81d1-82a1d3794efd"
+            name="background"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="f7ba982f-ceea-4dbe-92d8-65f4f9e32992"
+                LastKnownName="Texture2D"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -1538,7 +1622,7 @@
     <packageHasNamedElement>
       <class
         Id="c7b180c7-e138-4917-a3f9-30cdb1633ea5"
-        name="ShelllllllessKoopa"
+        name="ShelllessKoopa"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -1561,6 +1645,114 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1f1a445b-ba4b-4b63-8d55-c8105c14ef90"
+        name="Platform"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="592ecdc1-fe4b-4745-8a60-ebcadb9345f4"
+            isSubstitutable="false">
+            <classMoniker
+              Id="050db200-4532-45ae-a654-22e2fa376615"
+              LastKnownName="Object"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5e2ba612-c7e1-4ce6-93eb-6740dccd297c"
+        name="Block"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="dce768ec-bcdc-4439-b578-d4095eb36fd3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="050db200-4532-45ae-a654-22e2fa376615"
+              LastKnownName="Object"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="3f5706d0-b0a7-45c7-a139-e97ca642241d"
+            name="type"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2a907f00-659a-4c13-9002-2919d88dc306"
+        name="HelpBlock"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="71f355aa-9956-4f31-80b8-335a57f1be13"
+            isSubstitutable="false">
+            <classMoniker
+              Id="050db200-4532-45ae-a654-22e2fa376615"
+              LastKnownName="Object"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="002af808-f627-4ef6-945c-3dd5d38c03ab"
+            name="ShowHelp"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="141bd3f7-5143-4bb7-9cee-e60d4afbda77"
+        name="FireFlower"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="69892b20-a537-4416-a7e2-b59017da9d80"
+            isSubstitutable="false">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
