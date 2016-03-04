@@ -7,16 +7,27 @@ namespace SuperMarioWorld
 {
     class Sprite
     {
+        //Speed of the animation of the sprite.
         public float animationSpeed;
-        private SpriteBatch _spriteBatch;
-        public Texture2D texture;
+
+        /// <summary>
+        /// Name of the source of the texture. (without extension!)
+        /// </summary>
         public string sourceName;
-        
-        public Sprite(SpriteBatch spriteBatch)
+
+        /// <summary>
+        /// Texture which is loaded in from a file.
+        /// </summary>
+        public Texture2D texture;
+                
+        public Sprite()
         {
-            _spriteBatch = spriteBatch;
+            
         }
 
+        /// <summary>
+        /// Changes animation based on the state of the object.
+        /// </summary>
         public void SetAnimation()
         {
 

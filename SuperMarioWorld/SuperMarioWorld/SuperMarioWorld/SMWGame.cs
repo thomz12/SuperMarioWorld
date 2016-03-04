@@ -20,7 +20,6 @@ namespace SuperMarioWorld
         SpriteFont _font;
 
         Level _level;
-        Camera2D cam;
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
@@ -52,8 +51,6 @@ namespace SuperMarioWorld
             _level = new Level(_spriteBatch);
 
             Content.RootDirectory = "Content";
-
-            cam = new Camera2D();
         }
 
         /// <summary>
@@ -78,8 +75,6 @@ namespace SuperMarioWorld
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            //Get default font from content project
             foreach(GameObject go in _level.objects)
             {
                 if(!loadedSprites.ContainsKey(go.sprite.sourceName))
