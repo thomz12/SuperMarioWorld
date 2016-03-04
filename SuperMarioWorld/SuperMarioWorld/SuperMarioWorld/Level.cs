@@ -9,18 +9,25 @@ namespace SuperMarioWorld
 {
     class Level
     {
-        private SpriteBatch _spriteBatch;
+        public SpriteBatch _spriteBatch;
         private Vector2 size;
+
+        public Camera2D cam;
         public List<GameObject> objects = new List<GameObject>();
 
         public Level(SpriteBatch batch)
         {
             _spriteBatch = batch;
+            objects.Add(new GameObject(new Vector2(0,0), batch));
+            cam = new Camera2D();
         }
 
-        public void Draw()
+        public void DrawLevel()
         {
-            //Draw objects
+            foreach(GameObject go in objects)
+            {
+                go.Draw(_spriteBatch);
+            }
         }
     }
 }

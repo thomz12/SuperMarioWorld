@@ -9,18 +9,12 @@ namespace SuperMarioWorld
     {
         public float animationSpeed;
         private SpriteBatch _spriteBatch;
-        private Texture2D _texture;
+        public Texture2D texture;
         public string sourceName;
         
-        public Sprite(Texture2D texture, SpriteBatch spriteBatch)
+        public Sprite(SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch;
-            _texture = texture;
-        }
-
-        public void Draw(Vector2 pos)
-        {
-
         }
 
         public void SetAnimation()

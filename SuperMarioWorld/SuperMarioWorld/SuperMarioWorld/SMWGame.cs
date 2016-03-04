@@ -20,6 +20,9 @@ namespace SuperMarioWorld
         SpriteFont _font;
 
         Level _level;
+        Camera2D cam;
+
+        public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
         int scale = 3;
 
@@ -49,6 +52,8 @@ namespace SuperMarioWorld
             _level = new Level(_spriteBatch);
 
             Content.RootDirectory = "Content";
+
+            cam = new Camera2D();
         }
 
         /// <summary>
@@ -73,7 +78,19 @@ namespace SuperMarioWorld
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             //Get default font from content project
+            foreach(GameObject go in _level.objects)
+            {
+                if(!loadedSprites.ContainsKey(go.sprite.sourceName))
+                {
+                    loadedSprites.Add(go.sprite.sourceName, Content.Load<Texture2D>(go.sprite.sourceName));
+                }
+
+                go.sprite.texture = loadedSprites[go.sprite.sourceName];
+            }
+
+
             _font = Content.Load<SpriteFont>("DefaultFont");
         }
 
@@ -128,13 +145,20 @@ namespace SuperMarioWorld
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _level._spriteBatch = _spriteBatch;
 
+            //Draw HUD
             _spriteBatch.Begin();
-
-            _level.Draw();
-
-            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10,10), Color.Black);
+            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
             _spriteBatch.End();
+
+            //Draw level
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
+
+            _level.DrawLevel();
+
+            _spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
