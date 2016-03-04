@@ -23,7 +23,7 @@ namespace SuperMarioWorld
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        private ints _scale = 3;
+        private int _scale = 3;
 
         //FPS Counter
         struct FPSCounter
