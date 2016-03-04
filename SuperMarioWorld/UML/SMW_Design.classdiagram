@@ -669,6 +669,63 @@ a level file (.sml)</body>
     <logicalClassDesignerModelHasTypes>
       <class Id="74d9447f-c6ff-4b39-8f7c-854a2ede47d6" name="Camera2D" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="ccf91c2d-c841-4d19-85af-c867aac83cc2" />
+        <ownedAttributesInternal>
+          <property Id="58b44b0d-b049-40c9-96d2-81c93d02f5a6" name="zoom" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b8292211-c214-49cc-b479-5c9566c59588" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8319ec65-4fb9-4696-9209-2d5c15c7d5bd" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+          <property Id="c0f7ec4b-d9ce-43a5-9a01-b656a6d2344d" name="transform" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="83122295-370e-43b9-8008-78107b49a6f0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="41a5495b-89e5-495b-a5e7-342b255566ab" LastKnownName="Matrix" />
+            </type_NamedElement>
+          </property>
+          <property Id="58614246-6d4b-42a4-b30b-085e1c13dadb" name="position" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dd194944-d77e-4691-ac26-9bb094de9ecb" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+            </type_NamedElement>
+          </property>
+          <property Id="5b91a2b0-cf62-41e2-8d3d-7f22d70ee2ef" name="rotation" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="eb95a78e-4ab0-4743-8589-24c0533ec12d" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8319ec65-4fb9-4696-9209-2d5c15c7d5bd" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="d5c2fb00-8ddc-4e4e-b32d-dced737d81ec" name="Camera2D" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="669deadc-2a90-4e2c-8343-f478320adaae" />
+          </operation>
+          <operation Id="61fefd39-1018-4d87-b668-c203de6a35d3" name="Move" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="39051c96-33a6-4a0a-aecd-9a2a71794598" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="31784b07-ea79-418f-b2a5-621408ba7e13" name="amount" direction="In" isUnique="false">
+                  <elementDefinition Id="8e0e3f3c-6953-4161-8942-d0879571cce7" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="9871ee6d-1441-4596-9c1a-ae071b6d1112" name="GetTransformation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="08e6b60b-5975-4fe3-bebb-a10d337d90c3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8219309b-b037-42cc-bb04-0955748b5655" direction="Return">
+                  <elementDefinition Id="d8fc5563-a3c9-4a0e-bd91-5b12f5e6205d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="14a22930-746e-4e6e-8f90-2bb584714b3a" LastKnownName="Matrix" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -728,6 +785,16 @@ a level file (.sml)</body>
         </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="41a5495b-89e5-495b-a5e7-342b255566ab" name="Matrix" isAbstract="false" isLeaf="false" cachedFullName="Matrix">
+        <elementDefinition Id="881da329-7ab1-434b-8c7f-e8b9c5d3413b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="14a22930-746e-4e6e-8f90-2bb584714b3a" name="Matrix" isAbstract="false" isLeaf="false" cachedFullName="Matrix">
+        <elementDefinition Id="881da329-7ab1-434b-8c7f-e8b9c5d3413b" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="d913c215-6805-4549-82da-cabd1137dc53" name="UML">
     <elementDefinition Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498" />
