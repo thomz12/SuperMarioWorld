@@ -10,7 +10,7 @@ namespace SuperMarioWorld
         /// </summary>
         static void Main(string[] args)
         {
-            using (MainGame game = new MainGame())
+            using (SMWGame game = new SMWGame())
             {
                 game.Run();
             }

@@ -13,27 +13,33 @@ namespace SuperMarioWorld
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class MainGame : Microsoft.Xna.Framework.Game
+    public class SMWGame : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteFont font;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
+        SpriteFont _font;
+
+        int scale = 3;
 
         //FPS Counter
-        int totalFrames;
-        float elapsedTime;
-        int fps;
-
-        public MainGame()
+        struct FPSCounter
         {
-            graphics = new GraphicsDeviceManager(this);
+            public int totalFrames;
+            public float elapsedTime;
+            public int fps;
+        }
+        private FPSCounter _counter;
 
-            //Set default resolution (SNES resolution)
-            graphics.PreferredBackBufferHeight = 224;
-            graphics.PreferredBackBufferWidth = 256;
+        public SMWGame()
+        {
+            _graphics = new GraphicsDeviceManager(this);
+
+            //Set default resolution (SNES resolution) and scale it
+            _graphics.PreferredBackBufferHeight = 224 * scale;
+            _graphics.PreferredBackBufferWidth = 256 * scale;
 
             //Make game fullscreen
-            graphics.IsFullScreen = false;
+            _graphics.IsFullScreen = false;
 
             //Make sure mouse is visable
             IsMouseVisible = true;
@@ -61,10 +67,10 @@ namespace SuperMarioWorld
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Get default font from content project
-            font = Content.Load<SpriteFont>("DefaultFont");
+            _font = Content.Load<SpriteFont>("DefaultFont");
         }
 
         /// <summary>
@@ -84,12 +90,12 @@ namespace SuperMarioWorld
         protected override void Update(GameTime gameTime)
         {
             //FPS Counter
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsedTime > 1000.0f)
+            _counter.elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (_counter.elapsedTime > 1000.0f)
             {
-                fps = totalFrames;
-                totalFrames = 0;
-                elapsedTime = 0;
+                _counter.fps = _counter.totalFrames;
+                _counter.totalFrames = 0;
+                _counter.elapsedTime = 0;
             }
 
             // Allows the game to exit
@@ -99,7 +105,7 @@ namespace SuperMarioWorld
             //Toggle Fullscreen when F11 is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.F11))
             {
-                graphics.ToggleFullScreen();
+                _graphics.ToggleFullScreen();
             }
 
             // TODO: Add your update logic here
@@ -114,14 +120,14 @@ namespace SuperMarioWorld
         protected override void Draw(GameTime gameTime)
         {
             //Only count frames we actualy draw
-            totalFrames++;
+            _counter.totalFrames++;
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, "fps: " + fps, new Vector2(10,10), Color.Black);
-            spriteBatch.End();
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10,10), Color.Black);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
