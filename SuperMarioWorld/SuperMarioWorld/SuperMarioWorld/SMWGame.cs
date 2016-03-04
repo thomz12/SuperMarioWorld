@@ -42,6 +42,7 @@ namespace SuperMarioWorld
             _graphics.PreferredBackBufferHeight = 224 * scale;
             _graphics.PreferredBackBufferWidth = 256 * scale;
 
+
             //Make game fullscreen
             _graphics.IsFullScreen = false;
 
@@ -49,6 +50,7 @@ namespace SuperMarioWorld
             IsMouseVisible = true;
 
             _level = new Level(_spriteBatch);
+            _level.cam.Zoom = scale;
 
             Content.RootDirectory = "Content";
         }
@@ -124,6 +126,8 @@ namespace SuperMarioWorld
                 _graphics.ToggleFullScreen();
             }
 
+            _level.Update(gameTime);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -142,10 +146,6 @@ namespace SuperMarioWorld
             // TODO: Add your drawing code here
             _level._spriteBatch = _spriteBatch;
 
-            //Draw HUD
-            _spriteBatch.Begin();
-            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
-            _spriteBatch.End();
 
             //Draw level
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
@@ -154,6 +154,10 @@ namespace SuperMarioWorld
 
             _spriteBatch.End();
 
+            //Draw HUD
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -31,7 +31,17 @@ namespace SuperMarioWorld
         {
             _spriteBatch = batch;
             objects.Add(new GameObject(new Vector2(0,0), batch));
+            
+
             cam = new Camera2D();
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach(GameObject go in objects)
+            {
+                go.Update(gameTime);
+            }
         }
 
         /// <summary>

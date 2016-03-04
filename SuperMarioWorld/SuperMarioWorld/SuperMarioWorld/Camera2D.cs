@@ -38,7 +38,7 @@ namespace SuperMarioWorld
         }
 
         /// <summary>
-        /// Gets the transformation matrix of the camera.
+        /// Gets the transformation matrix of the camera position/rotation/zoom
         /// </summary>
         /// <param name="device">Graphics device that the camera uses.</param>
         /// <returns>Returns a Matrix type.</returns>

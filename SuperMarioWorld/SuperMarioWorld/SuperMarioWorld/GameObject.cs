@@ -28,6 +28,39 @@ namespace SuperMarioWorld
             //TEMP
             sprite = new Sprite();
             sprite.sourceName = "Mario";
+            sprite.xSize = 16;
+            sprite.ySize = 32;
+            sprite.animationSpeed = 150.0f;
+            sprite.animationPositions.Add(new Vector2(0, 0));
+            sprite.animationPositions.Add(new Vector2(1, 0));
+            sprite.animationPositions.Add(new Vector2(0, 0));
+            sprite.animationPositions.Add(new Vector2(1, 0));
+            sprite.animationPositions.Add(new Vector2(0, 0));
+            sprite.animationPositions.Add(new Vector2(1, 0));
+            sprite.animationPositions.Add(new Vector2(0, 1));
+            sprite.animationPositions.Add(new Vector2(1, 1));
+            sprite.animationPositions.Add(new Vector2(0, 1));
+            sprite.animationPositions.Add(new Vector2(1, 1));
+            sprite.animationPositions.Add(new Vector2(0, 1));
+            sprite.animationPositions.Add(new Vector2(1, 1));
+            sprite.animationPositions.Add(new Vector2(2, 2));
+            sprite.animationPositions.Add(new Vector2(1, 2));
+            sprite.animationPositions.Add(new Vector2(0, 2));
+            sprite.animationPositions.Add(new Vector2(2, 2));
+            sprite.animationPositions.Add(new Vector2(1, 2));
+            sprite.animationPositions.Add(new Vector2(0, 2));
+            sprite.animationPositions.Add(new Vector2(2, 3));
+            sprite.animationPositions.Add(new Vector2(1, 3));
+            sprite.animationPositions.Add(new Vector2(0, 3));
+            sprite.animationPositions.Add(new Vector2(2, 3));
+            sprite.animationPositions.Add(new Vector2(1, 3));
+            sprite.animationPositions.Add(new Vector2(0, 3));
+            //TEMP
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            sprite.UpdateAnimation(gameTime);
         }
 
         /// <summary>
@@ -37,7 +70,7 @@ namespace SuperMarioWorld
         public void Draw(SpriteBatch batch)
         {
             //Draw this object's sprite on the correct position on the SpriteBatch.
-            batch.Draw(sprite.texture, new Rectangle((int)position.X, (int)position.Y, sprite.texture.Width, sprite.texture.Height), Color.White);
+            sprite.Draw(batch, position);
         }
     }
 }
