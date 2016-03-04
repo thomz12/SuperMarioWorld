@@ -21,7 +21,7 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="position">Position of the object.</param>
         /// <param name="batch">Batch that the texture should be drawn on.</param>
-        public GameObject(Vector2 position, SpriteBatch batch)
+        public GameObject(Vector2 position)
         { 
             this.position = position;
 
@@ -64,12 +64,12 @@ namespace SuperMarioWorld
         }
 
         /// <summary>
-        /// Draws this object's sprite on the SpriteBatch.
+        /// Called to draw the game object
         /// </summary>
-        /// <param name="batch">The batch which should be drawn on.</param>
+        /// <param name="batch">Spritebatch to draw to</param>
         public void Draw(SpriteBatch batch)
         {
-            //Draw this object's sprite on the correct position on the SpriteBatch.
+            //Call the draw function of sprite
             sprite.Draw(batch, position);
         }
     }

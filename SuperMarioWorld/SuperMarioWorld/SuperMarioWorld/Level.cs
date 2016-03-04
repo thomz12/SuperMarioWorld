@@ -9,11 +9,8 @@ namespace SuperMarioWorld
 {
     class Level
     {
-        //Spritebatch that is currently used.
-        public SpriteBatch _spriteBatch;
-
         //Size of the level.
-        private Vector2 size;
+        private Vector2 _size;
 
         //Camera object
         public Camera2D cam;
@@ -29,15 +26,16 @@ namespace SuperMarioWorld
         /// <param name="batch">Give the batch that the sprites should be drawn in.</param>
         public Level(SpriteBatch batch)
         {
-            _spriteBatch = batch;
-            objects.Add(new GameObject(new Vector2(0,0), batch));
+            //TEMP, Add a object to the level
+            objects.Add(new GameObject(new Vector2(0,0)));
             
-
+            //Create camera object
             cam = new Camera2D();
         }
 
         public void Update(GameTime gameTime)
         {
+            //Call the update method for all gameobjects
             foreach(GameObject go in objects)
             {
                 go.Update(gameTime);
@@ -47,11 +45,13 @@ namespace SuperMarioWorld
         /// <summary>
         /// Calls the drawfunctions for each object in the current loaded level.
         /// </summary>
-        public void DrawLevel()
+        public void DrawLevel(SpriteBatch batch)
         {
+            //Draw every sprite
             foreach(GameObject go in objects)
             {
-                go.Draw(_spriteBatch);
+                //Call the draw method of gameobject
+                go.Draw(batch);
             }
         }
     }

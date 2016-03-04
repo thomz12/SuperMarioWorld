@@ -15,15 +15,15 @@ namespace SuperMarioWorld
     /// </summary>
     public class SMWGame : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager _graphics;
-        SpriteBatch _spriteBatch;
-        SpriteFont _font;
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private SpriteFont _font;
 
-        Level _level;
+        private Level _level;
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        int scale = 3;
+        private ints _scale = 3;
 
         //FPS Counter
         struct FPSCounter
@@ -34,13 +34,16 @@ namespace SuperMarioWorld
         }
         private FPSCounter _counter;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public SMWGame()
         {
             _graphics = new GraphicsDeviceManager(this);
 
             //Set default resolution (SNES resolution) and scale it
-            _graphics.PreferredBackBufferHeight = 224 * scale;
-            _graphics.PreferredBackBufferWidth = 256 * scale;
+            _graphics.PreferredBackBufferHeight = 224 * _scale;
+            _graphics.PreferredBackBufferWidth = 256 * _scale;
 
 
             //Make game fullscreen
@@ -50,7 +53,7 @@ namespace SuperMarioWorld
             IsMouseVisible = true;
 
             _level = new Level(_spriteBatch);
-            _level.cam.Zoom = scale;
+            _level.cam.Zoom = _scale;
 
             Content.RootDirectory = "Content";
         }
@@ -141,17 +144,13 @@ namespace SuperMarioWorld
         {
             //Only count frames we actualy draw
             _counter.totalFrames++;
+
+            //Set clear color
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            _level._spriteBatch = _spriteBatch;
-
 
             //Draw level
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
-
-            _level.DrawLevel();
-
+            _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
             //Draw HUD
