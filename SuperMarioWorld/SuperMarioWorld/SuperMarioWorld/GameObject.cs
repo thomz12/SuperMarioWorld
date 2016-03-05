@@ -11,6 +11,8 @@ namespace SuperMarioWorld
     {
         //Sprite (texture) of this object
         public Sprite sprite;
+        //Width and height of object
+        public int width, height;
         //Collision box of this object
         public Rectangle boundingBox;
         //Current position of this object
@@ -25,14 +27,9 @@ namespace SuperMarioWorld
         { 
             this.position = position;
 
-            //TEMP
             sprite = new Sprite();
-            sprite.xSize = 16;
-            sprite.ySize = 32;
             sprite.animationSpeed = 150.0f;
-            sprite.animationPositions.Add(new Vector2(0, 0));
-            sprite.animationPositions.Add(new Vector2(1, 0));
-            //TEMP
+            sprite.AnimationPositions.Add(new Vector2(0, 0));
         }
 
         /// <summary>
@@ -42,6 +39,9 @@ namespace SuperMarioWorld
         public virtual void Update(GameTime gameTime)
         {
             sprite.UpdateAnimation(gameTime);
+
+            boundingBox.X = (int)position.X - width / 2;
+            boundingBox.Y = (int)position.Y - height;
         }
 
         /// <summary>

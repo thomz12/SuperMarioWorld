@@ -20,12 +20,14 @@ namespace SuperMarioWorld
         {
             _lookRight = true;
             _grounded = false;
+            _maxSpeed = 64.0f;
         }
 
         public override void Update(GameTime gameTime)
         {
-            Movement(gameTime);
             sprite.UpdateAnimation(gameTime);
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -33,16 +35,18 @@ namespace SuperMarioWorld
         /// </summary>
         protected virtual void Movement(GameTime gameTime)
         {
-            //Moves forward untill it hits a wall, then turns around
-            //Falls of platforms
-            if (_lookRight)
-            {
-                position += new Vector2(1, 0);
-            }
-            else
-            {
-                position += new Vector2(-1, 0);
-            }
+            //Limit the momentum for the object
+            if (momentum.X > _maxSpeed)
+                momentum = new Vector2(_maxSpeed, momentum.Y);
+            if (momentum.X < -_maxSpeed)
+                momentum = new Vector2(-_maxSpeed, momentum.Y);
+            if (momentum.Y > _maxSpeed)
+                momentum = new Vector2(momentum.X, _maxSpeed);
+            if (momentum.Y < -_maxSpeed)
+                momentum = new Vector2(momentum.X, -_maxSpeed);
+
+            //add momentum to position
+            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
     }
 }

@@ -309,9 +309,23 @@ a level file (.sml)</body>
         <ownedOperationsInternal>
           <operation Id="f9056e0f-4e76-42da-ba6a-304ae5d64372" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="7549923a-36dd-4926-8c4e-ac5ec9bdbb36" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="6ae3222c-fe9d-4391-8c20-aefd3d317bb5" name="gameTime GameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="f285198f-d47c-4ff8-8641-1f42fa2f03ad" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
           <operation Id="061a060c-4d30-44b5-ba85-e4445ead3257" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="c849825a-52aa-49b8-a506-34713e56d19c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="d5ebd711-c475-4f1e-a63d-30e47f99751a" name="gameTime GameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="055122fb-2e22-4298-8674-7124337b02a2" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -486,6 +500,29 @@ a level file (.sml)</body>
         <ownedOperationsInternal>
           <operation Id="952b7e2f-30fb-434b-92f9-745b4fe8e3dc" name="Movement" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="458b85ab-0f24-47f1-8dff-c33f3057bbe3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="0d1fec9b-6612-4c45-b762-9a6389d4373b" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="b33ed43d-0f9b-43b7-a10f-fff130136e82" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="2f9498df-c76d-4949-9096-ab4a57090f13" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f0c91eb3-1fa7-4e11-b914-86616d36df0e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="7b57253a-35a0-4066-9305-471e4a57b8cf" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="ddb7a0a7-8604-4aae-a08f-72282b19acc9" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
         </ownedOperationsInternal>
       </class>

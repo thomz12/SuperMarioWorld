@@ -17,13 +17,15 @@ namespace SuperMarioWorld
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Texture2D _debugTexture;
         private SpriteFont _debugFont;
 
         private Level _level;
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        private const int _scale = 4;
+        private const int _scale = 2;
 
         //FPS Counter
         struct FPSCounter
@@ -40,11 +42,14 @@ namespace SuperMarioWorld
         public SMWGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-
             //Set default resolution (SNES resolution) and scale it
             _graphics.PreferredBackBufferHeight = 224 * _scale;
             _graphics.PreferredBackBufferWidth = 256 * _scale;
 
+            /* POOOWWAAAAAH
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
+            */
 
             //Make game fullscreen
             _graphics.IsFullScreen = false;
@@ -90,7 +95,7 @@ namespace SuperMarioWorld
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
 
-
+            _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>("DefaultFont");
         }
 
@@ -150,6 +155,7 @@ namespace SuperMarioWorld
 
             //Draw level
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
+            _spriteBatch.Draw(_debugTexture, _level.objects[0].boundingBox, Color.White);
             _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
