@@ -27,7 +27,16 @@ namespace SuperMarioWorld
         public Level(SpriteBatch batch)
         {
             //TEMP, Add a object to the level
-            objects.Add(new GameObject(new Vector2(0,0)));
+            GameObject mario = new GameObject(new Vector2(-20.0f,0.0f));
+            mario.sprite.sourceName = "Mario";
+            objects.Add(mario);
+            GameObject luigi = new GameObject(new Vector2(0.0f, 0.0f));
+            luigi.sprite.sourceName = "Luigi";
+            objects.Add(luigi);
+            GameObject wario = new GameObject(new Vector2(16.0f, 0.0f));
+            objects.Add(wario);
+            wario.sprite.xSize = 24;
+            wario.sprite.sourceName = "Wario";
             
             //Create camera object
             cam = new Camera2D();
