@@ -24,10 +24,10 @@ namespace SuperMarioWorld
         /// When loading the level this function will add a camera and all objects from the file.
         /// </summary>
         /// <param name="batch">Give the batch that the sprites should be drawn in.</param>
-        public Level(SpriteBatch batch)
+        public Level()
         {
             //TEMP, Add a object to the level
-            GameObject mario = new GameObject(new Vector2(0.0f,0.0f));
+            GameObject mario = new Player(new Vector2(0.0f,0.0f));
             mario.sprite.sourceName = "Mario";
             objects.Add(mario);
             
@@ -53,7 +53,7 @@ namespace SuperMarioWorld
             foreach(GameObject go in objects)
             {
                 //Call the draw method of gameobject
-                go.Draw(batch);
+                go.DrawObject(batch);
             }
         }
     }

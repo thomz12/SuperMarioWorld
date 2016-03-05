@@ -26,8 +26,8 @@ namespace SuperMarioWorld
 
         //Vars for cycling and displaying animated sprite sheets
         public List<Vector2> animationPositions;
-        private int texCoordX, texCoordY;
-        private int animIndex = 0;
+        private int _texCoordX, _texCoordY;
+        private int _animIndex = 0;
 
         /// <summary>
         /// default constructor
@@ -50,15 +50,15 @@ namespace SuperMarioWorld
                 _animationProgress += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (_animationProgress >= animationSpeed)
                 {
-                    animIndex++;
+                    _animIndex++;
 
-                    if (animIndex == animationPositions.Count)
-                        animIndex = 0;
+                    if (_animIndex == animationPositions.Count)
+                        _animIndex = 0;
 
                     _animationProgress = 0;
 
-                    texCoordX = (int)animationPositions[animIndex].X * xSize;
-                    texCoordY = (int)animationPositions[animIndex].Y * ySize;
+                    _texCoordX = (int)animationPositions[_animIndex].X * xSize;
+                    _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
                 }
             }
             else
@@ -73,9 +73,9 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="batch">The batch which should be drawn on.</param>
         /// /// <param name="position">The world position of the sprite</param>
-        public void Draw(SpriteBatch batch, Vector2 position)
+        public void DrawSprite(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(texture, new Rectangle((int)position.X -(xSize / 2), (int)position.Y - ySize, xSize, ySize), new Rectangle(texCoordX, texCoordY, xSize, ySize), Color.White);
+            batch.Draw(texture, new Rectangle((int)position.X -(xSize / 2), (int)position.Y - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White);
         }
     }
 }

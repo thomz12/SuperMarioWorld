@@ -17,7 +17,7 @@ namespace SuperMarioWorld
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private SpriteFont _font;
+        private SpriteFont _debugFont;
 
         private Level _level;
 
@@ -52,7 +52,7 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
-            _level = new Level(_spriteBatch);
+            _level = new Level();
             _level.cam.Zoom = _scale;
 
             Content.RootDirectory = "Content";
@@ -91,7 +91,7 @@ namespace SuperMarioWorld
             }
 
 
-            _font = Content.Load<SpriteFont>("DefaultFont");
+            _debugFont = Content.Load<SpriteFont>("DefaultFont");
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace SuperMarioWorld
 
             //Draw HUD
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_font, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
             _spriteBatch.End();
 
             base.Draw(gameTime);
