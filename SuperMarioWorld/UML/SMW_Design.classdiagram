@@ -346,6 +346,12 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
             </type_NamedElement>
           </property>
+          <property Id="661950fb-f412-47a3-a931-487619fba6b8" name="used" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5b0451c7-b71e-43de-8596-45b97b8bcfe4" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -581,10 +587,10 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
-          <property Id="b9f6ce4f-e324-49b0-8bf6-17f200e4848b" name="content" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="b9f6ce4f-e324-49b0-8bf6-17f200e4848b" name="_content" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="4e18b091-a96a-4607-b139-8dc629dbed52" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+              <referencedTypeMoniker Id="632fee27-1398-4236-85ba-aef062889766" LastKnownName="GameObject" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -988,6 +994,11 @@ a level file (.sml)</body>
     <packageHasNamedElement>
       <referencedType Id="4097397b-b4bd-4bcc-a4da-5908292f745e" name="FPSCounter" isAbstract="false" isLeaf="false" cachedFullName="FPSCounter">
         <elementDefinition Id="6a1e0cac-eb2c-4052-9426-d7bb4d4eb594" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="632fee27-1398-4236-85ba-aef062889766" name="GameObject" isAbstract="false" isLeaf="false" cachedFullName="UML::GameObject">
+        <elementDefinition Id="843b9e8d-a6b4-4af0-8393-328bd218ad66" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

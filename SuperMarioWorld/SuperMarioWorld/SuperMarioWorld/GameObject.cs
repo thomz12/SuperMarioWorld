@@ -40,7 +40,7 @@ namespace SuperMarioWorld
         {
             sprite.UpdateAnimation(gameTime);
 
-            //Create bounding box for the object
+            //Move the bounding box of the object
             boundingBox.X = (int)position.X - boundingWidth / 2;
             boundingBox.Y = (int)position.Y - boundingHeight;
         }

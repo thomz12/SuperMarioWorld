@@ -28,7 +28,9 @@ namespace SuperMarioWorld
         {
             //TEMP, Add a object to the level
             GameObject player = new Player(new Vector2(0.0f,0.0f), Player.Character.Wario);
+            GameObject mBlock01 = new MysteryBlock(new Vector2(0.0f, 128f), null);
             objects.Add(player);
+            objects.Add(mBlock01);
             
             //Create camera object
             cam = new Camera2D();
