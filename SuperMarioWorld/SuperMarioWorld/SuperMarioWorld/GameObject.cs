@@ -27,38 +27,19 @@ namespace SuperMarioWorld
 
             //TEMP
             sprite = new Sprite();
-            sprite.sourceName = "Mario";
             sprite.xSize = 16;
             sprite.ySize = 32;
             sprite.animationSpeed = 150.0f;
             sprite.animationPositions.Add(new Vector2(0, 0));
             sprite.animationPositions.Add(new Vector2(1, 0));
-            sprite.animationPositions.Add(new Vector2(0, 0));
-            sprite.animationPositions.Add(new Vector2(1, 0));
-            sprite.animationPositions.Add(new Vector2(0, 0));
-            sprite.animationPositions.Add(new Vector2(1, 0));
-            sprite.animationPositions.Add(new Vector2(0, 1));
-            sprite.animationPositions.Add(new Vector2(1, 1));
-            sprite.animationPositions.Add(new Vector2(0, 1));
-            sprite.animationPositions.Add(new Vector2(1, 1));
-            sprite.animationPositions.Add(new Vector2(0, 1));
-            sprite.animationPositions.Add(new Vector2(1, 1));
-            sprite.animationPositions.Add(new Vector2(2, 2));
-            sprite.animationPositions.Add(new Vector2(1, 2));
-            sprite.animationPositions.Add(new Vector2(0, 2));
-            sprite.animationPositions.Add(new Vector2(2, 2));
-            sprite.animationPositions.Add(new Vector2(1, 2));
-            sprite.animationPositions.Add(new Vector2(0, 2));
-            sprite.animationPositions.Add(new Vector2(2, 3));
-            sprite.animationPositions.Add(new Vector2(1, 3));
-            sprite.animationPositions.Add(new Vector2(0, 3));
-            sprite.animationPositions.Add(new Vector2(2, 3));
-            sprite.animationPositions.Add(new Vector2(1, 3));
-            sprite.animationPositions.Add(new Vector2(0, 3));
             //TEMP
         }
 
-        public void Update(GameTime gameTime)
+        /// <summary>
+        /// Called every frame
+        /// </summary>
+        /// <param name="gameTime">Gametime that has passed since prev. frame</param>
+        public virtual void Update(GameTime gameTime)
         {
             sprite.UpdateAnimation(gameTime);
         }
