@@ -10,40 +10,49 @@ namespace SuperMarioWorld
     {
         public Vector2 momentum;
 
-        protected bool _grounded;
+        protected bool grounded;
 
-        protected bool _lookRight;
+        protected bool lookRight;
 
-        protected float _maxSpeed;
+        protected float acceleration;
+
+        protected float maxSpeed;
 
         public Entity(Vector2 position) : base (position)
         {
-            _lookRight = true;
-            _grounded = false;
-            _maxSpeed = 64.0f;
+            lookRight = true;
+            grounded = false;
+            acceleration = 16f;
+            maxSpeed = 128.0f;
         }
 
         public override void Update(GameTime gameTime)
         {
             sprite.UpdateAnimation(gameTime);
 
+            //Calls the update function from gameobject
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// General movement for objects
+        /// General movement for all entities
         /// </summary>
         protected virtual void Movement(GameTime gameTime)
         {
+            //Check for collision and turn around when colliding with something
+            //TODO
+
+            //This now applies to all entities except the player and the smart koopa who override this function.
+            if (lookRight)
+                momentum = new Vector2(momentum.X - acceleration, momentum.Y);
+            else
+                momentum = new Vector2(momentum.X + acceleration, momentum.Y);
+
             //Limit the momentum for the object
-            if (momentum.X > _maxSpeed)
-                momentum = new Vector2(_maxSpeed, momentum.Y);
-            if (momentum.X < -_maxSpeed)
-                momentum = new Vector2(-_maxSpeed, momentum.Y);
-            if (momentum.Y > _maxSpeed)
-                momentum = new Vector2(momentum.X, _maxSpeed);
-            if (momentum.Y < -_maxSpeed)
-                momentum = new Vector2(momentum.X, -_maxSpeed);
+            if (momentum.X > maxSpeed)
+                momentum = new Vector2(maxSpeed, momentum.Y);
+            if (momentum.X < -maxSpeed)
+                momentum = new Vector2(-maxSpeed, momentum.Y);
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);

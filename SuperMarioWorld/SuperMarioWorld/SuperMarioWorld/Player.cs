@@ -39,10 +39,10 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-            width = 8;
-            height = 15;
+            boundingWidth = 9;
+            boundingHeight = 15;
 
-            boundingBox = new Rectangle((int)position.X - width / 2, (int)position.Y - height, width, height);
+            boundingBox = new Rectangle((int)position.X - boundingWidth / 2, (int)position.Y - boundingHeight, boundingWidth, boundingHeight);
 
             sprite.xSize = 16;
             sprite.ySize = 32;
@@ -58,6 +58,7 @@ namespace SuperMarioWorld
                 case Character.Wario:
                     sprite.sourceName = "Wario";
                     sprite.xSize = 24;
+                    boundingWidth = 12;
                     break;
                 case Character.Waluigi:
                     sprite.sourceName = "Waluigi";
@@ -72,7 +73,7 @@ namespace SuperMarioWorld
         public override void Update(GameTime gameTime)
         {
             sprite.AnimationPositions.Clear();
-            if (_lookRight)
+            if (lookRight) 
                 sprite.AnimationPositions.Add(new Vector2(0, 0));
             else
                 sprite.AnimationPositions.Add(new Vector2(0, 1));
@@ -80,8 +81,8 @@ namespace SuperMarioWorld
             //If the button D is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                _lookRight = true;
-                momentum = new Vector2(momentum.X + 16, momentum.Y);
+                lookRight = true;
+                momentum = new Vector2(momentum.X + acceleration, momentum.Y);
 
                 sprite.AnimationPositions.Clear();
                 sprite.AnimationPositions.Add(new Vector2(0, 0));
@@ -90,8 +91,8 @@ namespace SuperMarioWorld
             //If button A is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                _lookRight = false;
-                momentum = new Vector2(momentum.X - 16, momentum.Y);
+                lookRight = false;
+                momentum = new Vector2(momentum.X - acceleration, momentum.Y);
 
                 sprite.AnimationPositions.Clear();
                 sprite.AnimationPositions.Add(new Vector2(0, 1));
@@ -100,7 +101,7 @@ namespace SuperMarioWorld
             if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
             {
                 sprite.AnimationPositions.Clear();
-                if (_lookRight)
+                if (lookRight)
                     sprite.AnimationPositions.Add(new Vector2(9, 0));
                 else
                     sprite.AnimationPositions.Add(new Vector2(9, 1));
@@ -118,9 +119,16 @@ namespace SuperMarioWorld
         {
             //calculate friction
             if (gameTime.ElapsedGameTime.TotalMilliseconds != 0.0f)
-                momentum = new Vector2(momentum.X * 0.9f, momentum.Y);
+                momentum = new Vector2(momentum.X * 0.8f, momentum.Y);
 
-            base.Movement(gameTime);
+            //Limit the momentum for the object
+            if (momentum.X > maxSpeed)
+                momentum = new Vector2(maxSpeed, momentum.Y);
+            if (momentum.X < -maxSpeed)
+                momentum = new Vector2(-maxSpeed, momentum.Y);
+
+            //add momentum to position
+            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
     }
 }

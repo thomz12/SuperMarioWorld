@@ -27,7 +27,7 @@ namespace SuperMarioWorld
         public Level()
         {
             //TEMP, Add a object to the level
-            GameObject player = new Player(new Vector2(0.0f,0.0f), Player.Character.Waluigi);
+            GameObject player = new Player(new Vector2(0.0f,0.0f), Player.Character.Wario);
             objects.Add(player);
             
             //Create camera object

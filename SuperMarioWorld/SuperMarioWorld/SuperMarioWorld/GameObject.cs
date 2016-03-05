@@ -11,8 +11,8 @@ namespace SuperMarioWorld
     {
         //Sprite (texture) of this object
         public Sprite sprite;
-        //Width and height of object
-        public int width, height;
+        //Width and height of objects bounding box
+        public int boundingWidth, boundingHeight;
         //Collision box of this object
         public Rectangle boundingBox;
         //Current position of this object
@@ -40,8 +40,9 @@ namespace SuperMarioWorld
         {
             sprite.UpdateAnimation(gameTime);
 
-            boundingBox.X = (int)position.X - width / 2;
-            boundingBox.Y = (int)position.Y - height;
+            //Create bounding box for the object
+            boundingBox.X = (int)position.X - boundingWidth / 2;
+            boundingBox.Y = (int)position.Y - boundingHeight;
         }
 
         /// <summary>

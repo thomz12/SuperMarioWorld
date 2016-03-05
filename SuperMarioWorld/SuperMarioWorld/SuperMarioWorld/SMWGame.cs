@@ -25,7 +25,7 @@ namespace SuperMarioWorld
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        private const int _scale = 2;
+        private const int _scale = 3;
 
         //FPS Counter
         struct FPSCounter
@@ -161,7 +161,9 @@ namespace SuperMarioWorld
 
             //Draw HUD
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 10), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Debug: _SMW_DEV_", new Vector2(10, 10), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 30), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 50), Color.Black);
             _spriteBatch.End();
 
             base.Draw(gameTime);
