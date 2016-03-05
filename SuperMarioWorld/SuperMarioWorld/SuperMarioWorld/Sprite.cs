@@ -61,15 +61,15 @@ namespace SuperMarioWorld
         {
             if (animationPositions.Count != 0)
             {
-                _animationProgress += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (_animationProgress >= animationSpeed)
+                _animationProgress -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (_animationProgress <= 0)
                 {
                     _animIndex++;
 
                     if (_animIndex >= animationPositions.Count)
                         _animIndex = 0;
 
-                    _animationProgress = 0;
+                    _animationProgress = animationSpeed;
 
                     _texCoordX = (int)animationPositions[_animIndex].X * xSize;
                     _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
