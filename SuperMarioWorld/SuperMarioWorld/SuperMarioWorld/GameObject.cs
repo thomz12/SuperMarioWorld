@@ -28,7 +28,6 @@ namespace SuperMarioWorld
             this.position = position;
 
             sprite = new Sprite();
-            sprite.animationSpeed = 150.0f;
             sprite.AnimationPositions.Add(new Vector2(0, 0));
         }
 

@@ -161,9 +161,8 @@ namespace SuperMarioWorld
 
             //Draw HUD
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_debugFont, "Debug: _SMW_DEV_", new Vector2(10, 10), Color.Black);
-            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 30), Color.Black);
-            _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 50), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 0), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
             _spriteBatch.End();
 
             base.Draw(gameTime);
