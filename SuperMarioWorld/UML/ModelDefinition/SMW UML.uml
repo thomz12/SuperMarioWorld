@@ -794,6 +794,25 @@ a level file (.sml)</body>
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="5b0451c7-b71e-43de-8596-45b97b8bcfe4"
+            name="used"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                LastKnownName="bool"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -1439,7 +1458,7 @@ a level file (.sml)</body>
         <ownedAttributesInternal>
           <property
             Id="4e18b091-a96a-4607-b139-8dc629dbed52"
-            name="content"
+            name="_content"
             visibility="Private"
             isLeaf="false"
             isStatic="false"

@@ -72,11 +72,11 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-            sprite.AnimationPositions.Clear();
-            if (lookRight) 
-                sprite.AnimationPositions.Add(new Vector2(0, 0));
+            sprite.NewAnimation();
+            if (lookRight)
+                sprite.AddFrame(0, 0);
             else
-                sprite.AnimationPositions.Add(new Vector2(0, 1));
+                sprite.AddFrame(0, 1);
 
             //If the button D is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.D))
@@ -84,9 +84,9 @@ namespace SuperMarioWorld
                 lookRight = true;
                 momentum = new Vector2(momentum.X + acceleration, momentum.Y);
 
-                sprite.AnimationPositions.Clear();
-                sprite.AnimationPositions.Add(new Vector2(0, 0));
-                sprite.AnimationPositions.Add(new Vector2(1, 0));
+                sprite.NewAnimation();
+                sprite.AddFrame(0, 0);
+                sprite.AddFrame(1, 0);
             }
             //If button A is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -94,17 +94,17 @@ namespace SuperMarioWorld
                 lookRight = false;
                 momentum = new Vector2(momentum.X - acceleration, momentum.Y);
 
-                sprite.AnimationPositions.Clear();
-                sprite.AnimationPositions.Add(new Vector2(0, 1));
-                sprite.AnimationPositions.Add(new Vector2(1, 1));
+                sprite.NewAnimation();
+                sprite.AddFrame(0, 1);
+                sprite.AddFrame(1, 1);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
             {
-                sprite.AnimationPositions.Clear();
+                sprite.NewAnimation();
                 if (lookRight)
-                    sprite.AnimationPositions.Add(new Vector2(9, 0));
+                    sprite.AddFrame(9, 0);
                 else
-                    sprite.AnimationPositions.Add(new Vector2(9, 1));
+                    sprite.AddFrame(9, 1);
             }
 
             Movement(gameTime);

@@ -17,10 +17,10 @@ namespace SuperMarioWorld
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+#if DEBUG
         private Texture2D _debugTexture;
         private SpriteFont _debugFont;
-
+#endif
         private Level _level;
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
@@ -95,8 +95,10 @@ namespace SuperMarioWorld
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
 
+#if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>("DefaultFont");
+#endif
         }
 
         /// <summary>
@@ -155,16 +157,23 @@ namespace SuperMarioWorld
 
             //Draw level
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
-            _spriteBatch.Draw(_debugTexture, _level.objects[0].boundingBox, Color.White);
+
+            //Draw each object that is in the level
+            for (int i = 0; i < _level.objects.Count; i++)
+            {
+                _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, Color.White);
+            }
+                
             _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
+#if DEBUG
             //Draw HUD
             _spriteBatch.Begin();
             _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 0), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
             _spriteBatch.End();
-
+#endif
             base.Draw(gameTime);
         }
     }

@@ -26,19 +26,6 @@ namespace SuperMarioWorld
 
         //Vars for cycling and displaying animated sprite sheets
         private List<Vector2> animationPositions;
-        public List<Vector2> AnimationPositions
-        {
-            get
-            {
-                return animationPositions;
-            }
-            set
-            {
-                _animationProgress = animationSpeed;
-                _animIndex = 0;
-                animationPositions = value;
-            }
-        }
 
         private int _texCoordX, _texCoordY;
         private int _animIndex = 0;
@@ -80,6 +67,23 @@ namespace SuperMarioWorld
                 xSize = texture.Width;
                 ySize = texture.Height;
             }
+        }
+
+        public void NewAnimation(List<Vector2> animation)
+        {
+            animationPositions.Clear();
+            foreach (Vector2 v in animation)
+                animationPositions.Add(v);
+        }
+
+        public void NewAnimation()
+        {
+            animationPositions.Clear();
+        }
+
+        public void AddFrame(int x, int y)
+        {
+            animationPositions.Add(new Vector2(x, y));
         }
 
         /// <summary>
