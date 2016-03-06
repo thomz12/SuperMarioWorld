@@ -157,13 +157,13 @@ namespace SuperMarioWorld
 
             //Draw level
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
-
+#if DEBUG
             //Draw each object that is in the level
             for (int i = 0; i < _level.objects.Count; i++)
             {
                 _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, Color.White);
             }
-                
+#endif
             _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
