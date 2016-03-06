@@ -29,10 +29,12 @@ namespace SuperMarioWorld
             //Call sprite class to load the texture
             sprite.sourceName = "MysteryBlock";
 
+            sprite.NewAnimation();
+
             //Add all sprites from the file to the list
             for (int i = 0; i < 4; i++)
             {
-                sprite.AnimationPositions.Add(new Vector2(i, 0));
+                sprite.AddFrame(i, 0);
             }
         }
     }

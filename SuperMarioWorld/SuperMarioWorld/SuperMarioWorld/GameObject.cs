@@ -29,7 +29,7 @@ namespace SuperMarioWorld
 
             sprite = new Sprite();
             sprite.animationSpeed = 150.0f;
-            sprite.AnimationPositions.Add(new Vector2(0, 0));
+            sprite.AddFrame(0, 0);
         }
 
         /// <summary>

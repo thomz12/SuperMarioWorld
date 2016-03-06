@@ -69,6 +69,23 @@ namespace SuperMarioWorld
             }
         }
 
+        public void NewAnimation(List<Vector2> animation)
+        {
+            animationPositions.Clear();
+            foreach (Vector2 v in animation)
+                animationPositions.Add(v);
+        }
+
+        public void NewAnimation()
+        {
+            animationPositions.Clear();
+        }
+
+        public void AddFrame(int x, int y)
+        {
+            animationPositions.Add(new Vector2(x, y));
+        }
+
         /// <summary>
         /// Draws this object's sprite on the SpriteBatch.
         /// </summary>
