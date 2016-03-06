@@ -29,7 +29,9 @@ namespace SuperMarioWorld
             //Call sprite class to load the texture
             sprite.sourceName = "MysteryBlock";
 
+            //Sprite animation
             sprite.NewAnimation();
+            sprite.animationSpeed = 100.0f;
 
             //Add all sprites from the file to the list
             for (int i = 0; i < 4; i++)

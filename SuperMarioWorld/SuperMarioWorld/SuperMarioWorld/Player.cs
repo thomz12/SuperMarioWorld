@@ -46,6 +46,9 @@ namespace SuperMarioWorld
 
             sprite.xSize = 16;
             sprite.ySize = 32;
+            sprite.AddFrame(0, 0);
+
+            acceleration = 2000.0f;
 
             switch (character)
             {
@@ -70,46 +73,80 @@ namespace SuperMarioWorld
             }
         }
 
+        /// <summary>
+        /// called every frame
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            sprite.NewAnimation();
-            if (lookRight)
-                sprite.AddFrame(0, 0);
-            else
-                sprite.AddFrame(0, 1);
-
             //If the button D is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 lookRight = true;
-                momentum = new Vector2(momentum.X + acceleration, momentum.Y);
-
-                sprite.NewAnimation();
-                sprite.AddFrame(0, 0);
-                sprite.AddFrame(1, 0);
+                momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             //If button A is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 lookRight = false;
-                momentum = new Vector2(momentum.X - acceleration, momentum.Y);
-
-                sprite.NewAnimation();
-                sprite.AddFrame(0, 1);
-                sprite.AddFrame(1, 1);
+                momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
-            if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
+
+            if(Math.Abs(momentum.X) > 0.5f)
             {
-                sprite.NewAnimation();
-                if (lookRight)
-                    sprite.AddFrame(9, 0);
-                else
-                    sprite.AddFrame(9, 1);
+                //sprite.animationSpeed = (1 / Math.Abs(momentum.X)) * 5000;
+                sprite.animationSpeed = 150.0f;
+                SetAnimation(1);
+            }
+            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
+            {
+                SetAnimation(4);
+            }
+            else if(grounded == false && momentum.Y > 0.5f)
+            {
+                SetAnimation(3);
+            }
+            else
+            {
+                SetAnimation(0);
             }
 
             Movement(gameTime);
 
             base.Update(gameTime);
+        }
+
+        public void SetAnimation(int animation)
+        {
+            if (_animationState == animation)
+                return;
+
+            sprite.NewAnimation();
+            switch (animation)
+            {
+                //small mario standing
+                case 0:
+                    sprite.AddFrame(0, 0);
+                    break;
+                //small mario walk
+                case 1:
+                    sprite.AddFrame(0, 0);
+                    sprite.AddFrame(1, 0);
+                    break;
+                //small mario jump
+                case 2:
+                    sprite.AddFrame(2, 0);
+                    break;
+                //small mario fall
+                case 3:
+                    sprite.AddFrame(3, 0);
+                    break;
+                //small mario look up
+                case 4:
+                    sprite.AddFrame(9, 0);
+                    break;
+            }
+            _animationState = animation;
         }
 
         /// <summary>

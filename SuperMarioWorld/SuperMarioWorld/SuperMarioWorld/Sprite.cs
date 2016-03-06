@@ -29,6 +29,7 @@ namespace SuperMarioWorld
 
         private int _texCoordX, _texCoordY;
         private int _animIndex = 0;
+        public SpriteEffects effect = SpriteEffects.None;
 
         /// <summary>
         /// default constructor
@@ -71,13 +72,15 @@ namespace SuperMarioWorld
 
         public void NewAnimation(List<Vector2> animation)
         {
-            animationPositions.Clear();
+            NewAnimation();
             foreach (Vector2 v in animation)
                 animationPositions.Add(v);
         }
 
         public void NewAnimation()
         {
+            _animIndex = 0;
+            _animationProgress = 0;
             animationPositions.Clear();
         }
 
@@ -93,7 +96,7 @@ namespace SuperMarioWorld
         /// /// <param name="position">The world position of the sprite</param>
         public void DrawSprite(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(texture, new Rectangle((int)position.X -(xSize / 2), (int)position.Y - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White);
+            batch.Draw(texture, new Rectangle((int)position.X -(xSize / 2), (int)position.Y - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, 0);
         }
     }
 }

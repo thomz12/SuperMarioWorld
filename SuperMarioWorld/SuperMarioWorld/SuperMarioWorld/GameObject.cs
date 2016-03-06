@@ -28,8 +28,6 @@ namespace SuperMarioWorld
             this.position = position;
 
             sprite = new Sprite();
-            sprite.animationSpeed = 150.0f;
-            sprite.AddFrame(0, 0);
         }
 
         /// <summary>
@@ -39,10 +37,6 @@ namespace SuperMarioWorld
         public virtual void Update(GameTime gameTime)
         {
             sprite.UpdateAnimation(gameTime);
-
-            //Move the bounding box of the object
-            boundingBox.X = (int)position.X - boundingWidth / 2;
-            boundingBox.Y = (int)position.Y - boundingHeight;
         }
 
         /// <summary>
