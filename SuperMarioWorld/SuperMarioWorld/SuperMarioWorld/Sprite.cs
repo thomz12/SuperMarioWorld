@@ -26,19 +26,6 @@ namespace SuperMarioWorld
 
         //Vars for cycling and displaying animated sprite sheets
         private List<Vector2> animationPositions;
-        public List<Vector2> AnimationPositions
-        {
-            get
-            {
-                return animationPositions;
-            }
-            set
-            {
-                _animationProgress = animationSpeed;
-                _animIndex = 0;
-                animationPositions = value;
-            }
-        }
 
         private int _texCoordX, _texCoordY;
         private int _animIndex = 0;

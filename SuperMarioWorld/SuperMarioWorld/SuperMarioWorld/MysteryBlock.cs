@@ -32,7 +32,7 @@ namespace SuperMarioWorld
             //Add all sprites from the file to the list
             for (int i = 0; i < 4; i++)
             {
-                sprite.AnimationPositions.Add(new Vector2(0, i));
+                sprite.AnimationPositions.Add(new Vector2(i, 0));
             }
         }
     }

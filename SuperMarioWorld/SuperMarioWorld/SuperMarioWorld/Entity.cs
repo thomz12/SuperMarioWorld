@@ -28,8 +28,6 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-            sprite.UpdateAnimation(gameTime);
-
             //Calls the update function from gameobject
             base.Update(gameTime);
         }
