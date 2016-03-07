@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="e2f990e7-6046-454c-ac54-ad122f547125">
       <elementDefinition Id="817ed165-ef06-4032-9ef8-7cf96afaac55" />
@@ -10,6 +10,26 @@ a level file (.sml)</body>
       <elementDefinition Id="07f1494e-f1a8-4406-806d-513f006c073f" />
       <body>Todo
 </body>
+    </comment>
+    <comment Id="84d59822-1e33-4e0f-a272-52d19979923d">
+      <elementDefinition Id="981abc31-7642-4937-bcb3-db361eebdd72" />
+      <body>TODO</body>
+    </comment>
+    <comment Id="cc2bc5d0-94dd-4a6f-8ed0-6a20c02918b4">
+      <elementDefinition Id="a0abf737-b00b-424c-b5e0-d62e9cffe326" />
+      <body>TODO</body>
+    </comment>
+    <comment Id="44e9dddc-f9ce-46a6-bcd2-b95ec95bd93b">
+      <elementDefinition Id="15e0f816-5327-4cce-8cd0-aad6b40ee6d4" />
+      <body>TODO</body>
+    </comment>
+    <comment Id="79a20efc-0397-43c8-947d-1cc1f636befc">
+      <elementDefinition Id="619f2dd8-ce55-460c-9bc4-d5fd44e8de4c" />
+      <body>TODO</body>
+    </comment>
+    <comment Id="262d5ac5-8a58-476f-b890-33ae267dbbbd">
+      <elementDefinition Id="d1630971-f70e-461d-b49a-bd3645c556c4" />
+      <body>TODO</body>
     </comment>
   </ownedCommentsInternal>
   <packagedElements>
@@ -53,12 +73,6 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="ca566f2b-c443-45a5-b375-71b999b6da29" LastKnownName="SpriteBatch" />
             </type_NamedElement>
           </property>
-          <property Id="1999f512-8a2b-4f89-85d8-ff3df150f91e" name="_debugFont" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="7f114232-789f-4a43-8394-ed68eba36645" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="2b6fd75b-84b1-4691-94c2-eb885b7e764b" LastKnownName="SpriteFont" />
-            </type_NamedElement>
-          </property>
           <property Id="cc7dabbd-5ca3-4b51-b765-434ec3951ad4" name="loadedSprites" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="d8f65747-b1ff-47f4-9681-d817b7ee9383" />
             <type_NamedElement>
@@ -69,12 +83,6 @@ a level file (.sml)</body>
             <elementDefinition Id="60bc5bea-5a57-4ea6-bb4a-7e623d66b178" />
             <type_NamedElement>
               <referencedTypeMoniker Id="f03cef90-1e4f-4232-b109-f2458635af3c" LastKnownName="const int" />
-            </type_NamedElement>
-          </property>
-          <property Id="10813a92-542f-4534-acbd-da834139fc90" name="_counter" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="5a94d5fc-fb5b-40b9-a785-0f4b92119cc9" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="4097397b-b4bd-4bcc-a4da-5908292f745e" LastKnownName="FPSCounter" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -205,6 +213,18 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="af9a5d54-1ab9-4e97-901f-aebced203a14" LastKnownName="Rectangle" />
             </type_NamedElement>
           </property>
+          <property Id="9da5c7b5-cc81-4cb2-9c0b-bed97cbee1c7" name="boundingWidth" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4cb48de5-39aa-4caf-ae22-124c2ddfe6d6" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="95a16a2e-70af-4fb8-9d36-0d6760d61927" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
+          <property Id="c4ff0cf8-b70d-45c6-a3d0-3fca52d94565" name="boundingHeight" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6d9897bd-b070-403a-8af7-02c263715807" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation Id="2fba1bdc-3cba-4998-91ef-f2d816588777" name="GameObject" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -305,6 +325,17 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
             </type_NamedElement>
           </property>
+          <property Id="7dc1d9b1-1ee0-4c35-a1c9-629bd3a0b8ae" name="acceleration" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="38d9b6af-183b-4056-8821-030e25879f47" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="8319ec65-4fb9-4696-9209-2d5c15c7d5bd" LastKnownName="float" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString Id="ced763d5-b1c9-4e42-a1f8-15299807f8c5" name="DefaultValue" value="16f">
+                <elementDefinition Id="a2925b64-9db4-467e-b309-ceac73474b41" />
+              </literalString>
+            </defaultValue>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation Id="f9056e0f-4e76-42da-ba6a-304ae5d64372" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -327,6 +358,19 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation Id="b1d88524-e705-4ce9-8f86-43266d27521a" name="Entity" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="05e14ef6-6454-4fd7-a408-8470a025af1c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="31d8dad9-cdfd-4aa6-9721-677100abc144" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="faffcfb0-0820-451d-8a9a-1f18d39e342f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -340,19 +384,28 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedAttributesInternal>
-          <property Id="d40651cb-58d0-4047-92d2-666aa16664ea" name="blocking" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="d40651cb-58d0-4047-92d2-666aa16664ea" name="blocking" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="5b46e40b-19fd-45f1-98a2-c87dff6affac" />
             <type_NamedElement>
               <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
             </type_NamedElement>
           </property>
-          <property Id="661950fb-f412-47a3-a931-487619fba6b8" name="used" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="5b0451c7-b71e-43de-8596-45b97b8bcfe4" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="7e7cc779-0f6b-48f1-a4d0-fbe84103aaf8" name="Object" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7c51d32f-59c4-4793-a4db-3ff4fe48b4e4" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="d4265458-cd13-4f97-800c-df5385b460d0" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="e0d0429e-1a06-416b-8ff0-3cfe5c6793c0" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -375,7 +428,7 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="8319ec65-4fb9-4696-9209-2d5c15c7d5bd" LastKnownName="float" />
             </type_NamedElement>
           </property>
-          <property Id="3fbb61ee-e8ff-4dfd-8166-d038863da2ca" name="texture" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="3fbb61ee-e8ff-4dfd-8166-d038863da2ca" name="texture" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="e7697a6e-fba5-4098-9019-78e3f1e38932" />
             <type_NamedElement>
               <referencedTypeMoniker Id="f2238ade-bf7f-453f-962e-1e080226d302" LastKnownName="Texture2D" />
@@ -411,7 +464,7 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
             </type_NamedElement>
           </property>
-          <property Id="afbcd4d4-3e07-4fac-bb0f-1086a82e4046" name="animationPositions" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="afbcd4d4-3e07-4fac-bb0f-1086a82e4046" name="animationPositions" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="b8b50539-5d4e-416a-9e9d-dc269b1f155e" />
             <type_NamedElement>
               <referencedTypeMoniker Id="43bfafb7-559b-43a1-b8da-c7c49763fe7f" LastKnownName="List&lt;Vector2&gt;" />
@@ -427,6 +480,23 @@ a level file (.sml)</body>
             <elementDefinition Id="fc1e7a7a-260c-45fd-a8c5-06f3391fa702" />
             <type_NamedElement>
               <referencedTypeMoniker Id="402d268c-fc96-437f-996f-b5fba41953cf" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
+          <property Id="661d726e-bd48-4b58-bd69-0012a4f14e3c" name="_animationIndex" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e721b86a-21dd-49cf-9706-852203bba95e" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString Id="8a6e1e06-49d2-4ea3-bc70-754efbde8bda" name="DefaultValue" value="0">
+                <elementDefinition Id="ef805459-4aa7-4bca-8bd8-4a27ecef1658" />
+              </literalString>
+            </defaultValue>
+          </property>
+          <property Id="c7c8406b-abc1-473e-a5c0-25da668e5f76" name="effect" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0855eecb-c874-41e1-8911-71375a0e3191" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="16846fc9-5965-455e-bfca-0c99ee146b30" LastKnownName="SpriteEffects" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -468,6 +538,64 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation Id="d664339b-9cf4-4d3b-b728-130334636098" name="NewAnimation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="50b0ae0c-5c88-4bb5-b6e3-dff9330057bd" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8734557a-4f87-4406-af86-4fcb8de43035" name="animation" direction="In" isUnique="false">
+                  <elementDefinition Id="5b752f8f-03b6-432e-b03d-270e3552a774" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="43bfafb7-559b-43a1-b8da-c7c49763fe7f" LastKnownName="List&lt;Vector2&gt;" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3bb02493-1bb6-4abf-861f-d5a539528fee" name="NewAnimation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3185141c-3089-4eb1-b0ea-19c3201504c2" />
+          </operation>
+          <operation Id="fece0a91-e25d-4e3d-8d67-1a05d058494c" name="AddFrame" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="77579ada-109f-45a8-bcf2-5d7c2641408d" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="823e0bbd-dee3-4dad-bd95-cc0a85b30e08" name="x" direction="In" isUnique="false">
+                  <elementDefinition Id="8cad6a63-7a78-433a-af2a-c9a281778c00" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e620e6c3-b91a-43d1-9e18-d6ed458e69e5" name="y" direction="In" isUnique="false">
+                  <elementDefinition Id="bc06e57d-5c73-4b90-b302-4baa0e0b53e3" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="48f9de2f-05d8-43d1-8fa8-fcaa3247dae3" name="DrawSprite" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="10ce368d-9ad6-435e-b0f2-4d4eb7ac246c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8eaff437-0efb-4129-870d-a0389ce0d595" name="batch" direction="In" isUnique="false">
+                  <elementDefinition Id="9380126c-f247-4913-aa51-44bd97f3b567" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="290e8e7b-e91c-47c2-8e39-9e272a998d38" LastKnownName="SpriteBatch" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4dd0515c-7584-4f10-be79-95e6296a7de7" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="3ffeb8ad-afdc-42f2-88cd-63b37ef12427" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -495,6 +623,24 @@ a level file (.sml)</body>
             <elementDefinition Id="931e7031-4154-4d8b-9214-6a99f63657a0" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association Id="59c541df-ca44-4202-8ec3-07e24bd80801" isDerived="false" sourceEndRoleName="" targetEndRoleName="is in" isLeaf="false" isAbstract="false">
+            <enumerationMoniker Id="ae91ed1c-efd2-4b89-ae94-9f8369a57011" LastKnownName="PowerState" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0eb6e6dc-d712-40f2-9df8-3b34159c0587" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="96845b3c-d448-47f3-b682-db6f0312946d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0db1de72-8cec-49e7-bbc0-df237299cce6" name="is in" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="71dfeb93-fe90-42c2-a9fa-faf851638684" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="dec70617-29cd-41d0-94bb-c64832e77b9c" />
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property Id="e8b65472-f915-49c8-ab67-4f53528c8092" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="d603119b-492d-4e06-9510-51bfbcfae36f" />
@@ -502,9 +648,15 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
             </type_NamedElement>
           </property>
+          <property Id="e57688ba-0373-4b25-be61-4408478273ee" name="_animationState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="24261ee2-e504-473a-bf26-ffc7c0cbfa38" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="952b7e2f-30fb-434b-92f9-745b4fe8e3dc" name="Movement" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="952b7e2f-30fb-434b-92f9-745b4fe8e3dc" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="458b85ab-0f24-47f1-8dff-c33f3057bbe3" />
             <ownedParameters>
               <operationHasOwnedParameters>
@@ -526,6 +678,34 @@ a level file (.sml)</body>
                   <type_NamedElement>
                     <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
                   </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="f825a7ae-3c1e-48be-ab1e-68486fa41e26" name="Player" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7dfa7261-dc41-4ec9-b299-d4d5bd53ce1a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4ec22ea3-b79c-434d-824d-f38d71de9015" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="67ae4ea8-a374-45bf-9067-7cbec8f6b71b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c138d641-f161-4c52-abdc-8524d13862dd" name="character Character" direction="In" isUnique="false">
+                  <elementDefinition Id="049cda07-f955-46eb-a59f-87585d118b9b" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="190e2427-5b01-4a8e-ba76-1799c98cb9c5" name="SetAnimation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d1d8e5f6-ba5f-45e0-98dc-c6136de226f5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8d5fd205-7a75-44a1-8af9-2637429137a9" name="animation int" direction="In" isUnique="false">
+                  <elementDefinition Id="20a626f6-1962-49b4-99d6-20280b99329f" />
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -594,6 +774,29 @@ a level file (.sml)</body>
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="6db22af1-edb0-4062-b2de-91ce96c32133" name="MysteryBlock" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="016c7247-0f74-4b0a-8d15-113ca964f198" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="aa8143dd-0cc3-41c8-b389-9a78c24ff38d" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="422e5319-c028-4e1a-b79e-82aa9053f2d0" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c347d822-5ff5-490e-99a8-e43f522a9f0d" name="contents" direction="In" isUnique="false">
+                  <elementDefinition Id="ec575c43-9bdb-450b-83c5-166994c32b25" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -872,27 +1075,24 @@ a level file (.sml)</body>
             <elementDefinition Id="08e6b60b-5975-4fe3-bebb-a10d337d90c3" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="8219309b-b037-42cc-bb04-0955748b5655" direction="Return">
+                <parameter Id="8219309b-b037-42cc-bb04-0955748b5655" direction="Return" isUnique="false">
                   <elementDefinition Id="d8fc5563-a3c9-4a0e-bd91-5b12f5e6205d" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="14a22930-746e-4e6e-8f90-2bb584714b3a" LastKnownName="Matrix" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="3622eb1d-8364-4058-8f45-4a98705329c2" name="device" direction="In" isUnique="false">
+                  <elementDefinition Id="7cff6b89-1a9d-44dc-a7e8-468d870fe053" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="7c8e59ef-daff-464a-80f2-9e2626fb1ae3" LastKnownName="GraphicsDevice" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
         </ownedOperationsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="32d20118-45da-4baf-bea6-9558c988162d" name="Platform" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="1f1a445b-ba4b-4b63-8d55-c8105c14ef90" />
-        <generalsInternal>
-          <generalization Id="ea14d7cc-b5a4-4675-8c0a-8cc64322b204" isSubstitutable="false">
-            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
-            <elementDefinition Id="592ecdc1-fe4b-4745-8a60-ebcadb9345f4" />
-          </generalization>
-        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -910,6 +1110,9 @@ a level file (.sml)</body>
             <type_NamedElement>
               <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
             </type_NamedElement>
+          </property>
+          <property Id="22e78c5e-de64-4aa7-a0f2-fdf7e8bac68c" name="isPlatform" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="fe32d1fb-5d6c-485e-9c51-1ae1e56cee7c" />
           </property>
         </ownedAttributesInternal>
       </class>
@@ -967,11 +1170,6 @@ a level file (.sml)</body>
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="2b6fd75b-84b1-4691-94c2-eb885b7e764b" name="SpriteFont" isAbstract="false" isLeaf="false" cachedFullName="SpriteFont">
-        <elementDefinition Id="4095554d-c176-4577-80eb-b18bb75194ab" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="ca566f2b-c443-45a5-b375-71b999b6da29" name="SpriteBatch" isAbstract="false" isLeaf="false" cachedFullName="SpriteBatch">
         <elementDefinition Id="c211de4d-10e0-4519-a42f-7fe5217bc19a" />
       </referencedType>
@@ -992,15 +1190,56 @@ a level file (.sml)</body>
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="4097397b-b4bd-4bcc-a4da-5908292f745e" name="FPSCounter" isAbstract="false" isLeaf="false" cachedFullName="FPSCounter">
-        <elementDefinition Id="6a1e0cac-eb2c-4052-9426-d7bb4d4eb594" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="632fee27-1398-4236-85ba-aef062889766" name="GameObject" isAbstract="false" isLeaf="false" cachedFullName="UML::GameObject">
         <elementDefinition Id="843b9e8d-a6b4-4af0-8393-328bd218ad66" />
       </referencedType>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="7c8e59ef-daff-464a-80f2-9e2626fb1ae3" name="GraphicsDevice" isAbstract="false" isLeaf="false" cachedFullName="GraphicsDevice">
+        <elementDefinition Id="8b70acf8-a883-4fc2-8f3e-494be5c0c73d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="95a16a2e-70af-4fb8-9d36-0d6760d61927" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="16846fc9-5965-455e-bfca-0c99ee146b30" name="SpriteEffects" isAbstract="false" isLeaf="false" cachedFullName="SpriteEffects">
+        <elementDefinition Id="b6970b83-a2be-40ab-81a7-41f287fd9829" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="ae91ed1c-efd2-4b89-ae94-9f8369a57011" name="PowerState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="56a1d919-d1e9-43f3-a79c-7658c40b3574" />
+        <ownedLiterals>
+          <enumerationLiteral Id="132bc30a-b467-47f9-bd40-edcd3226ffa9" name="small ">
+            <elementDefinition Id="692a8dd6-70cc-40bc-95cd-39c142232d00" />
+            <specification>
+              <literalInteger Id="321ad3e1-47d7-40e6-8011-d33fea3ad57e" name="Integer" value="0">
+                <elementDefinition Id="1e70c28d-8348-4f2e-8bde-c67ae61648a9" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="96688da5-2dc5-43e6-a2a5-a72f8657e9cf" name="normal">
+            <elementDefinition Id="51100bc3-50b4-4f5c-91ee-2561f94a34b3" />
+            <specification>
+              <literalInteger Id="6a832e08-83d8-4dc0-b8f8-9575ad338cb0" name="Integer" value="1">
+                <elementDefinition Id="4af88ed2-aff9-472c-9367-38b969869c1e" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="91ae438b-913f-4abe-9c86-0b1471db92aa" name="fire">
+            <elementDefinition Id="ac54d134-281b-4c01-86fc-abd2dddbbc46" />
+            <specification>
+              <literalInteger Id="a421bfe6-29ff-4060-a4ce-a78baca3f182" name="Integer" value="2">
+                <elementDefinition Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="d913c215-6805-4549-82da-cabd1137dc53" name="UML">
     <elementDefinition Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498" />

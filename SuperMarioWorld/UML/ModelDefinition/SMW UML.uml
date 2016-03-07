@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498"
   name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -13,6 +13,26 @@ a level file (.sml)</body>
       Id="07f1494e-f1a8-4406-806d-513f006c073f">
       <body>Todo
 </body>
+    </comment>
+    <comment
+      Id="981abc31-7642-4937-bcb3-db361eebdd72">
+      <body>TODO</body>
+    </comment>
+    <comment
+      Id="a0abf737-b00b-424c-b5e0-d62e9cffe326">
+      <body>TODO</body>
+    </comment>
+    <comment
+      Id="15e0f816-5327-4cce-8cd0-aad6b40ee6d4">
+      <body>TODO</body>
+    </comment>
+    <comment
+      Id="619f2dd8-ce55-460c-9bc4-d5fd44e8de4c">
+      <body>TODO</body>
+    </comment>
+    <comment
+      Id="d1630971-f70e-461d-b49a-bd3645c556c4">
+      <body>TODO</body>
     </comment>
   </ownedCommentsInternal>
   <profileInstances>
@@ -128,25 +148,6 @@ a level file (.sml)</body>
             </type_NamedElement>
           </property>
           <property
-            Id="7f114232-789f-4a43-8394-ed68eba36645"
-            name="_debugFont"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="4095554d-c176-4577-80eb-b18bb75194ab"
-                LastKnownName="SpriteFont"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="d8f65747-b1ff-47f4-9681-d817b7ee9383"
             name="loadedSprites"
             isLeaf="false"
@@ -180,25 +181,6 @@ a level file (.sml)</body>
               <undefinedTypeMoniker
                 Id="cde302c2-8f78-4f69-a8c2-a8e587b7e65d"
                 LastKnownName="const int"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="5a94d5fc-fb5b-40b9-a785-0f4b92119cc9"
-            name="_counter"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="6a1e0cac-eb2c-4052-9426-d7bb4d4eb594"
-                LastKnownName="FPSCounter"
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
@@ -500,6 +482,44 @@ a level file (.sml)</body>
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="4cb48de5-39aa-4caf-ae22-124c2ddfe6d6"
+            name="boundingWidth"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6d9897bd-b070-403a-8af7-02c263715807"
+            name="boundingHeight"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -715,6 +735,31 @@ a level file (.sml)</body>
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="38d9b6af-183b-4056-8821-030e25879f47"
+            name="acceleration"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="921fbb4a-e588-4ee6-8a15-3be6e454643d"
+                LastKnownName="float"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="a2925b64-9db4-467e-b309-ceac73474b41"
+                name="DefaultValue"
+                value="16f" />
+            </defaultValue>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -754,6 +799,31 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="05e14ef6-6454-4fd7-a408-8470a025af1c"
+            name="Entity"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="faffcfb0-0820-451d-8a9a-1f18d39e342f"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -778,25 +848,6 @@ a level file (.sml)</body>
           <property
             Id="5b46e40b-19fd-45f1-98a2-c87dff6affac"
             name="blocking"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
-                LastKnownName="bool"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="5b0451c7-b71e-43de-8596-45b97b8bcfe4"
-            name="used"
             visibility="Protected"
             isLeaf="false"
             isStatic="false"
@@ -814,6 +865,33 @@ a level file (.sml)</body>
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7c51d32f-59c4-4793-a4db-3ff4fe48b4e4"
+            name="Object"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e0d0429e-1a06-416b-8ff0-3cfe5c6793c0"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -860,7 +938,6 @@ a level file (.sml)</body>
           <property
             Id="e7697a6e-fba5-4098-9019-78e3f1e38932"
             name="texture"
-            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -971,6 +1048,7 @@ a level file (.sml)</body>
           <property
             Id="b8b50539-5d4e-416a-9e9d-dc269b1f155e"
             name="animationPositions"
+            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1021,6 +1099,49 @@ a level file (.sml)</body>
               <undefinedTypeMoniker
                 Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
                 LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e721b86a-21dd-49cf-9706-852203bba95e"
+            name="_animationIndex"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="ef805459-4aa7-4bca-8bd8-4a27ecef1658"
+                name="DefaultValue"
+                value="0" />
+            </defaultValue>
+          </property>
+          <property
+            Id="0855eecb-c874-41e1-8911-71375a0e3191"
+            name="effect"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b6970b83-a2be-40ab-81a7-41f287fd9829"
+                LastKnownName="SpriteEffects"
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
@@ -1098,6 +1219,117 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="50b0ae0c-5c88-4bb5-b6e3-dff9330057bd"
+            name="NewAnimation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5b752f8f-03b6-432e-b03d-270e3552a774"
+                  name="animation"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="93d9c5bb-4c0b-43cc-9d37-39198bd43cf4"
+                      LastKnownName="List&lt;Vector2&gt;"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3185141c-3089-4eb1-b0ea-19c3201504c2"
+            name="NewAnimation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="77579ada-109f-45a8-bcf2-5d7c2641408d"
+            name="AddFrame"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8cad6a63-7a78-433a-af2a-c9a281778c00"
+                  name="x"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                      LastKnownName="int"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bc06e57d-5c73-4b90-b302-4baa0e0b53e3"
+                  name="y"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                      LastKnownName="int"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="10ce368d-9ad6-435e-b0f2-4d4eb7ac246c"
+            name="DrawSprite"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9380126c-f247-4913-aa51-44bd97f3b567"
+                  name="batch"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c211de4d-10e0-4519-a42f-7fe5217bc19a"
+                      LastKnownName="SpriteBatch"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3ffeb8ad-afdc-42f2-88cd-63b37ef12427"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -1157,10 +1389,69 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="dec70617-29cd-41d0-94bb-c64832e77b9c"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="is in"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="56a1d919-d1e9-43f3-a79c-7658c40b3574"
+              LastKnownName="PowerState"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="96845b3c-d448-47f3-b682-db6f0312946d"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="71dfeb93-fe90-42c2-a9fa-faf851638684"
+                  name="is in"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="d603119b-492d-4e06-9510-51bfbcfae36f"
             name="powerState"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="24261ee2-e504-473a-bf26-ffc7c0cbfa38"
+            name="_animationState"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -1182,7 +1473,7 @@ a level file (.sml)</body>
           <operation
             Id="458b85ab-0f24-47f1-8dff-c33f3057bbe3"
             name="Movement"
-            visibility="Private"
+            visibility="Protected"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -1227,6 +1518,56 @@ a level file (.sml)</body>
                       LastKnownLocation="SMW UML.uml" />
                   </type_NamedElement>
                 </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7dfa7261-dc41-4ec9-b299-d4d5bd53ce1a"
+            name="Player"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="67ae4ea8-a374-45bf-9067-7cbec8f6b71b"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="049cda07-f955-46eb-a59f-87585d118b9b"
+                  name="character Character"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d1d8e5f6-ba5f-45e0-98dc-c6136de226f5"
+            name="SetAnimation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="20a626f6-1962-49b4-99d6-20280b99329f"
+                  name="animation int"
+                  direction="In"
+                  isUnique="false" />
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -1476,6 +1817,47 @@ a level file (.sml)</body>
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="016c7247-0f74-4b0a-8d15-113ca964f198"
+            name="MysteryBlock"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="422e5319-c028-4e1a-b79e-82aa9053f2d0"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ec575c43-9bdb-450b-83c5-166994c32b25"
+                  name="contents"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                      LastKnownName="GameObject"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2150,11 +2532,26 @@ a level file (.sml)</body>
               <operationHasOwnedParameters>
                 <parameter
                   Id="d8fc5563-a3c9-4a0e-bd91-5b12f5e6205d"
-                  direction="Return">
+                  direction="Return"
+                  isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
                       Id="881da329-7ab1-434b-8c7f-e8b9c5d3413b"
                       LastKnownName="Matrix"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7cff6b89-1a9d-44dc-a7e8-468d870fe053"
+                  name="device"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="8b70acf8-a883-4fc2-8f3e-494be5c0c73d"
+                      LastKnownName="GraphicsDevice"
                       LastKnownLocation="SMW UML.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -2220,6 +2617,18 @@ a level file (.sml)</body>
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="fe32d1fb-5d6c-485e-9c51-1ae1e56cee7c"
+            name="isPlatform"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -2306,6 +2715,56 @@ a level file (.sml)</body>
       <undefinedType
         Id="6a1e0cac-eb2c-4052-9426-d7bb4d4eb594"
         name="FPSCounter" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="8b70acf8-a883-4fc2-8f3e-494be5c0c73d"
+        name="GraphicsDevice" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b6970b83-a2be-40ab-81a7-41f287fd9829"
+        name="SpriteEffects" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="56a1d919-d1e9-43f3-a79c-7658c40b3574"
+        name="PowerState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="692a8dd6-70cc-40bc-95cd-39c142232d00"
+            name="small ">
+            <specification>
+              <literalInteger
+                Id="1e70c28d-8348-4f2e-8bde-c67ae61648a9"
+                name="Integer"
+                value="0" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="51100bc3-50b4-4f5c-91ee-2561f94a34b3"
+            name="normal">
+            <specification>
+              <literalInteger
+                Id="4af88ed2-aff9-472c-9367-38b969869c1e"
+                name="Integer"
+                value="1" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="ac54d134-281b-4c01-86fc-abd2dddbbc46"
+            name="fire">
+            <specification>
+              <literalInteger
+                Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6"
+                name="Integer"
+                value="2" />
+            </specification>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
