@@ -623,12 +623,6 @@ a level file (.sml)</body>
           </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property Id="e8b65472-f915-49c8-ab67-4f53528c8092" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="d603119b-492d-4e06-9510-51bfbcfae36f" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
-            </type_NamedElement>
-          </property>
           <property Id="e57688ba-0373-4b25-be61-4408478273ee" name="_animationState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="24261ee2-e504-473a-bf26-ffc7c0cbfa38" />
             <type_NamedElement>
@@ -1296,7 +1290,7 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="002af808-f627-4ef6-945c-3dd5d38c03ab" />
           </operation>
         </ownedOperationsInternal>
@@ -1384,14 +1378,6 @@ a level file (.sml)</body>
             <specification>
               <literalInteger Id="6a832e08-83d8-4dc0-b8f8-9575ad338cb0" name="Integer" value="1">
                 <elementDefinition Id="4af88ed2-aff9-472c-9367-38b969869c1e" />
-              </literalInteger>
-            </specification>
-          </enumerationLiteral>
-          <enumerationLiteral Id="91ae438b-913f-4abe-9c86-0b1471db92aa" name="fire">
-            <elementDefinition Id="ac54d134-281b-4c01-86fc-abd2dddbbc46" />
-            <specification>
-              <literalInteger Id="a421bfe6-29ff-4060-a4ce-a78baca3f182" name="Integer" value="2">
-                <elementDefinition Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6" />
               </literalInteger>
             </specification>
           </enumerationLiteral>
