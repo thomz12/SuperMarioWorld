@@ -36,6 +36,12 @@ namespace SuperMarioWorld
             cam = new Camera2D();
         }
 
+        public Level(string path)
+        {
+            throw new NotImplementedException();
+            //LOAD LEVEL FROM FILE
+        }
+
         public void Update(GameTime gameTime)
         {
             //Call the update method for all gameobjects

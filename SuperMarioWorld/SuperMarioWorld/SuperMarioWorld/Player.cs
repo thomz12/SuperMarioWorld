@@ -92,36 +92,47 @@ namespace SuperMarioWorld
                 momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
 
+            //Handle animations
+            //if player is moving
             if(Math.Abs(momentum.X) > 0.5f)
             {
                 //sprite.animationSpeed = (1 / Math.Abs(momentum.X)) * 5000;
                 sprite.animationSpeed = 150.0f;
                 SetAnimation(1);
             }
+            //if up is pressed, and not moving
             else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
             {
                 SetAnimation(4);
             }
+            //if player is falling
             else if(grounded == false && momentum.Y > 0.5f)
             {
                 SetAnimation(3);
             }
+            //player is doing nothing
             else
             {
                 SetAnimation(0);
             }
 
+            //Calculate player movement
             Movement(gameTime);
 
             base.Update(gameTime);
         }
 
+        //Set current animation
         public void SetAnimation(int animation)
         {
+            //If player is already in the animation, exit the method
             if (_animationState == animation)
                 return;
 
+            //Clear current animation
             sprite.NewAnimation();
+
+            //Set new animation
             switch (animation)
             {
                 //small mario standing

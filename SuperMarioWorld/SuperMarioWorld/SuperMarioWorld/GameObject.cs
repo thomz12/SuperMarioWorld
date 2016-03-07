@@ -12,11 +12,21 @@ namespace SuperMarioWorld
         //Sprite (texture) of this object
         public Sprite sprite;
         //Width and height of objects bounding box
-        public int boundingWidth, boundingHeight;
+        protected int boundingWidth, boundingHeight;
         //Collision box of this object
         public Rectangle boundingBox;
         //Current position of this object
         public Vector2 position;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public GameObject()
+        {
+            this.position = Vector2.Zero;
+
+            sprite = new Sprite();
+        }
 
         /// <summary>
         /// An object in the game with a position and a texture.
