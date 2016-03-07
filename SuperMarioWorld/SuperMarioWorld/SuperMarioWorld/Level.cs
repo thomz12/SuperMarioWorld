@@ -29,7 +29,15 @@ namespace SuperMarioWorld
             //TEMP, Add a object to the level
             GameObject player = new Player(new Vector2(0.0f,0.0f), Player.Character.Mario);
             GameObject mBlock01 = new MysteryBlock(new Vector2(0.0f, -32.0f), null);
+            
             objects.Add(player);
+
+            for(int i = -512; i <= 512; i+= 16)
+            {
+                GameObject floorb = new MysteryBlock(new Vector2(i, 16.0f), null);
+                objects.Add(floorb);
+            }
+
             objects.Add(mBlock01);
             
             //Create camera object
@@ -49,6 +57,7 @@ namespace SuperMarioWorld
             {
                 go.Update(gameTime);
             }
+            cam.Position = objects[0].position;
         }
 
         /// <summary>

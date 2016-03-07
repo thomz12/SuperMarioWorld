@@ -31,7 +31,7 @@ namespace SuperMarioWorld
 
             //Sprite animation
             sprite.NewAnimation();
-            sprite.animationSpeed = 100.0f;
+            sprite.animationSpeed = 128.0f;
 
             //Add all sprites from the file to the list
             for (int i = 0; i < 4; i++)
