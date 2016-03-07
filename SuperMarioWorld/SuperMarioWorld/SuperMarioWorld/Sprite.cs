@@ -47,22 +47,30 @@ namespace SuperMarioWorld
         /// </summary>
         public void UpdateAnimation(GameTime gameTime)
         {
+            //if there are animation frames
             if (animationPositions.Count != 0)
             {
+                //take update time (ms) from animation progress
                 _animationProgress -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                //When it reaches 0 or less, set next frame.
                 if (_animationProgress <= 0)
                 {
                     _animIndex++;
 
+                    //if index is higher then the amount of frames, reset it
                     if (_animIndex >= animationPositions.Count)
                         _animIndex = 0;
 
+                    //reset progress
                     _animationProgress = animationSpeed;
 
+                    //Set frame coords
                     _texCoordX = (int)animationPositions[_animIndex].X * xSize;
                     _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
                 }
             }
+            //else, display entire image
             else
             {
                 xSize = texture.Width;
@@ -70,6 +78,10 @@ namespace SuperMarioWorld
             }
         }
 
+        /// <summary>
+        /// clear current animation frames & add frames
+        /// </summary>
+        /// <param name="animation">New frames</param>
         public void NewAnimation(List<Vector2> animation)
         {
             NewAnimation();
@@ -77,6 +89,9 @@ namespace SuperMarioWorld
                 animationPositions.Add(v);
         }
 
+        /// <summary>
+        /// Clear current animation frames
+        /// </summary>
         public void NewAnimation()
         {
             _animIndex = 0;
@@ -84,6 +99,11 @@ namespace SuperMarioWorld
             animationPositions.Clear();
         }
 
+        /// <summary>
+        /// Add frame to the array of frames
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void AddFrame(int x, int y)
         {
             animationPositions.Add(new Vector2(x, y));

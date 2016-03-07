@@ -27,6 +27,7 @@ namespace SuperMarioWorld
 
         private const int _scale = 3;
 
+#if DEBUG
         //FPS Counter
         struct FPSCounter
         {
@@ -35,7 +36,7 @@ namespace SuperMarioWorld
             public int fps;
         }
         private FPSCounter _counter;
-
+#endif
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -117,6 +118,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+#if DEBUG
             //FPS Counter
             _counter.elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_counter.elapsedTime > 1000.0f)
@@ -125,7 +127,7 @@ namespace SuperMarioWorld
                 _counter.totalFrames = 0;
                 _counter.elapsedTime = 0;
             }
-
+#endif
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
@@ -149,8 +151,10 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+#if DEBUG
             //Only count frames we actualy draw
             _counter.totalFrames++;
+#endif
 
             //Set clear color
             GraphicsDevice.Clear(Color.CornflowerBlue);
