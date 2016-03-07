@@ -1654,53 +1654,8 @@ a level file (.sml)</body>
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
-          <property
-            Id="e790075c-3d34-4950-84a0-ca286d796ef6"
-            name="canMoveThroughWalls"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
-                LastKnownName="bool"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation
-            Id="3d782d81-bc49-47d8-8600-93c0e07392e2"
-            name="Movement"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="45d9f4e9-4c5c-494f-8aa8-5dd0fdad9b0d"
-                  name="gameTime"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
-                      LastKnownName="GameTime"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation
             Id="dca37c85-7d7f-46f9-b538-cd042eafdf35"
             name="Death"
@@ -2712,32 +2667,6 @@ a level file (.sml)</body>
         </generalsInternal>
         <ownedOperationsInternal>
           <operation
-            Id="1be06b48-0138-4925-be9e-48888f0c7b5f"
-            name="Movement"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="148c0e24-d57f-48ca-9b27-6a8814f8a56a"
-                  name="gameTime"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
-                      LastKnownName="GameTime"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
             Id="cc205be0-632b-40b1-b3af-ac2abbdeb3a1"
             name="Red Koopa"
             isLeaf="false"
@@ -2770,6 +2699,32 @@ a level file (.sml)</body>
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="1ba0a006-856e-4fa9-8860-f2353f62b2d9"
+            name="Movement"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bfdd03af-3178-44fc-8530-227f8026522b"
+                  name="gameTime"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -3300,32 +3255,6 @@ a level file (.sml)</body>
                     <undefinedTypeMoniker
                       Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
                       LastKnownName="Vector2"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
-            Id="fd2882c9-f693-4a21-8725-85b5140a7f53"
-            name="Movement"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="2830735f-ed98-442b-b3e6-5e3d00643b55"
-                  name="gameTime"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
-                      LastKnownName="GameTime"
                       LastKnownLocation="SMW UML.uml" />
                   </type_NamedElement>
                 </parameter>

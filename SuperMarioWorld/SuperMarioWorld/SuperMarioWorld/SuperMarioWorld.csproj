@@ -73,8 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="Goomba.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MysteryBlock.cs" />
     <Compile Include="Object.cs" />

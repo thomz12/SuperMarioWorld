@@ -623,6 +623,12 @@ a level file (.sml)</body>
           </association>
         </targetEnds>
         <ownedAttributesInternal>
+          <property Id="f992102b-81fe-4c2b-b25d-c598f24903df" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d603119b-492d-4e06-9510-51bfbcfae36f" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
           <property Id="e57688ba-0373-4b25-be61-4408478273ee" name="_animationState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="24261ee2-e504-473a-bf26-ffc7c0cbfa38" />
             <type_NamedElement>
@@ -716,27 +722,8 @@ a level file (.sml)</body>
               <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
             </type_NamedElement>
           </property>
-          <property Id="e3f386ae-9a0b-4171-b594-c37764dcab40" name="canMoveThroughWalls" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="e790075c-3d34-4950-84a0-ca286d796ef6" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="a2053b5d-9948-458a-aae7-ecb3f4daa1d6" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="3d782d81-bc49-47d8-8600-93c0e07392e2" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="0f1e6f18-5be4-42f2-b05f-23b7dd224d2d" name="gameTime" direction="In" isUnique="false">
-                  <elementDefinition Id="45d9f4e9-4c5c-494f-8aa8-5dd0fdad9b0d" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="99baa5eb-0887-4857-a041-4af9ec10c846" name="Death" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="dca37c85-7d7f-46f9-b538-cd042eafdf35" />
           </operation>
@@ -1130,19 +1117,6 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="a45fafb0-27bd-45f1-8950-b2467e4d569d" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="1be06b48-0138-4925-be9e-48888f0c7b5f" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="05d8768d-1901-476c-8058-1f592f4493ae" name="gameTime" direction="In" isUnique="false">
-                  <elementDefinition Id="148c0e24-d57f-48ca-9b27-6a8814f8a56a" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="1a02d647-85da-40e9-a8f7-9c28545f985f" name="Red Koopa" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="cc205be0-632b-40b1-b3af-ac2abbdeb3a1" />
             <ownedParameters>
@@ -1158,6 +1132,19 @@ a level file (.sml)</body>
           </operation>
           <operation Id="c40f33d5-96da-4435-908d-e168c9608d69" name="Death" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="d104b480-fe57-4d00-bdd5-42cf81152de2" />
+          </operation>
+          <operation Id="77d2cd3c-16cc-43cc-97c4-ab0f9555cc19" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1ba0a006-856e-4fa9-8860-f2353f62b2d9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="68611fa8-5502-43f7-9144-2def838a4311" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="bfdd03af-3178-44fc-8530-227f8026522b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -1290,7 +1277,7 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="002af808-f627-4ef6-945c-3dd5d38c03ab" />
           </operation>
         </ownedOperationsInternal>
@@ -1381,6 +1368,14 @@ a level file (.sml)</body>
               </literalInteger>
             </specification>
           </enumerationLiteral>
+          <enumerationLiteral Id="9397899e-1a2d-42b9-88e0-7470425b0c43" name="fire">
+            <elementDefinition Id="ac54d134-281b-4c01-86fc-abd2dddbbc46" />
+            <specification>
+              <literalInteger Id="0578fade-72a0-44bb-947b-ccaa25e61227" name="Integer" value="2">
+                <elementDefinition Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
         </ownedLiterals>
       </enumeration>
     </logicalClassDesignerModelHasTypes>
@@ -1434,19 +1429,6 @@ a level file (.sml)</body>
                   <elementDefinition Id="7e91d0d2-4e9a-4b10-a484-b5158decfeb2" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="b0b4e873-6417-4c09-a0d4-c0084686d662" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="fd2882c9-f693-4a21-8725-85b5140a7f53" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="0b47c120-0705-4b63-ab7a-a802ed19a31b" name="gameTime" direction="In" isUnique="false">
-                  <elementDefinition Id="2830735f-ed98-442b-b3e6-5e3d00643b55" />
-                  <type_NamedElement>
-                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
