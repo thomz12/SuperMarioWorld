@@ -6,31 +6,6 @@
       <body>Path is the path to 
 a level file (.sml)</body>
     </comment>
-    <comment Id="5b8dd42e-c307-4aab-b758-2a0ceb336d21">
-      <elementDefinition Id="07f1494e-f1a8-4406-806d-513f006c073f" />
-      <body>Todo
-</body>
-    </comment>
-    <comment Id="84d59822-1e33-4e0f-a272-52d19979923d">
-      <elementDefinition Id="981abc31-7642-4937-bcb3-db361eebdd72" />
-      <body>TODO</body>
-    </comment>
-    <comment Id="cc2bc5d0-94dd-4a6f-8ed0-6a20c02918b4">
-      <elementDefinition Id="a0abf737-b00b-424c-b5e0-d62e9cffe326" />
-      <body>TODO</body>
-    </comment>
-    <comment Id="44e9dddc-f9ce-46a6-bcd2-b95ec95bd93b">
-      <elementDefinition Id="15e0f816-5327-4cce-8cd0-aad6b40ee6d4" />
-      <body>TODO</body>
-    </comment>
-    <comment Id="79a20efc-0397-43c8-947d-1cc1f636befc">
-      <elementDefinition Id="619f2dd8-ce55-460c-9bc4-d5fd44e8de4c" />
-      <body>TODO</body>
-    </comment>
-    <comment Id="262d5ac5-8a58-476f-b890-33ae267dbbbd">
-      <elementDefinition Id="d1630971-f70e-461d-b49a-bd3645c556c4" />
-      <body>TODO</body>
-    </comment>
   </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
@@ -342,8 +317,11 @@ a level file (.sml)</body>
             <elementDefinition Id="7549923a-36dd-4926-8c4e-ac5ec9bdbb36" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="6ae3222c-fe9d-4391-8c20-aefd3d317bb5" name="gameTime GameTime" direction="In" isUnique="false">
-                  <elementDefinition Id="f285198f-d47c-4ff8-8641-1f42fa2f03ad" />
+                <parameter Id="f5438f54-9121-4e34-95f0-72d94bd9642a" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="f10fb521-4cb5-47e2-a6e4-4d6a132fc6a6" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -352,8 +330,11 @@ a level file (.sml)</body>
             <elementDefinition Id="c849825a-52aa-49b8-a506-34713e56d19c" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="d5ebd711-c475-4f1e-a63d-30e47f99751a" name="gameTime GameTime" direction="In" isUnique="false">
-                  <elementDefinition Id="055122fb-2e22-4298-8674-7124337b02a2" />
+                <parameter Id="52618269-ea81-40f6-846c-ed2775fe30b6" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="ea6137dc-f972-4d81-9f75-358e79a29283" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -642,7 +623,7 @@ a level file (.sml)</body>
           </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property Id="e8b65472-f915-49c8-ab67-4f53528c8092" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="f992102b-81fe-4c2b-b25d-c598f24903df" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="d603119b-492d-4e06-9510-51bfbcfae36f" />
             <type_NamedElement>
               <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
@@ -722,28 +703,73 @@ a level file (.sml)</body>
             <elementDefinition Id="417989dd-a261-486d-907a-9cfb0bd76234" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="0e079056-4c62-4aef-98d3-eee7827f5ccc" name="drop" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e6970452-c5b4-403c-af50-8bc92ab62c21" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+            </type_NamedElement>
+          </property>
+          <property Id="8e40eee6-7bd1-400d-9c74-e05019daeb29" name="flying" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="693fa079-a9be-4fb9-ac22-6c0b67183c0f" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
+          <property Id="2a9d6562-0ee7-4084-8868-0a7f4b6b01f2" name="huge" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="938aaf03-edb1-49b8-b679-73132a97266a" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="99baa5eb-0887-4857-a041-4af9ec10c846" name="Death" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="dca37c85-7d7f-46f9-b538-cd042eafdf35" />
+          </operation>
+          <operation Id="8f66adbf-5d99-4958-b6b9-dd31204a0806" name="Enemy" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f1c420be-9f76-4e1f-aee5-7243852c2191" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="37910a03-e01b-4e71-881e-14514a1ad5c7" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="17838b30-2617-4a66-b97b-93c7c9f59226" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="14136816-ea2c-442a-a082-e858bb48eab6" name="Mushroom" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b6c2266a-7d31-4d5c-ade8-5940c18c6187" />
         <generalsInternal>
-          <generalization Id="b82a13cb-0480-48eb-bbf6-8f600c9819d4" isSubstitutable="false">
+          <generalization Id="599ee2ed-96d0-4930-a536-b69e11bdd6b2" isSubstitutable="false">
             <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
-            <elementDefinition Id="6bc9e94f-6f5f-4260-94cd-660507d9b6a3" />
+            <elementDefinition Id="e00942f9-ce33-49da-8af7-d3f1956b3742" />
           </generalization>
         </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="cb969569-3277-47ef-8ef7-4d8a29ea82c2" name="Finish" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="866de2c2-2745-4fde-8557-0414217e8fe3" />
-        <generalsInternal>
-          <generalization Id="6f028d3b-6bcc-4d49-b1a9-4c73427eb131" isSubstitutable="false">
-            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
-            <elementDefinition Id="475f56d8-7040-41db-9df1-18ffd20d9dc9" />
-          </generalization>
-        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="a6f4b8af-57c6-4d25-8f19-2407a9ca63e0" name="AddPower" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="71f2453f-13cc-43d0-b31d-28df7ecaf30b" />
+          </operation>
+          <operation Id="1848db98-f5fa-4e3b-b493-cd8de3e0a988" name="Mushroom" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="95e3e376-4ba2-4777-85c9-053a6997b4e3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="7b03380b-cf5e-4dd2-870a-1972cc71c537" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="0fe7af7c-4912-4d31-a3f7-d6013d56a16f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -755,6 +781,25 @@ a level file (.sml)</body>
             <elementDefinition Id="b5eac759-f61e-41fe-b62c-405076eb4fc0" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="5b6cb98d-0b21-4812-97a0-2801823e1db6" name="lastCheckPoint" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="bebbd736-d1bf-4b2e-bcb8-e91794fe0c79" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="307c3a34-533c-4b48-9495-f27743f4d056" LastKnownName="Checkpoint" />
+            </type_NamedElement>
+          </property>
+          <property Id="59cec4da-908c-440f-9c8d-84d528baf86e" name="isLastCheckpoint" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a8defff7-0a43-4d4f-8184-a5882437e269" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2579d8d4-d6b9-4a73-981e-0c295b34bb4a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="de6b6803-7a91-41be-8dbf-b2db1e793773" name="SetCheckpoint" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="737ab609-1628-478f-8cc0-c72d5f97828a" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -796,6 +841,9 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation Id="4bf1e7d2-b7a0-4784-b8d5-4eb6278de0da" name="GetUsed" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3ea1949f-d180-431c-85df-a5440ca5c1f5" />
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -808,6 +856,11 @@ a level file (.sml)</body>
             <elementDefinition Id="e2be1287-9fb6-4d42-af48-b52f905fa91d" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b5e5984a-9cc3-4075-9a80-e291573a5cbc" name="Break" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b2dad3ba-9f64-40b2-a09f-ba32c2564c09" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -819,17 +872,40 @@ a level file (.sml)</body>
             <elementDefinition Id="1e542837-8d2c-4b91-b92e-3aeb3ef59acb" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="4446258b-32e9-4dce-80b2-868dfb5c8d08" name="AddScore" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f4fc4306-5f7c-4577-8781-a4053e9bacd2" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="5c0d08c8-b16a-4dba-91f1-cd2faf5f7658" name="OneUpMushroom" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="77966e4e-b463-4f56-85ad-0f1808544860" />
         <generalsInternal>
-          <generalization Id="b4d13a4c-e221-41cd-aad4-691a82949582" isSubstitutable="false">
+          <generalization Id="2f911c85-ad39-40c3-b1d0-560c84e917ce" isSubstitutable="false">
             <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
-            <elementDefinition Id="e8b38d7e-6a0c-4117-96c3-ac8ede83b466" />
+            <elementDefinition Id="a46cf262-d1df-4e11-b0b0-042b33e795e2" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="0ea1d210-edfb-4105-8f5e-c517f302fe6b" name="AddLife" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8deb93e5-0719-4286-ad6f-415aba7cd325" />
+          </operation>
+          <operation Id="f7463174-f3ad-43bc-a574-15fbf3d0c62e" name="OneUpMushroom" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="848b5c54-862d-41ce-9e1c-eab3e70d8548" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="0164cd56-15f4-4352-81a7-4ecf9d15673c" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="1270dd3c-f5c7-43bd-89f3-40e69df8e7ee" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -985,6 +1061,21 @@ a level file (.sml)</body>
             <elementDefinition Id="7baffbba-400f-4036-910e-132e8a80ec97" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="9851b98c-6ec6-4c2c-ab39-67aa7641ae52" name="Goomba" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="aab0571a-36b7-4ba4-b8d2-357b3d80ae41" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8b12fcf8-2a86-4c94-94ce-30957c320f79" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="2e3dc5a9-6f10-4d95-8a9e-113e2d6e7858" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -996,6 +1087,24 @@ a level file (.sml)</body>
             <elementDefinition Id="a25ebe1e-18ff-4801-800f-f6b018810e95" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="1857de16-167f-4b3f-a348-ca9b8ca86c46" name="GreenKoopa" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ffd449be-b0aa-4d37-a5a6-3eefe0faefff" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e39e0e97-4d7b-4019-9542-1e5ab70e24de" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="a3e30795-9013-4975-a0e6-e7a1df03479a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ab0bc8b7-c0f6-47f4-9b4e-e522b55be6a0" name="Death" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bf791e5d-b576-41fc-8555-f5466d612942" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -1008,8 +1117,34 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="a45fafb0-27bd-45f1-8950-b2467e4d569d" name="Movement" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="1be06b48-0138-4925-be9e-48888f0c7b5f" />
+          <operation Id="1a02d647-85da-40e9-a8f7-9c28545f985f" name="Red Koopa" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cc205be0-632b-40b1-b3af-ac2abbdeb3a1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f6f386ea-ca82-4a63-abc8-24c24909a9e0" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="06112388-b8e7-4afb-a06e-186c7eb54cab" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c40f33d5-96da-4435-908d-e168c9608d69" name="Death" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d104b480-fe57-4d00-bdd5-42cf81152de2" />
+          </operation>
+          <operation Id="77d2cd3c-16cc-43cc-97c4-ab0f9555cc19" name="Movement" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1ba0a006-856e-4fa9-8860-f2353f62b2d9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="68611fa8-5502-43f7-9144-2def838a4311" name="gameTime" direction="In" isUnique="false">
+                  <elementDefinition Id="bfdd03af-3178-44fc-8530-227f8026522b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="8fb75416-8c9c-4e11-a1a5-1398c0a1efeb" LastKnownName="GameTime" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -1023,6 +1158,21 @@ a level file (.sml)</body>
             <elementDefinition Id="260dac07-eedb-4de4-af62-3af51e5ff059" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="5c02cb0a-36ea-4c44-8bbb-7b6b1523ff87" name="ShelllessKoopa" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b793327d-b136-46cb-a87d-c73f9524983b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="25eb1555-c3d0-4844-821d-f8d23d80ea82" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="2443a765-0fb0-4f53-8748-922c4385698b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -1127,21 +1277,10 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="002af808-f627-4ef6-945c-3dd5d38c03ab" />
           </operation>
         </ownedOperationsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="75e89e7e-9a3a-41e0-8e4e-a47d2d12c542" name="FireFlower" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="141bd3f7-5143-4bb7-9cee-e60d4afbda77" />
-        <generalsInternal>
-          <generalization Id="3eb1426a-8510-4121-b721-494d88aacbe4" isSubstitutable="false">
-            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
-            <elementDefinition Id="69892b20-a537-4416-a7e2-b59017da9d80" />
-          </generalization>
-        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -1229,10 +1368,10 @@ a level file (.sml)</body>
               </literalInteger>
             </specification>
           </enumerationLiteral>
-          <enumerationLiteral Id="91ae438b-913f-4abe-9c86-0b1471db92aa" name="fire">
+          <enumerationLiteral Id="9397899e-1a2d-42b9-88e0-7470425b0c43" name="fire">
             <elementDefinition Id="ac54d134-281b-4c01-86fc-abd2dddbbc46" />
             <specification>
-              <literalInteger Id="a421bfe6-29ff-4060-a4ce-a78baca3f182" name="Integer" value="2">
+              <literalInteger Id="0578fade-72a0-44bb-947b-ccaa25e61227" name="Integer" value="2">
                 <elementDefinition Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6" />
               </literalInteger>
             </specification>
@@ -1240,6 +1379,93 @@ a level file (.sml)</body>
         </ownedLiterals>
       </enumeration>
     </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="63f4d229-d8e2-4b15-8619-2641242d6e40" name="EmptyShell" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="94f62426-addf-4c1b-95f2-1687057f2c13" />
+        <generalsInternal>
+          <generalization Id="bcb79c12-fbdc-46b7-ac81-737dd89c9c3f" isSubstitutable="false">
+            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
+            <elementDefinition Id="8baf9aca-5632-4c2a-be12-1f3b7714449f" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="da7229d4-e372-4538-8929-d3c57924b5d6" isDerived="false" sourceEndRoleName="" targetEndRoleName="is" isLeaf="false" isAbstract="false">
+            <enumerationMoniker Id="5b38d54b-17e1-475b-813a-485f0ceb80ca" LastKnownName="KoopaType" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4473bced-e888-4434-aa44-2364914ddac1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="add49fdd-06b8-4e82-bde4-d393c7dedcc7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="976bbec3-bf77-4979-88d6-d32da5484289" name="is" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1cba39c6-eda3-42d0-9f8b-c36736f996e8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ad5068e4-b13f-43e2-aafe-bd39bab5315c" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="fef31c4d-b8dc-45b8-8c58-ee68bcb9b4cf" name="koopa" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="88fb6faa-9846-4319-b6dc-b49d1b0b2c23" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2af62031-080b-4ba9-8b79-9f7eaac026f2" LastKnownName="GameObject" />
+            </type_NamedElement>
+          </property>
+          <property Id="d9ec2012-2818-4ec4-b1b3-d9e08c33b0d8" name="timer" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dbbe7037-270a-4d24-a7d6-24962420baa8" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="a9ae0b4f-ee10-4c51-8182-5d7ab0e1d130" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="4338a95d-8461-431a-8dfc-17cfa5432b08" name="EmptyShell" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="add34fb0-e4a9-4901-a12e-a461a87d2a0e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="836a1b55-8980-4886-8510-323b15eeff05" name="position" direction="In" isUnique="false">
+                  <elementDefinition Id="7e91d0d2-4e9a-4b10-a484-b5158decfeb2" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a1f6c37c-4de4-4f99-86e7-f62d6873ba2e" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="a9ae0b4f-ee10-4c51-8182-5d7ab0e1d130" name="float" isAbstract="false" isLeaf="false" cachedFullName="float">
+        <elementDefinition Id="921fbb4a-e588-4ee6-8a15-3be6e454643d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="5b38d54b-17e1-475b-813a-485f0ceb80ca" name="KoopaType" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="22f152e3-c372-469f-8e07-b01b61b02b56" />
+        <ownedLiterals>
+          <enumerationLiteral Id="1819c7b1-1e35-46a6-be99-db766cedbe78" name="red">
+            <elementDefinition Id="15fefd3f-f605-41bd-8e5c-62672b037b36" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="bb575b35-c95c-402a-87f1-7d2147aa68ec" name="green">
+            <elementDefinition Id="a9f118df-5adb-4f00-877d-831ef70060ef" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="d73074c2-289d-41a9-9efd-7e139e3d3b1e" name="yellow">
+            <elementDefinition Id="c75e1da1-9fe4-4503-ab8e-98fdda6e057e" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="4ee8f5ea-c42f-4612-bf83-ef68a252a188" name="blue">
+            <elementDefinition Id="d55e041c-96e6-4992-a000-bbf14514aa18" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="307c3a34-533c-4b48-9495-f27743f4d056" name="Checkpoint" isAbstract="false" isLeaf="false" cachedFullName="UML::Checkpoint">
+        <elementDefinition Id="10c183e7-4489-44c8-bbbe-fe7012e23122" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="d913c215-6805-4549-82da-cabd1137dc53" name="UML">
     <elementDefinition Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498" />

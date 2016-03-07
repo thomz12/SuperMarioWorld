@@ -9,31 +9,6 @@
       <body>Path is the path to 
 a level file (.sml)</body>
     </comment>
-    <comment
-      Id="07f1494e-f1a8-4406-806d-513f006c073f">
-      <body>Todo
-</body>
-    </comment>
-    <comment
-      Id="981abc31-7642-4937-bcb3-db361eebdd72">
-      <body>TODO</body>
-    </comment>
-    <comment
-      Id="a0abf737-b00b-424c-b5e0-d62e9cffe326">
-      <body>TODO</body>
-    </comment>
-    <comment
-      Id="15e0f816-5327-4cce-8cd0-aad6b40ee6d4">
-      <body>TODO</body>
-    </comment>
-    <comment
-      Id="619f2dd8-ce55-460c-9bc4-d5fd44e8de4c">
-      <body>TODO</body>
-    </comment>
-    <comment
-      Id="d1630971-f70e-461d-b49a-bd3645c556c4">
-      <body>TODO</body>
-    </comment>
   </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
@@ -774,10 +749,17 @@ a level file (.sml)</body>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="f285198f-d47c-4ff8-8641-1f42fa2f03ad"
-                  name="gameTime GameTime"
+                  Id="f10fb521-4cb5-47e2-a6e4-4d6a132fc6a6"
+                  name="gameTime"
                   direction="In"
-                  isUnique="false" />
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -792,10 +774,17 @@ a level file (.sml)</body>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="055122fb-2e22-4298-8674-7124337b02a2"
-                  name="gameTime GameTime"
+                  Id="ea6137dc-f972-4d81-9f75-358e79a29283"
+                  name="gameTime"
                   direction="In"
-                  isUnique="false" />
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -1607,6 +1596,100 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="e6970452-c5b4-403c-af50-8bc92ab62c21"
+            name="drop"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                LastKnownName="GameObject"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="693fa079-a9be-4fb9-ac22-6c0b67183c0f"
+            name="flying"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                LastKnownName="bool"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="938aaf03-edb1-49b8-b679-73132a97266a"
+            name="huge"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                LastKnownName="bool"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="dca37c85-7d7f-46f9-b538-cd042eafdf35"
+            name="Death"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="f1c420be-9f76-4e1f-aee5-7243852c2191"
+            name="Enemy"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="17838b30-2617-4a66-b97b-93c7c9f59226"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1704,7 +1787,7 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
           <generalization
-            Id="6bc9e94f-6f5f-4260-94cd-660507d9b6a3"
+            Id="e00942f9-ce33-49da-8af7-d3f1956b3742"
             isSubstitutable="false">
             <classMoniker
               Id="4158a942-7217-4424-bfa2-8c09bb986f31"
@@ -1712,6 +1795,41 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="71f2453f-13cc-43d0-b31d-28df7ecaf30b"
+            name="AddPower"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="95e3e376-4ba2-4777-85c9-053a6997b4e3"
+            name="Mushroom"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0fe7af7c-4912-4d31-a3f7-d6013d56a16f"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1777,6 +1895,55 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="bebbd736-d1bf-4b2e-bcb8-e91794fe0c79"
+            name="lastCheckPoint"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="10c183e7-4489-44c8-bbbe-fe7012e23122"
+                LastKnownName="Checkpoint"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a8defff7-0a43-4d4f-8184-a5882437e269"
+            name="isLastCheckpoint"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                LastKnownName="bool"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="737ab609-1628-478f-8cc0-c72d5f97828a"
+            name="SetCheckpoint"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1857,6 +2024,14 @@ a level file (.sml)</body>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="3ea1949f-d180-431c-85df-a5440ca5c1f5"
+            name="GetUsed"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -1877,6 +2052,16 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="b2dad3ba-9f64-40b2-a09f-ba32c2564c09"
+            name="Break"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1923,6 +2108,16 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="f4fc4306-5f7c-4577-8781-a4053e9bacd2"
+            name="AddScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1961,7 +2156,7 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
           <generalization
-            Id="e8b38d7e-6a0c-4117-96c3-ac8ede83b466"
+            Id="a46cf262-d1df-4e11-b0b0-042b33e795e2"
             isSubstitutable="false">
             <classMoniker
               Id="4158a942-7217-4424-bfa2-8c09bb986f31"
@@ -1969,6 +2164,41 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="8deb93e5-0719-4286-ad6f-415aba7cd325"
+            name="AddLife"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="848b5c54-862d-41ce-9e1c-eab3e70d8548"
+            name="OneUpMushroom"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1270dd3c-f5c7-43bd-89f3-40e69df8e7ee"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2335,6 +2565,33 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="aab0571a-36b7-4ba4-b8d2-357b3d80ae41"
+            name="Goomba"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2e3dc5a9-6f10-4d95-8a9e-113e2d6e7858"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2354,6 +2611,41 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="ffd449be-b0aa-4d37-a5a6-3eefe0faefff"
+            name="GreenKoopa"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a3e30795-9013-4975-a0e6-e7a1df03479a"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bf791e5d-b576-41fc-8555-f5466d612942"
+            name="Death"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2375,14 +2667,64 @@ a level file (.sml)</body>
         </generalsInternal>
         <ownedOperationsInternal>
           <operation
-            Id="1be06b48-0138-4925-be9e-48888f0c7b5f"
-            name="Movement"
-            visibility="Private"
+            Id="cc205be0-632b-40b1-b3af-ac2abbdeb3a1"
+            name="Red Koopa"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="06112388-b8e7-4afb-a06e-186c7eb54cab"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d104b480-fe57-4d00-bdd5-42cf81152de2"
+            name="Death"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="1ba0a006-856e-4fa9-8860-f2353f62b2d9"
+            name="Movement"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bfdd03af-3178-44fc-8530-227f8026522b"
+                  name="gameTime"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -2403,6 +2745,33 @@ a level file (.sml)</body>
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="b793327d-b136-46cb-a87d-c73f9524983b"
+            name="ShelllessKoopa"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2443a765-0fb0-4f53-8748-922c4385698b"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2653,7 +3022,6 @@ a level file (.sml)</body>
           <operation
             Id="002af808-f627-4ef6-945c-3dd5d38c03ab"
             name="ShowHelp"
-            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -2668,18 +3036,7 @@ a level file (.sml)</body>
         name="FireFlower"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="69892b20-a537-4416-a7e2-b59017da9d80"
-            isSubstitutable="false">
-            <classMoniker
-              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
-              LastKnownName="Entity"
-              LastKnownLocation="SMW UML.uml" />
-          </generalization>
-        </generalsInternal>
-      </class>
+        isActiveClass="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <undefinedType
@@ -2763,6 +3120,177 @@ a level file (.sml)</body>
                 value="2" />
             </specification>
           </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f473fc14-0e6f-4ff9-8e2a-fb28d287b201"
+        name="Feather"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="754c6ece-6abe-42b4-b1a0-09441ab7f058"
+        name="PowerUp"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+        name="EmptyShell"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="8baf9aca-5632-4c2a-be12-1f3b7714449f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="ad5068e4-b13f-43e2-aafe-bd39bab5315c"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="is"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="22f152e3-c372-469f-8e07-b01b61b02b56"
+              LastKnownName="KoopaType"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="add49fdd-06b8-4e82-bde4-d393c7dedcc7"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1cba39c6-eda3-42d0-9f8b-c36736f996e8"
+                  name="is"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="88fb6faa-9846-4319-b6dc-b49d1b0b2c23"
+            name="koopa"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                LastKnownName="GameObject"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="dbbe7037-270a-4d24-a7d6-24962420baa8"
+            name="timer"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="921fbb4a-e588-4ee6-8a15-3be6e454643d"
+                LastKnownName="float"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="add34fb0-e4a9-4901-a12e-a461a87d2a0e"
+            name="EmptyShell"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7e91d0d2-4e9a-4b10-a484-b5158decfeb2"
+                  name="position"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
+                      LastKnownName="Vector2"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a607b7fb-da52-448f-82b0-c0451e735b0e"
+        name="P-Switch"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="22f152e3-c372-469f-8e07-b01b61b02b56"
+        name="KoopaType"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="15fefd3f-f605-41bd-8e5c-62672b037b36"
+            name="red" />
+          <enumerationLiteral
+            Id="a9f118df-5adb-4f00-877d-831ef70060ef"
+            name="green" />
+          <enumerationLiteral
+            Id="c75e1da1-9fe4-4503-ab8e-98fdda6e057e"
+            name="yellow" />
+          <enumerationLiteral
+            Id="d55e041c-96e6-4992-a000-bbf14514aa18"
+            name="blue" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>
