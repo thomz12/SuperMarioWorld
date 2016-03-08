@@ -27,8 +27,11 @@ namespace SuperMarioWorld
         //Vars for cycling and displaying animated sprite sheets
         private List<Vector2> animationPositions;
 
+        //Coords of frame (top left)
         private int _texCoordX, _texCoordY;
+        //The frame the animation is at
         private int _animIndex = 0;
+        //effect to flip the sprite
         public SpriteEffects effect = SpriteEffects.None;
 
         /// <summary>
@@ -51,10 +54,10 @@ namespace SuperMarioWorld
             if (animationPositions.Count != 0)
             {
                 //take update time (ms) from animation progress
-                _animationProgress -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                _animationProgress += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 //When it reaches 0 or less, set next frame.
-                if (_animationProgress <= 0)
+                if (_animationProgress >= animationSpeed)
                 {
                     _animIndex++;
 
@@ -63,7 +66,7 @@ namespace SuperMarioWorld
                         _animIndex = 0;
 
                     //reset progress
-                    _animationProgress = animationSpeed;
+                    _animationProgress = 0;
 
                     //Set frame coords
                     _texCoordX = (int)animationPositions[_animIndex].X * xSize;
@@ -95,7 +98,7 @@ namespace SuperMarioWorld
         public void NewAnimation()
         {
             _animIndex = 0;
-            _animationProgress = 0;
+            _animationProgress = animationSpeed;
             animationPositions.Clear();
         }
 
