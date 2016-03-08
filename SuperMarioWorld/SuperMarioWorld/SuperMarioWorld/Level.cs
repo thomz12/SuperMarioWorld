@@ -24,6 +24,13 @@ namespace SuperMarioWorld
         /// </summary>
         public List<GameObject> objects = new List<GameObject>();
 
+        //Variables for the background
+        public string backgroundSourceName = "BushBackground";
+        public Texture2D backgroundTexture;
+
+        //Position of the background texture
+        private int _backXPos;
+
         /// <summary>
         /// When loading the level this function will add a camera and all objects from the file.
         /// </summary>
@@ -43,6 +50,9 @@ namespace SuperMarioWorld
 
             //Create camera object
             cam = new Camera2D();
+
+            _backXPos = (int)cam.Position.X / 2;
+
         }
 
         /// <summary>
@@ -56,6 +66,8 @@ namespace SuperMarioWorld
 
             //Create camera object
             cam = new Camera2D();
+
+            _backXPos = (int)cam.Position.X / 2;
 
             //Create a streamreader
             StreamReader sr;
@@ -85,7 +97,7 @@ namespace SuperMarioWorld
             string xSize = sr.ReadLine();
             //Read y size of level
             string ySize = sr.ReadLine();
-
+            
             //Convert x and y size to Vector2 _size
             _size.X = int.Parse(xSize.Substring(xSize.LastIndexOf("=") + 1));
             _size.Y = int.Parse(ySize.Substring(ySize.LastIndexOf("=") + 1));
@@ -142,7 +154,30 @@ namespace SuperMarioWorld
         /// </summary>
         public void DrawLevel(SpriteBatch batch)
         {
-            //TODO: culling
+            if(cam.Position.X > _backXPos + backgroundTexture.Width / 2)
+            {
+                //If player is futher in the level than the middle of the background add another background image after this background.
+                //Set the new position to be further ahead than the old one
+                int _tempBackXPos = _backXPos + backgroundTexture.Width;
+                //Draw the old background texture
+                batch.Draw(backgroundTexture, new Rectangle(_backXPos, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                //Draw the new background texture with the new coordinate
+                batch.Draw(backgroundTexture, new Rectangle(_tempBackXPos, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+
+                _backXPos = _tempBackXPos;
+            }
+            else
+            {
+                //If player is before the middle of the background in the level add an image before this background.
+                //Set the new position to be further back than the old one
+                int _tempBackXPos = _backXPos - backgroundTexture.Width;
+                //Draw the old background texture
+                batch.Draw(backgroundTexture, new Rectangle(_backXPos, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                //Draw the new background texture with the new coordinate
+                batch.Draw(backgroundTexture, new Rectangle(_tempBackXPos, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+
+                _backXPos = _tempBackXPos;
+            }            
 
             //Draw every object
             foreach(GameObject go in objects)

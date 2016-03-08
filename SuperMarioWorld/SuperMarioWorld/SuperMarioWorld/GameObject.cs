@@ -24,6 +24,7 @@ namespace SuperMarioWorld
             this.position = Vector2.Zero;
 
             sprite = new Sprite();
+            sprite.layer = 0.5f;
         }
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace SuperMarioWorld
             this.position = position;
 
             sprite = new Sprite();
+            sprite.layer = 0.5f;
         }
 
         /// <summary>

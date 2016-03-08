@@ -40,7 +40,7 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-
+            sprite.layer = 1;
             boundingBox = new Rectangle(0, 0, 9, 15);
 
             sprite.xSize = 16;

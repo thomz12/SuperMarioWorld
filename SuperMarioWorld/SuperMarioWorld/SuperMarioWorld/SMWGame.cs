@@ -96,6 +96,8 @@ namespace SuperMarioWorld
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
 
+            _level.backgroundTexture = Content.Load<Texture2D>(_level.backgroundSourceName);
+
 #if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>("DefaultFont");
