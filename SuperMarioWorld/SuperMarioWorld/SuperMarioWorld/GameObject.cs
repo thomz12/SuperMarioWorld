@@ -11,8 +11,6 @@ namespace SuperMarioWorld
     {
         //Sprite (texture) of this object
         public Sprite sprite;
-        //Width and height of objects bounding box
-        protected int boundingWidth, boundingHeight;
         //Collision box of this object
         public Rectangle boundingBox;
         //Current position of this object

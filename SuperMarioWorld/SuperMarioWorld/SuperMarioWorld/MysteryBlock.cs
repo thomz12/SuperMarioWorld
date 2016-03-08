@@ -15,12 +15,8 @@ namespace SuperMarioWorld
             //Sets the contents of the mysteryblock
             _content = contents;
 
-            //Dimensions for the bounding box
-            boundingWidth = 16;
-            boundingHeight = 16;
-
             //Generates a boundingbox around the block
-            boundingBox = new Rectangle((int)position.X - boundingWidth / 2, (int)position.Y - boundingHeight, boundingWidth, boundingHeight);
+            boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
             
             //Sets the sizes of the sprite
             sprite.xSize = 16;

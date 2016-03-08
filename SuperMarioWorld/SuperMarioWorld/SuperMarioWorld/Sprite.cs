@@ -116,7 +116,7 @@ namespace SuperMarioWorld
         /// /// <param name="position">The world position of the sprite</param>
         public void DrawSprite(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(texture, new Rectangle((int)position.X -(xSize / 2), (int)position.Y - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, 0);
+            batch.Draw(texture, new Rectangle((int)Math.Round(position.X) -(xSize / 2), (int)Math.Round(position.Y) - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, 0);
         }
     }
 }

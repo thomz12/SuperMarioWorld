@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="e2f990e7-6046-454c-ac54-ad122f547125">
       <elementDefinition Id="817ed165-ef06-4032-9ef8-7cf96afaac55" />
@@ -186,18 +186,6 @@ a level file (.sml)</body>
             <elementDefinition Id="53cc165d-9a90-4a04-bc37-378930fb408a" />
             <type_NamedElement>
               <referencedTypeMoniker Id="af9a5d54-1ab9-4e97-901f-aebced203a14" LastKnownName="Rectangle" />
-            </type_NamedElement>
-          </property>
-          <property Id="9da5c7b5-cc81-4cb2-9c0b-bed97cbee1c7" name="boundingWidth" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="4cb48de5-39aa-4caf-ae22-124c2ddfe6d6" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="95a16a2e-70af-4fb8-9d36-0d6760d61927" LastKnownName="int" />
-            </type_NamedElement>
-          </property>
-          <property Id="c4ff0cf8-b70d-45c6-a3d0-3fca52d94565" name="boundingHeight" visibility="Protected" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="6d9897bd-b070-403a-8af7-02c263715807" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -1336,11 +1324,6 @@ a level file (.sml)</body>
     <packageHasNamedElement>
       <referencedType Id="7c8e59ef-daff-464a-80f2-9e2626fb1ae3" name="GraphicsDevice" isAbstract="false" isLeaf="false" cachedFullName="GraphicsDevice">
         <elementDefinition Id="8b70acf8-a883-4fc2-8f3e-494be5c0c73d" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="95a16a2e-70af-4fb8-9d36-0d6760d61927" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
-        <elementDefinition Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>

@@ -39,10 +39,8 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-            boundingWidth = 9;
-            boundingHeight = 15;
 
-            boundingBox = new Rectangle((int)position.X - boundingWidth / 2, (int)position.Y - boundingHeight, boundingWidth, boundingHeight);
+            boundingBox = new Rectangle(0, 0, 9, 15);
 
             sprite.xSize = 16;
             sprite.ySize = 32;
@@ -61,7 +59,6 @@ namespace SuperMarioWorld
                 case Character.Wario:
                     sprite.sourceName = "Wario";
                     sprite.xSize = 24;
-                    boundingWidth = 12;
                     break;
                 case Character.Waluigi:
                     sprite.sourceName = "Waluigi";
@@ -166,8 +163,7 @@ namespace SuperMarioWorld
         protected override void Movement(GameTime gameTime)
         {
             //calculate friction
-            if (gameTime.ElapsedGameTime.TotalMilliseconds != 0.0f)
-                momentum = new Vector2(momentum.X * 0.8f, momentum.Y);
+            momentum.X *= 1.3f * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object
             if (momentum.X > maxSpeed)

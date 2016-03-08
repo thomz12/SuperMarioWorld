@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498"
   name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -454,44 +454,6 @@ a level file (.sml)</body>
               <undefinedTypeMoniker
                 Id="3fe6a8a0-7e79-48fa-b4c8-99d84ec5987d"
                 LastKnownName="Rectangle"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="4cb48de5-39aa-4caf-ae22-124c2ddfe6d6"
-            name="boundingWidth"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
-                LastKnownName="int"
-                LastKnownLocation="SMW UML.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="6d9897bd-b070-403a-8af7-02c263715807"
-            name="boundingHeight"
-            visibility="Protected"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
-                LastKnownName="int"
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>

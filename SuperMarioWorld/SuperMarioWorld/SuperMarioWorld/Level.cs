@@ -27,19 +27,16 @@ namespace SuperMarioWorld
         public Level()
         {
             //TEMP, Add a object to the level
-            GameObject player = new Player(new Vector2(0.0f,0.0f), Player.Character.Mario);
-            GameObject mBlock01 = new MysteryBlock(new Vector2(0.0f, -32.0f), null);
-            
-            objects.Add(player);
+            objects.Add( new Player(new Vector2(0.0f,0.0f), Player.Character.Mario));
+            objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
+            objects.Add( new Goomba(new Vector2(64.0f, 0)));
 
+            //add a floor
             for(int i = -512; i <= 512; i+= 16)
             {
-                GameObject floorb = new MysteryBlock(new Vector2(i, 16.0f), null);
-                objects.Add(floorb);
+                objects.Add(new MysteryBlock(new Vector2(i, 16.0f), null));
             }
 
-            objects.Add(mBlock01);
-            
             //Create camera object
             cam = new Camera2D();
         }
@@ -65,7 +62,9 @@ namespace SuperMarioWorld
         /// </summary>
         public void DrawLevel(SpriteBatch batch)
         {
-            //Draw every sprite
+            //TODO: culling
+
+            //Draw every object
             foreach(GameObject go in objects)
             {
                 //Call the draw method of gameobject
