@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -39,16 +40,15 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-            boundingWidth = 9;
-            boundingHeight = 15;
 
-            boundingBox = new Rectangle((int)position.X - boundingWidth / 2, (int)position.Y - boundingHeight, boundingWidth, boundingHeight);
+            boundingBox = new Rectangle(0, 0, 9, 15);
 
             sprite.xSize = 16;
             sprite.ySize = 32;
             sprite.AddFrame(0, 0);
 
-            acceleration = 2000.0f;
+            acceleration = 300.0f;
+            maxSpeed = 64;
 
             switch (character)
             {
@@ -61,7 +61,6 @@ namespace SuperMarioWorld
                 case Character.Wario:
                     sprite.sourceName = "Wario";
                     sprite.xSize = 24;
-                    boundingWidth = 12;
                     break;
                 case Character.Waluigi:
                     sprite.sourceName = "Waluigi";
@@ -83,21 +82,32 @@ namespace SuperMarioWorld
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 lookRight = true;
-                momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                if(grounded)
+                    momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                else
+                    momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             //If button A is pressed
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 lookRight = false;
-                momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                if (grounded)
+                    momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                else
+                    momentum.X -= acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+            }
+            if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
+            {
+                momentum.Y = -128;
+                grounded = false;
             }
 
             //Handle animations
             //if player is moving
-            if(Math.Abs(momentum.X) > 0.5f)
+            sprite.animationSpeed = 150.0f;
+            if(Math.Abs(momentum.X) > 0.5f && grounded)
             {
-                //sprite.animationSpeed = (1 / Math.Abs(momentum.X)) * 5000;
-                sprite.animationSpeed = 150.0f;
+                sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
                 SetAnimation(1);
             }
             //if up is pressed, and not moving
@@ -109,6 +119,10 @@ namespace SuperMarioWorld
             else if(grounded == false && momentum.Y > 0.5f)
             {
                 SetAnimation(3);
+            }
+            else if(grounded == false && momentum.Y < 0.5f)
+            {
+                SetAnimation(2);
             }
             //player is doing nothing
             else
@@ -165,9 +179,13 @@ namespace SuperMarioWorld
         /// </summary>
         protected override void Movement(GameTime gameTime)
         {
+
             //calculate friction
-            if (gameTime.ElapsedGameTime.TotalMilliseconds != 0.0f)
-                momentum = new Vector2(momentum.X * 0.8f, momentum.Y);
+            if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
+                momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
+
+            if (!grounded)
+                momentum.Y += 100 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object
             if (momentum.X > maxSpeed)
@@ -177,6 +195,13 @@ namespace SuperMarioWorld
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
+
+            //something something collision
+            if (position.Y > 0)
+            {
+                grounded = true;
+                position.Y = 0;
+            }
         }
     }
 }
