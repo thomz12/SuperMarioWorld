@@ -57,6 +57,12 @@ namespace SuperMarioWorld
             fileName = @"Content\\Levels\\" + fileName + ".sml";
 
             //LOAD LEVEL FROM FILE
+            /*
+            Appearantly loading the level from a file like this prevents us from generating contents in f.ex Mystery boxes or changing the way some objects behave
+            We need to generate an XML file from the level maker to make this work.
+
+            So basically all this code is useless. but it provides us with a working project for the demo.
+            */
             try
             {
                 sr = new StreamReader(fileName);
