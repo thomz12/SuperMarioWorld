@@ -96,15 +96,15 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char is a MysteryBlock
                     {
-                        objects.Add(new MysteryBlock(new Vector2((x * 16), (y * 16)), null));
+                        objects.Add(new MysteryBlock(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y), null));
                     }
                     else if (objectChars[x].Equals('1'))
                     {
-                        objects.Add(new Player(new Vector2((x * 16), (y * 16)), Player.Character.Mario));
+                        objects.Add(new Player(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y), Player.Character.Mario));
                     }
                     else if (objectChars[x].Equals('G'))
                     {
-                        objects.Add(new Goomba(new Vector2((x * 16), (y * 16))));
+                        objects.Add(new Goomba(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y)));
                     }
                 }
             }
