@@ -49,11 +49,6 @@ namespace SuperMarioWorld
         /// </summary>
         protected virtual void Movement(GameTime gameTime)
         {
-            //Check for collision and turn around when colliding with something
-            //TODO
-
-
-
             //This now applies to all entities except the player and the smart koopa who override this function.
             if (lookRight)
                 momentum = new Vector2(momentum.X + acceleration, momentum.Y);

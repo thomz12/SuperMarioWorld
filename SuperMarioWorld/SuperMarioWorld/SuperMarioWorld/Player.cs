@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -46,7 +47,8 @@ namespace SuperMarioWorld
             sprite.ySize = 32;
             sprite.AddFrame(0, 0);
 
-            acceleration = 2000.0f;
+            acceleration = 300.0f;
+            maxSpeed = 64;
 
             switch (character)
             {
@@ -91,10 +93,10 @@ namespace SuperMarioWorld
 
             //Handle animations
             //if player is moving
+            sprite.animationSpeed = 150.0f;
             if(Math.Abs(momentum.X) > 0.5f)
             {
-                //sprite.animationSpeed = (1 / Math.Abs(momentum.X)) * 5000;
-                sprite.animationSpeed = 150.0f;
+                sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
                 SetAnimation(1);
             }
             //if up is pressed, and not moving
@@ -162,8 +164,10 @@ namespace SuperMarioWorld
         /// </summary>
         protected override void Movement(GameTime gameTime)
         {
+
             //calculate friction
-            momentum.X *= 1.3f * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+            if(gameTime.ElapsedGameTime.TotalMilliseconds != 0)
+                momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             //Limit the momentum for the object
             if (momentum.X > maxSpeed)
@@ -171,6 +175,7 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
+            Debug.WriteLine("Mario speed: " + momentum.X);
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
