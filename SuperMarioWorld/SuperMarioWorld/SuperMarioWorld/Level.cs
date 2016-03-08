@@ -11,7 +11,10 @@ namespace SuperMarioWorld
     class Level
     {
         //Size of the level.
-        private Vector2 _size;
+        private Point _size;
+
+        //Size of the grid
+        private int _gridSize;
 
         //Camera object
         public Camera2D cam;
@@ -48,6 +51,9 @@ namespace SuperMarioWorld
         /// <param name="fileName">Give the name of the file without extension</param>
         public Level(string fileName)
         {
+            //Set the gridsize
+            _gridSize = 16;
+
             //Create camera object
             cam = new Camera2D();
 
@@ -84,10 +90,12 @@ namespace SuperMarioWorld
             _size.X = int.Parse(xSize.Substring(xSize.LastIndexOf("=") + 1));
             _size.Y = int.Parse(ySize.Substring(ySize.LastIndexOf("=") + 1));
 
-            for (int i = 0; i < 100; i++)
-            {
-                if (sr.ReadLine().Equals("[Level]")) { break; }
-                if(i == 99) { throw new FileLoadException("File not in correct format"); }
+            while (true)
+            { 
+                if (sr.ReadLine().Equals("[Level]"))
+                {
+                    break;
+                }
             }
 
             //Loops through the read lines
@@ -102,15 +110,15 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char is a MysteryBlock
                     {
-                        objects.Add(new MysteryBlock(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y), null));
+                        objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), null));
                     }
                     else if (objectChars[x].Equals('1'))
                     {
-                        objects.Add(new Player(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y), Player.Character.Mario));
+                        objects.Add(new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), Player.Character.Mario));
                     }
                     else if (objectChars[x].Equals('G'))
                     {
-                        objects.Add(new Goomba(new Vector2((x * 16), (y * 16) + 32 - 16 * _size.Y)));
+                        objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
                 }
             }
