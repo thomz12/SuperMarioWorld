@@ -18,7 +18,7 @@ namespace SuperMarioWorld
 
             acceleration = 128.0f;
             maxSpeed = 16;
-            lookRight = true;
+            lookRight = false;
 
             boundingBox = new Rectangle(0, 0, 14, 14);
         }

@@ -27,8 +27,11 @@ namespace SuperMarioWorld
         //Vars for cycling and displaying animated sprite sheets
         private List<Vector2> animationPositions;
 
+        //Coords of frame (top left)
         private int _texCoordX, _texCoordY;
+        //The frame the animation is at
         private int _animIndex = 0;
+        //effect to flip the sprite
         public SpriteEffects effect = SpriteEffects.None;
 
         /// <summary>
