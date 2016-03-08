@@ -40,7 +40,6 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-
             boundingBox = new Rectangle(0, 0, 9, 15);
 
             sprite.xSize = 16;
@@ -185,7 +184,7 @@ namespace SuperMarioWorld
                 momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             if (!grounded)
-                momentum.Y += 100 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                momentum.Y += 128 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object
             if (momentum.X > maxSpeed)

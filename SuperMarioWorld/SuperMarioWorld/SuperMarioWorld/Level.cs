@@ -69,7 +69,7 @@ namespace SuperMarioWorld
             }
             catch (Exception e)
             {
-                throw new FileLoadException("Could not load file", e);
+                throw new FileLoadException("Could not load file" + fileName + ".sml", e);
             }
 
             //Read information about the level from the file
@@ -86,8 +86,15 @@ namespace SuperMarioWorld
 
             for (int i = 0; i < 100; i++)
             {
-                if (sr.ReadLine().Equals("[Level]")) { break; }
-                if(i == 99) { throw new FileLoadException("File not in correct format"); }
+                if (sr.ReadLine().Equals("[Level]"))
+                {
+                    break;
+                }
+
+                if(i == 99)
+                {
+                    throw new FileLoadException("File not in correct format");
+                }
             }
 
             //Loops through the read lines
