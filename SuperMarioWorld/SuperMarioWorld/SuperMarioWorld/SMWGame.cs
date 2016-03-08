@@ -56,7 +56,7 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
-            _level = new Level();
+            _level = new Level("0");
             _level.cam.Zoom = _scale;
 
             Content.RootDirectory = "Content";
