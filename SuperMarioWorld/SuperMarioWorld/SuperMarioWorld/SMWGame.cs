@@ -47,10 +47,10 @@ namespace SuperMarioWorld
             _graphics.PreferredBackBufferHeight = 224 * _scale;
             _graphics.PreferredBackBufferWidth = 256 * _scale;
 
-            /*
+            
             _graphics.SynchronizeWithVerticalRetrace = false;
             IsFixedTimeStep = false;
-            */
+            
 
             //Make game fullscreen
             _graphics.IsFullScreen = false;
@@ -167,7 +167,7 @@ namespace SuperMarioWorld
             //Draw each object that is in the level
             for (int i = 0; i < _level.objects.Count; i++)
             {
-                _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, Color.White);
+                _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
 #endif
             _level.DrawLevel(_spriteBatch);
