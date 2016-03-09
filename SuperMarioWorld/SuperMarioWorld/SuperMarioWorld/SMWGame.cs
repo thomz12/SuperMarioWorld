@@ -60,7 +60,6 @@ namespace SuperMarioWorld
 
             _level = new Level("0");
             _level.cam.Zoom = _scale;
-
             Content.RootDirectory = "Content";
         }
 

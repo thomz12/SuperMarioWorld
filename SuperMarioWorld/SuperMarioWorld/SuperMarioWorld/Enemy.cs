@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Enemy : Entity
+    abstract class Enemy : Entity
     {
         protected bool flying;
         protected bool huge;
@@ -19,6 +19,11 @@ namespace SuperMarioWorld
         }
 
         public void Death()
+        {
+
+        }
+
+        public override void OnCollision(GameObject collider)
         {
 
         }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Object : GameObject
+    abstract class Object : GameObject
     {
         //Does the object have a bounding box?
         private bool _blocking;

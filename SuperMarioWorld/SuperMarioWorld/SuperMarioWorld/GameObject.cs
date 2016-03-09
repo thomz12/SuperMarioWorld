@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-    class GameObject
+    abstract class GameObject
     {
         //Sprite (texture) of this object
         public Sprite sprite;
@@ -39,6 +39,8 @@ namespace SuperMarioWorld
             sprite = new Sprite();
             sprite.layer = 0.5f;
         }
+
+        public abstract void OnCollision(GameObject collider);
 
         /// <summary>
         /// Called every frame

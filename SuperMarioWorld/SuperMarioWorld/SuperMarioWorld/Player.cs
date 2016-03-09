@@ -40,7 +40,7 @@ namespace SuperMarioWorld
 
         public Player (Vector2 position, Character character) : base (position)
         {
-            sprite.layer = 1;
+            sprite.layer = 0.9f;
             boundingBox = new Rectangle(0, 0, 9, 15);
 
             sprite.xSize = 16;
@@ -72,6 +72,11 @@ namespace SuperMarioWorld
             }
         }
 
+        public override void OnCollision(GameObject collider)
+        {
+            //throw new NotImplementedException();
+        }
+
         /// <summary>
         /// called every frame
         /// </summary>
@@ -98,7 +103,7 @@ namespace SuperMarioWorld
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
             {
-                momentum.Y = -128;
+                momentum.Y = -140;
                 grounded = false;
             }
 
@@ -195,13 +200,6 @@ namespace SuperMarioWorld
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
-
-            //something something collision
-            if (position.Y > 0)
-            {
-                grounded = true;
-                position.Y = 0;
-            }
         }
     }
 }

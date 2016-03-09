@@ -6,11 +6,11 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Entity : GameObject
+    abstract class Entity : GameObject
     {
         public Vector2 momentum;
 
-        protected bool grounded;
+        public bool grounded;
 
         protected bool lookRight;
 

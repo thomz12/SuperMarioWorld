@@ -23,6 +23,11 @@ namespace SuperMarioWorld
             boundingBox = new Rectangle(0, 0, 14, 14);
         }
 
+        public override void OnCollision(GameObject collider)
+        {
+            base.OnCollision(collider);
+        }
+
         protected override void Movement(GameTime gameTime)
         {
             base.Movement(gameTime);

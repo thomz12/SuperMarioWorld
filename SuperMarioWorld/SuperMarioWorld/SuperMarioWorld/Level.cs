@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -29,7 +30,9 @@ namespace SuperMarioWorld
         public Texture2D backgroundTexture;
 
         //Position of the background texture
-        private int _backXPos;
+        private int _backOffset;
+
+        List<GameObject> collidables = new List<GameObject>();
 
         /// <summary>
         /// When loading the level this function will add a camera and all objects from the file.
@@ -51,7 +54,7 @@ namespace SuperMarioWorld
             //Create camera object
             cam = new Camera2D();
 
-            _backXPos = (int)cam.Position.X / 2;
+            _backOffset = (int)cam.Position.X / 2;
 
         }
 
@@ -67,7 +70,7 @@ namespace SuperMarioWorld
             //Create camera object
             cam = new Camera2D();
 
-            _backXPos = 0;
+            _backOffset = 0;
 
             //Create a streamreader
             StreamReader sr;
@@ -138,13 +141,45 @@ namespace SuperMarioWorld
 
         public void Update(GameTime gameTime)
         {
+            int camX = (int)cam.Position.X;
+            int camY = (int)cam.Position.Y;
+
+            collidables.Clear();
+
             //Call the update method for all gameobjects
             foreach(GameObject go in objects)
             {
                 go.Update(gameTime);
-                if(go is Player)
+
+                if (Math.Abs(camX - go.position.X) < 256)
+                {
+                    if(Math.Abs(camY - go.position.Y) < 224)
+                    {
+                        collidables.Add(go);
+                    }
+                }
+
+                if (go is Player)
                 {
                     cam.Position = go.position;
+                }
+            }
+
+            CheckCollisions();
+        }
+
+        public void CheckCollisions()
+        {
+            Debug.WriteLine(collidables.Count);
+            for(int i  = 0; i < collidables.Count; i++)
+            {
+                for (int j = i + 1; j < collidables.Count; j++)
+                {
+                    if (collidables[i].boundingBox.Intersects(collidables[j].boundingBox))
+                    {
+                        collidables[i].OnCollision(collidables[j]);
+                        collidables[j].OnCollision(collidables[i]);
+                    }
                 }
             }
         }
@@ -155,14 +190,14 @@ namespace SuperMarioWorld
         public void DrawLevel(SpriteBatch batch)
         {
             //Draw background(s)
-            batch.Draw(backgroundTexture, new Rectangle(_backXPos + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+            batch.Draw(backgroundTexture, new Rectangle(_backOffset + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
             
-            if (cam.Position.X < _backXPos + (int)cam.Position.X / 2)
-                _backXPos -= backgroundTexture.Width;
+            if (cam.Position.X < _backOffset + (int)cam.Position.X / 2)
+                _backOffset -= backgroundTexture.Width;
             else
-                _backXPos += backgroundTexture.Width;
+                _backOffset += backgroundTexture.Width;
 
-            batch.Draw(backgroundTexture, new Rectangle(_backXPos + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+            batch.Draw(backgroundTexture, new Rectangle(_backOffset + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
 
             //Draw every object
             foreach (GameObject go in objects)

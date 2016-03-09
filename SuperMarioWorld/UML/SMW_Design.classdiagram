@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="e2f990e7-6046-454c-ac54-ad122f547125">
       <elementDefinition Id="817ed165-ef06-4032-9ef8-7cf96afaac55" />
@@ -263,12 +263,6 @@ a level file (.sml)</body>
     <logicalClassDesignerModelHasTypes>
       <class Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" name="Entity" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="4158a942-7217-4424-bfa2-8c09bb986f31" />
-        <suppliersInternal>
-          <dependency Id="f9159b2e-b374-4057-b845-3d25c7f2be02">
-            <classMoniker Id="301de717-52cc-4218-816d-89feb61f3c3f" LastKnownName="GameObject" />
-            <elementDefinition Id="8b80eae9-fff2-4d25-a442-4ebdb1fad317" />
-          </dependency>
-        </suppliersInternal>
         <generalsInternal>
           <generalization Id="5255eade-5342-4764-8989-d58a5a6bdf83" isSubstitutable="false">
             <classMoniker Id="301de717-52cc-4218-816d-89feb61f3c3f" LastKnownName="GameObject" />
@@ -623,6 +617,12 @@ a level file (.sml)</body>
           </association>
         </targetEnds>
         <ownedAttributesInternal>
+          <property Id="5ce30e39-2acd-4f3a-9f0b-3573bb44ea9d" name="powerState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d603119b-492d-4e06-9510-51bfbcfae36f" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="330e6530-2d31-4977-86a5-9f8bdc3661ac" LastKnownName="int" />
+            </type_NamedElement>
+          </property>
           <property Id="e57688ba-0373-4b25-be61-4408478273ee" name="_animationState" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="24261ee2-e504-473a-bf26-ffc7c0cbfa38" />
             <type_NamedElement>
@@ -1290,7 +1290,7 @@ a level file (.sml)</body>
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>
-          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="b3ade3bc-4d99-46c7-802f-58c1f2027edd" name="ShowHelp" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="002af808-f627-4ef6-945c-3dd5d38c03ab" />
           </operation>
         </ownedOperationsInternal>
@@ -1378,6 +1378,14 @@ a level file (.sml)</body>
             <specification>
               <literalInteger Id="6a832e08-83d8-4dc0-b8f8-9575ad338cb0" name="Integer" value="1">
                 <elementDefinition Id="4af88ed2-aff9-472c-9367-38b969869c1e" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="e1d620ea-0ed9-4fb5-b619-8bfce8b7bd40" name="fire">
+            <elementDefinition Id="ac54d134-281b-4c01-86fc-abd2dddbbc46" />
+            <specification>
+              <literalInteger Id="1135adb5-4854-4e61-bad1-b3d156e13d29" name="Integer" value="2">
+                <elementDefinition Id="16427cba-24e6-4e20-a757-e2fe6cd4e2e6" />
               </literalInteger>
             </specification>
           </enumerationLiteral>
