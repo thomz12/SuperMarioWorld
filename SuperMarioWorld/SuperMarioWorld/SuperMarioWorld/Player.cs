@@ -28,7 +28,7 @@ namespace SuperMarioWorld
         /// <summary>
         /// State the animation is in, changed with player's movement
         /// </summary>
-        private int _animationState { get; set; }
+        private PlayerAnimationState _animationState { get; set; }
 
         public enum Character
         {
@@ -36,6 +36,16 @@ namespace SuperMarioWorld
             Luigi,
             Wario,
             Waluigi
+        }
+
+        public enum PlayerAnimationState
+        {
+            idle,
+            walking,
+            jumping,
+            falling,
+            lookup,
+            runing
         }
 
         public Player (Vector2 position, Character character) : base (position)
@@ -113,26 +123,27 @@ namespace SuperMarioWorld
             if(Math.Abs(momentum.X) > 0.5f && grounded)
             {
                 sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
-                SetAnimation(1);
+                SetAnimation(PlayerAnimationState.walking);
             }
             //if up is pressed, and not moving
             else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
             {
-                SetAnimation(4);
+                SetAnimation(PlayerAnimationState.lookup);
             }
             //if player is falling
             else if(grounded == false && momentum.Y > 0.5f)
             {
-                SetAnimation(3);
+                SetAnimation(PlayerAnimationState.falling);
             }
+            //If player is jumping
             else if(grounded == false && momentum.Y < 0.5f)
             {
-                SetAnimation(2);
+                SetAnimation(PlayerAnimationState.jumping);
             }
             //player is doing nothing
             else
             {
-                SetAnimation(0);
+                SetAnimation(PlayerAnimationState.idle);
             }
 
             //Calculate player movement
@@ -142,7 +153,7 @@ namespace SuperMarioWorld
         }
 
         //Set current animation
-        public void SetAnimation(int animation)
+        public void SetAnimation(PlayerAnimationState animation)
         {
             //If player is already in the animation, exit the method
             if (_animationState == animation)
@@ -155,24 +166,24 @@ namespace SuperMarioWorld
             switch (animation)
             {
                 //small mario standing
-                case 0:
+                case PlayerAnimationState.idle:
                     sprite.AddFrame(0, 0);
                     break;
                 //small mario walk
-                case 1:
+                case PlayerAnimationState.walking:
                     sprite.AddFrame(0, 0);
                     sprite.AddFrame(1, 0);
                     break;
                 //small mario jump
-                case 2:
+                case PlayerAnimationState.jumping:
                     sprite.AddFrame(2, 0);
                     break;
                 //small mario fall
-                case 3:
+                case PlayerAnimationState.falling:
                     sprite.AddFrame(3, 0);
                     break;
                 //small mario look up
-                case 4:
+                case PlayerAnimationState.lookup:
                     sprite.AddFrame(9, 0);
                     break;
             }
