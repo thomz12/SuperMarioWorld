@@ -170,7 +170,6 @@ namespace SuperMarioWorld
 
         public void CheckCollisions()
         {
-            Debug.WriteLine(collidables.Count);
             for(int i  = 0; i < collidables.Count; i++)
             {
                 for (int j = i + 1; j < collidables.Count; j++)

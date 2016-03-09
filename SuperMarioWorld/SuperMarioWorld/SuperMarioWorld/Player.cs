@@ -184,7 +184,6 @@ namespace SuperMarioWorld
         /// </summary>
         protected override void Movement(GameTime gameTime)
         {
-
             //calculate friction
             if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
                 momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;

@@ -46,11 +46,9 @@ namespace SuperMarioWorld
             //Set default resolution (SNES resolution) and scale it
             _graphics.PreferredBackBufferHeight = 224 * _scale;
             _graphics.PreferredBackBufferWidth = 256 * _scale;
-
             
             _graphics.SynchronizeWithVerticalRetrace = false;
             IsFixedTimeStep = false;
-            
 
             //Make game fullscreen
             _graphics.IsFullScreen = false;
