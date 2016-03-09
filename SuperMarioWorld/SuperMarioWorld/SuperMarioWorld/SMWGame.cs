@@ -25,6 +25,7 @@ namespace SuperMarioWorld
 
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
+        private bool vSync = true;
         private const int _scale = 3;
 
 #if DEBUG
@@ -47,10 +48,10 @@ namespace SuperMarioWorld
             _graphics.PreferredBackBufferHeight = 224 * _scale;
             _graphics.PreferredBackBufferWidth = 256 * _scale;
 
-            /*
-            _graphics.SynchronizeWithVerticalRetrace = false;
+            _graphics.SynchronizeWithVerticalRetrace = vSync;
+            
             IsFixedTimeStep = false;
-            */
+            
 
             //Make game fullscreen
             _graphics.IsFullScreen = false;
