@@ -27,9 +27,6 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-            //Move the bounding box of the object
-            boundingBox.X = (int)Math.Round(position.X) - boundingBox.Width / 2;
-            boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
             //Flip sprite when looking left/right
             if (lookRight)
@@ -40,6 +37,10 @@ namespace SuperMarioWorld
 
             Movement(gameTime);
             //Calls the update function from gameobject
+
+            //Move the bounding box of the object
+            boundingBox.X = (int)Math.Round(position.X) - boundingBox.Width / 2;
+            boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
             base.Update(gameTime);
         }

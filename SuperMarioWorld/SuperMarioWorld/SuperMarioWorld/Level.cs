@@ -147,21 +147,21 @@ namespace SuperMarioWorld
             collidables.Clear();
 
             //Call the update method for all gameobjects
-            foreach(GameObject go in objects)
+            foreach(GameObject gameObject in objects)
             {
-                go.Update(gameTime);
+                gameObject.Update(gameTime);
 
-                if (Math.Abs(camX - go.position.X) < 256)
+                if (Math.Abs(camX - gameObject.position.X) < 256)
                 {
-                    if(Math.Abs(camY - go.position.Y) < 224)
+                    if(Math.Abs(camY - gameObject.position.Y) < 224)
                     {
-                        collidables.Add(go);
+                        collidables.Add(gameObject);
                     }
                 }
 
-                if (go is Player)
+                if (gameObject is Player)
                 {
-                    cam.Position = go.position;
+                    cam.Position = gameObject.position;
                 }
             }
 
@@ -189,14 +189,17 @@ namespace SuperMarioWorld
         public void DrawLevel(SpriteBatch batch)
         {
             //Draw background(s)
-            batch.Draw(backgroundTexture, new Rectangle(_backOffset + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
-            
-            if (cam.Position.X < _backOffset + (int)cam.Position.X / 2)
+            int xPos = (int)Math.Round(cam.Position.X / 2);
+            int yPos = (int)Math.Round(cam.Position.Y / 2);
+
+            batch.Draw(backgroundTexture, new Rectangle(_backOffset + xPos - backgroundTexture.Width / 2, yPos - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+
+            if (cam.Position.X < _backOffset + xPos)
                 _backOffset -= backgroundTexture.Width;
             else
                 _backOffset += backgroundTexture.Width;
 
-            batch.Draw(backgroundTexture, new Rectangle(_backOffset + (int)cam.Position.X / 2 - backgroundTexture.Width / 2, (int)cam.Position.Y / 2 - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+            batch.Draw(backgroundTexture, new Rectangle(_backOffset + xPos - backgroundTexture.Width / 2, yPos - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
 
             //Draw every object
             foreach (GameObject go in objects)

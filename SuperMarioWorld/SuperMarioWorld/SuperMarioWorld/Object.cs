@@ -9,11 +9,32 @@ namespace SuperMarioWorld
     abstract class Object : GameObject
     {
         //Does the object have a bounding box?
-        private bool _blocking;
+        public bool blocking;
+
+        public bool isPlatform;
 
         public Object(Vector2 position) : base(position)
         {
-            _blocking = true;
+            blocking = true;
         }
+
+        public override void OnCollision(GameObject collider)
+        {
+            if (collider is Entity)
+            {
+                Entity entity = (Entity)collider;
+
+                if (collider.position.Y > position.Y + sprite.ySize / 2)
+                {
+                    entity.momentum.Y = 16;
+                }
+                else if (collider.position.Y < position.Y - sprite.ySize / 2)
+                {
+                    entity.grounded = true;
+                    entity.momentum.Y = 0;
+                }
+            }
+        }
+
     }
 }
