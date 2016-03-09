@@ -33,6 +33,8 @@ namespace SuperMarioWorld
         private int _animIndex = 0;
         //effect to flip the sprite
         public SpriteEffects effect = SpriteEffects.None;
+        //set the layer of this sprite to be drawn in.
+        public float layer;
 
         /// <summary>
         /// default constructor
@@ -119,7 +121,7 @@ namespace SuperMarioWorld
         /// /// <param name="position">The world position of the sprite</param>
         public void DrawSprite(SpriteBatch batch, Vector2 position)
         {
-            batch.Draw(texture, new Rectangle((int)Math.Round(position.X) -(xSize / 2), (int)Math.Round(position.Y) - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, 0);
+            batch.Draw(texture, new Rectangle((int)Math.Round(position.X) -(xSize / 2), (int)Math.Round(position.Y) - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, layer);
         }
     }
 }
