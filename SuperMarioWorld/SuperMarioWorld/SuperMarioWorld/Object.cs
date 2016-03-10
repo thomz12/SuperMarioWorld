@@ -22,16 +22,35 @@ namespace SuperMarioWorld
         {
             if (collider is Entity)
             {
-                Entity entity = (Entity)collider;
+                Entity p = (Entity)collider;
+                if ((Math.Abs(p.position.X - position.X) > boundingBox.Width / 2))
+                {
+                    if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
+                    {
+                        if (p.position.X < position.X)
+                            p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
 
-                if (collider.position.Y > position.Y + sprite.ySize / 2)
-                {
-                    entity.momentum.Y = 16;
+                        if (p.position.X > position.X)
+                            p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+
+                        p.momentum.X = 0;
+                    }
                 }
-                else if (collider.position.Y < position.Y - sprite.ySize / 2)
+                else if (p.position.Y < position.Y - boundingBox.Height / 2 && p.momentum.Y > 0)
                 {
-                    entity.grounded = true;
-                    entity.momentum.Y = 0;
+                    if (collider.boundingBox.Bottom > boundingBox.Top)
+                    {
+                        p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
+                        p.momentum.Y = 16;
+                        p.grounded = true;
+                        p.momentum.Y = 0;
+                    }
+                }
+                else if (!isPlatform && p.position.Y > position.Y + boundingBox.Height / 2 && p.momentum.Y < 0)
+                {
+                    p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
+
+                    p.momentum.Y = 16;
                 }
             }
         }
