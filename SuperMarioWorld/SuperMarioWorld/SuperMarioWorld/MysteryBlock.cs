@@ -51,6 +51,8 @@ namespace SuperMarioWorld
 
                         if (p.position.X > position.X)
                             p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+
+                        p.momentum.X = 0;
                     }
                 }
                 else if(p.position.Y < position.Y - boundingBox.Height / 2 && p.momentum.Y > 0)
