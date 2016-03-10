@@ -896,9 +896,9 @@ a level file (.sml)</body>
       <class Id="a23952a1-53ec-42ad-bfb8-6bb934b9f239" name="Coin" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="3ace137d-219c-4c2c-aca0-a0b08a303333" />
         <generalsInternal>
-          <generalization Id="9dbcc2c6-f566-4a0b-82d1-10478845b43e" isSubstitutable="false">
-            <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="Object" />
-            <elementDefinition Id="1e542837-8d2c-4b91-b92e-3aeb3ef59acb" />
+          <generalization Id="1ea835b4-a9ee-4d8b-a1ac-e63fbf3b6d83" isSubstitutable="false">
+            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
+            <elementDefinition Id="70db3c05-f289-4da8-a629-ced2597743b2" />
           </generalization>
         </generalsInternal>
         <ownedOperationsInternal>

@@ -2175,11 +2175,11 @@ a level file (.sml)</body>
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="1e542837-8d2c-4b91-b92e-3aeb3ef59acb"
+            Id="70db3c05-f289-4da8-a629-ced2597743b2"
             isSubstitutable="false">
             <classMoniker
-              Id="050db200-4532-45ae-a654-22e2fa376615"
-              LastKnownName="Object"
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
