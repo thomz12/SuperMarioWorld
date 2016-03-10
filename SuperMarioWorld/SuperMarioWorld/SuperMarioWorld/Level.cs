@@ -135,7 +135,7 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
-                    else if (objectChars[x].Equals('c'))
+                    else if (objectChars[x].Equals('C'))
                     {
                         objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }

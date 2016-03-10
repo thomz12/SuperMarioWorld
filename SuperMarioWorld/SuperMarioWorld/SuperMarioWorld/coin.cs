@@ -11,6 +11,7 @@ namespace SuperMarioWorld
         public Coin(Vector2 position) : base(position)
         {
             maxSpeed = 16;
+            lookRight = false;
 
             //Generates a boundingbox around the coin
             boundingBox = new Rectangle((int)position.X - 4, (int)position.Y - 16, 8, 16);
