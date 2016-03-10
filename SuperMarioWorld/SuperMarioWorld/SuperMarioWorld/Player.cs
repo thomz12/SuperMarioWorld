@@ -126,7 +126,7 @@ namespace SuperMarioWorld
                 SetAnimation(PlayerAnimationState.walking);
             }
             //if up is pressed, and not moving
-            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
+            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
             {
                 SetAnimation(PlayerAnimationState.lookup);
             }

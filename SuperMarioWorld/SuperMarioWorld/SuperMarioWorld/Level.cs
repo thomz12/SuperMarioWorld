@@ -151,12 +151,12 @@ namespace SuperMarioWorld
             //Call the update method for all gameobjects
             foreach(GameObject gameObject in objects)
             {
-                gameObject.Update(gameTime);
 
                 if (Math.Abs(camX - gameObject.position.X) < 256)
                 {
                     if(Math.Abs(camY - gameObject.position.Y) < 224)
                     {
+                        gameObject.Update(gameTime);
                         collidables.Add(gameObject);
                     }
                 }

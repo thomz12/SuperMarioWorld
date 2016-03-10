@@ -43,8 +43,6 @@ namespace SuperMarioWorld
         {
             animationPositions = new List<Vector2>();
             _animationProgress = animationSpeed;
-            xSize = 16;
-            ySize = 16;
         }
 
         /// <summary>
