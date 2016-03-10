@@ -150,26 +150,29 @@ namespace SuperMarioWorld
 
             collidables.Clear();
 
+            Player player = null;
+
             //Call the update method for all gameobjects
             foreach(GameObject gameObject in objects)
             {
-                gameObject.Update(gameTime);
 
                 if (Math.Abs(camX - gameObject.position.X) < 256)
                 {
                     if(Math.Abs(camY - gameObject.position.Y) < 224)
                     {
+                        gameObject.Update(gameTime);
                         collidables.Add(gameObject);
                     }
                 }
 
                 if (gameObject is Player)
                 {
-                    cam.Position = gameObject.position;
+                    player = (Player)gameObject;
                 }
             }
 
             CheckCollisions();
+            cam.Position = player.position;
         }
 
         public void CheckCollisions()
