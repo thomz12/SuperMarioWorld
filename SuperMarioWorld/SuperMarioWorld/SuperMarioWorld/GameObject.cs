@@ -58,7 +58,7 @@ namespace SuperMarioWorld
         public void DrawObject(SpriteBatch batch)
         {
             //Call the draw function of sprite
-            sprite.DrawSprite(batch, position);
+            sprite.DrawSpriteCentered(batch, position);
         }
     }
 }

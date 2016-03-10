@@ -23,9 +23,11 @@ namespace SuperMarioWorld
 #endif
         private Level _level;
 
+        private HUD _hud;
+
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        private bool vSync = true;
+        private bool _vSync = true;
         private const int _scale = 3;
 
 #if DEBUG
@@ -48,7 +50,7 @@ namespace SuperMarioWorld
             _graphics.PreferredBackBufferHeight = 224 * _scale;
             _graphics.PreferredBackBufferWidth = 256 * _scale;
 
-            _graphics.SynchronizeWithVerticalRetrace = vSync;
+            _graphics.SynchronizeWithVerticalRetrace = _vSync;
             
             IsFixedTimeStep = false;
             
@@ -59,6 +61,7 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
+            _hud = new HUD();
             _level = new Level("0");
             _level.cam.Zoom = _scale;
             Content.RootDirectory = "Content";
@@ -97,6 +100,12 @@ namespace SuperMarioWorld
             }
 
             _level.backgroundTexture = Content.Load<Texture2D>(_level.backgroundSourceName);
+
+            _hud.largeNumbers.texture = Content.Load<Texture2D>(_hud.largeNumbers.sourceName);
+            _hud.marioLuigiName.texture = Content.Load<Texture2D>(_hud.marioLuigiName.sourceName);
+            _hud.outline.texture = Content.Load<Texture2D>(_hud.outline.sourceName);
+            _hud.powerUps.texture = Content.Load<Texture2D>(_hud.powerUps.sourceName);
+            _hud.smallNumbers.texture = Content.Load<Texture2D>(_hud.smallNumbers.sourceName);
 
 #if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
@@ -173,6 +182,11 @@ namespace SuperMarioWorld
             _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
+            //Draw HUD
+            Matrix HUDMatrix = Matrix.CreateScale(new Vector3(_scale, _scale, 1));
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
+            _hud.DrawHUD(_spriteBatch);
+            _spriteBatch.End();
 #if DEBUG
             //Draw HUD
             _spriteBatch.Begin();

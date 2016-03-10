@@ -43,8 +43,17 @@ namespace SuperMarioWorld
         {
             animationPositions = new List<Vector2>();
             _animationProgress = animationSpeed;
-            xSize = 16;
-            ySize = 16;
+        }
+
+        /// <summary>
+        /// Constructor with an sourcename
+        /// </summary>
+        /// <param name="sourceName">Name of the sprite that should be loaded from the Content folder without extension.</param>
+        public Sprite(string sourceName)
+        {
+            this.sourceName = sourceName;
+            animationPositions = new List<Vector2>();
+            _animationProgress = animationSpeed;
         }
 
         /// <summary>
@@ -87,11 +96,13 @@ namespace SuperMarioWorld
         /// clear current animation frames & add frames
         /// </summary>
         /// <param name="animation">New frames</param>
-        public void NewAnimation(List<Vector2> animation)
+        public void NewAnimation(int x, int y)
         {
             NewAnimation();
-            foreach (Vector2 v in animation)
-                animationPositions.Add(v);
+            animationPositions.Add(new Vector2(x, y));
+
+            _texCoordX = (int)animationPositions[_animIndex].X * xSize;
+            _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
         }
 
         /// <summary>
@@ -115,13 +126,25 @@ namespace SuperMarioWorld
         }
 
         /// <summary>
-        /// Draws this object's sprite on the SpriteBatch.
+        /// Draws this object's sprite on the SpriteBatch. The sprite is centered.
         /// </summary>
         /// <param name="batch">The batch which should be drawn on.</param>
         /// /// <param name="position">The world position of the sprite</param>
-        public void DrawSprite(SpriteBatch batch, Vector2 position)
+        public void DrawSpriteCentered(SpriteBatch batch, Vector2 position)
         {
             batch.Draw(texture, new Rectangle((int)Math.Round(position.X) -(xSize / 2), (int)Math.Round(position.Y) - ySize, xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, layer);
         }
+
+        /// <summary>
+        /// Draws this object's sprite ont he SpriteBatch. The sprite is drawn from the left-top corner.
+        /// </summary>
+        /// <param name="batch">The batch which should be drawn on.</param>
+        /// <param name="position">the world position of the sprite.</param>
+        public void DrawSprite(SpriteBatch batch, Vector2 position)
+        {
+            batch.Draw(texture, new Rectangle((int)Math.Round(position.X), (int)Math.Round(position.Y), xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, layer);
+        }
+
+
     }
 }

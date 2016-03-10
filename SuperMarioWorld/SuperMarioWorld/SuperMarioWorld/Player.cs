@@ -22,7 +22,8 @@ namespace SuperMarioWorld
         {
             small = 0,
             normal = 1,
-            fire = 2
+            fire = 2,
+            feather = 3
         }
 
         /// <summary>
