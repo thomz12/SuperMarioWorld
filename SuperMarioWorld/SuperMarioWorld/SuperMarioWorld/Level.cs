@@ -146,6 +146,8 @@ namespace SuperMarioWorld
 
             collidables.Clear();
 
+            Player player = null;
+
             //Call the update method for all gameobjects
             foreach(GameObject gameObject in objects)
             {
@@ -161,11 +163,12 @@ namespace SuperMarioWorld
 
                 if (gameObject is Player)
                 {
-                    cam.Position = gameObject.position;
+                    player = (Player)gameObject;
                 }
             }
 
             CheckCollisions();
+            cam.Position = player.position;
         }
 
         public void CheckCollisions()

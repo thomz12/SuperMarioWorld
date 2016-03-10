@@ -41,25 +41,28 @@ namespace SuperMarioWorld
             if (collider is Entity)
             {
                 Entity p = (Entity)collider;
-                if (collider.position.Y > position.Y + sprite.ySize / 2)
+                if(Math.Abs(p.position.X - position.X) > boundingBox.Width / 2 && Math.Abs(p.position.Y - position.Y) < p.boundingBox.Width / 2 - 1)
+                {
+                    if (p.position.X < position.X)
+                        p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
+                    if (p.position.X > position.X)
+                        p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2 + 1;
+
+                    p.momentum.X = 0;
+                }
+                else if (collider.position.Y > position.Y + boundingBox.Height / 2)
                 {
                     sprite.NewAnimation();
                     sprite.AddFrame(4, 0);
                     p.momentum.Y = 16;
+                    p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
                 }
-                else if(collider.position.Y < position.Y - sprite.ySize / 2)
+                else if(collider.position.Y < position.Y - boundingBox.Height / 2)
                 {
+                    p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
+                    p.momentum.Y = 16;
                     p.grounded = true;
                     p.momentum.Y = 0;
-                }
-                else if(collider.position.X - position.X >= 8)
-                {
-                    p.momentum.X = 0;
-                }
-                else if(collider.position.X - position.X <= 8)
-                {
-                    p.momentum.X = 0;
-                    p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2;
                 }
             }
         }

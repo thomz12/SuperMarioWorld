@@ -57,7 +57,7 @@ namespace SuperMarioWorld
             sprite.ySize = 32;
             sprite.AddFrame(0, 0);
 
-            acceleration = 300.0f;
+            acceleration = 500.0f;
             maxSpeed = 64;
 
             switch (character)
@@ -148,7 +148,7 @@ namespace SuperMarioWorld
 
             //Calculate player movement
             Movement(gameTime);
-
+            grounded = false;
             base.Update(gameTime);
         }
 
@@ -197,7 +197,7 @@ namespace SuperMarioWorld
         {
             //calculate friction
             if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
-                momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
+                momentum.X /= 8.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             if (!grounded)
                 momentum.Y += 150 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;

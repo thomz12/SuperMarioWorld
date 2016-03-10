@@ -26,7 +26,7 @@ namespace SuperMarioWorld
         public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
         private bool _vSync = true;
-        private const int _scale = 3;
+        private const int _scale = 4;
 
 #if DEBUG
         //FPS Counter
