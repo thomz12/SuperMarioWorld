@@ -23,10 +23,10 @@ namespace SuperMarioWorld
         public Sprite smallNumbers;
 
         public int score = 1337;
-        public int lives = 11;
+        public int lives = 666;
         public int starPoints = 69;
         public int coins = 42;
-        public int time = 500;
+        public int time = 420;
 
         public Player.PowerSate powerUpHUD = Player.PowerSate.normal;
 
