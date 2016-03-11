@@ -26,9 +26,20 @@ namespace SuperMarioWorld
             //LoadScores()
         }
 
+        /// <summary>
+        /// Load scores from a file
+        /// </summary>
         private void LoadScores()
         {
             //Load the scores from score.sms (only implemented when we are going to use savegames)
+        }
+
+        /// <summary>
+        /// Save current scores to a file
+        /// </summary>
+        private void SaveScores()
+        {
+            //Saves coins, lives, score and starPoints in a score.sms file
         }
     }
 }
