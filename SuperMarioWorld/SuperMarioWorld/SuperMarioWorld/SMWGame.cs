@@ -52,7 +52,7 @@ namespace SuperMarioWorld
 
             _graphics.SynchronizeWithVerticalRetrace = _vSync;
             
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             
 
             //Make game fullscreen

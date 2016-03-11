@@ -47,12 +47,18 @@ namespace SuperMarioWorld
                     if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
                     {
                         if (p.position.X < position.X)
+                        {
                             p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
+                        }
 
                         if (p.position.X > position.X)
+                        {
                             p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+                        }
 
-                        p.lookRight = !p.lookRight;
+                        if(!(p is Player))
+                            p.lookRight = !p.lookRight;
+
                         p.momentum.X = 0;
                     }
                 }
