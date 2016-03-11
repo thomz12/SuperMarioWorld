@@ -6,11 +6,18 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
     class Level
     {
+        //HUD
+        private HUD _hud;
+
+        //Score handler
+        private ScoreHandler _scores;
+
         //Size of the level.
         private Point _size;
 
@@ -25,6 +32,10 @@ namespace SuperMarioWorld
         /// </summary>
         public List<GameObject> objects = new List<GameObject>();
 
+        //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
+        public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
+
+
         //Variables for the background
         public string backgroundSourceName = "BushBackground";
         public Texture2D backgroundTexture;
@@ -35,13 +46,19 @@ namespace SuperMarioWorld
         List<GameObject> collidables = new List<GameObject>();
 
         /// <summary>
-        /// When loading the level this function will add a camera and all objects from the file.
+        /// Display a testlevel
         /// </summary>
         /// <param name="batch">Give the batch that the sprites should be drawn in.</param>
-        public Level()
+        public Level(ScoreHandler scoreHandler)
         {
+            _hud = new HUD(scoreHandler);
+            _scores = scoreHandler;
+
+            //Set a max time
+            _scores.maxTime = 420;
+
             //TEMP, Add a object to the level
-            objects.Add( new Player(new Vector2(0.0f,0.0f), Player.Character.Mario));
+            objects.Add( new Player(new Vector2(0.0f,0.0f), _scores, Player.Character.Mario));
             objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
             objects.Add( new Goomba(new Vector2(64.0f, 0)));
 
@@ -55,15 +72,17 @@ namespace SuperMarioWorld
             cam = new Camera2D();
 
             _backOffset = (int)cam.Position.X / 2;
-
         }
 
         /// <summary>
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
-        public Level(string fileName)
+        public Level(string fileName, ScoreHandler scoreHandler)
         {
+            _hud = new HUD(scoreHandler);
+            _scores = scoreHandler;
+
             //Set the gridsize
             _gridSize = 16;
 
@@ -106,14 +125,13 @@ namespace SuperMarioWorld
             _size.Y = int.Parse(ySize.Substring(ySize.LastIndexOf("=") + 1));
 
             while (true)
-            { 
+            {
                 if (sr.ReadLine().Equals("[Level]"))
                 {
                     break;
                 }
             }
-            Coin c = new Coin(new Vector2(0,0));
-            objects.Add(c);
+
             //Loops through the read lines
             for (int y = 0; y < _size.Y; y++)
             {
@@ -130,7 +148,7 @@ namespace SuperMarioWorld
                     }
                     else if (objectChars[x].Equals('1'))
                     {
-                        objects.Add(new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), Player.Character.Mario));
+                        objects.Add(new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), _scores, Player.Character.Mario));
                     }
                     else if (objectChars[x].Equals('G'))
                     {
@@ -142,6 +160,29 @@ namespace SuperMarioWorld
                     }
                 }
             }
+
+            //Set a max time
+            //TODO add a time to load from the level file
+            _scores.maxTime = 420;
+        }
+
+        public void LoadContent(ContentManager contentManager)
+        {
+            //Load all the assets that belong to level
+            backgroundTexture = contentManager.Load<Texture2D>(backgroundSourceName);
+
+            foreach (GameObject go in objects)
+            {
+                if (!loadedSprites.ContainsKey(go.sprite.sourceName))
+                {
+                    loadedSprites.Add(go.sprite.sourceName, contentManager.Load<Texture2D>(go.sprite.sourceName));
+                }
+
+                go.sprite.texture = loadedSprites[go.sprite.sourceName];
+            }
+
+            //Tell HUD to load its content too
+            _hud.LoadContent(contentManager);
         }
 
         public void Update(GameTime gameTime)
@@ -174,8 +215,14 @@ namespace SuperMarioWorld
 
             CheckCollisions();
             cam.Position = player.position;
+
+            //Tell HUD to update
+            _hud.Update(gameTime);
         }
 
+        /// <summary>
+        /// Check if something collides in the camera area and call the two colliding object's OnCollision functions
+        /// </summary>
         public void CheckCollisions()
         {
             for(int i  = 0; i < collidables.Count; i++)
@@ -215,6 +262,12 @@ namespace SuperMarioWorld
                 //Call the draw method of gameobject
                 go.DrawObject(batch);
             }
+        }
+
+        public void DrawHUD(SpriteBatch batch)
+        {
+            //Tell HUD to draw itself
+            _hud.DrawHUD(batch);
         }
     }
 }

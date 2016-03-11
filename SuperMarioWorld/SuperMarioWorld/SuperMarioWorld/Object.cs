@@ -13,7 +13,7 @@ namespace SuperMarioWorld
 
         public bool isPlatform;
 
-        public Object(Vector2 position) : base(position)
+        public Object(Vector2 position) : base (position)
         {
             blocking = true;
         }

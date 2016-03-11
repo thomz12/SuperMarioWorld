@@ -49,8 +49,14 @@ namespace SuperMarioWorld
             runing
         }
 
-        public Player (Vector2 position, Character character) : base (position)
+        //Scorehandler
+        private ScoreHandler _scores;
+
+        public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
         {
+            //Set a score handler, all the interactions that require a score change go through the player object.
+            _scores = score;
+
             sprite.layer = 0.9f;
             boundingBox = new Rectangle(0, 0, 9, 15);
 
@@ -83,8 +89,16 @@ namespace SuperMarioWorld
             }
         }
 
+        /// <summary>
+        /// Handles all the interactions that require one or more variables from _scores to be changed
+        /// </summary>
+        /// <param name="collider">Collision with the collider object</param>
         public override void OnCollision(GameObject collider)
         {
+            if(collider is Coin)
+            {
+                _scores.coins++;
+            }
             //throw new NotImplementedException();
         }
 

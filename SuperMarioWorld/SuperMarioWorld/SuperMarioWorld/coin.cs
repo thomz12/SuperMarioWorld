@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class Coin : Entity
     {
-        public Coin(Vector2 position) : base(position)
+        public Coin(Vector2 position) : base (position)
         {
             maxSpeed = 16;
             lookRight = false;

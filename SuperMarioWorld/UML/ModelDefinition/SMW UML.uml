@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498"
   name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -83,41 +83,41 @@ a level file (.sml)</body>
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="3f532552-8a0c-4c77-8811-90db20d2f4a4"
+            Id="d0c672ca-d409-4302-bf9b-4979b663e400"
             isDerived="false"
             sourceEndRoleName="is part of"
-            targetEndRoleName="has a"
+            targetEndRoleName="creates"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="27bc0b40-90aa-4592-a585-8b768928bea0"
-              LastKnownName="HUD"
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
               LastKnownLocation="SMW UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="20779309-f5cf-4cbd-951b-f3c20e4216f3"
+                  Id="86c9612c-b7d4-43cb-a5fc-efd8efb48063"
                   name="is part of"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Composite"
+                  aggregation="None"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="30d9e9e7-87f3-4f2b-ad9f-e50a0fe01ad7"
-                  name="has a"
+                  Id="62f366bd-3838-4810-bccd-0d47a77f4b9a"
+                  name="creates"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true" />
+                  isComposite="false" />
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -408,7 +408,7 @@ a level file (.sml)</body>
           <association
             Id="3eefbe41-0bcc-4905-a911-7e9d33a475dc"
             isDerived="false"
-            sourceEndRoleName="is sprite of"
+            sourceEndRoleName="draws sprite of"
             targetEndRoleName="Has a"
             isLeaf="false"
             isAbstract="false">
@@ -420,7 +420,7 @@ a level file (.sml)</body>
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="e99e69dc-7974-4a7b-b94b-d07cd77a8beb"
-                  name="is sprite of"
+                  name="draws sprite of"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1390,6 +1390,22 @@ a level file (.sml)</body>
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="38469aed-1990-456c-bd99-20d1ac567d23">
+            <classMoniker
+              Id="f325bf86-4a3f-4301-99e4-5ea62f4f224e"
+              LastKnownName="Player"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="eddc8468-b87b-40a2-a142-96d772ef64f6">
+            <classMoniker
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="10588050-90c1-4105-bdc5-0c84716c386e"
@@ -2367,6 +2383,15 @@ a level file (.sml)</body>
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="495738ed-be2c-46ca-9a2a-c6298957690a">
+            <classMoniker
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <targetEnds>
           <association
             Id="459dd8f2-6c59-4c96-98c9-a5bb9c187f9e"
@@ -2472,6 +2497,45 @@ a level file (.sml)</body>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="5ce1e299-9aed-4bc0-b3f8-a0aa547e5e87"
+            isDerived="false"
+            sourceEndRoleName="is part of"
+            targetEndRoleName="has a"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="27bc0b40-90aa-4592-a585-8b768928bea0"
+              LastKnownName="HUD"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d4fedd26-f94f-4cde-bb82-32aeb2610b23"
+                  name="is part of"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0cdecba2-d5db-46d8-bafc-70f97b5c4bde"
+                  name="has a"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -2558,10 +2622,17 @@ a level file (.sml)</body>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="f5a78ea3-e993-4ede-8279-596d09c274e4"
-                  name="gameTime GameTime"
+                  Id="4ef7a5d8-7b50-4f96-afd6-fefe41cc515e"
+                  name="gameTime"
                   direction="In"
-                  isUnique="false" />
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -2584,6 +2655,31 @@ a level file (.sml)</body>
                     <undefinedTypeMoniker
                       Id="c211de4d-10e0-4519-a42f-7fe5217bc19a"
                       LastKnownName="SpriteBatch"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0e98a7f2-f495-43b5-b223-3ab350a45333"
+            name="LoadContent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="987a22af-336d-46ef-9f6a-a8609cefcbed"
+                  name="contentManager"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="067f13b7-3016-41b2-a35f-1fd863dca136"
+                      LastKnownName="ContentManager"
                       LastKnownLocation="SMW UML.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -3401,7 +3497,216 @@ a level file (.sml)</body>
         name="HUD"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="9c73773d-4c57-43ef-b4a9-9805648b4fd3">
+            <classMoniker
+              Id="317b6438-c0ca-4d42-b842-69170769e238"
+              LastKnownName="Sprite"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="57d710e4-9342-4b4e-95cb-b452f5c78770"
+            isDerived="false"
+            sourceEndRoleName="is used by"
+            targetEndRoleName="gets score from"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e4d067e1-6707-4573-b4b8-e395c5461b82"
+                  name="is used by"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4191d8ba-c41e-41b0-b802-521f56376c38"
+                  name="gets score from"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="a6944fd7-f384-471e-8b98-6575bb4400c1"
+            name="Update"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="48a5c77c-a33f-4a24-b15d-98b23204c764"
+                  name="gameTime"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="88610049-56b6-4ece-97e9-c551421c53ad"
+                      LastKnownName="GameTime"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="fd14f73f-ca8c-45ae-9271-827964c26b54"
+            name="LoadContent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8363aefb-863f-4d2d-a4ef-bc2ca2ca531f"
+                  name="contentManager"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="067f13b7-3016-41b2-a35f-1fd863dca136"
+                      LastKnownName="ContentManager"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+        name="ScoreHandler"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="98400dad-a391-4740-9848-097d3b23dbe4"
+            name="score"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5937ed95-e95e-45c9-8715-173a7c9fbba8"
+            name="lives"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="bc5055c9-a7d4-4904-8168-3ad27000e9f2"
+            name="starPoints"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6a2204bd-f067-4c56-9832-040a4e23d894"
+            name="coins"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4deae428-9584-46ab-8332-358d7acac917"
+            name="maxTime"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="29c2dd31-cf01-49ab-a7e2-2a4d41b9a2f5"
+                LastKnownName="int"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="067f13b7-3016-41b2-a35f-1fd863dca136"
+        name="ContentManager" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
