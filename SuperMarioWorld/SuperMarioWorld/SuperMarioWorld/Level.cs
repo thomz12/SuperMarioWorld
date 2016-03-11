@@ -112,8 +112,7 @@ namespace SuperMarioWorld
                     break;
                 }
             }
-            Coin c = new Coin(new Vector2(0,0));
-            objects.Add(c);
+
             //Loops through the read lines
             for (int y = 0; y < _size.Y; y++)
             {
