@@ -9,6 +9,9 @@ namespace SuperMarioWorld
 {
     abstract class GameObject
     {
+        //Score handler
+        private ScoreHandler _scores;
+
         //Sprite (texture) of this object
         public Sprite sprite;
         //Collision box of this object
@@ -33,7 +36,7 @@ namespace SuperMarioWorld
         /// <param name="position">Position of the object.</param>
         /// <param name="batch">Batch that the texture should be drawn on.</param>
         public GameObject(Vector2 position)
-        { 
+        {
             this.position = position;
 
             sprite = new Sprite();

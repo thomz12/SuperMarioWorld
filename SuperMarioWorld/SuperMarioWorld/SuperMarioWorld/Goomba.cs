@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class Goomba : Enemy
     {
-        public Goomba(Vector2 position) : base(position)
+        public Goomba(Vector2 position) : base (position)
         {
             sprite.sourceName = "Goomba";
             sprite.xSize = 16;

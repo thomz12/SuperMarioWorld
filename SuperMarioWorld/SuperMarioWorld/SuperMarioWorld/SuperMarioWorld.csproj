@@ -85,6 +85,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ScoreHandler.cs" />
     <Compile Include="SMWGame.cs" />
     <Compile Include="Sprite.cs" />
   </ItemGroup>

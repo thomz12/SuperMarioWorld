@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,34 @@ namespace SuperMarioWorld
 {
     class HUD
     {
+        //Score handler to pull information from
+        private ScoreHandler _scores;
+
+        //Sources of the sprites
         private const string _HUDMarioLuigiNameSource = "HUDMarioLuigiName";
         private const string _HUDLargeNumbersSource = "HUDLargeNumbers";
         private const string _HUDOutlineSource = "HUDOutline";
         private const string _HUDPowerUpsSource = "HUDPowerUps";
         private const string _HUDSmallNumbersSource = "HUDSmallNumbers";
 
+        //Draw these sprites
         public Sprite marioLuigiName;
         public Sprite largeNumbers;
         public Sprite outline;
         public Sprite powerUps;
         public Sprite smallNumbers;
 
-        public int score = 1337;
-        public int lives = 666;
-        public int starPoints = 69;
-        public int coins = 42;
-        public int time = 420;
+        //Variables for tracking the time that is left in the level
+        public int timeLeft;
+        private int _elapsedMiliseconds;
 
-        public Player.PowerSate powerUpHUD = Player.PowerSate.normal;
-
-        
-        public HUD()
+        public HUD(ScoreHandler scoreHandler)
         {
+            _scores = scoreHandler;
+
+            //Set the time left in current level tot the maximum time allowed by level
+            timeLeft = _scores.maxTime;
+
             //Initialize the player character name sprite
             marioLuigiName = new Sprite(_HUDMarioLuigiNameSource);
             marioLuigiName.xSize = 40;
@@ -63,6 +69,30 @@ namespace SuperMarioWorld
             smallNumbers.ySize = 7;
         }
 
+        public void LoadContent(ContentManager c)
+        {
+            largeNumbers.texture = c.Load<Texture2D>(largeNumbers.sourceName);
+            marioLuigiName.texture = c.Load<Texture2D>(marioLuigiName.sourceName);
+            outline.texture = c.Load<Texture2D>(outline.sourceName);
+            powerUps.texture = c.Load<Texture2D>(powerUps.sourceName);
+            smallNumbers.texture = c.Load<Texture2D>(smallNumbers.sourceName);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            _elapsedMiliseconds += gameTime.ElapsedGameTime.Milliseconds;
+            if(_elapsedMiliseconds >= 1000f)
+            {
+                timeLeft--;
+                _elapsedMiliseconds = 0;
+            }
+            if(timeLeft < 0)
+            {
+                //GAME OVER
+                timeLeft = 0;
+            }
+        }
+
         public void DrawHUD(SpriteBatch batch)
         {
             //Draw the hud background or whatever
@@ -73,7 +103,7 @@ namespace SuperMarioWorld
             marioLuigiName.DrawSprite(batch, new Vector2(15, 15));
 
             //Draw reserve powerup
-            switch (powerUpHUD)
+            switch (_scores.powerUp)
             {
                 case Player.PowerSate.normal:
                     powerUps.NewAnimation(0, 0);
@@ -88,14 +118,15 @@ namespace SuperMarioWorld
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
                 default:
+                    //No powerup so nothing to add to animation
                     powerUps.NewAnimation();
                     break;
             }
 
             //Draw score
-            for (int i = score.ToString().Length - 1; i >= 0; i--)
+            for (int i = _scores.score.ToString().Length - 1; i >= 0; i--)
             {
-                string s = score.ToString();
+                string s = _scores.score.ToString();
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
@@ -104,20 +135,20 @@ namespace SuperMarioWorld
             }
 
             //Draw coins
-            for (int i = coins.ToString().Length - 1; i >= 0; i--)
+            for (int i = _scores.coins.ToString().Length - 1; i >= 0; i--)
             {
-                string s = coins.ToString();
+                string s = _scores.coins.ToString();
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
                 smallNumbers.NewAnimation(num, 0);
-                smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 15));
+                smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 16));
             }
 
             //Draw time
-            for (int i = time.ToString().Length - 1; i >= 0; i--)
+            for (int i = timeLeft.ToString().Length - 1; i >= 0; i--)
             {
-                string s = time.ToString();
+                string s = timeLeft.ToString();
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
@@ -126,18 +157,18 @@ namespace SuperMarioWorld
             }
 
             //Draw lives
-            for (int i = 0; i < lives.ToString().Length; i++)
+            for (int i = 0; i < _scores.lives.ToString().Length; i++)
             {
-                string s = lives.ToString();
+                string s = _scores.lives.ToString();
                 int num = int.Parse(s[i].ToString());
                 smallNumbers.NewAnimation(num, 0);
                 smallNumbers.DrawSprite(batch, new Vector2(33 + (i * smallNumbers.xSize), 24));
             }
 
             //Draw Starpoints
-            for (int i = starPoints.ToString().Length - 1; i >= 0; i--)
+            for (int i = _scores.starPoints.ToString().Length - 1; i >= 0; i--)
             {
-                string s = starPoints.ToString();
+                string s = _scores.starPoints.ToString();
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
