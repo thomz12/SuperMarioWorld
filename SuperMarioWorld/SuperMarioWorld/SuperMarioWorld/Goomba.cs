@@ -25,6 +25,8 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
+            if (collider is Enemy)
+                lookRight = !lookRight;
             base.OnCollision(collider);
         }
 

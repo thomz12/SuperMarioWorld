@@ -52,6 +52,7 @@ namespace SuperMarioWorld
                         if (p.position.X > position.X)
                             p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
 
+                        p.lookRight = !p.lookRight;
                         p.momentum.X = 0;
                     }
                 }
