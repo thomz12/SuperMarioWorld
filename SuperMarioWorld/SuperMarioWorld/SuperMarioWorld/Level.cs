@@ -80,8 +80,9 @@ namespace SuperMarioWorld
         /// <param name="fileName">Give the name of the file without extension</param>
         public Level(string fileName, ScoreHandler scoreHandler)
         {
-            _hud = new HUD(scoreHandler);
+            //Create the scorehandler so the level file can put information in it.
             _scores = scoreHandler;
+
 
             //Set the gridsize
             _gridSize = 16;
@@ -161,9 +162,14 @@ namespace SuperMarioWorld
                 }
             }
 
-            //Set a max time
+            //Load in formation from the level file
             //TODO add a time to load from the level file
             _scores.maxTime = 420;
+
+            //TODO load information from a savefile
+
+            //Create a new HUD for this level
+            _hud = new HUD(scoreHandler);
         }
 
         public void LoadContent(ContentManager contentManager)

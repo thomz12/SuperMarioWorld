@@ -34,22 +34,6 @@ a level file (.sml)</body>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="29c28931-9ab7-47e5-b8d9-817cc4258d38" />
           </association>
-          <association Id="a0434846-f863-4a4d-994c-4402df782b5a" isDerived="false" sourceEndRoleName="is part of" targetEndRoleName="creates" isLeaf="false" isAbstract="false">
-            <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="a753cdbd-1ec1-4334-a60f-4509409d63d5" name="is part of" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="86c9612c-b7d4-43cb-a5fc-efd8efb48063" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="f9f8bdd7-18f4-4e77-be2b-98647475f8ab" name="creates" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="62f366bd-3838-4810-bccd-0d47a77f4b9a" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="d0c672ca-d409-4302-bf9b-4979b663e400" />
-          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property Id="78df5b7a-522a-456c-9573-3f855428107a" name="_graphics" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -950,12 +934,6 @@ a level file (.sml)</body>
     <logicalClassDesignerModelHasTypes>
       <class Id="a3a1ef0d-110b-4161-970d-fc16de4ef011" name="Level" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="f673c9bd-50b5-463d-afef-72b4ebe1050d" />
-        <suppliersInternal>
-          <dependency Id="d3da81f8-55a9-4932-b35e-d18046b6a386">
-            <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
-            <elementDefinition Id="495738ed-be2c-46ca-9a2a-c6298957690a" />
-          </dependency>
-        </suppliersInternal>
         <targetEnds>
           <association Id="ecb08a62-be1f-4e07-b58d-1fc385f08e6a" isDerived="false" sourceEndRoleName="Is in a" targetEndRoleName="contains" isLeaf="false" isAbstract="false">
             <classMoniker Id="301de717-52cc-4218-816d-89feb61f3c3f" LastKnownName="GameObject" />
@@ -1024,6 +1002,22 @@ a level file (.sml)</body>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="5ce1e299-9aed-4bc0-b3f8-a0aa547e5e87" />
+          </association>
+          <association Id="ae6b43ef-e761-4206-a6d7-bf7488e8086a" isDerived="false" sourceEndRoleName="Level" targetEndRoleName="ScoreHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5f63ed86-1d3a-4986-9a92-04445509ddee" name="Level" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bf020b28-8074-48fc-b4c3-b458cad58f49" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="719aede8-f4f4-4ce3-9f21-68ded15a9777" name="ScoreHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="93d91eb2-9f91-41cc-93df-9b566b445330" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="15283177-55bc-451d-ab43-aa3f6376226a" />
           </association>
         </targetEnds>
         <ownedAttributesInternal>
@@ -1564,25 +1558,11 @@ a level file (.sml)</body>
             <classMoniker Id="965b4af2-054d-485e-9866-8066ce82ed67" LastKnownName="Sprite" />
             <elementDefinition Id="9c73773d-4c57-43ef-b4a9-9805648b4fd3" />
           </dependency>
-        </suppliersInternal>
-        <targetEnds>
-          <association Id="37f1dc1c-23f7-4f39-bc59-d63c3bb4a4ef" isDerived="false" sourceEndRoleName="is used by" targetEndRoleName="gets score from" isLeaf="false" isAbstract="false">
+          <dependency Id="2453d98b-c9da-4933-900e-99791a60e654">
             <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="3dd624a8-0812-4aa9-ab30-36066b8d0cb8" name="is used by" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="e4d067e1-6707-4573-b4b8-e395c5461b82" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="aabf9553-9b42-49f9-8a3d-2a443c85201c" name="gets score from" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="4191d8ba-c41e-41b0-b802-521f56376c38" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="57d710e4-9342-4b4e-95cb-b452f5c78770" />
-          </association>
-        </targetEnds>
+            <elementDefinition Id="a5935973-41c6-47c4-9c0e-91b7f13ee4ac" />
+          </dependency>
+        </suppliersInternal>
         <ownedOperationsInternal>
           <operation Id="eda2ed71-f97a-42d2-b0b1-772b15fef5ce" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="a6944fd7-f384-471e-8b98-6575bb4400c1" />

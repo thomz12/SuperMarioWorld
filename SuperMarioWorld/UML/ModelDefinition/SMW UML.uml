@@ -82,45 +82,6 @@ a level file (.sml)</body>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
-          <association
-            Id="d0c672ca-d409-4302-bf9b-4979b663e400"
-            isDerived="false"
-            sourceEndRoleName="is part of"
-            targetEndRoleName="creates"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
-              LastKnownName="ScoreHandler"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="86c9612c-b7d4-43cb-a5fc-efd8efb48063"
-                  name="is part of"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="62f366bd-3838-4810-bccd-0d47a77f4b9a"
-                  name="creates"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -2383,15 +2344,6 @@ a level file (.sml)</body>
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="495738ed-be2c-46ca-9a2a-c6298957690a">
-            <classMoniker
-              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
-              LastKnownName="ScoreHandler"
-              LastKnownLocation="SMW UML.uml" />
-          </dependency>
-        </suppliersInternal>
         <targetEnds>
           <association
             Id="459dd8f2-6c59-4c96-98c9-a5bb9c187f9e"
@@ -2533,6 +2485,45 @@ a level file (.sml)</body>
                   isDerivedUnion="false"
                   aggregation="None"
                   isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="15283177-55bc-451d-ab43-aa3f6376226a"
+            isDerived="false"
+            sourceEndRoleName="Level"
+            targetEndRoleName="ScoreHandler"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bf020b28-8074-48fc-b4c3-b458cad58f49"
+                  name="Level"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="93d91eb2-9f91-41cc-93df-9b566b445330"
+                  name="ScoreHandler"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -3506,48 +3497,14 @@ a level file (.sml)</body>
               LastKnownName="Sprite"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
-        </suppliersInternal>
-        <targetEnds>
-          <association
-            Id="57d710e4-9342-4b4e-95cb-b452f5c78770"
-            isDerived="false"
-            sourceEndRoleName="is used by"
-            targetEndRoleName="gets score from"
-            isLeaf="false"
-            isAbstract="false">
+          <dependency
+            Id="a5935973-41c6-47c4-9c0e-91b7f13ee4ac">
             <classMoniker
               Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
               LastKnownName="ScoreHandler"
               LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e4d067e1-6707-4573-b4b8-e395c5461b82"
-                  name="is used by"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Shared"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4191d8ba-c41e-41b0-b802-521f56376c38"
-                  name="gets score from"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
+          </dependency>
+        </suppliersInternal>
         <ownedOperationsInternal>
           <operation
             Id="a6944fd7-f384-471e-8b98-6575bb4400c1"
