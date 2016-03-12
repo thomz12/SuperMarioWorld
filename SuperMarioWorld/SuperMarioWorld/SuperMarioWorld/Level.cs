@@ -159,6 +159,17 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
+                    else if(objectChars[x].Equals('R'))
+                    {
+                        objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
+                    }
+                    else if(objectChars[x].Equals('D'))
+                    {
+                        LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y));
+                        b.blocking = false;
+                        b.sprite.NewAnimation(3, 0);
+                        objects.Add(b);
+                    }
                 }
             }
 

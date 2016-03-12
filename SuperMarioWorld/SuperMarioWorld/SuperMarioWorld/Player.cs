@@ -49,6 +49,9 @@ namespace SuperMarioWorld
             runing
         }
 
+        //Higher value -> less controll in the air
+        private float _airControl = 3.0f;
+
         //Scorehandler
         private ScoreHandler _scores;
 
@@ -124,7 +127,7 @@ namespace SuperMarioWorld
                 if (grounded)
                     momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 else
-                    momentum.X -= acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
             {

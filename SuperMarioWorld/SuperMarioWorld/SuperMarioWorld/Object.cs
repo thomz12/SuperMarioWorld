@@ -16,11 +16,12 @@ namespace SuperMarioWorld
         public Object(Vector2 position) : base(position)
         {
             blocking = true;
+            isPlatform = true;
         }
 
         public override void OnCollision(GameObject collider)
         {
-            if (collider is Entity)
+            if (collider is Entity && blocking)
             {
                 Entity p = (Entity)collider;
 
@@ -31,24 +32,22 @@ namespace SuperMarioWorld
                 {
                     if (p.position.Y < position.Y)
                     {
-                        p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
-                        p.momentum.Y = 16;
-                        p.grounded = true;
-                        p.momentum.Y = 0;
+                        if (p.momentum.Y > 0)
+                        {
+                            p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
+                            p.momentum.Y = 16;
+                            p.grounded = true;
+                            p.momentum.Y = 0;
+                        }
                     }
-                    else
+                    else if(!isPlatform)
                     {
                         p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
-                        if (p is Player)
-                        {
-                            sprite.NewAnimation();
-                            sprite.AddFrame(4, 0);
-                        }
 
                         p.momentum.Y = 16;
                     }
                 }
-                else
+                else if(!isPlatform)
                 {
                     if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
                     {

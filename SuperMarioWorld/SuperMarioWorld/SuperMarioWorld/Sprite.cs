@@ -26,6 +26,7 @@ namespace SuperMarioWorld
 
         //Vars for cycling and displaying animated sprite sheets
         private List<Vector2> animationPositions;
+        public bool animated;
 
         //Coords of frame (top left)
         private int _texCoordX, _texCoordY;
@@ -54,6 +55,7 @@ namespace SuperMarioWorld
             this.sourceName = sourceName;
             animationPositions = new List<Vector2>();
             _animationProgress = animationSpeed;
+            animated = true;
         }
 
         /// <summary>
