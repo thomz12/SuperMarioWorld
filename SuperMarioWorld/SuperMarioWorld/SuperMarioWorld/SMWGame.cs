@@ -15,18 +15,24 @@ namespace SuperMarioWorld
     /// </summary>
     public class SMWGame : Microsoft.Xna.Framework.Game
     {
+        //Graphics
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private const int gameHeight = 224;
+        private const int gameWidth = 256;
+
 #if DEBUG
         private Texture2D _debugTexture;
         private SpriteFont _debugFont;
 #endif
+        //A level
         private Level _level;
+        //Create a score tracker
+        private ScoreHandler _scores;
 
-        public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
-
-        private bool _vSync = true;
-        private const int _scale = 2;
+        private bool _vSync = false;
+        private const int _scale = 3;
 
 #if DEBUG
         //FPS Counter
@@ -45,12 +51,10 @@ namespace SuperMarioWorld
         {
             _graphics = new GraphicsDeviceManager(this);
             //Set default resolution (SNES resolution) and scale it
-            _graphics.PreferredBackBufferHeight = 224 * _scale;
-            _graphics.PreferredBackBufferWidth = 256 * _scale;
+            _graphics.PreferredBackBufferHeight = gameHeight * _scale;
+            _graphics.PreferredBackBufferWidth = gameWidth * _scale;
 
             _graphics.SynchronizeWithVerticalRetrace = _vSync;
-            
-            IsFixedTimeStep = false;
             
 
             //Make game fullscreen
@@ -59,7 +63,10 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
-            _level = new Level("0");
+            //Load a level
+            //TODO load specific levels from main menu/world map
+            _scores = new ScoreHandler();
+            _level = new Level("0", _scores);
             _level.cam.Zoom = _scale;
             Content.RootDirectory = "Content";
         }
@@ -86,18 +93,9 @@ namespace SuperMarioWorld
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            foreach(GameObject go in _level.objects)
-            {
-                if(!loadedSprites.ContainsKey(go.sprite.sourceName))
-                {
-                    loadedSprites.Add(go.sprite.sourceName, Content.Load<Texture2D>(go.sprite.sourceName));
-                }
-
-                go.sprite.texture = loadedSprites[go.sprite.sourceName];
-            }
-
-            _level.backgroundTexture = Content.Load<Texture2D>(_level.backgroundSourceName);
-
+            //Tell level to load its content
+            _level.LoadContent(this.Content);
+            
 #if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>("DefaultFont");
@@ -142,8 +140,6 @@ namespace SuperMarioWorld
 
             _level.Update(gameTime);
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -173,6 +169,11 @@ namespace SuperMarioWorld
             _level.DrawLevel(_spriteBatch);
             _spriteBatch.End();
 
+            //Draw HUD
+            Matrix HUDMatrix = Matrix.CreateScale(new Vector3(_scale, _scale, 1));
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
+            _level.DrawHUD(_spriteBatch);
+            _spriteBatch.End();
 #if DEBUG
             //Draw HUD
             _spriteBatch.Begin();
