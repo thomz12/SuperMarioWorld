@@ -44,6 +44,7 @@ namespace SuperMarioWorld
         {
             animationPositions = new List<Vector2>();
             _animationProgress = animationSpeed;
+            animated = true;
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace SuperMarioWorld
         public void UpdateAnimation(GameTime gameTime)
         {
             //if there are animation frames
-            if (animationPositions.Count != 0)
+            if (animationPositions.Count != 0 && animated)
             {
                 //take update time (ms) from animation progress
                 _animationProgress += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -87,7 +88,7 @@ namespace SuperMarioWorld
                 }
             }
             //else, display entire image
-            else
+            else if(animationPositions.Count == 0)
             {
                 xSize = texture.Width;
                 ySize = texture.Height;

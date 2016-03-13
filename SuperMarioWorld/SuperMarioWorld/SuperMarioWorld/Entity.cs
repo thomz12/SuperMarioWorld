@@ -27,7 +27,6 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-
             //Flip sprite when looking left/right
             if (lookRight)
                 sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;

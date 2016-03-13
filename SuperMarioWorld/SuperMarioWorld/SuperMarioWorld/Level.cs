@@ -202,6 +202,10 @@ namespace SuperMarioWorld
             _hud.LoadContent(contentManager);
         }
 
+        /// <summary>
+        /// Call update for every object in the level, check collisions and call oncollisions
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             int camX = (int)cam.Position.X;
@@ -244,12 +248,15 @@ namespace SuperMarioWorld
         {
             for(int i  = 0; i < collidables.Count; i++)
             {
-                for (int j = i + 1; j < collidables.Count; j++)
+                if (collidables[i] is Entity)
                 {
-                    if (collidables[i].boundingBox.Intersects(collidables[j].boundingBox))
+                    for (int j = 0; j < collidables.Count; j++)
                     {
-                        collidables[i].OnCollision(collidables[j]);
-                        collidables[j].OnCollision(collidables[i]);
+                        if (collidables[i].boundingBox.Intersects(collidables[j].boundingBox))
+                        {
+                            collidables[i].OnCollision(collidables[j]);
+                            collidables[j].OnCollision(collidables[i]);
+                        }
                     }
                 }
             }

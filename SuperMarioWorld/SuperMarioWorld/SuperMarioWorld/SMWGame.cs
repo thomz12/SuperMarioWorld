@@ -18,6 +18,10 @@ namespace SuperMarioWorld
         //Graphics
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private const int gameHeight = 224;
+        private const int gameWidth = 256;
+
 #if DEBUG
         private Texture2D _debugTexture;
         private SpriteFont _debugFont;
@@ -47,8 +51,8 @@ namespace SuperMarioWorld
         {
             _graphics = new GraphicsDeviceManager(this);
             //Set default resolution (SNES resolution) and scale it
-            _graphics.PreferredBackBufferHeight = 224 * _scale;
-            _graphics.PreferredBackBufferWidth = 256 * _scale;
+            _graphics.PreferredBackBufferHeight = gameHeight * _scale;
+            _graphics.PreferredBackBufferWidth = gameWidth * _scale;
 
             _graphics.SynchronizeWithVerticalRetrace = _vSync;
             

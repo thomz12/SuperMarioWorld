@@ -19,6 +19,7 @@ namespace SuperMarioWorld
             //Sets the sizes of the sprite
             sprite.xSize = 16;
             sprite.ySize = 16;
+            sprite.animated = false;
 
             //Call sprite class to load the texture
             sprite.sourceName = "Grass";
