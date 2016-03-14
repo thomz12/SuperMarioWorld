@@ -38,7 +38,7 @@ a level file (.sml)</body>
             <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="674cfb75-d9de-4ccd-a0f8-0ffb961b90fe" name="is created by" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                <memberEnd Id="674cfb75-d9de-4ccd-a0f8-0ffb961b90fe" name="is created by" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
                   <elementDefinition Id="e7101a15-8383-45d6-9bd9-27b4ea2c7087" />
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -175,6 +175,12 @@ a level file (.sml)</body>
     <logicalClassDesignerModelHasTypes>
       <class Id="301de717-52cc-4218-816d-89feb61f3c3f" name="GameObject" isAbstract="true" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="843b9e8d-a6b4-4af0-8393-328bd218ad66" />
+        <suppliersInternal>
+          <dependency Id="65ed2575-52f7-4044-9c86-84830f039d69">
+            <classMoniker Id="301de717-52cc-4218-816d-89feb61f3c3f" LastKnownName="GameObject" />
+            <elementDefinition Id="1e035694-c124-482a-9a78-62c23e68f87f" />
+          </dependency>
+        </suppliersInternal>
         <targetEnds>
           <association Id="18507c17-9342-4cbf-9525-2d99bc06006b" isDerived="false" sourceEndRoleName="draws sprite of" targetEndRoleName="Has a" isLeaf="false" isAbstract="false">
             <classMoniker Id="965b4af2-054d-485e-9866-8066ce82ed67" LastKnownName="Sprite" />
@@ -1639,6 +1645,9 @@ a level file (.sml)</body>
               </literalInteger>
             </specification>
           </enumerationLiteral>
+          <enumerationLiteral Id="8dc40dff-076f-4fcf-ae25-23fa136565b2" name="feather">
+            <elementDefinition Id="c9388f44-83ca-4841-845d-477e5b7263bc" />
+          </enumerationLiteral>
         </ownedLiterals>
       </enumeration>
     </logicalClassDesignerModelHasTypes>
@@ -1751,7 +1760,7 @@ a level file (.sml)</body>
             <classMoniker Id="691f86ad-5d9d-4d28-a2a2-9681ae359285" LastKnownName="ScoreHandler" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="fcd067f5-c681-447a-b6c2-4f9228278455" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                <memberEnd Id="fcd067f5-c681-447a-b6c2-4f9228278455" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
                   <elementDefinition Id="4f4771fa-f633-4796-bb67-35501c2d79a6" />
                 </memberEnd>
               </associationHasOwnedEnds>

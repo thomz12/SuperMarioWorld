@@ -103,7 +103,7 @@ a level file (.sml)</body>
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Shared"
+                  aggregation="None"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
@@ -405,6 +405,15 @@ a level file (.sml)</body>
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="1e035694-c124-482a-9a78-62c23e68f87f">
+            <classMoniker
+              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+              LastKnownName="GameObject"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <targetEnds>
           <association
             Id="83a6e208-6de5-4588-831d-261b241c66a1"
@@ -3738,6 +3747,9 @@ a level file (.sml)</body>
                 value="2" />
             </specification>
           </enumerationLiteral>
+          <enumerationLiteral
+            Id="c9388f44-83ca-4841-845d-477e5b7263bc"
+            name="feather" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>
@@ -3975,7 +3987,7 @@ a level file (.sml)</body>
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Shared"
+                  aggregation="None"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
@@ -4329,6 +4341,24 @@ a level file (.sml)</body>
       <undefinedType
         Id="e614fd1d-fd81-4191-b416-901a0fbde006"
         name="List&lt;Point&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="e9a0c5f6-2030-464a-b524-429e8b6809f1"
+        name="Enumeration1"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="551a1e80-04d3-4987-ad91-6ee24544c770"
+            name="realization"
+            profile="StandardProfileL2" />
+          <stereotypeInstance
+            Id="2f2c8009-bda4-45bf-b6e2-7aa604735492"
+            name="specification"
+            profile="StandardProfileL2" />
+        </appliedStereotypesInternal>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
