@@ -8,9 +8,24 @@ namespace SuperMarioWorld
 {
     class Coin : Entity
     {
-        public Coin(Vector2 position) : base (position)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Position the object is created on</param>
+        /// <param name="moving">Is the coin a moving coin or a static one?</param>
+        public Coin(Vector2 position, bool moving) : base (position)
         {
-            maxSpeed = 16;
+            if (moving)
+            {
+                maxSpeed = 16;
+            }
+            else
+            {
+                maxSpeed = 0;
+                grounded = true;
+                affectedByGravity = false;
+            }
+
             lookRight = false;
 
             //Generates a boundingbox around the coin

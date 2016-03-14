@@ -10,6 +10,7 @@ namespace SuperMarioWorld
     {
         public Vector2 momentum;
 
+        protected bool affectedByGravity;
         public bool grounded;
 
         public bool lookRight;
@@ -21,6 +22,7 @@ namespace SuperMarioWorld
 
         public Entity(Vector2 position) : base (position)
         {
+            affectedByGravity = true;
             lookRight = true;
             grounded = false;
             maxSpeed = 256.0f;
@@ -43,7 +45,10 @@ namespace SuperMarioWorld
             boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
             base.Update(gameTime);
-            grounded = false;
+
+            //If the object is affected by gravity set the grounded bool to false every update (needs a change)
+            if(affectedByGravity)
+                grounded = false;
         }
 
         /// <summary>
