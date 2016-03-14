@@ -226,6 +226,11 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
+            if (momentum.Y > thermalVelocity)
+                momentum.Y = thermalVelocity;
+            if (momentum.Y < -thermalVelocity)
+                momentum.Y = -thermalVelocity;
+
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }

@@ -17,12 +17,14 @@ namespace SuperMarioWorld
         protected float acceleration = 16f;
 
         protected float maxSpeed;
+        protected float thermalVelocity;
 
         public Entity(Vector2 position) : base (position)
         {
             lookRight = true;
             grounded = false;
             maxSpeed = 256.0f;
+            thermalVelocity = 128.0f;
         }
 
         public override void Update(GameTime gameTime)
@@ -64,6 +66,11 @@ namespace SuperMarioWorld
                 momentum = new Vector2(maxSpeed, momentum.Y);
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
+
+            if (momentum.Y > thermalVelocity)
+                momentum.Y = thermalVelocity;
+            if (momentum.Y < -thermalVelocity)
+                momentum.Y = -thermalVelocity;
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
