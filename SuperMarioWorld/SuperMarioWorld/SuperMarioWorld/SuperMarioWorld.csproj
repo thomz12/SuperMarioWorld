@@ -83,7 +83,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Level.cs" />
-    <Compile Include="LevelBlock.cs" />
+    <Compile Include="StaticBlock.cs" />
     <Compile Include="MysteryBlock.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Player.cs" />

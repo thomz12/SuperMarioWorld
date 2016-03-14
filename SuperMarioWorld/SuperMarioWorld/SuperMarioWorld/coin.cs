@@ -21,7 +21,7 @@ namespace SuperMarioWorld
             sprite.ySize = 16;
 
             //Call sprite class to load the texture
-            sprite.sourceName = "coin";
+            sprite.sourceName = @"Misc\Coin";
 
             //Add animation
             sprite.NewAnimation();

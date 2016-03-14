@@ -98,7 +98,7 @@ namespace SuperMarioWorld
             //Create a streamreader
             StreamReader sr;
 
-            fileName = @"Content\\Levels\\" + fileName + ".sml";
+            fileName = @"Content\Levels\" + fileName + ".sml";
 
             //LOAD LEVEL FROM FILE
             /*
@@ -166,11 +166,11 @@ namespace SuperMarioWorld
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize))));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass));
                     }
                     else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {
-                        LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize)));
+                        StaticBlock b = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass);
                         b.blocking = false;
                         b.sprite.NewAnimation(3, 0);
                         objects.Add(b);
@@ -182,6 +182,22 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('S')) //If the char represents a Shell
                     {
                         objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
+                    }
+                    else if (objectChars[x].Equals('L')) //If the char represents a cloud
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud));
+                    }
+                    else if (objectChars[x].Equals('O')) //If the char represents a rock
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock));
+                    }
+                    else if (objectChars[x].Equals('H')) //If the char represents a help
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help));
+                    }
+                    else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
                     }
                 }
             }

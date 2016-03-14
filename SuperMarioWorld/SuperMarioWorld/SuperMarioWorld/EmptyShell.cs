@@ -28,7 +28,7 @@ namespace SuperMarioWorld
         public EmptyShell(Vector2 position, KoopaType koopaType) : base (position)
         {
             _koopaType = koopaType;
-            sprite.sourceName = "KoopaShells";
+            sprite.sourceName = @"Enemies\KoopaShells";
             sprite.xSize = 16;
             sprite.ySize = 16;
             sprite.animationSpeed = 100;
