@@ -12,7 +12,7 @@ namespace SuperMarioWorld
 
         public bool grounded;
 
-        protected bool lookRight;
+        public bool lookRight;
 
         protected float acceleration = 16f;
 
@@ -27,13 +27,11 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-
             //Flip sprite when looking left/right
             if (lookRight)
                 sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
             else
                 sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
-
 
             Movement(gameTime);
             //Calls the update function from gameobject
@@ -43,6 +41,7 @@ namespace SuperMarioWorld
             boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
             base.Update(gameTime);
+            grounded = false;
         }
 
         /// <summary>
@@ -55,6 +54,10 @@ namespace SuperMarioWorld
                 momentum = new Vector2(momentum.X + acceleration, momentum.Y);
             else
                 momentum = new Vector2(momentum.X - acceleration, momentum.Y);
+
+            //Add gravity
+            if(!grounded)
+                momentum.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object (x-axis only)
             if (momentum.X > maxSpeed)

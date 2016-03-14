@@ -33,7 +33,7 @@ namespace SuperMarioWorld
         /// <param name="position">Position of the object.</param>
         /// <param name="batch">Batch that the texture should be drawn on.</param>
         public GameObject(Vector2 position)
-        { 
+        {
             this.position = position;
 
             sprite = new Sprite();
@@ -58,7 +58,7 @@ namespace SuperMarioWorld
         public void DrawObject(SpriteBatch batch)
         {
             //Call the draw function of sprite
-            sprite.DrawSprite(batch, position);
+            sprite.DrawSpriteCentered(batch, position);
         }
     }
 }

@@ -18,11 +18,12 @@ namespace SuperMarioWorld
         /// <summary>
         /// Different powerstates that the player can have
         /// </summary>
-        public enum PowerSate
+        public enum PowerState
         {
             small = 0,
             normal = 1,
-            fire = 2
+            fire = 2,
+            feather = 3
         }
 
         /// <summary>
@@ -45,11 +46,20 @@ namespace SuperMarioWorld
             jumping,
             falling,
             lookup,
-            runing
+            running
         }
 
-        public Player (Vector2 position, Character character) : base (position)
+        //Higher value -> less controll in the air
+        private float _airControl = 3.0f;
+
+        //Scorehandler
+        private ScoreHandler _scores;
+
+        public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
         {
+            //Set a score handler, all the interactions that require a score change go through the player object.
+            _scores = score;
+
             sprite.layer = 0.9f;
             boundingBox = new Rectangle(0, 0, 9, 15);
 
@@ -57,7 +67,7 @@ namespace SuperMarioWorld
             sprite.ySize = 32;
             sprite.AddFrame(0, 0);
 
-            acceleration = 300.0f;
+            acceleration = 500.0f;
             maxSpeed = 64;
 
             switch (character)
@@ -82,8 +92,16 @@ namespace SuperMarioWorld
             }
         }
 
+        /// <summary>
+        /// Handles all the interactions that require one or more variables from _scores to be changed
+        /// </summary>
+        /// <param name="collider">Collision with the collider object</param>
         public override void OnCollision(GameObject collider)
         {
+            if(collider is Coin)
+            {
+                _scores.coins++;
+            }
             //throw new NotImplementedException();
         }
 
@@ -109,7 +127,7 @@ namespace SuperMarioWorld
                 if (grounded)
                     momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 else
-                    momentum.X -= acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
             {
@@ -126,7 +144,7 @@ namespace SuperMarioWorld
                 SetAnimation(PlayerAnimationState.walking);
             }
             //if up is pressed, and not moving
-            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f)
+            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
             {
                 SetAnimation(PlayerAnimationState.lookup);
             }
@@ -148,7 +166,7 @@ namespace SuperMarioWorld
 
             //Calculate player movement
             Movement(gameTime);
-
+            grounded = false;
             base.Update(gameTime);
         }
 
@@ -197,7 +215,7 @@ namespace SuperMarioWorld
         {
             //calculate friction
             if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
-                momentum.X /= 2.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
+                momentum.X /= 8.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             if (!grounded)
                 momentum.Y += 150 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;

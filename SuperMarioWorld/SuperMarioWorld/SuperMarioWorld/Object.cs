@@ -16,25 +16,58 @@ namespace SuperMarioWorld
         public Object(Vector2 position) : base(position)
         {
             blocking = true;
+            isPlatform = true;
         }
 
         public override void OnCollision(GameObject collider)
         {
-            if (collider is Entity)
+            if (collider is Entity && blocking)
             {
-                Entity entity = (Entity)collider;
+                Entity p = (Entity)collider;
 
-                if (collider.position.Y > position.Y + sprite.ySize / 2)
+                Rectangle overlap;
+                Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
+
+                if (overlap.Width > overlap.Height)
                 {
-                    entity.momentum.Y = 16;
+                    if (p.position.Y < position.Y)
+                    {
+                        if (p.momentum.Y > 0)
+                        {
+                            p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
+                            p.momentum.Y = 16;
+                            p.grounded = true;
+                            p.momentum.Y = 0;
+                        }
+                    }
+                    else if(!isPlatform)
+                    {
+                        p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
+
+                        p.momentum.Y = 16;
+                    }
                 }
-                else if (collider.position.Y < position.Y - sprite.ySize / 2)
+                else if(!isPlatform)
                 {
-                    entity.grounded = true;
-                    entity.momentum.Y = 0;
+                    if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
+                    {
+                        if (p.position.X < position.X)
+                        {
+                            p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
+                        }
+
+                        if (p.position.X > position.X)
+                        {
+                            p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+                        }
+
+                        if (!(p is Player))
+                            p.lookRight = !p.lookRight;
+
+                        p.momentum.X = 0;
+                    }
                 }
             }
         }
-
     }
 }
