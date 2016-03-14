@@ -55,6 +55,8 @@ namespace SuperMarioWorld
         //Scorehandler
         private ScoreHandler _scores;
 
+        InputManager _input;
+
         public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
         {
             //Set a score handler, all the interactions that require a score change go through the player object.
@@ -68,6 +70,7 @@ namespace SuperMarioWorld
             sprite.AddFrame(0, 0);
 
             acceleration = 500.0f;
+            thermalVelocity = 150;
             maxSpeed = 64;
 
             switch (character)
@@ -90,6 +93,8 @@ namespace SuperMarioWorld
                 default:
                     break;
             }
+
+            _input = new InputManager();
         }
 
         /// <summary>
@@ -111,8 +116,9 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            _input.Update();
             //If the button D is pressed
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (_input.IsPressed(Keys.D))
             {
                 lookRight = true;
                 if(grounded)
@@ -121,7 +127,7 @@ namespace SuperMarioWorld
                     momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             //If button A is pressed
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (_input.IsPressed(Keys.A))
             {
                 lookRight = false;
                 if (grounded)
@@ -129,7 +135,7 @@ namespace SuperMarioWorld
                 else
                     momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
-            if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
+            if(_input.OnPress(Keys.Space) && grounded)
             {
                 momentum.Y = -140;
                 grounded = false;
