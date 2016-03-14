@@ -12,6 +12,9 @@ namespace SuperMarioWorld
 {
     class Level
     {
+        //Content manager
+        private ContentManager _contentManager;
+
         //HUD
         private HUD _hud;
 
@@ -26,7 +29,7 @@ namespace SuperMarioWorld
 
         //Camera object
         public Camera2D cam;
-
+        private Player _player;
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
@@ -143,27 +146,28 @@ namespace SuperMarioWorld
                 for (int x = 0; x < _size.X; x++)
                 {
                     //Convert the line into objects on correct positions
-                    if (objectChars[x].Equals('M')) //If the char is a MysteryBlock
+                    if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
                         objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), null));
                     }
-                    else if (objectChars[x].Equals('1'))
+                    else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
-                        objects.Add(new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), _scores, Player.Character.Mario));
+                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), _scores, Player.Character.Mario);
+                        objects.Add(_player);
                     }
-                    else if (objectChars[x].Equals('G'))
+                    else if (objectChars[x].Equals('G')) //If the char represents a Goomba
                     {
                         objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
-                    else if (objectChars[x].Equals('C'))
+                    else if (objectChars[x].Equals('C')) //If the char represents a coin
                     {
                         objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
-                    else if(objectChars[x].Equals('R'))
+                    else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
                         objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
                     }
-                    else if(objectChars[x].Equals('D'))
+                    else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {
                         LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y));
                         b.blocking = false;
@@ -183,8 +187,15 @@ namespace SuperMarioWorld
             _hud = new HUD(scoreHandler);
         }
 
+        /// <summary>
+        /// Load sprites of the content.
+        /// </summary>
+        /// <param name="contentManager"></param>
         public void LoadContent(ContentManager contentManager)
         {
+            //Set a content manager so new items can be spawned in.
+            _contentManager = contentManager;
+
             //Load all the assets that belong to level
             _backgroundTexture = contentManager.Load<Texture2D>(_backgroundSourceName);
 
@@ -213,29 +224,23 @@ namespace SuperMarioWorld
 
             _collidables.Clear();
 
-            Player player = null;
-
             //Call the update method for all gameobjects
             foreach(GameObject gameObject in objects)
             {
-
+                //Check if the game object is within the screen
                 if (Math.Abs(camX - gameObject.position.X) < 256)
                 {
-                    if(Math.Abs(camY - gameObject.position.Y) < 224)
+                    if (Math.Abs(camY - gameObject.position.Y) < 224)
                     {
+                        //Update the object and add it to the list of collidable objects.
                         gameObject.Update(gameTime);
                         _collidables.Add(gameObject);
                     }
                 }
-
-                if (gameObject is Player)
-                {
-                    player = (Player)gameObject;
-                }
             }
 
             CheckCollisions();
-            cam.Position = player.position;
+            cam.Position = _player.position;
 
             //Tell HUD to update
             _hud.Update(gameTime);
@@ -246,14 +251,18 @@ namespace SuperMarioWorld
         /// </summary>
         public void CheckCollisions()
         {
+            //Cycle through every GameObject in _collidables
             for(int i  = 0; i < _collidables.Count; i++)
             {
+                //Only go further if this object is an Entity (entities handle collisions, objects dont do anything)
                 if (_collidables[i] is Entity)
                 {
                     for (int j = 0; j < _collidables.Count; j++)
                     {
+                        //Check if two objects collide
                         if (_collidables[i].boundingBox.Intersects(_collidables[j].boundingBox))
                         {
+                            //Call the OnCollision functions of both objects.
                             _collidables[i].OnCollision(_collidables[j]);
                             _collidables[j].OnCollision(_collidables[i]);
                         }

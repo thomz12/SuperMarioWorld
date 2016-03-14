@@ -8,6 +8,10 @@ namespace SuperMarioWorld
 {
     class Goomba : Enemy
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Position the goomba should be on.</param>
         public Goomba(Vector2 position) : base (position)
         {
             sprite.sourceName = "Goomba";
@@ -23,10 +27,18 @@ namespace SuperMarioWorld
             boundingBox = new Rectangle(0, 0, 14, 14);
         }
 
+        /// <summary>
+        /// Override of the default OnCollision function.
+        /// Called when two things collide.
+        /// </summary>
+        /// <param name="collider">The other thing that is being collided with.</param>
         public override void OnCollision(GameObject collider)
         {
+            //Also turn around if goomba collides with an enemy.
             if (collider is Enemy)
                 lookRight = !lookRight;
+
+            //Call parent's OnCollision function.
             base.OnCollision(collider);
         }
     }

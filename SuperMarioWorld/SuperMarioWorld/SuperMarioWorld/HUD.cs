@@ -71,6 +71,7 @@ namespace SuperMarioWorld
 
         public void LoadContent(ContentManager c)
         {
+            //Load all the content that is needed for the HUD
             largeNumbers.texture = c.Load<Texture2D>(largeNumbers.sourceName);
             marioLuigiName.texture = c.Load<Texture2D>(marioLuigiName.sourceName);
             outline.texture = c.Load<Texture2D>(outline.sourceName);
@@ -80,15 +81,21 @@ namespace SuperMarioWorld
 
         public void Update(GameTime gameTime)
         {
+            //Add the elapsed gameTime to the elapsed miliseconds every update
             _elapsedMiliseconds += gameTime.ElapsedGameTime.Milliseconds;
+
+            //check if more than 1000 miliseconds (1s) have elapsed
             if(_elapsedMiliseconds >= 1000f)
             {
+                //Take time of the clock
                 _timeLeft--;
+                //Reset elapsed miliseconds to 0
                 _elapsedMiliseconds = 0;
             }
             if(_timeLeft < 0)
             {
                 //GAME OVER
+                //TODO: Death
                 _timeLeft = 0;
             }
         }
@@ -123,18 +130,24 @@ namespace SuperMarioWorld
                     break;
             }
 
-            //Draw score
+            //Draw score, score is lined out on the right.
             for (int i = _scores.score.ToString().Length - 1; i >= 0; i--)
             {
+                //Changes the score variable from ScoreHandler to an string
                 string s = _scores.score.ToString();
+                //Creates a char[] from the string
                 char[] array = s.ToCharArray();
+                //Reverse the char array
                 Array.Reverse(array);
+                //get a number and parse it to an int
                 int num = int.Parse(array[i].ToString());
+                //Set the number's sprite equivalent in the animation list
                 smallNumbers.NewAnimation(num, 0);
+                //Draw the number
                 smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 25));
             }
 
-            //Draw coins
+            //Draw coins, coins is lined out on the right
             for (int i = _scores.coins.ToString().Length - 1; i >= 0; i--)
             {
                 string s = _scores.coins.ToString();
@@ -145,7 +158,7 @@ namespace SuperMarioWorld
                 smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 16));
             }
 
-            //Draw time
+            //Draw time, time is lined out on the right
             for (int i = _timeLeft.ToString().Length - 1; i >= 0; i--)
             {
                 string s = _timeLeft.ToString();
@@ -156,7 +169,7 @@ namespace SuperMarioWorld
                 smallNumbers.DrawSprite(batch, new Vector2(168 - (i * smallNumbers.xSize), 25));
             }
 
-            //Draw lives
+            //Draw lives, lives are lined out on the left.
             for (int i = 0; i < _scores.lives.ToString().Length; i++)
             {
                 string s = _scores.lives.ToString();
@@ -165,7 +178,7 @@ namespace SuperMarioWorld
                 smallNumbers.DrawSprite(batch, new Vector2(33 + (i * smallNumbers.xSize), 24));
             }
 
-            //Draw Starpoints
+            //Draw Starpoints, starpoints are lined out on the right
             for (int i = _scores.starPoints.ToString().Length - 1; i >= 0; i--)
             {
                 string s = _scores.starPoints.ToString();

@@ -40,6 +40,10 @@ namespace SuperMarioWorld
             sprite.layer = 0.5f;
         }
 
+        /// <summary>
+        /// Execute this function when colliding with something.
+        /// </summary>
+        /// <param name="collider">the other thing that is being collided with.</param>
         public abstract void OnCollision(GameObject collider);
 
         /// <summary>

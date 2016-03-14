@@ -61,7 +61,7 @@ namespace SuperMarioWorld
             if(!grounded)
                 momentum.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
-            //Limit the momentum for the object (x-axis only)
+            //Limit the momentum for the object
             if (momentum.X > maxSpeed)
                 momentum = new Vector2(maxSpeed, momentum.Y);
             if (momentum.X < -maxSpeed)
