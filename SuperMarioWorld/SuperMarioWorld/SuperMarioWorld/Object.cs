@@ -11,8 +11,13 @@ namespace SuperMarioWorld
         //Does the object have a bounding box?
         public bool blocking;
 
+        //Is the object a platform? (only collides from up)
         public bool isPlatform;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position"></param>
         public Object(Vector2 position) : base(position)
         {
             blocking = true;
@@ -26,8 +31,11 @@ namespace SuperMarioWorld
             {
                 Entity p = (Entity)collider;
 
+                //Overlap rect
                 Rectangle overlap;
+                //get overlap rect
                 Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
+
 
                 if (overlap.Width > overlap.Height)
                 {
@@ -35,6 +43,7 @@ namespace SuperMarioWorld
                     {
                         if (p.momentum.Y > 0)
                         {
+                            //When entity collides from the top
                             p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
                             p.momentum.Y = 16;
                             p.grounded = true;
@@ -43,6 +52,7 @@ namespace SuperMarioWorld
                     }
                     else if(!isPlatform)
                     {
+                        //When entity collides from the buttom
                         p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
 
                         p.momentum.Y = 16;
@@ -52,16 +62,19 @@ namespace SuperMarioWorld
                 {
                     if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
                     {
+                        //When entity collides from the left
                         if (p.position.X < position.X)
                         {
                             p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
                         }
 
+                        //When entity collides from the right
                         if (p.position.X > position.X)
                         {
                             p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
                         }
 
+                        //Turn around enemies
                         if (!(p is Player))
                             p.lookRight = !p.lookRight;
 
