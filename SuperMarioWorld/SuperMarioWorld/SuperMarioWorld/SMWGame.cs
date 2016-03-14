@@ -55,10 +55,11 @@ namespace SuperMarioWorld
             _graphics.PreferredBackBufferWidth = gameWidth * _scale;
 
             _graphics.SynchronizeWithVerticalRetrace = _vSync;
-            
 
             //Make game fullscreen
             _graphics.IsFullScreen = false;
+
+            IsFixedTimeStep = true;
 
             //Make sure mouse is visable
             IsMouseVisible = true;
@@ -179,7 +180,8 @@ namespace SuperMarioWorld
             _spriteBatch.Begin();
             _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 0), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
-            _spriteBatch.DrawString(_debugFont, GraphicsDevice.Adapter.Description, new Vector2(10, 40), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Update time: " + gameTime.ElapsedGameTime.TotalMilliseconds, new Vector2(10, 40), Color.Black);
+            _spriteBatch.DrawString(_debugFont, GraphicsDevice.Adapter.Description, new Vector2(10, 60), Color.Black);
             _spriteBatch.End();
 #endif
             base.Draw(gameTime);

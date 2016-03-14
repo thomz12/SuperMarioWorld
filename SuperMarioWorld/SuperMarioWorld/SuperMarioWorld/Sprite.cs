@@ -25,7 +25,7 @@ namespace SuperMarioWorld
         public int xSize, ySize;
 
         //Vars for cycling and displaying animated sprite sheets
-        private List<Vector2> animationPositions;
+        private List<Point> animationPositions;
         public bool animated;
 
         //Coords of frame (top left)
@@ -42,7 +42,7 @@ namespace SuperMarioWorld
         /// </summary>
         public Sprite()
         {
-            animationPositions = new List<Vector2>();
+            animationPositions = new List<Point>();
             _animationProgress = animationSpeed;
             animated = true;
         }
@@ -54,7 +54,7 @@ namespace SuperMarioWorld
         public Sprite(string sourceName)
         {
             this.sourceName = sourceName;
-            animationPositions = new List<Vector2>();
+            animationPositions = new List<Point>();
             _animationProgress = animationSpeed;
             animated = true;
         }
@@ -102,7 +102,7 @@ namespace SuperMarioWorld
         public void NewAnimation(int x, int y)
         {
             NewAnimation();
-            animationPositions.Add(new Vector2(x, y));
+            animationPositions.Add(new Point(x, y));
 
             _texCoordX = (int)animationPositions[_animIndex].X * xSize;
             _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
@@ -125,7 +125,7 @@ namespace SuperMarioWorld
         /// <param name="y"></param>
         public void AddFrame(int x, int y)
         {
-            animationPositions.Add(new Vector2(x, y));
+            animationPositions.Add(new Point(x, y));
         }
 
         /// <summary>
