@@ -17,6 +17,7 @@ namespace SuperMarioWorld
         {
             blocking = true;
             isPlatform = true;
+            sprite.layer = 0.4f;
         }
 
         public override void OnCollision(GameObject collider)
