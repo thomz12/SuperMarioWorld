@@ -21,6 +21,9 @@ namespace SuperMarioWorld
 
         private string _scoreFilePath = "score.sms";
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public ScoreHandler()
         {
             //LoadScores()
