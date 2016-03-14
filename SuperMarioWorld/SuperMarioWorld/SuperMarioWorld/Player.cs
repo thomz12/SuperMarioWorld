@@ -105,6 +105,7 @@ namespace SuperMarioWorld
         {
             if(collider is Coin)
             {
+                collider.destoryed = true;
                 _scores.coins++;
             }
             //throw new NotImplementedException();
