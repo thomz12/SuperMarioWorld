@@ -28,6 +28,12 @@ namespace SuperMarioWorld
             if (collider is Enemy)
                 lookRight = !lookRight;
             base.OnCollision(collider);
+
+            if(collider is Player)
+            {
+                Player p = (Player)collider;
+                p.momentum.Y = -1000;
+            }
         }
     }
 }
