@@ -14,6 +14,7 @@ namespace SuperMarioWorld
         public enum BlockType
         {
             grass,
+            dirt,
             cloud,
             rock,
             used,
@@ -42,6 +43,12 @@ namespace SuperMarioWorld
                     sprite.sourceName = @"Blocks\Grass";
                     sprite.NewAnimation(0, 0);
                     isPlatform = true;
+                    break;
+                case BlockType.dirt:
+                    sprite.sourceName = @"Blocks\Grass";
+                    sprite.NewAnimation(3, 0);
+                    isPlatform = false;
+                    blocking = false;
                     break;
                 case BlockType.cloud:
                     sprite.sourceName = @"Blocks\StaticBlocks";

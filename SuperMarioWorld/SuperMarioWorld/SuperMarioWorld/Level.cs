@@ -29,11 +29,13 @@ namespace SuperMarioWorld
 
         //Camera object
         public Camera2D cam;
+        //player object
         private Player _player;
+
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
-        public List<GameObject> objects = new List<GameObject>();
+        private List<GameObject> _objects = new List<GameObject>();
 
         //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
         private Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
@@ -61,14 +63,14 @@ namespace SuperMarioWorld
             _scores.maxTime = 420;
 
             //TEMP, Add a object to the level
-            objects.Add( new Player(new Vector2(0.0f,0.0f), _scores, Player.Character.Mario));
-            objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
-            objects.Add( new Goomba(new Vector2(64.0f, 0)));
+            _objects.Add( new Player(new Vector2(0.0f,0.0f), _scores, Player.Character.Mario));
+            _objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
+            _objects.Add( new Goomba(new Vector2(64.0f, 0)));
 
             //add a floor
             for(int i = -512; i <= 512; i+= 16)
             {
-                objects.Add(new MysteryBlock(new Vector2(i, 16.0f), null));
+                _objects.Add(new MysteryBlock(new Vector2(i, 16.0f), null));
             }
 
             //Create camera object
@@ -148,56 +150,53 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
-                        objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null));
+                        _objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null));
                     }
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
                         Random r = new Random();
                         _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, 4));
-                        objects.Add(_player);
+                        _objects.Add(_player);
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba
                     {
-                        objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize))));
+                        _objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if (objectChars[x].Equals('C')) //If the char represents a coin
                     {
-                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize))));
+                        _objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass));
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass));
                     }
                     else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {
-                        StaticBlock b = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass);
-                        b.blocking = false;
-                        b.sprite.NewAnimation(3, 0);
-                        objects.Add(b);
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.dirt));
                     }
                     else if (objectChars[x].Equals('K')) //If the char represents a Koopa
                     {
-                        objects.Add(new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize))));
+                        _objects.Add(new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if (objectChars[x].Equals('S')) //If the char represents a Shell
                     {
-                        objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
+                        _objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
                     }
                     else if (objectChars[x].Equals('L')) //If the char represents a cloud
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud));
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud));
                     }
                     else if (objectChars[x].Equals('O')) //If the char represents a rock
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock));
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock));
                     }
                     else if (objectChars[x].Equals('H')) //If the char represents a help
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help));
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help));
                     }
                     else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
+                        _objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
                     }
                 }
             }
@@ -224,7 +223,7 @@ namespace SuperMarioWorld
             //Load all the assets that belong to level
             _backgroundTexture = contentManager.Load<Texture2D>(_backgroundSourceName);
 
-            foreach (GameObject go in objects)
+            foreach (GameObject go in _objects)
             {
                 if (!loadedSprites.ContainsKey(go.sprite.sourceName))
                 {
@@ -250,22 +249,22 @@ namespace SuperMarioWorld
             _collidables.Clear();
 
             //Call the update method for all gameobjects
-            for (int i = 0; i < objects.Count; i++)
+            for (int i = 0; i < _objects.Count; i++)
             {
-                if(objects[i].destoryed)
+                if(_objects[i].destoryed)
                 {
-                    objects.RemoveAt(i);
+                    _objects.RemoveAt(i);
                     continue;
                 }
 
                 //Check if the game object is within the screen
-                if (Math.Abs(camX - objects[i].position.X) < 256)
+                if (Math.Abs(camX - _objects[i].position.X) < 256)
                 {
-                    if (Math.Abs(camY - objects[i].position.Y) < 224)
+                    if (Math.Abs(camY - _objects[i].position.Y) < 224)
                     {
                         //Update the object and add it to the list of collidable objects.
-                        objects[i].Update(gameTime);
-                        _collidables.Add(objects[i]);
+                        _objects[i].Update(gameTime);
+                        _collidables.Add(_objects[i]);
                     }
                 }
             }
@@ -318,7 +317,7 @@ namespace SuperMarioWorld
             batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
             //Draw every object
-            foreach (GameObject go in objects)
+            foreach (GameObject go in _objects)
             {
                 //Call the draw method of gameobject
                 go.DrawObject(batch);
