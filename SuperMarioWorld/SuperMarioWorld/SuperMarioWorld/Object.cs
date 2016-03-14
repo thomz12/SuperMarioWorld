@@ -36,7 +36,7 @@ namespace SuperMarioWorld
                 //get overlap rect
                 Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
 
-
+                //if overlap width is higher than overlap height
                 if (overlap.Width > overlap.Height)
                 {
                     if (p.position.Y < position.Y)
