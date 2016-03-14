@@ -25,7 +25,9 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-
+            //Also turn around if an enemy collides with an enemy.
+            if (collider is Enemy)
+                lookRight = !lookRight;
         }
 
         protected override void Movement(GameTime gameTime)

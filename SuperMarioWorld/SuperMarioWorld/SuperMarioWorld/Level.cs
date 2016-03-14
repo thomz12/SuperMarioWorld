@@ -178,6 +178,10 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
                     }
+                    else if (objectChars[x].Equals('K'))
+                    {
+                        objects.Add(new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize))));
+                    }
                 }
             }
 

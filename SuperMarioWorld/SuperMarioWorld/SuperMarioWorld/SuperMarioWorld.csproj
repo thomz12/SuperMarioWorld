@@ -79,6 +79,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Goomba.cs" />
+    <Compile Include="GreenKoopa.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Level.cs" />

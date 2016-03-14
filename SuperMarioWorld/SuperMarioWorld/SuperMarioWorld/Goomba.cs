@@ -34,10 +34,6 @@ namespace SuperMarioWorld
         /// <param name="collider">The other thing that is being collided with.</param>
         public override void OnCollision(GameObject collider)
         {
-            //Also turn around if goomba collides with an enemy.
-            if (collider is Enemy)
-                lookRight = !lookRight;
-
             //Call parent's OnCollision function.
             base.OnCollision(collider);
         }

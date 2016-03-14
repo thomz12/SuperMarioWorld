@@ -20,6 +20,11 @@ namespace SuperMarioWorld
 
         private KoopaType _koopaType;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Position in the world</param>
+        /// <param name="koopaType">What color was the koopa?</param>
         public EmptyShell(Vector2 position, KoopaType koopaType) : base (position)
         {
             _koopaType = koopaType;
