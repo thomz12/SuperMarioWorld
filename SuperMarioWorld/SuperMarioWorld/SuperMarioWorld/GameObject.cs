@@ -16,6 +16,8 @@ namespace SuperMarioWorld
         //Current position of this object
         public Vector2 position;
 
+        public bool destoryed = false;
+
         /// <summary>
         /// Default constructor
         /// </summary>
