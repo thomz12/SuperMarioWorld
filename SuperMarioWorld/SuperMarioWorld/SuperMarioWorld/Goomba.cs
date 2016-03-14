@@ -29,10 +29,5 @@ namespace SuperMarioWorld
                 lookRight = !lookRight;
             base.OnCollision(collider);
         }
-
-        protected override void Movement(GameTime gameTime)
-        {
-            base.Movement(gameTime);
-        }
     }
 }

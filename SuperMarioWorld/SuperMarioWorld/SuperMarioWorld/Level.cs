@@ -33,17 +33,17 @@ namespace SuperMarioWorld
         public List<GameObject> objects = new List<GameObject>();
 
         //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
-        public Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
+        private Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
 
         //Variables for the background
-        public string backgroundSourceName = "BushBackground";
-        public Texture2D backgroundTexture;
+        private string _backgroundSourceName = "BushBackground";
+        private Texture2D _backgroundTexture;
 
         //Position of the background texture
         private int _backOffset;
 
-        List<GameObject> collidables = new List<GameObject>();
+        private List<GameObject> _collidables = new List<GameObject>();
 
         /// <summary>
         /// Display a testlevel
@@ -186,7 +186,7 @@ namespace SuperMarioWorld
         public void LoadContent(ContentManager contentManager)
         {
             //Load all the assets that belong to level
-            backgroundTexture = contentManager.Load<Texture2D>(backgroundSourceName);
+            _backgroundTexture = contentManager.Load<Texture2D>(_backgroundSourceName);
 
             foreach (GameObject go in objects)
             {
@@ -211,7 +211,7 @@ namespace SuperMarioWorld
             int camX = (int)cam.Position.X;
             int camY = (int)cam.Position.Y;
 
-            collidables.Clear();
+            _collidables.Clear();
 
             Player player = null;
 
@@ -224,7 +224,7 @@ namespace SuperMarioWorld
                     if(Math.Abs(camY - gameObject.position.Y) < 224)
                     {
                         gameObject.Update(gameTime);
-                        collidables.Add(gameObject);
+                        _collidables.Add(gameObject);
                     }
                 }
 
@@ -246,16 +246,16 @@ namespace SuperMarioWorld
         /// </summary>
         public void CheckCollisions()
         {
-            for(int i  = 0; i < collidables.Count; i++)
+            for(int i  = 0; i < _collidables.Count; i++)
             {
-                if (collidables[i] is Entity)
+                if (_collidables[i] is Entity)
                 {
-                    for (int j = 0; j < collidables.Count; j++)
+                    for (int j = 0; j < _collidables.Count; j++)
                     {
-                        if (collidables[i].boundingBox.Intersects(collidables[j].boundingBox))
+                        if (_collidables[i].boundingBox.Intersects(_collidables[j].boundingBox))
                         {
-                            collidables[i].OnCollision(collidables[j]);
-                            collidables[j].OnCollision(collidables[i]);
+                            _collidables[i].OnCollision(_collidables[j]);
+                            _collidables[j].OnCollision(_collidables[i]);
                         }
                     }
                 }
@@ -271,14 +271,14 @@ namespace SuperMarioWorld
             int xPos = (int)Math.Round(cam.Position.X / 2);
             int yPos = (int)Math.Round(cam.Position.Y / 2);
 
-            batch.Draw(backgroundTexture, new Rectangle(_backOffset + xPos - backgroundTexture.Width / 2, yPos - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+            batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
             if (cam.Position.X < _backOffset + xPos)
-                _backOffset -= backgroundTexture.Width;
+                _backOffset -= _backgroundTexture.Width;
             else
-                _backOffset += backgroundTexture.Width;
+                _backOffset += _backgroundTexture.Width;
 
-            batch.Draw(backgroundTexture, new Rectangle(_backOffset + xPos - backgroundTexture.Width / 2, yPos - backgroundTexture.Height / 2, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+            batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
             //Draw every object
             foreach (GameObject go in objects)

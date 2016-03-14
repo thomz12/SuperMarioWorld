@@ -22,14 +22,14 @@ namespace SuperMarioWorld
         private const string _HUDSmallNumbersSource = "HUDSmallNumbers";
 
         //Draw these sprites
-        public Sprite marioLuigiName;
-        public Sprite largeNumbers;
-        public Sprite outline;
-        public Sprite powerUps;
-        public Sprite smallNumbers;
+        private Sprite marioLuigiName;
+        private Sprite largeNumbers;
+        private Sprite outline;
+        private Sprite powerUps;
+        private Sprite smallNumbers;
 
         //Variables for tracking the time that is left in the level
-        public int timeLeft;
+        private int _timeLeft;
         private int _elapsedMiliseconds;
 
         public HUD(ScoreHandler scoreHandler)
@@ -37,7 +37,7 @@ namespace SuperMarioWorld
             _scores = scoreHandler;
 
             //Set the time left in current level tot the maximum time allowed by level
-            timeLeft = _scores.maxTime;
+            _timeLeft = _scores.maxTime;
 
             //Initialize the player character name sprite
             marioLuigiName = new Sprite(_HUDMarioLuigiNameSource);
@@ -83,13 +83,13 @@ namespace SuperMarioWorld
             _elapsedMiliseconds += gameTime.ElapsedGameTime.Milliseconds;
             if(_elapsedMiliseconds >= 1000f)
             {
-                timeLeft--;
+                _timeLeft--;
                 _elapsedMiliseconds = 0;
             }
-            if(timeLeft < 0)
+            if(_timeLeft < 0)
             {
                 //GAME OVER
-                timeLeft = 0;
+                _timeLeft = 0;
             }
         }
 
@@ -105,15 +105,15 @@ namespace SuperMarioWorld
             //Draw reserve powerup
             switch (_scores.powerUp)
             {
-                case Player.PowerSate.normal:
+                case Player.PowerState.normal:
                     powerUps.NewAnimation(0, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
-                case Player.PowerSate.fire:
+                case Player.PowerState.fire:
                     powerUps.NewAnimation(1, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
-                case Player.PowerSate.feather:
+                case Player.PowerState.feather:
                     powerUps.NewAnimation(2, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
@@ -146,9 +146,9 @@ namespace SuperMarioWorld
             }
 
             //Draw time
-            for (int i = timeLeft.ToString().Length - 1; i >= 0; i--)
+            for (int i = _timeLeft.ToString().Length - 1; i >= 0; i--)
             {
-                string s = timeLeft.ToString();
+                string s = _timeLeft.ToString();
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());

@@ -9,9 +9,6 @@ namespace SuperMarioWorld
 {
     abstract class GameObject
     {
-        //Score handler
-        private ScoreHandler _scores;
-
         //Sprite (texture) of this object
         public Sprite sprite;
         //Collision box of this object
