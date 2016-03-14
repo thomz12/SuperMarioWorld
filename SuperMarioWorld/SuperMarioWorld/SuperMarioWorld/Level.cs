@@ -148,31 +148,35 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
-                        objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), null));
+                        objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null));
                     }
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
-                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y), _scores, Player.Character.Mario);
+                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, Player.Character.Mario);
                         objects.Add(_player);
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba
                     {
-                        objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
+                        objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if (objectChars[x].Equals('C')) //If the char represents a coin
                     {
-                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
+                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y)));
+                        objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {
-                        LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize) + 32 - _gridSize * _size.Y));
+                        LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize)));
                         b.blocking = false;
                         b.sprite.NewAnimation(3, 0);
                         objects.Add(b);
+                    }
+                    else if (objectChars[x].Equals('S'))
+                    {
+                        objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
                     }
                 }
             }
