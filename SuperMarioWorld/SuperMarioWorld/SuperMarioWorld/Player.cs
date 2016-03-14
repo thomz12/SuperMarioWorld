@@ -18,7 +18,7 @@ namespace SuperMarioWorld
         /// <summary>
         /// Different powerstates that the player can have
         /// </summary>
-        public enum PowerSate
+        public enum PowerState
         {
             small = 0,
             normal = 1,
@@ -46,7 +46,7 @@ namespace SuperMarioWorld
             jumping,
             falling,
             lookup,
-            runing
+            running
         }
 
         //Higher value -> less controll in the air

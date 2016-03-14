@@ -17,7 +17,7 @@ namespace SuperMarioWorld
         public int score;
         public int starPoints;
 
-        public Player.PowerSate powerUp;
+        public Player.PowerState powerUp;
 
         private string _scoreFilePath = "score.sms";
 

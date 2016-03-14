@@ -36,11 +36,7 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-            if(collider is Player)
-            {
-                //COINS++;
-                ;
-            }
+            //Destroy me
         }
     }
 }
