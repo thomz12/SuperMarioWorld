@@ -17,6 +17,8 @@ namespace SuperMarioWorld
 
         protected float acceleration = 16f;
 
+        public bool death;
+
         protected float maxSpeed;
         protected float thermalVelocity;
 

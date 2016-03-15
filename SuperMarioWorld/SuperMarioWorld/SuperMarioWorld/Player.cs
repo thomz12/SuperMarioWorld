@@ -46,7 +46,8 @@ namespace SuperMarioWorld
             jumping,
             falling,
             lookup,
-            running
+            running,
+            Dead
         }
 
         //Higher value -> less controll in the air
@@ -118,59 +119,65 @@ namespace SuperMarioWorld
         public override void Update(GameTime gameTime)
         {
             _input.Update();
-            //If the button D is pressed
-            if (_input.IsPressed(Keys.D) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadRight))
+            if (!death)
             {
-                lookRight = true;
-                if(grounded)
-                    momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-                else
-                    momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-            }
-            //If button A is pressed
-            if (_input.IsPressed(Keys.A) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadLeft))
-            {
-                lookRight = false;
-                if (grounded)
-                    momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-                else
-                    momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-            }
-            if((_input.OnPress(Keys.Space) || _input.GamePadOnPress(PlayerIndex.One, Buttons.A)) && grounded)
-            {
-                momentum.Y = -140;
-                grounded = false;
-            }
+                //If the button D is pressed
+                if (_input.IsPressed(Keys.D) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadRight))
+                {
+                    lookRight = true;
+                    if (grounded)
+                        momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    else
+                        momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                }
+                //If button A is pressed
+                if (_input.IsPressed(Keys.A) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadLeft))
+                {
+                    lookRight = false;
+                    if (grounded)
+                        momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    else
+                        momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                }
+                if ((_input.OnPress(Keys.Space) || _input.GamePadOnPress(PlayerIndex.One, Buttons.A)) && grounded)
+                {
+                    momentum.Y = -140;
+                    grounded = false;
+                }
 
-            //Handle animations
-            //if player is moving
-            sprite.animationSpeed = 150.0f;
-            if(Math.Abs(momentum.X) > 0.5f && grounded)
-            {
-                sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
-                SetAnimation(PlayerAnimationState.walking);
+                //Handle animations
+                //if player is moving
+                sprite.animationSpeed = 150.0f;
+                if (Math.Abs(momentum.X) > 0.5f && grounded)
+                {
+                    sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
+                    SetAnimation(PlayerAnimationState.walking);
+                }
+                //if up is pressed, and not moving
+                else if (Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
+                {
+                    SetAnimation(PlayerAnimationState.lookup);
+                }
+                //if player is falling
+                else if (grounded == false && momentum.Y > 0.5f)
+                {
+                    SetAnimation(PlayerAnimationState.falling);
+                }
+                //If player is jumping
+                else if (grounded == false && momentum.Y < 0.5f)
+                {
+                    SetAnimation(PlayerAnimationState.jumping);
+                }
+                //player is doing nothing
+                else
+                {
+                    SetAnimation(PlayerAnimationState.idle);
+                }
             }
-            //if up is pressed, and not moving
-            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
-            {
-                SetAnimation(PlayerAnimationState.lookup);
-            }
-            //if player is falling
-            else if(grounded == false && momentum.Y > 0.5f)
-            {
-                SetAnimation(PlayerAnimationState.falling);
-            }
-            //If player is jumping
-            else if(grounded == false && momentum.Y < 0.5f)
-            {
-                SetAnimation(PlayerAnimationState.jumping);
-            }
-            //player is doing nothing
             else
             {
-                SetAnimation(PlayerAnimationState.idle);
+                SetAnimation(PlayerAnimationState.Dead);
             }
-
             //Calculate player movement
             Movement(gameTime);
             grounded = false;
@@ -210,6 +217,10 @@ namespace SuperMarioWorld
                 //small mario look up
                 case PlayerAnimationState.lookup:
                     sprite.AddFrame(9, 0);
+                    break;
+                case PlayerAnimationState.Dead:
+                    sprite.AddFrame(10, 0);
+                    sprite.AddFrame(11, 0);
                     break;
             }
             _animationState = animation;

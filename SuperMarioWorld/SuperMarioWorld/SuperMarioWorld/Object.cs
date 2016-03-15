@@ -44,7 +44,7 @@ namespace SuperMarioWorld
                         if (p.momentum.Y > 0)
                         {
                             //When entity collides from the top
-                            p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
+                            p.position.Y = position.Y - boundingBox.Height + 1;
                             p.momentum.Y = 16;
                             p.grounded = true;
                             p.momentum.Y = 0;
