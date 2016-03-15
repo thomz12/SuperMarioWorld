@@ -284,7 +284,7 @@ namespace SuperMarioWorld
             CheckCollisions();
 
             //Update the camera position
-            cam.Update();
+            cam.Update(gameTime);
 
             //Tell HUD to update
             _hud.Update(gameTime);
