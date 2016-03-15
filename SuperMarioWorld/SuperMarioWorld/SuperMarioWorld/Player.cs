@@ -13,7 +13,7 @@ namespace SuperMarioWorld
         /// <summary>
         /// Tracks if mario is small, big, empowered or something else
         /// </summary>
-        public PowerState powerState = PowerState.normal;
+        public PowerState powerState = PowerState.small;
         private bool _invincible;
 
         /// <summary>
@@ -254,8 +254,8 @@ namespace SuperMarioWorld
                         sprite.AddFrame(10, 2);
                         break;
                 }
-                _animationState = animation;
             }
+            _animationState = animation;
         }
 
         public override void Death()
