@@ -119,7 +119,7 @@ namespace SuperMarioWorld
         {
             _input.Update();
             //If the button D is pressed
-            if (_input.IsPressed(Keys.D))
+            if (_input.IsPressed(Keys.D) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadRight))
             {
                 lookRight = true;
                 if(grounded)
@@ -128,7 +128,7 @@ namespace SuperMarioWorld
                     momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
             //If button A is pressed
-            if (_input.IsPressed(Keys.A))
+            if (_input.IsPressed(Keys.A) || _input.GamePadIsPressed(PlayerIndex.One, Buttons.DPadLeft))
             {
                 lookRight = false;
                 if (grounded)
@@ -136,7 +136,7 @@ namespace SuperMarioWorld
                 else
                     momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             }
-            if(_input.OnPress(Keys.Space) && grounded)
+            if((_input.OnPress(Keys.Space) || _input.GamePadOnPress(PlayerIndex.One, Buttons.A)) && grounded)
             {
                 momentum.Y = -140;
                 grounded = false;
