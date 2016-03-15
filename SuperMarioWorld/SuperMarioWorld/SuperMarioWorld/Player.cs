@@ -13,7 +13,8 @@ namespace SuperMarioWorld
         /// <summary>
         /// Tracks if mario is small, big, empowered or something else
         /// </summary>
-        private int _powerState { get; set; }
+        public PowerState powerState = PowerState.normal;
+        private bool _invincible;
 
         /// <summary>
         /// Different powerstates that the player can have
@@ -194,36 +195,80 @@ namespace SuperMarioWorld
             //Clear current animation
             sprite.NewAnimation();
 
-            //Set new animation
-            switch (animation)
+            if (powerState == PowerState.small)
             {
-                //small mario standing
-                case PlayerAnimationState.idle:
-                    sprite.AddFrame(0, 0);
-                    break;
-                //small mario walk
-                case PlayerAnimationState.walking:
-                    sprite.AddFrame(0, 0);
-                    sprite.AddFrame(1, 0);
-                    break;
-                //small mario jump
-                case PlayerAnimationState.jumping:
-                    sprite.AddFrame(2, 0);
-                    break;
-                //small mario fall
-                case PlayerAnimationState.falling:
-                    sprite.AddFrame(3, 0);
-                    break;
-                //small mario look up
-                case PlayerAnimationState.lookup:
-                    sprite.AddFrame(9, 0);
-                    break;
-                case PlayerAnimationState.Dead:
-                    sprite.AddFrame(10, 0);
-                    sprite.AddFrame(11, 0);
-                    break;
+                //Set new animation
+                switch (animation)
+                {
+                    //small mario standing
+                    case PlayerAnimationState.idle:
+                        sprite.AddFrame(0, 0);
+                        break;
+                    //small mario walk
+                    case PlayerAnimationState.walking:
+                        sprite.AddFrame(0, 0);
+                        sprite.AddFrame(1, 0);
+                        break;
+                    //small mario jump
+                    case PlayerAnimationState.jumping:
+                        sprite.AddFrame(2, 0);
+                        break;
+                    //small mario fall
+                    case PlayerAnimationState.falling:
+                        sprite.AddFrame(3, 0);
+                        break;
+                    //small mario look up
+                    case PlayerAnimationState.lookup:
+                        sprite.AddFrame(9, 0);
+                        break;
+                    case PlayerAnimationState.Dead:
+                        sprite.AddFrame(10, 0);
+                        sprite.AddFrame(11, 0);
+                        break;
+                }
             }
-            _animationState = animation;
+            else
+            {
+                switch (animation)
+                {
+                    //mario standing
+                    case PlayerAnimationState.idle:
+                        sprite.AddFrame(0, 2);
+                        break;
+                    //mario walk
+                    case PlayerAnimationState.walking:
+                        sprite.AddFrame(2, 2);
+                        sprite.AddFrame(1, 2);
+                        sprite.AddFrame(0, 2);
+                        break;
+                    //mario jump
+                    case PlayerAnimationState.jumping:
+                        sprite.AddFrame(3, 2);
+                        break;
+                    //mario fall
+                    case PlayerAnimationState.falling:
+                        sprite.AddFrame(4, 2);
+                        break;
+                    //mario look up
+                    case PlayerAnimationState.lookup:
+                        sprite.AddFrame(10, 2);
+                        break;
+                }
+                _animationState = animation;
+            }
+        }
+
+        public override void Death()
+        {
+            if(powerState != PowerState.small)
+            {
+                powerState = PowerState.small;
+            }
+            else
+            {
+                death = true;
+                momentum.Y = -250;
+            }
         }
 
         /// <summary>
