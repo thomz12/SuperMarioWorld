@@ -75,7 +75,7 @@ namespace SuperMarioWorld
             }
 
             //Create camera object
-            cam = new Camera2D(_player);
+            cam = new Camera2D(_player, _size, _gridSize);
 
             _backOffset = (int)cam.Position.X / 2;
         }
@@ -219,7 +219,7 @@ namespace SuperMarioWorld
 
 
             //Create camera object
-            cam = new Camera2D(_player);
+            cam = new Camera2D(_player, _size, _gridSize);
         }
 
         /// <summary>
