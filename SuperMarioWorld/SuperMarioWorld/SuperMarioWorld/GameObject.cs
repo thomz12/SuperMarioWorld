@@ -61,7 +61,7 @@ namespace SuperMarioWorld
         /// Called to draw the game object
         /// </summary>
         /// <param name="batch">Spritebatch to draw to</param>
-        public void DrawObject(SpriteBatch batch)
+        public virtual void DrawObject(SpriteBatch batch)
         {
             //Call the draw function of sprite
             sprite.DrawSpriteCentered(batch, position);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace SuperMarioWorld
         /// Tracks if mario is small, big, empowered or something else
         /// </summary>
         public PowerState powerState = PowerState.small;
-        private bool _invincible;
+        private bool _invunerable;
+        private float _invunerableTimer;
+        private float _invunerableTime = 2;
 
         /// <summary>
         /// Different powerstates that the player can have
@@ -135,6 +138,14 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            if(_invunerable)
+            {
+                _invunerableTimer -= (float)gameTime.ElapsedGameTime.Milliseconds / 1000.0f;
+
+                if (_invunerableTimer < 0)
+                    _invunerable = false;
+            }
+
             _input.Update();
             if (!death)
             {
@@ -276,15 +287,31 @@ namespace SuperMarioWorld
 
         public override void Death()
         {
-            if(powerState != PowerState.small)
+            if (!_invunerable)
             {
-                powerState = PowerState.small;
+                if (powerState != PowerState.small)
+                {
+                    powerState = PowerState.small;
+                    _invunerable = true;
+                    _invunerableTimer = _invunerableTime;
+                }
+                else if (powerState == PowerState.small)
+                {
+                    death = true;
+                    momentum.Y = -500;
+                }
             }
-            else
+        }
+
+        public override void DrawObject(SpriteBatch batch)
+        {
+            if(_invunerable)
             {
-                death = true;
-                momentum.Y = -250;
+                if ((int)Math.Round(_invunerableTimer * 100) % 2 == 0)
+                    return;
             }
+            //Call the draw function of sprite
+            sprite.DrawSpriteCentered(batch, position);
         }
 
         /// <summary>

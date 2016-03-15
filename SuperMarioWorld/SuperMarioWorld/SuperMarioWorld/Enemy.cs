@@ -27,15 +27,14 @@ namespace SuperMarioWorld
             if(collider is Player)
             {
                 Player p = (Player)collider;
-                if (p.momentum.Y > 0)
+                if (p.momentum.Y > 3)
                 {
                     p.momentum.Y = -110;
                     Death();
                 }
                 else if(!death)
                 {
-                    p.death = true;
-                    p.momentum.X = 0;
+                    p.Death();
                 }
             }
         }
