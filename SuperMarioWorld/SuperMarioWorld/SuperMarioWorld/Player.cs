@@ -110,7 +110,23 @@ namespace SuperMarioWorld
                 collider.destoryed = true;
                 _scores.coins++;
             }
-            //throw new NotImplementedException();
+            else if (collider is OneUp)
+            {
+                collider.destoryed = true;
+                _scores.lives++;
+            }
+            else if (collider is Mushroom)
+            {
+                collider.destoryed = true;
+                if(powerState != PowerState.small)
+                {
+                    _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                }
+                else
+                {
+                    powerState = PowerState.normal;
+                }
+            }
         }
 
         /// <summary>
