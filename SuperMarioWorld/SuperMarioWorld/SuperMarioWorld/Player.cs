@@ -40,7 +40,8 @@ namespace SuperMarioWorld
             Mario,
             Luigi,
             Wario,
-            Waluigi
+            Waluigi,
+            Peach
         }
 
         public enum PlayerAnimationState
@@ -94,6 +95,9 @@ namespace SuperMarioWorld
                     sprite.sourceName = @"Players\Waluigi";
                     sprite.xSize = 24;
                     sprite.ySize = 40;
+                    break;
+                case Character.Peach:
+                    sprite.sourceName = @"Players\Peach";
                     break;
                 default:
                     break;

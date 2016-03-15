@@ -154,7 +154,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="super_princess_world_custom_sprites__princesses_by_sonny_the_cheetah-d604j7t.png">
+      <Name>super_princess_world_custom_sprites__princesses_by_sonny_the_cheetah-d604j7t</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="PowerUps\FireFlower.png">
       <Name>FireFlower</Name>
@@ -168,6 +174,13 @@
     </Compile>
     <Compile Include="PowerUps\OneUp.png">
       <Name>OneUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Players\Peach.png">
+      <Name>Peach</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
