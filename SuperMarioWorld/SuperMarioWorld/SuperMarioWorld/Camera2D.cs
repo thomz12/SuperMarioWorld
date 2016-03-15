@@ -25,6 +25,9 @@ namespace SuperMarioWorld
         //The player the camera should track
         private Player _player;
 
+        private const int _gameHeight = 224;
+        private const int _gameWidth = 256;
+
         private int _boundaryRight;
         private int _boundaryLeft;
 
@@ -32,9 +35,15 @@ namespace SuperMarioWorld
 
         private bool movingRight;
 
-        public Camera2D(Player player)
+        private Point _levelSize;
+        private int _gridSize;
+
+        public Camera2D(Player player, Point size, int grid)
         {
             _player = player;
+            _levelSize = size;
+            _gridSize = grid;
+
             Zoom = 1.0f;
             Rotation = 0;
             Position = player.position;
@@ -43,11 +52,11 @@ namespace SuperMarioWorld
         /// <summary>
         /// default update function
         /// </summary>
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             Vector2 delta = _player.position - Position;
-            System.Diagnostics.Debug.WriteLine(delta.ToString());
 
+            //X axis
             if (delta.X < 16)
                 movingRight = false;
             if (delta.X > 16)
@@ -62,6 +71,20 @@ namespace SuperMarioWorld
             {
                 if (delta.X < 0)
                     Position = new Vector2(Position.X + (_player.position.X - Position.X) * 0.1f, Position.Y);
+            }
+
+            //Y axis
+            if (Position.Y + _gameHeight / 2 >= _levelSize.Y * _gridSize)
+            {
+                Position = new Vector2(Position.X, _levelSize.Y * _gridSize - _gameHeight / 2);
+                if (delta.Y < -(_gameHeight / 4))
+                {
+                    Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * 0.1f);
+                }
+            }
+            else
+            {
+                Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * 0.1f);
             }
         }
 
