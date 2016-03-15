@@ -28,6 +28,12 @@ namespace SuperMarioWorld
             //Also turn around if an enemy collides with an enemy.
             if (collider is Enemy)
                 lookRight = !lookRight;
+
+            if(collider is Player)
+            {
+                Player p = (Player)collider;
+                p.momentum.Y = -110;
+            }
         }
 
         protected override void Movement(GameTime gameTime)
