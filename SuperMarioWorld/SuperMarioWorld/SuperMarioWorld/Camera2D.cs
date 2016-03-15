@@ -17,16 +17,58 @@ namespace SuperMarioWorld
         //Current position of the camera
         public Vector2 Position { get; set; }
 
+        private Vector2 _position;
+
         //Current rotation of the camera
         public float Rotation { get; set; }
 
-        public Camera2D()
+        //The player the camera should track
+        private Player _player;
+
+        private float _boundaryRight;
+        private float _boundaryLeft;
+
+        private bool _anchorRight = false;
+
+        public Camera2D(Player player)
         {
+            _player = player;
             Zoom = 1.0f;
             Rotation = 0;
-            Position = Vector2.Zero;
+            Position = player.position;
         }
 
+        /// <summary>
+        /// default update function
+        /// </summary>
+        public void Update()
+        {
+            //Set the boundaries for the current camera position
+            _boundaryLeft = _position.X - 16;
+            _boundaryRight = _position.X + 16;
+
+            //X axis
+            //If the player hits the right boundary set the player on the left camera boundary
+            if (_player.position.X >= _boundaryRight)
+            {
+                _anchorRight = false;
+            }
+            else if(_player.position.X <= _boundaryLeft)
+            {
+                _anchorRight = true;
+            }
+
+            if (_anchorRight)
+            {
+                //set player on the right
+                Position = new Vector2(_player.position.X + 8, Position.Y);
+            }
+            else
+            {
+                //set player on the left
+                Position = new Vector2(_player.position.X - 8, Position.Y);
+            }
+        }
 
         /// <summary>
         /// Change the position of the cameraby a specific amount.

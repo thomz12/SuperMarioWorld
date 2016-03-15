@@ -63,7 +63,8 @@ namespace SuperMarioWorld
             _scores.maxTime = 420;
 
             //TEMP, Add a object to the level
-            objects.Add( new Player(new Vector2(0.0f,0.0f), _scores, Player.Character.Mario));
+            _player = new Player(new Vector2(0.0f, 0.0f), _scores, Player.Character.Mario);
+            objects.Add(_player);
             objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
             objects.Add( new Goomba(new Vector2(64.0f, 0)));
 
@@ -74,7 +75,7 @@ namespace SuperMarioWorld
             }
 
             //Create camera object
-            cam = new Camera2D();
+            cam = new Camera2D(_player);
 
             _backOffset = (int)cam.Position.X / 2;
         }
@@ -91,9 +92,6 @@ namespace SuperMarioWorld
 
             //Set the gridsize
             _gridSize = 16;
-
-            //Create camera object
-            cam = new Camera2D();
 
             _backOffset = 0;
 
@@ -218,6 +216,10 @@ namespace SuperMarioWorld
 
             //Create a new HUD for this level
             _hud = new HUD(scoreHandler);
+
+
+            //Create camera object
+            cam = new Camera2D(_player);
         }
 
         /// <summary>
@@ -278,9 +280,11 @@ namespace SuperMarioWorld
                 }
             }
         
-    
+            //Check collisions
             CheckCollisions();
-            cam.Position = _player.position;
+
+            //Update the camera position
+            cam.Update();
 
             //Tell HUD to update
             _hud.Update(gameTime);
