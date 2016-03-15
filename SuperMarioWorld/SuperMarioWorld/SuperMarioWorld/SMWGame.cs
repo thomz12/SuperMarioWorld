@@ -31,7 +31,7 @@ namespace SuperMarioWorld
         //Create a score tracker
         private ScoreHandler _scores;
 
-        private bool _vSync = false;
+        private bool _vSync = true;
         private const int _scale = 3;
 
 #if DEBUG
