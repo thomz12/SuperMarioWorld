@@ -76,17 +76,17 @@ namespace SuperMarioWorld
             switch (character)
             {
                 case Character.Mario:
-                    sprite.sourceName = "Mario";
+                    sprite.sourceName = @"Players\Mario";
                     break;
                 case Character.Luigi:
-                    sprite.sourceName = "Luigi";
+                    sprite.sourceName = @"Players\Luigi";
                     break;
                 case Character.Wario:
-                    sprite.sourceName = "Wario";
+                    sprite.sourceName = @"Players\Wario";
                     sprite.xSize = 24;
                     break;
                 case Character.Waluigi:
-                    sprite.sourceName = "Waluigi";
+                    sprite.sourceName = @"Players\Waluigi";
                     sprite.xSize = 24;
                     sprite.ySize = 40;
                     break;

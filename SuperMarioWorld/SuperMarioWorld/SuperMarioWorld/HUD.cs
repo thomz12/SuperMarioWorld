@@ -15,11 +15,11 @@ namespace SuperMarioWorld
         private ScoreHandler _scores;
 
         //Sources of the sprites
-        private const string _HUDMarioLuigiNameSource = "HUDMarioLuigiName";
-        private const string _HUDLargeNumbersSource = "HUDLargeNumbers";
-        private const string _HUDOutlineSource = "HUDOutline";
-        private const string _HUDPowerUpsSource = "HUDPowerUps";
-        private const string _HUDSmallNumbersSource = "HUDSmallNumbers";
+        private const string _HUDMarioLuigiNameSource = @"HUD\HUDMarioLuigiName";
+        private const string _HUDLargeNumbersSource = @"HUD\HUDLargeNumbers";
+        private const string _HUDOutlineSource = @"HUD\HUDOutline";
+        private const string _HUDPowerUpsSource = @"HUD\HUDPowerUps";
+        private const string _HUDSmallNumbersSource = @"HUD\HUDSmallNumbers";
 
         //Draw these sprites
         private Sprite marioLuigiName;

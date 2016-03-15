@@ -14,7 +14,7 @@ namespace SuperMarioWorld
         /// <param name="position">Position the goomba should be on.</param>
         public Goomba(Vector2 position) : base (position)
         {
-            sprite.sourceName = "Goomba";
+            sprite.sourceName = @"Enemies\Goomba";
             sprite.xSize = 16;
             sprite.ySize = 16;
             sprite.AddFrame(0, 0);

@@ -10,7 +10,7 @@ namespace SuperMarioWorld
     {
         public GreenKoopa(Vector2 position) : base (position)
         {
-            sprite.sourceName = "Koopas";
+            sprite.sourceName = @"Enemies\Koopas";
             sprite.xSize = 16;
             sprite.ySize = 32;
 

@@ -24,7 +24,7 @@ namespace SuperMarioWorld
             sprite.ySize = 16;
 
             //Call sprite class to load the texture
-            sprite.sourceName = "MysteryBlock";
+            sprite.sourceName = @"Blocks\MysteryBlock";
 
             //Sprite animation
             sprite.NewAnimation();

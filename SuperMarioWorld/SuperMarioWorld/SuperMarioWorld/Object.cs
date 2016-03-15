@@ -21,7 +21,7 @@ namespace SuperMarioWorld
         public Object(Vector2 position) : base(position)
         {
             blocking = true;
-            isPlatform = true;
+            isPlatform = false;
             sprite.layer = 0.4f;
         }
 

@@ -29,7 +29,9 @@ namespace SuperMarioWorld
 
         //Camera object
         public Camera2D cam;
+        //player object
         private Player _player;
+
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
@@ -98,7 +100,7 @@ namespace SuperMarioWorld
             //Create a streamreader
             StreamReader sr;
 
-            fileName = @"Content\\Levels\\" + fileName + ".sml";
+            fileName = @"Content\Levels\" + fileName + ".sml";
 
             //LOAD LEVEL FROM FILE
             /*
@@ -160,20 +162,21 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
-                    else if (objectChars[x].Equals('C')) //If the char represents a coin
+                    else if (objectChars[x].Equals('C')) //If the char represents a coin which moves
                     {
-                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize))));
+                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize)), true));
+                    }
+                    else if (objectChars[x].Equals('c')) //If the char represents a coin which doesnt move
+                    {
+                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize)), false));
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        objects.Add(new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize))));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass));
                     }
                     else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {
-                        LevelBlock b = new LevelBlock(new Vector2((x * _gridSize), (y * _gridSize)));
-                        b.blocking = false;
-                        b.sprite.NewAnimation(3, 0);
-                        objects.Add(b);
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.dirt));
                     }
                     else if (objectChars[x].Equals('K')) //If the char represents a Koopa
                     {
@@ -182,6 +185,22 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('S')) //If the char represents a Shell
                     {
                         objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
+                    }
+                    else if (objectChars[x].Equals('L')) //If the char represents a cloud
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud));
+                    }
+                    else if (objectChars[x].Equals('O')) //If the char represents a rock
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock));
+                    }
+                    else if (objectChars[x].Equals('H')) //If the char represents a help
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help));
+                    }
+                    else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
+                    {
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
                     }
                 }
             }
