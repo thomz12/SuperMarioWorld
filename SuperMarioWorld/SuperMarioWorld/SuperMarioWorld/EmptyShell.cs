@@ -47,12 +47,10 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-            if (collider is EmptyShell)
+            if(collider is Entity)
             {
-                death = true;
-                momentum.Y = -200;
-                momentum.X /= 4;
-                sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
+                Entity e = (Entity)collider;
+                e.Death();
             }
         }
     }

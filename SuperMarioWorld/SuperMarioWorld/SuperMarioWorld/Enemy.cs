@@ -18,11 +18,6 @@ namespace SuperMarioWorld
 
         }
 
-        public void Death()
-        {
-
-        }
-
         public override void OnCollision(GameObject collider)
         {
             //Also turn around if an enemy collides with an enemy.
@@ -35,10 +30,9 @@ namespace SuperMarioWorld
                 if (p.momentum.Y > 0.5f)
                 {
                     p.momentum.Y = -110;
-                    death = true;
-                    sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
+                    Death();
                 }
-                else
+                else if(!death)
                 {
                     p.death = true;
                     p.momentum.X = 0;

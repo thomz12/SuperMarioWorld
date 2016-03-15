@@ -56,6 +56,16 @@ namespace SuperMarioWorld
                 grounded = false;
         }
 
+        public virtual void Death()
+        {
+            if (!death)
+            {
+                death = true;
+                momentum.Y = -200;
+                momentum.X /= 4;
+                sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
+            }
+        }
         /// <summary>
         /// General movement for all entities
         /// </summary>
