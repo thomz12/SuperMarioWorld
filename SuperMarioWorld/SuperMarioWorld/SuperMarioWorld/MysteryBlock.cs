@@ -45,15 +45,18 @@ namespace SuperMarioWorld
 
                 Rectangle overlap;
                 Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
-
                 if (overlap.Width > overlap.Height)
                 {
                     if (p.position.Y < position.Y)
                     {
-                        p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
-                        p.momentum.Y = 16;
-                        p.grounded = true;
-                        p.momentum.Y = 0;
+                        if (p.momentum.Y > 0)
+                        {
+                            //When entity collides from the top
+                            p.position.Y = position.Y - boundingBox.Height + 1;
+                            p.momentum.Y = 16;
+                            p.grounded = true;
+                            p.momentum.Y = 0;
+                        }
                     }
                     else
                     {

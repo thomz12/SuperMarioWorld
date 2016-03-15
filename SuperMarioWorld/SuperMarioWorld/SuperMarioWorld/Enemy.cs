@@ -32,8 +32,12 @@ namespace SuperMarioWorld
             if(collider is Player)
             {
                 Player p = (Player)collider;
-                if (p.momentum.Y > 0)
+                if (p.momentum.Y > 0.5f)
+                {
                     p.momentum.Y = -110;
+                    death = true;
+                    sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
+                }
                 else
                 {
                     p.death = true;

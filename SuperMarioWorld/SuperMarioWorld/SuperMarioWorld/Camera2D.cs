@@ -25,10 +25,12 @@ namespace SuperMarioWorld
         //The player the camera should track
         private Player _player;
 
-        private float _boundaryRight;
-        private float _boundaryLeft;
+        private int _boundaryRight;
+        private int _boundaryLeft;
 
-        private bool _anchorRight = false;
+        private int xOffset = -64;
+
+        private bool movingRight;
 
         public Camera2D(Player player)
         {
@@ -43,30 +45,23 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update()
         {
-            //Set the boundaries for the current camera position
-            _boundaryLeft = _position.X - 16;
-            _boundaryRight = _position.X + 16;
+            Vector2 delta = _player.position - Position;
+            System.Diagnostics.Debug.WriteLine(delta.ToString());
 
-            //X axis
-            //If the player hits the right boundary set the player on the left camera boundary
-            if (_player.position.X >= _boundaryRight)
-            {
-                _anchorRight = false;
-            }
-            else if(_player.position.X <= _boundaryLeft)
-            {
-                _anchorRight = true;
-            }
+            if (delta.X < 16)
+                movingRight = false;
+            if (delta.X > 16)
+                movingRight = true;
 
-            if (_anchorRight)
+            if(movingRight)
             {
-                //set player on the right
-                Position = new Vector2(_player.position.X + 8, Position.Y);
+                if (delta.X > 0)
+                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * 0.1f, Position.Y);
             }
             else
             {
-                //set player on the left
-                Position = new Vector2(_player.position.X - 8, Position.Y);
+                if (delta.X < 0)
+                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * 0.1f, Position.Y);
             }
         }
 

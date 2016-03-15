@@ -73,28 +73,32 @@ namespace SuperMarioWorld
 
         public bool GamePadIsReleased(PlayerIndex index, Buttons button)
         {
-            if (curGamepadState[index].IsButtonUp(button))
+            if (curGamepadState.Count != 0)
+                if (curGamepadState[index].IsButtonUp(button))
                 return true;
             return false;
         }
 
         public bool GamePadIsPressed(PlayerIndex index, Buttons button)
         {
-            if (curGamepadState[index].IsButtonDown(button))
-                return true;
+            if(curGamepadState.Count != 0)
+                if (curGamepadState[index].IsButtonDown(button))
+                    return true;
             return false;
         }
 
         public bool GamePadOnRelease(PlayerIndex index, Buttons button)
         {
-            if (curGamepadState[index].IsButtonUp(button) && priorGamepadState[index].IsButtonDown(button))
+            if (curGamepadState.Count != 0)
+                if (curGamepadState[index].IsButtonUp(button) && priorGamepadState[index].IsButtonDown(button))
                 return true;
             return false;
         }
 
         public bool GamePadOnPress(PlayerIndex index, Buttons button)
         {
-            if (curGamepadState[index].IsButtonDown(button) && priorGamepadState[index].IsButtonUp(button))
+            if (curGamepadState.Count != 0)
+                if (curGamepadState[index].IsButtonDown(button) && priorGamepadState[index].IsButtonUp(button))
                 return true;
             return false;
         }
