@@ -112,15 +112,15 @@ namespace SuperMarioWorld
             //Draw reserve powerup
             switch (_scores.powerUp)
             {
-                case Player.PowerState.normal:
+                case ScoreHandler.PowerUp.mushroom:
                     powerUps.NewAnimation(0, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
-                case Player.PowerState.fire:
+                case ScoreHandler.PowerUp.fireFlower:
                     powerUps.NewAnimation(1, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
-                case Player.PowerState.feather:
+                case ScoreHandler.PowerUp.feather:
                     powerUps.NewAnimation(2, 0);
                     powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;

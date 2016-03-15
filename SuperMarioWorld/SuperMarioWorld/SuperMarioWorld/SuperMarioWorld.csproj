@@ -83,6 +83,8 @@
     <Compile Include="HUD.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Mushroom.cs" />
+    <Compile Include="OneUp.cs" />
     <Compile Include="StaticBlock.cs" />
     <Compile Include="MysteryBlock.cs" />
     <Compile Include="Object.cs" />

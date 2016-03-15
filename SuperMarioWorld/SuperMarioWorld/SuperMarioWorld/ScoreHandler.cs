@@ -17,7 +17,14 @@ namespace SuperMarioWorld
         public int score;
         public int starPoints;
 
-        public Player.PowerState powerUp;
+        public enum PowerUp
+        {
+            mushroom,
+            fireFlower,
+            feather
+        }
+
+        public PowerUp powerUp;
 
         private string _scoreFilePath = "score.sms";
 

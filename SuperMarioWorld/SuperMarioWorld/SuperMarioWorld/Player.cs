@@ -109,7 +109,11 @@ namespace SuperMarioWorld
                 collider.destoryed = true;
                 _scores.coins++;
             }
-            //throw new NotImplementedException();
+            else if (collider is OneUp)
+            {
+                collider.destoryed = true;
+                _scores.lives++;
+            }
         }
 
         /// <summary>
