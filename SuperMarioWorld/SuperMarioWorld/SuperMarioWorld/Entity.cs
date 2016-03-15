@@ -34,10 +34,13 @@ namespace SuperMarioWorld
         public override void Update(GameTime gameTime)
         {
             //Flip sprite when looking left/right
-            if (lookRight)
-                sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
-            else
-                sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
+            if (!death)
+            {
+                if (lookRight)
+                    sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
+                else
+                    sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
+            }
 
             Movement(gameTime);
             //Calls the update function from gameobject
@@ -59,10 +62,13 @@ namespace SuperMarioWorld
         protected virtual void Movement(GameTime gameTime)
         {
             //This now applies to all entities except the player and the smart koopa who override this function.
-            if (lookRight)
-                momentum = new Vector2(momentum.X + acceleration, momentum.Y);
-            else
-                momentum = new Vector2(momentum.X - acceleration, momentum.Y);
+            if (!death)
+            {
+                if (lookRight)
+                    momentum = new Vector2(momentum.X + acceleration, momentum.Y);
+                else
+                    momentum = new Vector2(momentum.X - acceleration, momentum.Y);
+            }
 
             //Add gravity
             if(!grounded)
