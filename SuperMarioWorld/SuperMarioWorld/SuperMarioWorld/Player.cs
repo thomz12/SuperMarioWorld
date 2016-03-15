@@ -13,7 +13,7 @@ namespace SuperMarioWorld
         /// <summary>
         /// Tracks if mario is small, big, empowered or something else
         /// </summary>
-        public PowerState powerState = PowerState.normal;
+        public PowerState powerState = PowerState.small;
         private bool _invincible;
 
         /// <summary>
@@ -114,6 +114,18 @@ namespace SuperMarioWorld
             {
                 collider.destoryed = true;
                 _scores.lives++;
+            }
+            else if (collider is Mushroom)
+            {
+                collider.destoryed = true;
+                if(powerState != PowerState.small)
+                {
+                    _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                }
+                else
+                {
+                    powerState = PowerState.normal;
+                }
             }
         }
 

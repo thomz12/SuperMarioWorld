@@ -19,6 +19,7 @@ namespace SuperMarioWorld
 
         public enum PowerUp
         {
+            none,
             mushroom,
             fireFlower,
             feather
