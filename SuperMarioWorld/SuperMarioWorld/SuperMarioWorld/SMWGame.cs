@@ -67,7 +67,7 @@ namespace SuperMarioWorld
             //Load a level
             //TODO load specific levels from main menu/world map
             _scores = new ScoreHandler();
-            _level = new Level("0", _scores);
+            _level = new Level("TestLevel01.sml", _scores);
             _level.cam.Zoom = _scale;
             _level.cam.GameHeight = _gameHeight;
             _level.cam.GameWidth = _gameWidth;

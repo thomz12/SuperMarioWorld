@@ -98,7 +98,7 @@ namespace SuperMarioWorld
             //Create a streamreader
             StreamReader sr;
 
-            fileName = @"Content\Levels\" + fileName + ".sml";
+            fileName = @"Content\Levels\" + fileName;
 
             //LOAD LEVEL FROM FILE
             /*
@@ -113,7 +113,7 @@ namespace SuperMarioWorld
             }
             catch (Exception e)
             {
-                throw new FileLoadException("Could not load file", e);
+                throw new FileLoadException("Could not load file " + fileName, e);
             }
 
             //Read information about the level from the file
