@@ -32,7 +32,13 @@ namespace SuperMarioWorld
             if(collider is Player)
             {
                 Player p = (Player)collider;
-                p.momentum.Y = -110;
+                if (p.momentum.Y > 0)
+                    p.momentum.Y = -110;
+                else
+                {
+                    p.death = true;
+                    p.momentum.X = 0;
+                }
             }
         }
 

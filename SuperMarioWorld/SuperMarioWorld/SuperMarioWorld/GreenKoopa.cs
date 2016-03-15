@@ -21,7 +21,7 @@ namespace SuperMarioWorld
             maxSpeed = 32;
             lookRight = false;
 
-            boundingBox = new Rectangle(0, 0, 12, 16); 
+            boundingBox = new Rectangle(0, 0, 12, 24); 
         }
 
         public override void OnCollision(GameObject collider)

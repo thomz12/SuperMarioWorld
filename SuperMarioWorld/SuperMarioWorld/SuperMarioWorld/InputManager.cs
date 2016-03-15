@@ -37,9 +37,9 @@ namespace SuperMarioWorld
 
             curKeyboardState = Keyboard.GetState();
             
-            foreach(PlayerIndex index in curGamepadState.Keys)
+            for(int i = 0; i < curGamepadState.Count; i++)
             {
-                curGamepadState[index] = GamePad.GetState(index);
+                curGamepadState[(PlayerIndex)i] = GamePad.GetState((PlayerIndex)i);
             }
         }
 
@@ -67,6 +67,34 @@ namespace SuperMarioWorld
         public bool OnPress(Keys key)
         {
             if (curKeyboardState.IsKeyDown(key) && priorKeyboardState.IsKeyUp(key))
+                return true;
+            return false;
+        }
+
+        public bool GamePadIsReleased(PlayerIndex index, Buttons button)
+        {
+            if (curGamepadState[index].IsButtonUp(button))
+                return true;
+            return false;
+        }
+
+        public bool GamePadIsPressed(PlayerIndex index, Buttons button)
+        {
+            if (curGamepadState[index].IsButtonDown(button))
+                return true;
+            return false;
+        }
+
+        public bool GamePadOnRelease(PlayerIndex index, Buttons button)
+        {
+            if (curGamepadState[index].IsButtonUp(button) && priorGamepadState[index].IsButtonDown(button))
+                return true;
+            return false;
+        }
+
+        public bool GamePadOnPress(PlayerIndex index, Buttons button)
+        {
+            if (curGamepadState[index].IsButtonDown(button) && priorGamepadState[index].IsButtonUp(button))
                 return true;
             return false;
         }
