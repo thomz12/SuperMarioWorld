@@ -172,7 +172,12 @@ namespace SuperMarioWorld
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass));
+                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass);
+                        objects.Add(grass);
+                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
+                        {
+                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirt));
+                        }
                     }
                     else if(objectChars[x].Equals('D')) //If the char represents a Dirt
                     {

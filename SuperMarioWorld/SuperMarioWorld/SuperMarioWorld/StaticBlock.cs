@@ -49,6 +49,7 @@ namespace SuperMarioWorld
                     sprite.NewAnimation(3, 0);
                     isPlatform = false;
                     blocking = false;
+                    sprite.layer = 0.1f;
                     break;
                 case BlockType.cloud:
                     sprite.sourceName = @"Blocks\StaticBlocks";
