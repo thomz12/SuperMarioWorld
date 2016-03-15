@@ -25,14 +25,12 @@ namespace SuperMarioWorld
         //The player the camera should track
         private Player _player;
 
-        private const int _gameHeight = 224;
-        private const int _gameWidth = 256;
+        public int GameHeight { get; set; }
+        public int GameWidth { get; set; }
 
-        private int _boundaryRight;
-        private int _boundaryLeft;
+        private float _smoothness = 4f;
 
-        private int xOffset = -64;
-
+        private float _xDeadZone = 32.0f;
         private bool movingRight;
 
         private Point _levelSize;
@@ -57,34 +55,34 @@ namespace SuperMarioWorld
             Vector2 delta = _player.position - Position;
 
             //X axis
-            if (delta.X < 16)
+            if (delta.X < _xDeadZone)
                 movingRight = false;
-            if (delta.X > 16)
+            if (delta.X > _xDeadZone)
                 movingRight = true;
 
             if(movingRight)
             {
                 if (delta.X > 0)
-                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * 0.1f, Position.Y);
+                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
             }
             else
             {
                 if (delta.X < 0)
-                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * 0.1f, Position.Y);
+                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
             }
 
             //Y axis
-            if (Position.Y + _gameHeight / 2 >= _levelSize.Y * _gridSize)
+            if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
             {
-                Position = new Vector2(Position.X, _levelSize.Y * _gridSize - _gameHeight / 2);
-                if (delta.Y < -(_gameHeight / 4))
+                Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
+                if (delta.Y < -(GameHeight / 4))
                 {
-                    Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * 0.1f);
+                    Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
                 }
             }
             else
             {
-                Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * 0.1f);
+                Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
             }
         }
 
