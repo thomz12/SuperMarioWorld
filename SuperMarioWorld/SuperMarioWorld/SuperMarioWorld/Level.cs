@@ -170,16 +170,30 @@ namespace SuperMarioWorld
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grass);
+                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassMiddle, 0.4f);
                         objects.Add(grass);
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
-                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirt));
+                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtMiddle, 0.1f + (float)y * (float) _gridSize / 1000f));
                         }
                     }
-                    else if(objectChars[x].Equals('D')) //If the char represents a Dirt
+                    else if (objectChars[x].Equals('>')) //If the char represents a Grass right block
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.dirt));
+                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassRight, 0.4f);
+                        objects.Add(grass);
+                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
+                        {
+                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtRight, 0.1f + (float)y * (float)_gridSize / 1000f));
+                        }
+                    }
+                    else if (objectChars[x].Equals('<')) //If the char represents a Grass left block
+                    {
+                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassLeft, 0.4f);
+                        objects.Add(grass);
+                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
+                        {
+                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtLeft, 0.1f + (float)y * (float)_gridSize / 1000f));
+                        }
                     }
                     else if (objectChars[x].Equals('K')) //If the char represents a Koopa
                     {
@@ -191,19 +205,19 @@ namespace SuperMarioWorld
                     }
                     else if (objectChars[x].Equals('L')) //If the char represents a cloud
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f));
                     }
                     else if (objectChars[x].Equals('O')) //If the char represents a rock
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f));
                     }
                     else if (objectChars[x].Equals('H')) //If the char represents a help
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f));
                     }
                     else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
+                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f));
                     }
                     else if (objectChars[x].Equals('Y')) //If the char represents a mushroom
                     {
@@ -287,11 +301,11 @@ namespace SuperMarioWorld
                 //Check if the game object is within the screen
                 if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {
-                        //Update the object and add it to the list of collidable objects.
-                        objects[i].Update(gameTime);
-                        _collidables.Add(objects[i]);
-                    }
+                    //Update the object and add it to the list of collidable objects.
+                    objects[i].Update(gameTime);
+                    _collidables.Add(objects[i]);
                 }
+            }
         
             //Check collisions
             CheckCollisions();

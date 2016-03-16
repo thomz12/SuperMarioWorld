@@ -13,8 +13,12 @@ namespace SuperMarioWorld
     {
         public enum BlockType
         {
-            grass,
-            dirt,
+            grassMiddle,
+            grassLeft,
+            grassRight,
+            dirtMiddle,
+            dirtLeft,
+            dirtRight,
             cloud,
             rock,
             used,
@@ -23,7 +27,7 @@ namespace SuperMarioWorld
 
         private BlockType _blockType;
 
-        public StaticBlock(Vector2 position, BlockType type) : base(position) 
+        public StaticBlock(Vector2 position, BlockType type, float layer) : base(position) 
         {
             //What type of static block is this (based on enum BlockType)
             _blockType = type;
@@ -35,21 +39,46 @@ namespace SuperMarioWorld
             sprite.xSize = 16;
             sprite.ySize = 16;
             sprite.animated = false;
+            sprite.layer = layer;
 
             //Call sprite class to load the texture and add texture to the spriteclass for each block
             switch (_blockType)
             {
-                case BlockType.grass:
+                case BlockType.grassMiddle:
                     sprite.sourceName = @"Blocks\Grass";
                     sprite.NewAnimation(0, 0);
                     isPlatform = true;
                     break;
-                case BlockType.dirt:
+                case BlockType.grassLeft:
+                    sprite.sourceName = @"Blocks\Grass";
+                    sprite.NewAnimation(1, 0);
+                    isPlatform = true;
+                    break;
+                case BlockType.grassRight:
+                    sprite.sourceName = @"Blocks\Grass";
+                    sprite.NewAnimation(2, 0);
+                    isPlatform = true;
+                    break;
+                case BlockType.dirtMiddle:
                     sprite.sourceName = @"Blocks\Grass";
                     sprite.NewAnimation(3, 0);
                     isPlatform = false;
                     blocking = false;
-                    sprite.layer = 0.1f;
+                    sprite.layer = layer;
+                    break;
+                case BlockType.dirtLeft:
+                    sprite.sourceName = @"Blocks\Grass";
+                    sprite.NewAnimation(4, 0);
+                    isPlatform = false;
+                    blocking = false;
+                    sprite.layer = layer;
+                    break;
+                case BlockType.dirtRight:
+                    sprite.sourceName = @"Blocks\Grass";
+                    sprite.NewAnimation(5, 0);
+                    isPlatform = false;
+                    blocking = false;
+                    sprite.layer = layer;
                     break;
                 case BlockType.cloud:
                     sprite.sourceName = @"Blocks\StaticBlocks";
