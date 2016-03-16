@@ -30,6 +30,8 @@ namespace SuperMarioWorld
                 if (p.momentum.Y > 3)
                 {
                     p.momentum.Y = -110;
+                    p.boundingBox.Y = (int)position.Y - boundingBox.Height - p.boundingBox.Height;
+                    p.position.Y = position.Y - boundingBox.Height;
                     Death();
                 }
                 else if(!death)

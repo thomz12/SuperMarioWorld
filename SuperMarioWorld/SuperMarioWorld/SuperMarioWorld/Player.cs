@@ -127,7 +127,9 @@ namespace SuperMarioWorld
                 }
                 else
                 {
+                    SetAnimation(PlayerAnimationState.Dead);
                     powerState = PowerState.normal;
+                    boundingBox.Height = 24;
                 }
             }
         }
@@ -291,13 +293,16 @@ namespace SuperMarioWorld
             {
                 if (powerState != PowerState.small)
                 {
+                    SetAnimation(PlayerAnimationState.idle);
                     powerState = PowerState.small;
                     _invunerable = true;
                     _invunerableTimer = _invunerableTime;
+                    boundingBox.Height = 14;
                 }
                 else if (powerState == PowerState.small)
                 {
                     death = true;
+                    momentum.X = 0;
                     momentum.Y = -500;
                 }
             }

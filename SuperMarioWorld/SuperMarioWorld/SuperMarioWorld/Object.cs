@@ -53,7 +53,7 @@ namespace SuperMarioWorld
                     else if(!isPlatform)
                     {
                         //When entity collides from the buttom
-                        p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
+                        p.position.Y = position.Y + p.boundingBox.Height;
 
                         p.momentum.Y = 16;
                     }
