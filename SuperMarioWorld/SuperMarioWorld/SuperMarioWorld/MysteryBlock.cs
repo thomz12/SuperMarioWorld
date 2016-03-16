@@ -60,7 +60,7 @@ namespace SuperMarioWorld
                     }
                     else
                     {
-                        p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
+                        p.position.Y = position.Y + p.boundingBox.Height;
                         if (p is Player)
                         {
                             sprite.NewAnimation();
