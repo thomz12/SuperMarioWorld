@@ -30,7 +30,6 @@ namespace SuperMarioWorld
             if (collider is Entity && blocking)
             {
                 Entity p = (Entity)collider;
-
                 //Overlap rect
                 Rectangle overlap;
                 //get overlap rect
