@@ -149,8 +149,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\TestLevel01.sml">
-      <Name>TestLevel01</Name>
+    <None Include="Levels\DemoLevel01.sml">
+      <Name>DemoLevel01</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
