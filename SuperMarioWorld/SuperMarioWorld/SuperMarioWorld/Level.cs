@@ -205,11 +205,11 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used));
                     }
-                    else if (objectChars[x].Equals('Y')) //If the char represents a used block (brown one)
+                    else if (objectChars[x].Equals('Y')) //If the char represents a mushroom
                     {
                         objects.Add(new Mushroom(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
-                    else if (objectChars[x].Equals('P')) //If the char represents a used block (brown one)
+                    else if (objectChars[x].Equals('P')) //If the char represents a used one up
                     {
                         objects.Add(new OneUp(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
