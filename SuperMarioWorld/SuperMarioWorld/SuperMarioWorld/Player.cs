@@ -303,6 +303,7 @@ namespace SuperMarioWorld
                 {
                     death = true;
                     momentum.Y = -500;
+                    _scores.lives--;
                 }
             }
         }
