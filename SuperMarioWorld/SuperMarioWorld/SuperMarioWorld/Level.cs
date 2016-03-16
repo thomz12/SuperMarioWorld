@@ -209,13 +209,17 @@ namespace SuperMarioWorld
                     {
                         objects.Add(new Mushroom(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
-                    else if (objectChars[x].Equals('P')) //If the char represents a used one up
+                    else if (objectChars[x].Equals('P')) //If the char represents a one up
                     {
                         objects.Add(new OneUp(new Vector2((x * _gridSize), (y * _gridSize))));
                     }
                     else if (objectChars[x].Equals('r')) //If the char represents a red koopa
                     {
                         objects.Add(new RedKoopa(new Vector2(x * _gridSize, y * _gridSize)));
+                    }
+                    else if(objectChars[x].Equals('f')) //If the char represents a checkpoint
+                    {
+                        objects.Add(new Checkpoint(new Vector2(x * _gridSize, y * _gridSize)));
                     }
                 }
             }
@@ -281,16 +285,13 @@ namespace SuperMarioWorld
                 }
 
                 //Check if the game object is within the screen
-                if (Math.Abs(camX - objects[i].position.X) < 256)
+                if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {
-                    if (Math.Abs(camY - objects[i].position.Y) < 224)
-                    {
                         //Update the object and add it to the list of collidable objects.
                         objects[i].Update(gameTime);
                         _collidables.Add(objects[i]);
                     }
                 }
-            }
         
             //Check collisions
             CheckCollisions();
