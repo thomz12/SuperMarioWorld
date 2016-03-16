@@ -24,7 +24,7 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-            ;
+            base.OnCollision(collider);
         }
     }
 }

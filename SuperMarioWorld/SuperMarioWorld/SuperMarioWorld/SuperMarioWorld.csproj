@@ -85,6 +85,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="Mushroom.cs" />
     <Compile Include="OneUp.cs" />
+    <Compile Include="RedKoopa.cs" />
     <Compile Include="StaticBlock.cs" />
     <Compile Include="MysteryBlock.cs" />
     <Compile Include="Object.cs" />

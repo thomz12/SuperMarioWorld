@@ -74,9 +74,13 @@ namespace SuperMarioWorld
                             p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
                         }
 
-                        //Turn around enemies
-                        if (!(p is Player))
-                            p.lookRight = !p.lookRight;
+                        Entity e = (Entity)collider;
+
+                        if (!e.hasTurned && !(e is Player))
+                        {
+                            e.lookRight = !e.lookRight;
+                            e.hasTurned = true;
+                        }
 
                         p.momentum.X = 0;
                     }

@@ -266,25 +266,25 @@ namespace SuperMarioWorld
                 {
                     //mario standing
                     case PlayerAnimationState.idle:
-                        sprite.AddFrame(0, 2);
+                        sprite.AddFrame(0, 1);
                         break;
                     //mario walk
                     case PlayerAnimationState.walking:
-                        sprite.AddFrame(2, 2);
-                        sprite.AddFrame(1, 2);
-                        sprite.AddFrame(0, 2);
+                        sprite.AddFrame(2, 1);
+                        sprite.AddFrame(1, 1);
+                        sprite.AddFrame(0, 1);
                         break;
                     //mario jump
                     case PlayerAnimationState.jumping:
-                        sprite.AddFrame(3, 2);
+                        sprite.AddFrame(3, 1);
                         break;
                     //mario fall
                     case PlayerAnimationState.falling:
-                        sprite.AddFrame(4, 2);
+                        sprite.AddFrame(4, 1);
                         break;
                     //mario look up
                     case PlayerAnimationState.lookup:
-                        sprite.AddFrame(10, 2);
+                        sprite.AddFrame(10, 1);
                         break;
                 }
             }

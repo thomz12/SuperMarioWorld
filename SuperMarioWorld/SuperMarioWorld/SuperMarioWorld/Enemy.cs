@@ -8,18 +8,15 @@ namespace SuperMarioWorld
 {
     abstract class Enemy : Entity
     {
-        protected bool flying;
-        protected bool huge;
-
-        protected GameObject drop;
-
         public Enemy(Vector2 position) : base (position)
         {
-
+            
         }
 
         public override void OnCollision(GameObject collider)
         {
+            base.OnCollision(collider);
+
             //Also turn around if an enemy collides with an enemy.
             if (collider is Enemy)
                 lookRight = !lookRight;

@@ -153,7 +153,7 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
                         Random r = new Random();
-                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, 5));
+                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
                         objects.Add(_player);
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba
@@ -212,6 +212,10 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('P')) //If the char represents a used block (brown one)
                     {
                         objects.Add(new OneUp(new Vector2((x * _gridSize), (y * _gridSize))));
+                    }
+                    else if (objectChars[x].Equals('r')) //If the char represents a red koopa
+                    {
+                        objects.Add(new RedKoopa(new Vector2(x * _gridSize, y * _gridSize)));
                     }
                 }
             }

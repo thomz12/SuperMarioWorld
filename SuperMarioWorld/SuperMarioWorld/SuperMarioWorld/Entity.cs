@@ -22,6 +22,8 @@ namespace SuperMarioWorld
         protected float maxSpeed;
         protected float thermalVelocity;
 
+        public bool hasTurned;
+
         public Entity(Vector2 position) : base (position)
         {
             affectedByGravity = true;
@@ -29,10 +31,13 @@ namespace SuperMarioWorld
             grounded = false;
             maxSpeed = 256.0f;
             thermalVelocity = 128.0f;
+            hasTurned = false;
         }
 
         public override void Update(GameTime gameTime)
         {
+            hasTurned = false;
+
             //Flip sprite when looking left/right
             if (!death)
             {
@@ -66,6 +71,12 @@ namespace SuperMarioWorld
                 sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
             }
         }
+
+        public override void OnCollision(GameObject collider)
+        {
+            ;
+        }
+
         /// <summary>
         /// General movement for all entities
         /// </summary>

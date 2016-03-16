@@ -167,6 +167,11 @@ namespace SuperMarioWorld
             for (int i = 0; i < _level.objects.Count; i++)
             {
                 _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+                if(_level.objects[i] is RedKoopa)
+                {
+                    RedKoopa r = (RedKoopa)_level.objects[i];
+                    _spriteBatch.Draw(_debugTexture, r.checkPlatformBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+                }
             }
 #endif
             _level.DrawLevel(_spriteBatch);
