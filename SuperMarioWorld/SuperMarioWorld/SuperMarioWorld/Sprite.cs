@@ -147,7 +147,5 @@ namespace SuperMarioWorld
         {
             batch.Draw(texture, new Rectangle((int)Math.Round(position.X), (int)Math.Round(position.Y), xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, layer);
         }
-
-
     }
 }

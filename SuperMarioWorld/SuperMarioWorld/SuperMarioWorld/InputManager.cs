@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
@@ -13,21 +13,14 @@ namespace SuperMarioWorld
         KeyboardState priorKeyboardState;
         KeyboardState curKeyboardState;
 
-        Dictionary<PlayerIndex, GamePadState> priorGamepadState;
-        Dictionary<PlayerIndex, GamePadState> curGamepadState;
+        GamePadState priorGamepadState;
+        GamePadState curGamepadState;
 
         public InputManager()
         {
             curKeyboardState = Keyboard.GetState();
 
-            priorGamepadState = new Dictionary<PlayerIndex, GamePadState>();
-            curGamepadState = new Dictionary<PlayerIndex, GamePadState>();
-
-            foreach (PlayerIndex i in Enum.GetValues(typeof(PlayerIndex)))
-            {
-                if(GamePad.GetState(i).IsConnected)
-                    curGamepadState[i] = GamePad.GetState(i);
-            }
+            curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
         public void Update()
@@ -36,11 +29,7 @@ namespace SuperMarioWorld
             priorGamepadState = curGamepadState;
 
             curKeyboardState = Keyboard.GetState();
-            
-            for(int i = 0; i < curGamepadState.Count; i++)
-            {
-                curGamepadState[(PlayerIndex)i] = GamePad.GetState((PlayerIndex)i);
-            }
+            curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
         public bool IsPressed(Keys key)
@@ -71,34 +60,35 @@ namespace SuperMarioWorld
             return false;
         }
 
-        public bool GamePadIsReleased(PlayerIndex index, Buttons button)
+        public bool GamePadIsReleased(Buttons button)
         {
-            if (curGamepadState.Count != 0)
-                if (curGamepadState[index].IsButtonUp(button))
+            if (curGamepadState.IsButtonUp(button))
                 return true;
             return false;
         }
 
-        public bool GamePadIsPressed(PlayerIndex index, Buttons button)
+        public float GamePadAnalogX()
         {
-            if(curGamepadState.Count != 0)
-                if (curGamepadState[index].IsButtonDown(button))
-                    return true;
-            return false;
+            return curGamepadState.ThumbSticks.Left.X;
         }
 
-        public bool GamePadOnRelease(PlayerIndex index, Buttons button)
+        public bool GamePadIsPressed(Buttons button)
         {
-            if (curGamepadState.Count != 0)
-                if (curGamepadState[index].IsButtonUp(button) && priorGamepadState[index].IsButtonDown(button))
+            if (curGamepadState.IsButtonDown(button))
                 return true;
             return false;
         }
 
-        public bool GamePadOnPress(PlayerIndex index, Buttons button)
+        public bool GamePadOnRelease(Buttons button)
         {
-            if (curGamepadState.Count != 0)
-                if (curGamepadState[index].IsButtonDown(button) && priorGamepadState[index].IsButtonUp(button))
+            if (curGamepadState.IsButtonUp(button) && priorGamepadState.IsButtonDown(button))
+                return true;
+            return false;
+        }
+
+        public bool GamePadOnPress(Buttons button)
+        {
+            if (curGamepadState.IsButtonDown(button) && priorGamepadState.IsButtonUp(button))
                 return true;
             return false;
         }
