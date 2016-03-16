@@ -153,7 +153,7 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
                         Random r = new Random();
-                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, 4));
+                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, 5));
                         objects.Add(_player);
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba

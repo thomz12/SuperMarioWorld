@@ -12,7 +12,7 @@ namespace SuperMarioWorld
     class ScoreHandler
     {
         public int coins;
-        public int lives;
+        public int lives = 3;
         public int maxTime;
         public int score;
         public int starPoints;
