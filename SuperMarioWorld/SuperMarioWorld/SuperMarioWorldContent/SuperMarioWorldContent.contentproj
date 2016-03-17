@@ -110,6 +110,11 @@
       <Processor>TextureProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="TitleScreen\Title.png">
+      <Name>Title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Levels\MainMenu.sml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Name>MainMenu</Name>

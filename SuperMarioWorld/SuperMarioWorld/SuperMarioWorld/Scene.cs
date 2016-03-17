@@ -243,6 +243,10 @@ namespace SuperMarioWorld
                     {
                         obj = new Checkpoint(new Vector2(x * _gridSize, y * _gridSize));
                     }
+                    else if (objectChars[x].Equals('+')) //If the char represents a menu
+                    {
+                        obj = new MainMenu(new Vector2(0, 0));
+                    }
 
                     if (obj != null)
                     {
@@ -264,7 +268,20 @@ namespace SuperMarioWorld
 
 
             //Create camera object
-            cam = new Camera2D(_player, _size, _gridSize);
+            if (_player != null)
+            {
+                cam = new Camera2D(_player, _size, _gridSize);
+            }
+            else
+            {
+                for (int i = 0; i < objects.Count; i++)
+                {
+                    if(objects[i] is MainMenu)
+                    {
+                        cam = new Camera2D(new Vector2(objects[i].sprite.xSize / 2, objects[i].sprite.ySize / 2), _gridSize);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -318,11 +335,6 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            if (_player.position.Y > cam.GameHeight + 10)
-            {
-                load();
-            }
-
             int camX = (int)cam.Position.X;
             int camY = (int)cam.Position.Y;
 

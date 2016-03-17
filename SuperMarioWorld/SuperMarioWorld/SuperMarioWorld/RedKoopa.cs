@@ -59,9 +59,9 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-            if(collider is Object)
+            if(collider is StaticObject)
             {
-                Object o = (Object)collider;
+                StaticObject o = (StaticObject)collider;
                 if (o.blocking)
                 {
                     if(position.Y < o.position.Y)

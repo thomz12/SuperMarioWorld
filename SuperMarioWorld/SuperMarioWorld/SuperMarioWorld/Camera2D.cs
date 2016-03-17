@@ -9,6 +9,9 @@ namespace SuperMarioWorld
 {
     class Camera2D
     {
+        //Non moving
+        private bool _moveable;
+
         //Zoom of the camera
         public float Zoom { get; set; }
 
@@ -34,6 +37,12 @@ namespace SuperMarioWorld
         private Point _levelSize;
         private int _gridSize;
 
+        /// <summary>
+        /// Constructor for a camera that follows a target
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="size"></param>
+        /// <param name="grid"></param>
         public Camera2D(GameObject target, Point size, int grid)
         {
             _target = target;
@@ -43,6 +52,19 @@ namespace SuperMarioWorld
             Zoom = 1.0f;
             Rotation = 0;
             Position = target.position;
+
+            _moveable = true;
+        }
+
+        public Camera2D(Vector2 position, int grid)
+        {
+            _gridSize = grid;
+
+            Zoom = 1.0f;
+            Rotation = 0;
+            Position = position;
+
+            _moveable = false;
         }
 
         /// <summary>
@@ -50,38 +72,41 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            Vector2 delta = _target.position - Position;
-
-            //X axis
-            if (delta.X < -_xDeadZone)
-                movingRight = false;
-            if (delta.X > _xDeadZone)
-                movingRight = true;
-
-            if(movingRight)
+            if (_moveable)
             {
-                if (delta.X > 0)
-                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                Vector2 delta = _target.position - Position;
 
-            }
-            else
-            {
-                if (delta.X < 0)
-                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
-            }
+                //X axis
+                if (delta.X < -_xDeadZone)
+                    movingRight = false;
+                if (delta.X > _xDeadZone)
+                    movingRight = true;
 
-            //Y axis
-            if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
-            {
-                Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
-                if (delta.Y < -(GameHeight / 4))
+                if (movingRight)
+                {
+                    if (delta.X > 0)
+                        Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+
+                }
+                else
+                {
+                    if (delta.X < 0)
+                        Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                }
+
+                //Y axis
+                if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
+                {
+                    Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
+                    if (delta.Y < -(GameHeight / 4))
+                    {
+                        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                    }
+                }
+                else
                 {
                     Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
                 }
-            }
-            else
-            {
-                Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
             }
         }
 
@@ -91,7 +116,8 @@ namespace SuperMarioWorld
         /// <param name="amount">The amount which a camera should move.</param>
         public void Move(Vector2 amount)
         {
-            Position += amount;
+            if(_moveable)
+                Position += amount;
         }
 
         /// <summary>

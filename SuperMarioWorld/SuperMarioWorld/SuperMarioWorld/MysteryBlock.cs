@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class MysteryBlock : Object
+    class MysteryBlock : StaticObject
     {
         private GameObject _content;
 

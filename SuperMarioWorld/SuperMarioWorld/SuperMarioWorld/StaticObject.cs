@@ -6,7 +6,8 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    abstract class Object : GameObject
+    //Yes we hit our hands with a hammer.
+    abstract class StaticObject : GameObject
     {
         //Does the object have a bounding box?
         public bool blocking;
@@ -18,7 +19,7 @@ namespace SuperMarioWorld
         /// Default constructor
         /// </summary>
         /// <param name="position"></param>
-        public Object(Vector2 position) : base(position)
+        public StaticObject(Vector2 position) : base(position)
         {
             blocking = true;
             isPlatform = false;

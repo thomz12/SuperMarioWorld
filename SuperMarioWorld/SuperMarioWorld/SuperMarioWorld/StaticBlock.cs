@@ -9,7 +9,7 @@ namespace SuperMarioWorld
     /// <summary>
     /// level block (Grass, cave, Mud, leaves, dark grass)
     /// </summary>
-    class StaticBlock : Object
+    class StaticBlock : StaticObject
     {
         public enum BlockType
         {

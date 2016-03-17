@@ -95,13 +95,16 @@ namespace SuperMarioWorld
             if(_timeLeft < 0)
             {
                 //GAME OVER
-                //TODO: Death
                 _timeLeft = 0;
             }
             if(_scores.coins >= 100)
             {
                 _scores.coins = _scores.coins - 100;
                 _scores.lives++;
+            }
+            if(_scores.lives < 0)
+            {
+                _scores.lives = 0;
             }
         }
 
