@@ -33,9 +33,9 @@ namespace SuperMarioWorld
             Playing,
             Pause
         }
-        public GameState currentGameState = GameState.Playing;
+        public GameState currentGameState = GameState.MainMenu;
 
-        private string levelPath = "DemoLevel01.sml";
+        private string levelPath = "MainMenu.sml";
 
         //A Level
         private Scene _scene;
@@ -76,10 +76,9 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
-
-
             //Create the new ScoreHandler
             _scores = new ScoreHandler();
+            
             //TODO load from a savefile
 
             Content.RootDirectory = "Content";
@@ -198,8 +197,8 @@ namespace SuperMarioWorld
 
             if (currentGameState == GameState.MainMenu)
             {
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
-                
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _scene.cam.GetTransformation(GraphicsDevice));
+                _scene.DrawLevel(_spriteBatch);
                 _spriteBatch.End();
             }
             //Only do this when the game is in a level

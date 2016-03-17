@@ -9,6 +9,9 @@ namespace SuperMarioWorld
 {
     class Camera2D
     {
+        //Non moving
+        private bool _moveable;
+
         //Zoom of the camera
         public float Zoom { get; set; }
 
@@ -34,6 +37,12 @@ namespace SuperMarioWorld
         private Point _levelSize;
         private int _gridSize;
 
+        /// <summary>
+        /// Constructor for a camera that follows a target
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="size"></param>
+        /// <param name="grid"></param>
         public Camera2D(GameObject target, Point size, int grid)
         {
             _target = target;
@@ -43,6 +52,19 @@ namespace SuperMarioWorld
             Zoom = 1.0f;
             Rotation = 0;
             Position = target.position;
+
+            _moveable = true;
+        }
+
+        public Camera2D(Vector2 position, int grid)
+        {
+            _gridSize = grid;
+
+            Zoom = 1.0f;
+            Rotation = 0;
+            Position = position;
+
+            _moveable = false;
         }
 
         /// <summary>
@@ -50,6 +72,8 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update(GameTime gameTime)
         {
+            if (_moveable)
+            {
             Vector2 delta = _target.position - Position;
 
             //X axis
@@ -92,6 +116,7 @@ namespace SuperMarioWorld
             if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
                 Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
         }
+        }
 
         /// <summary>
         /// Change the position of the cameraby a specific amount.
@@ -99,6 +124,7 @@ namespace SuperMarioWorld
         /// <param name="amount">The amount which a camera should move.</param>
         public void Move(Vector2 amount)
         {
+            if(_moveable)
             Position += amount;
         }
 

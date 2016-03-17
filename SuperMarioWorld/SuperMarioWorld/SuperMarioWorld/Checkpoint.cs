@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-    class Checkpoint : Object
+    class Checkpoint : StaticObject
     {
         public Checkpoint(Vector2 position) : base(position)
         {
