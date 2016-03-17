@@ -274,13 +274,7 @@ namespace SuperMarioWorld
             }
             else
             {
-                for (int i = 0; i < objects.Count; i++)
-                {
-                    if(objects[i] is MainMenu)
-                    {
-                        cam = new Camera2D(new Vector2(objects[i].sprite.xSize / 2, objects[i].sprite.ySize / 2), _gridSize);
-                    }
-                }
+                cam = new Camera2D(null, _size, _gridSize);
             }
         }
 

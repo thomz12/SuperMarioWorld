@@ -51,20 +51,11 @@ namespace SuperMarioWorld
 
             Zoom = 1.0f;
             Rotation = 0;
-            Position = target.position;
+
+            if(target != null)
+                Position = target.position;
 
             _moveable = true;
-        }
-
-        public Camera2D(Vector2 position, int grid)
-        {
-            _gridSize = grid;
-
-            Zoom = 1.0f;
-            Rotation = 0;
-            Position = position;
-
-            _moveable = false;
         }
 
         /// <summary>
@@ -72,50 +63,57 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            if (_moveable)
+            if (_target != null)
             {
-            Vector2 delta = _target.position - Position;
-
-            //X axis
-            if (delta.X < -_xDeadZone)
-                movingRight = false;
-            if (delta.X > _xDeadZone)
-                movingRight = true;
-
-            float targetX = _target.position.X;
-
-            if(movingRight)
-            {
-                if (delta.X > 0)
-                    Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
-
-            }
-            else
-            {
-                if (delta.X < 0)
-                    Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
-            }
-
-            //Y axis
-            if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
-            {
-                Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
-                if (delta.Y < -(GameHeight / 4))
+                if (_moveable)
                 {
-                    Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                    Vector2 delta = _target.position - Position;
+
+                    //X axis
+                    if (delta.X < -_xDeadZone)
+                        movingRight = false;
+                    if (delta.X > _xDeadZone)
+                        movingRight = true;
+
+                    float targetX = _target.position.X;
+
+                    if (movingRight)
+                    {
+                        if (delta.X > 0)
+                            Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+
+                    }
+                    else
+                    {
+                        if (delta.X < 0)
+                            Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                    }
+
+                    //Y axis
+                    if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
+                    {
+                        Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
+                        if (delta.Y < -(GameHeight / 4))
+                        {
+                            Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                        }
+                    }
+                    else
+                    {
+                        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                    }
+
+                    if (Position.X < GameWidth / 2 - _gridSize / 2)
+                        Position = new Vector2(GameWidth / 2 - _gridSize / 2, Position.Y);
+
+                    if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
+                        Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
                 }
             }
             else
             {
-                Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                Position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
             }
-
-            if (Position.X < GameWidth / 2 - _gridSize / 2)
-                Position = new Vector2(GameWidth / 2 - _gridSize / 2, Position.Y);
-
-            if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
-                Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
-        }
         }
 
         /// <summary>
