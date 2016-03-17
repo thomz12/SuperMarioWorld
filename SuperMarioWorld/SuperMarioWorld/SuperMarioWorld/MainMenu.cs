@@ -16,6 +16,7 @@ namespace SuperMarioWorld
             sprite.ySize = 224;
             sprite.AddFrame(0, 0);
             sprite.animated = false;
+            sprite.layer = 1.0f;
         }
 
         public override void Update(GameTime gameTime)
