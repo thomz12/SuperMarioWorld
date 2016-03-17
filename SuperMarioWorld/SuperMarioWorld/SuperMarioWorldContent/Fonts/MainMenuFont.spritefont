@@ -11,7 +11,7 @@ with.
     <!--
     Modify this string to change the font that will be imported.
     -->
-    <FontName>Super Mario World Regular</FontName>
+    <FontName>Super Mario World</FontName>
 
     <!--
     Size is a float value, measured in points. Modify this value to change

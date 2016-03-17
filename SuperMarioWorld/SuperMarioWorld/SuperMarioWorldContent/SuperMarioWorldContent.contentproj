@@ -34,6 +34,7 @@
       <Name>DefaultFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -148,13 +149,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Fonts\Super Mario World Regular.spritefont">
-      <Name>Super Mario World Regular</Name>
+    <Compile Include="Fonts\MainMenuFont.spritefont">
+      <Name>MainMenuFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\DemoLevel01.sml">

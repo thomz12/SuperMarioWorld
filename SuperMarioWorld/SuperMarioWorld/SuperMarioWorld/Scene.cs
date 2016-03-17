@@ -245,7 +245,7 @@ namespace SuperMarioWorld
                     }
                     else if (objectChars[x].Equals('+')) //If the char represents a menu
                     {
-                        obj = new MainMenu(new Vector2(0, 0));
+                        obj = new MainMenu(new Vector2(0, 0), _contentManager);
                     }
 
                     if (obj != null)
@@ -301,6 +301,12 @@ namespace SuperMarioWorld
                 if (!loadedSprites.ContainsKey(go.sprite.sourceName))
                 {
                     loadedSprites.Add(go.sprite.sourceName, contentManager.Load<Texture2D>(go.sprite.sourceName));
+                }
+
+                if(go is MainMenu)
+                {
+                    MainMenu mainMenu = (MainMenu)go;
+                    mainMenu.LoadContent(contentManager);
                 }
 
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
