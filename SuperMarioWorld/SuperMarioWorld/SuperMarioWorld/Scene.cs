@@ -274,13 +274,7 @@ namespace SuperMarioWorld
             }
             else
             {
-                for (int i = 0; i < objects.Count; i++)
-                {
-                    if(objects[i] is MainMenu)
-                    {
-                        cam = new Camera2D(new Vector2(objects[i].sprite.xSize / 2, objects[i].sprite.ySize / 2), _gridSize);
-                    }
-                }
+                cam = new Camera2D(null, _size, _gridSize);
             }
         }
 
@@ -355,9 +349,13 @@ namespace SuperMarioWorld
                 //Check if the game object is within the screen
                 if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {
-                    //Update the object and add it to the list of collidable objects.
-                    objects[i].Update(gameTime);
-                    _collidables.Add(objects[i]);
+                    if(objects[i] is StaticBlock)
+                        _collidables.Add(objects[i]);
+                    if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
+                    {
+                        objects[i].Update(gameTime);
+                        _collidables.Add(objects[i]);
+                    }
                 }
             }
         

@@ -35,7 +35,7 @@ namespace SuperMarioWorld
         }
         public GameState currentGameState = GameState.MainMenu;
 
-        private string levelPath = "MainMenu.sml";
+        private string levelPath = "DemoLevel01.sml";
 
         //A Level
         private Scene _scene;
@@ -45,6 +45,8 @@ namespace SuperMarioWorld
 
         private bool _vSync = true;
         private const int _scale = 3;
+
+        SpriteFont font;
 
 #if DEBUG
         //FPS Counter
@@ -104,7 +106,7 @@ namespace SuperMarioWorld
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(GraphicsDevice);            
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 #if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
@@ -199,7 +201,9 @@ namespace SuperMarioWorld
             {
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _scene.cam.GetTransformation(GraphicsDevice));
                 _scene.DrawLevel(_spriteBatch);
+
                 _spriteBatch.End();
+
             }
             //Only do this when the game is in a level
             else if (currentGameState == GameState.Playing)

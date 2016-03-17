@@ -61,8 +61,6 @@ namespace SuperMarioWorld
         //Scorehandler
         private ScoreHandler _scores;
 
-        InputManager _input;
-
         public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
         {
             //Set a score handler, all the interactions that require a score change go through the player object.
@@ -102,8 +100,6 @@ namespace SuperMarioWorld
                 default:
                     break;
             }
-
-            _input = new InputManager();
         }
 
         /// <summary>
@@ -152,11 +148,11 @@ namespace SuperMarioWorld
                     _invunerable = false;
             }
 
-            _input.Update();
+            InputManager.Instance.Update();
             if (!death)
             {
                 //If the button D is pressed
-                if (_input.IsPressed(Keys.D) || _input.GamePadIsPressed(Buttons.DPadRight) || _input.GamePadAnalogX() > 0.1f)
+                if (InputManager.Instance.IsPressed(Keys.D) || InputManager.Instance.GamePadIsPressed(Buttons.DPadRight) || InputManager.Instance.GamePadAnalogX() > 0.1f)
                 {
                     lookRight = true;
                     if (grounded)
@@ -165,7 +161,7 @@ namespace SuperMarioWorld
                         momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
                 //If button A is pressed
-                if (_input.IsPressed(Keys.A) || _input.GamePadIsPressed(Buttons.DPadLeft) || _input.GamePadAnalogX() < -0.1f)
+                if (InputManager.Instance.IsPressed(Keys.A) || InputManager.Instance.GamePadIsPressed(Buttons.DPadLeft) || InputManager.Instance.GamePadAnalogX() < -0.1f)
                 {
                     lookRight = false;
                     if (grounded)
@@ -173,7 +169,7 @@ namespace SuperMarioWorld
                     else
                         momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
-                if ((_input.OnPress(Keys.Space) || _input.GamePadOnPress(Buttons.A)) && grounded)
+                if ((InputManager.Instance.OnPress(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
                 {
                     momentum.Y = -140;
                     grounded = false;
@@ -308,6 +304,8 @@ namespace SuperMarioWorld
                     death = true;
                     momentum.X = 0;
                     momentum.Y = -500;
+                    boundingBox.Width = 0;
+                    boundingBox.Height = 0;
                     _scores.lives--;
                 }
             }
