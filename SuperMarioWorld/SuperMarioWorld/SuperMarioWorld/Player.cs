@@ -304,6 +304,8 @@ namespace SuperMarioWorld
                     death = true;
                     momentum.X = 0;
                     momentum.Y = -500;
+                    boundingBox.Width = 0;
+                    boundingBox.Height = 0;
                     _scores.lives--;
                 }
             }

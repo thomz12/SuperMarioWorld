@@ -343,9 +343,13 @@ namespace SuperMarioWorld
                 //Check if the game object is within the screen
                 if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {
-                    //Update the object and add it to the list of collidable objects.
-                    objects[i].Update(gameTime);
-                    _collidables.Add(objects[i]);
+                    if(objects[i] is StaticBlock)
+                        _collidables.Add(objects[i]);
+                    if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
+                    {
+                        objects[i].Update(gameTime);
+                        _collidables.Add(objects[i]);
+                    }
                 }
             }
         

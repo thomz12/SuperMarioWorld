@@ -67,6 +67,8 @@ namespace SuperMarioWorld
                 death = true;
                 momentum.Y = -200;
                 momentum.X /= 4;
+                boundingBox.Height = 0;
+                boundingBox.Width = 0;
                 sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
             }
         }
