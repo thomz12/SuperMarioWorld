@@ -17,11 +17,11 @@ namespace SuperMarioWorld
         {
             if (moving)
             {
-                maxSpeed = 16;
+                acceleration = 16;
             }
             else
             {
-                maxSpeed = 0;
+                acceleration = 0;
                 grounded = true;
                 affectedByGravity = false;
             }
