@@ -57,8 +57,7 @@ namespace SuperMarioWorld
             base.Update(gameTime);
 
             //If the object is affected by gravity set the grounded bool to false every update (needs a change)
-            if(affectedByGravity)
-                grounded = false;
+            grounded = false;
         }
 
         public virtual void Death()
@@ -92,7 +91,7 @@ namespace SuperMarioWorld
             }
 
             //Add gravity
-            if(!grounded)
+            if(!grounded && affectedByGravity)
                 momentum.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object

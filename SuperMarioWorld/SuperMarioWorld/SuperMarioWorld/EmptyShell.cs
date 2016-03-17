@@ -124,7 +124,8 @@ namespace SuperMarioWorld
             else if (collider is Entity && Math.Abs(momentum.X) > 3)
             {
                 Entity e = (Entity)collider;
-                e.Death();
+                if(!(e is Coin))
+                    e.Death();
             }
         }
     }
