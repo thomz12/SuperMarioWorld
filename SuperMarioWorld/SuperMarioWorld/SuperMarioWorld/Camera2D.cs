@@ -55,7 +55,7 @@ namespace SuperMarioWorld
             Vector2 delta = _player.position - Position;
 
             //X axis
-            if (delta.X < _xDeadZone)
+            if (delta.X < -_xDeadZone)
                 movingRight = false;
             if (delta.X > _xDeadZone)
                 movingRight = true;
@@ -64,6 +64,7 @@ namespace SuperMarioWorld
             {
                 if (delta.X > 0)
                     Position = new Vector2(Position.X + (_player.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+
             }
             else
             {
