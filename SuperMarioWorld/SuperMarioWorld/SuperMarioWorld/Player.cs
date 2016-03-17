@@ -114,17 +114,17 @@ namespace SuperMarioWorld
         {
             if(collider is Coin)
             {
-                collider.destoryed = true;
+                destory(collider);
                 _scores.coins++;
             }
             else if (collider is OneUp)
             {
-                collider.destoryed = true;
+                destory(collider);
                 _scores.lives++;
             }
             else if (collider is Mushroom)
             {
-                collider.destoryed = true;
+                destory(collider);
                 if(powerState != PowerState.small)
                 {
                     _scores.powerUp = ScoreHandler.PowerUp.mushroom;
@@ -144,7 +144,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            if(_invunerable)
+            if (_invunerable)
             {
                 _invunerableTimer -= (float)gameTime.ElapsedGameTime.Milliseconds / 1000.0f;
 

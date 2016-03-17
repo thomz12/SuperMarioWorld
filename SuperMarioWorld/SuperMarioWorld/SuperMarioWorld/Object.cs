@@ -29,7 +29,7 @@ namespace SuperMarioWorld
         {
             if (collider is Entity && blocking)
             {
-                Entity p = (Entity)collider;
+                Entity e = (Entity)collider;
                 //Overlap rect
                 Rectangle overlap;
                 //get overlap rect
@@ -38,42 +38,40 @@ namespace SuperMarioWorld
                 //if overlap width is higher than overlap height
                 if (overlap.Width > overlap.Height)
                 {
-                    if (p.position.Y < position.Y)
+                    if (e.position.Y < position.Y)
                     {
-                        if (p.momentum.Y > 0)
+                        if (e.momentum.Y > 0)
                         {
                             //When entity collides from the top
-                            p.position.Y = position.Y - boundingBox.Height + 1;
-                            p.momentum.Y = 16;
-                            p.grounded = true;
-                            p.momentum.Y = 0;
+                            e.position.Y = position.Y - boundingBox.Height + 1;
+                            e.momentum.Y = 16;
+                            e.grounded = true;
+                            e.momentum.Y = 0;
                         }
                     }
                     else if(!isPlatform)
                     {
                         //When entity collides from the buttom
-                        p.position.Y = position.Y + p.boundingBox.Height;
+                        e.position.Y = position.Y + e.boundingBox.Height;
 
-                        p.momentum.Y = 16;
+                        e.momentum.Y = 16;
                     }
                 }
                 else if(!isPlatform)
                 {
-                    if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
+                    if (Math.Abs(e.boundingBox.Bottom - boundingBox.Top) > 2)
                     {
                         //When entity collides from the left
-                        if (p.position.X < position.X)
+                        if (e.position.X < position.X)
                         {
-                            p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
+                            e.position.X = position.X - boundingBox.Width / 2 - e.boundingBox.Width / 2 - 1;
                         }
 
                         //When entity collides from the right
-                        if (p.position.X > position.X)
+                        if (e.position.X > position.X)
                         {
-                            p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+                            e.position.X = position.X + boundingBox.Width / 2 + e.boundingBox.Width / 2;
                         }
-
-                        Entity e = (Entity)collider;
 
                         if (!e.hasTurned && !(e is Player))
                         {
@@ -81,7 +79,7 @@ namespace SuperMarioWorld
                             e.hasTurned = true;
                         }
 
-                        p.momentum.X = 0;
+                        e.momentum.X = 0;
                     }
                 }
             }

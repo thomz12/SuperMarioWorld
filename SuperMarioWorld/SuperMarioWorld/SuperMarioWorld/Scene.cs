@@ -151,33 +151,35 @@ namespace SuperMarioWorld
 
                 for (int x = 0; x < _size.X; x++)
                 {
+                    GameObject obj = null;
+
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
-                        objects.Add(new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null));
+                        obj = new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null);
                     }
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
                         Random r = new Random();
-                        _player = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
-                        objects.Add(_player);
+                        obj = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
+                        _player = (Player)obj;
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba
                     {
-                        objects.Add(new Goomba(new Vector2((x * _gridSize), (y * _gridSize))));
+                        obj = new Goomba(new Vector2((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('C')) //If the char represents a coin which moves
                     {
-                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize)), true));
+                        obj = new Coin(new Vector2((x * _gridSize), (y * _gridSize)), true);
                     }
                     else if (objectChars[x].Equals('c')) //If the char represents a coin which doesnt move
                     {
-                        objects.Add(new Coin(new Vector2((x * _gridSize), (y * _gridSize)), false));
+                        obj = new Coin(new Vector2((x * _gridSize), (y * _gridSize)), false);
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
                         StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassMiddle, 0.4f);
-                        objects.Add(grass);
+                        obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
                             objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtMiddle, 0.1f + (float)y * (float) _gridSize / 1000f));
@@ -186,7 +188,7 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('>')) //If the char represents a Grass right block
                     {
                         StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassRight, 0.4f);
-                        objects.Add(grass);
+                        obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
                             objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtRight, 0.1f + (float)y * (float)_gridSize / 1000f));
@@ -195,7 +197,7 @@ namespace SuperMarioWorld
                     else if (objectChars[x].Equals('<')) //If the char represents a Grass left block
                     {
                         StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassLeft, 0.4f);
-                        objects.Add(grass);
+                        obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
                             objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtLeft, 0.1f + (float)y * (float)_gridSize / 1000f));
@@ -203,43 +205,50 @@ namespace SuperMarioWorld
                     }
                     else if (objectChars[x].Equals('K')) //If the char represents a Koopa
                     {
-                        objects.Add(new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize))));
+                        obj = new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('S')) //If the char represents a Shell
                     {
-                        objects.Add(new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green));
+                        obj = new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green);
                     }
                     else if (objectChars[x].Equals('L')) //If the char represents a cloud
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f));
+                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f);
                     }
                     else if (objectChars[x].Equals('O')) //If the char represents a rock
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f));
+                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f);
                     }
                     else if (objectChars[x].Equals('H')) //If the char represents a help
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f));
+                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f);
                     }
                     else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
                     {
-                        objects.Add(new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f));
+                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f);
                     }
                     else if (objectChars[x].Equals('Y')) //If the char represents a mushroom
                     {
-                        objects.Add(new Mushroom(new Vector2((x * _gridSize), (y * _gridSize))));
+                        obj = new Mushroom(new Vector2((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('P')) //If the char represents a one up
                     {
-                        objects.Add(new OneUp(new Vector2((x * _gridSize), (y * _gridSize))));
+                        obj = new OneUp(new Vector2((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('r')) //If the char represents a red koopa
                     {
-                        objects.Add(new RedKoopa(new Vector2(x * _gridSize, y * _gridSize)));
+                        obj = new RedKoopa(new Vector2(x * _gridSize, y * _gridSize));
                     }
                     else if(objectChars[x].Equals('f')) //If the char represents a checkpoint
                     {
-                        objects.Add(new Checkpoint(new Vector2(x * _gridSize, y * _gridSize)));
+                        obj = new Checkpoint(new Vector2(x * _gridSize, y * _gridSize));
+                    }
+
+                    if (obj != null)
+                    {
+                        obj.create = new CreateObject(CreateObject);
+                        obj.destory = new DestoryObject(DestoryObject);
+                        objects.Add(obj);
                     }
                 }
             }
@@ -285,6 +294,25 @@ namespace SuperMarioWorld
         }
 
         /// <summary>
+        /// Creates an object
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public void CreateObject(GameObject gameObject)
+        {
+            gameObject.sprite.texture = loadedSprites[gameObject.sprite.sourceName];
+            objects.Add(gameObject);
+        }
+
+        /// <summary>
+        /// Destorys an object
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public void DestoryObject(GameObject gameObject)
+        {
+            objects.Remove(gameObject);
+        }
+
+        /// <summary>
         /// Call update for every object in the level, check collisions and call oncollisions
         /// </summary>
         /// <param name="gameTime"></param>
@@ -303,12 +331,6 @@ namespace SuperMarioWorld
             //Call the update method for all gameobjects
             for (int i = 0; i < objects.Count; i++)
             {
-                if(objects[i].destoryed)
-                {
-                    objects.RemoveAt(i);
-                    continue;
-                }
-
                 //Check if the game object is within the screen
                 if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {

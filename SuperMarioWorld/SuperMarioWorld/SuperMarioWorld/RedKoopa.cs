@@ -51,6 +51,12 @@ namespace SuperMarioWorld
             base.Update(gameTime);
         }
 
+        public override void Death()
+        {
+            base.Death();
+            create(new EmptyShell(position, EmptyShell.KoopaType.red));
+        }
+
         public override void OnCollision(GameObject collider)
         {
             if(collider is Object)
@@ -67,6 +73,7 @@ namespace SuperMarioWorld
                     }
                 }
             }
+
 
             base.OnCollision(collider);
         }
