@@ -58,16 +58,18 @@ namespace SuperMarioWorld
             if (delta.X > _xDeadZone)
                 movingRight = true;
 
+            float targetX = _target.position.X;
+
             if(movingRight)
             {
                 if (delta.X > 0)
-                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                    Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
 
             }
             else
             {
                 if (delta.X < 0)
-                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                    Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
             }
 
             //Y axis
@@ -83,6 +85,12 @@ namespace SuperMarioWorld
             {
                 Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
             }
+
+            if (Position.X < GameWidth / 2 - _gridSize / 2)
+                Position = new Vector2(GameWidth / 2 - _gridSize / 2, Position.Y);
+
+            if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
+                Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
         }
 
         /// <summary>

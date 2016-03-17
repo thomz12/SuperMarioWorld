@@ -156,7 +156,7 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
-                        obj = new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), null);
+                        obj = new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), new Mushroom(Vector2.Zero));
                     }
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
@@ -299,7 +299,10 @@ namespace SuperMarioWorld
         /// <param name="gameObject"></param>
         public void CreateObject(GameObject gameObject)
         {
-            gameObject.sprite.texture = loadedSprites[gameObject.sprite.sourceName];
+            if (loadedSprites.ContainsKey(gameObject.sprite.sourceName))
+                gameObject.sprite.texture = loadedSprites[gameObject.sprite.sourceName];
+            else
+               gameObject.sprite.texture = _contentManager.Load<Texture2D>(gameObject.sprite.sourceName);
             objects.Add(gameObject);
         }
 
