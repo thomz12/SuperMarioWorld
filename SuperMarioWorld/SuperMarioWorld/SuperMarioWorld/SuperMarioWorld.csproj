@@ -83,7 +83,7 @@
     <Compile Include="GreenKoopa.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="InputManager.cs" />
-    <Compile Include="Level.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="Mushroom.cs" />
     <Compile Include="OneUp.cs" />
     <Compile Include="RedKoopa.cs" />

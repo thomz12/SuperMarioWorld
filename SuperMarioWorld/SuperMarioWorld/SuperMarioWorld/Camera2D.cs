@@ -17,13 +17,11 @@ namespace SuperMarioWorld
         //Current position of the camera
         public Vector2 Position { get; set; }
 
-        private Vector2 _position;
-
         //Current rotation of the camera
         public float Rotation { get; set; }
 
         //The player the camera should track
-        private Player _player;
+        private GameObject _target;
 
         public int GameHeight { get; set; }
         public int GameWidth { get; set; }
@@ -36,15 +34,15 @@ namespace SuperMarioWorld
         private Point _levelSize;
         private int _gridSize;
 
-        public Camera2D(Player player, Point size, int grid)
+        public Camera2D(GameObject target, Point size, int grid)
         {
-            _player = player;
+            _target = target;
             _levelSize = size;
             _gridSize = grid;
 
             Zoom = 1.0f;
             Rotation = 0;
-            Position = player.position;
+            Position = target.position;
         }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            Vector2 delta = _player.position - Position;
+            Vector2 delta = _target.position - Position;
 
             //X axis
             if (delta.X < -_xDeadZone)
@@ -63,13 +61,13 @@ namespace SuperMarioWorld
             if(movingRight)
             {
                 if (delta.X > 0)
-                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
 
             }
             else
             {
                 if (delta.X < 0)
-                    Position = new Vector2(Position.X + (_player.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                    Position = new Vector2(Position.X + (_target.position.X - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
             }
 
             //Y axis
@@ -78,12 +76,12 @@ namespace SuperMarioWorld
                 Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
                 if (delta.Y < -(GameHeight / 4))
                 {
-                    Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                    Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
                 }
             }
             else
             {
-                Position = new Vector2(Position.X, Position.Y + (_player.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
             }
         }
 

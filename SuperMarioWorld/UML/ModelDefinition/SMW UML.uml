@@ -52,7 +52,7 @@ a level file (.sml)</body>
             isAbstract="false">
             <classMoniker
               Id="f673c9bd-50b5-463d-afef-72b4ebe1050d"
-              LastKnownName="Level"
+              LastKnownName="Scene"
               LastKnownLocation="SMW UML.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -111,6 +111,45 @@ a level file (.sml)</body>
                 <memberEnd
                   Id="9a4968d7-9706-42dd-9909-141f2dd257a9"
                   name="creates"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ef4ffc56-a8c6-4ccb-9725-0a99cc430267"
+            isDerived="false"
+            sourceEndRoleName="SMWGame"
+            targetEndRoleName="GameState"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="e33e2250-dc86-422d-9cc7-060cb9151170"
+              LastKnownName="GameState"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="227d6559-6758-4b37-abee-95e6c74e190b"
+                  name="SMWGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="21ecf750-102c-4183-a909-546626e57bde"
+                  name="GameState"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2642,7 +2681,7 @@ a level file (.sml)</body>
     <packageHasNamedElement>
       <class
         Id="f673c9bd-50b5-463d-afef-72b4ebe1050d"
-        name="Level"
+        name="Scene"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -4329,6 +4368,33 @@ a level file (.sml)</body>
       <undefinedType
         Id="e614fd1d-fd81-4191-b416-901a0fbde006"
         name="List&lt;Point&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="e33e2250-dc86-422d-9cc7-060cb9151170"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="e949155d-c79c-4862-adfd-4895dca16c8f"
+            name="MainMenu" />
+          <enumerationLiteral
+            Id="402c0e40-0724-4465-b694-314b12c15103"
+            name="Playing" />
+          <enumerationLiteral
+            Id="1e475313-8e25-41df-bba6-9ecac3243874"
+            name="Pause" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="82fd3728-145c-4be5-a393-35e8b2bbb3db"
+        name="MainMenu"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

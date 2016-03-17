@@ -19,7 +19,7 @@ a level file (.sml)</body>
         </generalsInternal>
         <targetEnds>
           <association Id="7f4158e6-c581-4c6e-b102-9c75b0e196b0" isDerived="false" sourceEndRoleName="MainGame" targetEndRoleName="A Level" isLeaf="false" isAbstract="false">
-            <classMoniker Id="a3a1ef0d-110b-4161-970d-fc16de4ef011" LastKnownName="Level" />
+            <classMoniker Id="a3a1ef0d-110b-4161-970d-fc16de4ef011" LastKnownName="Scene" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="3773f8da-9e99-4856-8538-56875816c5b8" name="MainGame" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
@@ -49,6 +49,22 @@ a level file (.sml)</body>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="00cecae3-c394-44f5-8bce-feee7c24950c" />
+          </association>
+          <association Id="c7d9cb00-5daa-4959-bfc6-4d96e1e8b4ac" isDerived="false" sourceEndRoleName="SMWGame" targetEndRoleName="GameState" isLeaf="false" isAbstract="false">
+            <enumerationMoniker Id="434a929a-1e24-467f-8510-15d38a7eedaf" LastKnownName="GameState" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cd2ee35e-aa73-407b-8893-9a01c0722348" name="SMWGame" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="227d6559-6758-4b37-abee-95e6c74e190b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d85518d0-f9c0-47f4-87d4-4e0eecdbe1b8" name="GameState" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="21ecf750-102c-4183-a909-546626e57bde" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ef4ffc56-a8c6-4ccb-9725-0a99cc430267" />
           </association>
         </targetEnds>
         <ownedAttributesInternal>
@@ -1072,7 +1088,7 @@ a level file (.sml)</body>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="a3a1ef0d-110b-4161-970d-fc16de4ef011" name="Level" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="a3a1ef0d-110b-4161-970d-fc16de4ef011" name="Scene" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="f673c9bd-50b5-463d-afef-72b4ebe1050d" />
         <suppliersInternal>
           <dependency Id="c70e2045-3131-4402-98b6-58b1aef875b9">
@@ -1996,6 +2012,27 @@ a level file (.sml)</body>
         <elementDefinition Id="921fbb4a-e588-4ee6-8a15-3be6e454643d" />
       </referencedType>
     </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="434a929a-1e24-467f-8510-15d38a7eedaf" name="GameState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e33e2250-dc86-422d-9cc7-060cb9151170" />
+        <ownedLiterals>
+          <enumerationLiteral Id="19caa5e8-dafa-4117-b74e-acf468a36f46" name="MainMenu">
+            <elementDefinition Id="e949155d-c79c-4862-adfd-4895dca16c8f" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="14812a5a-a3fd-41c4-a538-116a7db7ae0d" name="Playing">
+            <elementDefinition Id="402c0e40-0724-4465-b694-314b12c15103" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="7d5c442e-ca77-4224-b3e1-1a456219135a" name="Pause">
+            <elementDefinition Id="1e475313-8e25-41df-bba6-9ecac3243874" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0f9eae21-bfd0-4395-bee8-c9829709d14f" name="MainMenu" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="82fd3728-145c-4be5-a393-35e8b2bbb3db" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="d913c215-6805-4549-82da-cabd1137dc53" name="UML">
     <elementDefinition Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498" />

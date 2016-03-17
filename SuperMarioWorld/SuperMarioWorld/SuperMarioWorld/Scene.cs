@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    class Level
+    delegate void LoadScene();
+
+    class Scene
     {
         //Content manager
         private ContentManager _contentManager;
@@ -40,9 +42,10 @@ namespace SuperMarioWorld
         //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
         private Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
+        public LoadScene load;
 
         //Variables for the background
-        private string _backgroundSourceName = "BushBackground";
+        private string _backgroundSourceName;
         private Texture2D _backgroundTexture;
 
         //Position of the background texture
@@ -54,7 +57,7 @@ namespace SuperMarioWorld
         /// Display a testlevel
         /// </summary>
         /// <param name="batch">Give the batch that the sprites should be drawn in.</param>
-        public Level(ScoreHandler scoreHandler)
+        public Scene(ScoreHandler scoreHandler)
         {
             _hud = new HUD(scoreHandler);
             _scores = scoreHandler;
@@ -77,6 +80,8 @@ namespace SuperMarioWorld
             //Create camera object
             cam = new Camera2D(_player, _size, _gridSize);
 
+            _backgroundSourceName = @"Background\BushBackground";
+
             _backOffset = (int)cam.Position.X / 2;
         }
 
@@ -84,11 +89,12 @@ namespace SuperMarioWorld
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
-        public Level(string fileName, ScoreHandler scoreHandler)
+        public Scene(string fileName, ScoreHandler scoreHandler)
         {
             //Create the scorehandler so the level file can put information in it.
             _scores = scoreHandler;
 
+            _backgroundSourceName = @"Background\BushBackground";
 
             //Set the gridsize
             _gridSize = 16;
@@ -284,6 +290,11 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
+            if (_player.position.Y > cam.GameHeight + 10)
+            {
+                load();
+            }
+
             int camX = (int)cam.Position.X;
             int camY = (int)cam.Position.Y;
 

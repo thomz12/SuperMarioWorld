@@ -26,8 +26,20 @@ namespace SuperMarioWorld
         private Texture2D _debugTexture;
         private SpriteFont _debugFont;
 #endif
-        //A level
-        private Level _level;
+        //Gamestate and menus
+        public enum GameState
+        {
+            MainMenu,
+            Playing,
+            Pause
+        }
+        public GameState currentGameState = GameState.Playing;
+
+        private string levelPath = "DemoLevel01.sml";
+
+        //A Level
+        private Scene _scene;
+
         //Create a score tracker
         private ScoreHandler _scores;
 
@@ -64,13 +76,12 @@ namespace SuperMarioWorld
             //Make sure mouse is visable
             IsMouseVisible = true;
 
-            //Load a level
-            //TODO load specific levels from main menu/world map
+
+
+            //Create the new ScoreHandler
             _scores = new ScoreHandler();
-            _level = new Level("DemoLevel01.sml", _scores);
-            _level.cam.Zoom = _scale;
-            _level.cam.GameHeight = _gameHeight;
-            _level.cam.GameWidth = _gameWidth;
+            //TODO load from a savefile
+
             Content.RootDirectory = "Content";
         }
 
@@ -94,15 +105,26 @@ namespace SuperMarioWorld
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //Tell level to load its content
-            _level.LoadContent(this.Content);
-            
+            _spriteBatch = new SpriteBatch(GraphicsDevice);            
 #if DEBUG
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
-            _debugFont = Content.Load<SpriteFont>("DefaultFont");
+            _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
 #endif
+            LoadScene();
+        }
+
+        /// <summary>
+        /// Changes the scene to the scene of the given file path
+        /// </summary>
+        /// <param name="sceneSourceFile">Name of the scene in the \Content\Levels folder, including extension.</param>
+        public void LoadScene()
+        {
+            _scene = new Scene(levelPath, _scores);
+            _scene.cam.Zoom = _scale;
+            _scene.cam.GameHeight = _gameHeight;
+            _scene.cam.GameWidth = _gameWidth;
+            _scene.LoadContent(this.Content);
+            _scene.load = new LoadScene(LoadScene);
         }
 
         /// <summary>
@@ -141,7 +163,21 @@ namespace SuperMarioWorld
                 _graphics.ToggleFullScreen();
             }
 
-            _level.Update(gameTime);
+            if(currentGameState == GameState.MainMenu)
+            {
+
+            }
+            else if (currentGameState == GameState.Playing)
+            {
+                //Load a certain level
+                /*
+                _level = new Level("DemoLevel01.sml", _scores);
+                _level.cam.Zoom = _scale;
+                _level.cam.GameHeight = _gameHeight;
+                _level.cam.GameWidth = _gameWidth;
+                */
+            }
+            _scene.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -160,30 +196,40 @@ namespace SuperMarioWorld
             //Set clear color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //Draw level
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _level.cam.GetTransformation(GraphicsDevice));
-#if DEBUG
-            //Draw each object that is in the level
-            for (int i = 0; i < _level.objects.Count; i++)
+            if (currentGameState == GameState.MainMenu)
             {
-                _spriteBatch.Draw(_debugTexture, _level.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
-                if(_level.objects[i] is RedKoopa)
-                {
-                    RedKoopa r = (RedKoopa)_level.objects[i];
-                    _spriteBatch.Draw(_debugTexture, r.checkPlatformBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
-                }
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+                
+                _spriteBatch.End();
             }
-#endif
-            _level.DrawLevel(_spriteBatch);
-            _spriteBatch.End();
-
-            //Draw HUD
-            Matrix HUDMatrix = Matrix.CreateScale(new Vector3(_scale, _scale, 1));
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
-            _level.DrawHUD(_spriteBatch);
-            _spriteBatch.End();
+            //Only do this when the game is in a level
+            else if (currentGameState == GameState.Playing)
+            {
+                //Draw level
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _scene.cam.GetTransformation(GraphicsDevice));
 #if DEBUG
-            //Draw HUD
+                //Draw each object that is in the level
+                for (int i = 0; i < _scene.objects.Count; i++)
+                {
+                    _spriteBatch.Draw(_debugTexture, _scene.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+                    if (_scene.objects[i] is RedKoopa)
+                    {
+                        RedKoopa r = (RedKoopa)_scene.objects[i];
+                        _spriteBatch.Draw(_debugTexture, r.checkPlatformBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+                    }
+                }
+#endif
+                _scene.DrawLevel(_spriteBatch);
+                _spriteBatch.End();
+
+                //Draw HUD
+                Matrix HUDMatrix = Matrix.CreateScale(new Vector3(_scale, _scale, 1));
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
+                _scene.DrawHUD(_spriteBatch);
+                _spriteBatch.End();
+            }
+#if DEBUG
+            //Draw debug
             _spriteBatch.Begin();
             _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 0), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);

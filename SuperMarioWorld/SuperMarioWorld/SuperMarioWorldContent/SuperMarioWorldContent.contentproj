@@ -30,7 +30,7 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultFont.spritefont">
+    <Compile Include="Fonts\DefaultFont.spritefont">
       <Name>DefaultFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -39,20 +39,6 @@
   <ItemGroup>
     <Compile Include="DebugTexture.png">
       <Name>DebugTexture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BushBackground.png">
-      <Name>BushBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="generalSpriteSheet.png">
-      <Name>generalSpriteSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -118,6 +104,16 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Background\BushBackground.png">
+      <Name>BushBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <None Include="Levels\MainMenu.sml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>MainMenu</Name>
+    </None>
     <None Include="Levels\SMW1-2.sml">
       <Name>SMW1-2</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -147,19 +143,19 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Content Include="Fonts\Super Mario World Regular.spritefont">
+      <Name>Super Mario World Regular</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Levels\DemoLevel01.sml">
       <Name>DemoLevel01</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="super_princess_world_custom_sprites__princesses_by_sonny_the_cheetah-d604j7t.png">
-      <Name>super_princess_world_custom_sprites__princesses_by_sonny_the_cheetah-d604j7t</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PowerUps\FireFlower.png">
