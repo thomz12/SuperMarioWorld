@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
+
+    delegate void CreateObject(GameObject gameObject);
+    delegate void DestoryObject(GameObject gameObject);
+
     abstract class GameObject
     {
         //Sprite (texture) of this object
@@ -16,17 +20,18 @@ namespace SuperMarioWorld
         //Current position of this object
         public Vector2 position;
 
-        public bool destoryed = false;
+        public CreateObject create;
+        public DestoryObject destory;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public GameObject()
         {
-            this.position = Vector2.Zero;
+            position = Vector2.Zero;
 
             sprite = new Sprite();
-            sprite.layer = 0.5f;
+            sprite.layer = 0.5f;  
         }
 
         /// <summary>

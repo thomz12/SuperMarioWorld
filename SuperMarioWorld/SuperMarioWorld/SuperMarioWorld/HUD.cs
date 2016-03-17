@@ -98,6 +98,11 @@ namespace SuperMarioWorld
                 //TODO: Death
                 _timeLeft = 0;
             }
+            if(_scores.coins >= 100)
+            {
+                _scores.coins = _scores.coins - 100;
+                _scores.lives++;
+            }
         }
 
         public void DrawHUD(SpriteBatch batch)

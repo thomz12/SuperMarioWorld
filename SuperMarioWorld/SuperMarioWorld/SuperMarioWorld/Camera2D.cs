@@ -17,8 +17,6 @@ namespace SuperMarioWorld
         //Current position of the camera
         public Vector2 Position { get; set; }
 
-        private Vector2 _position;
-
         //Current rotation of the camera
         public float Rotation { get; set; }
 
