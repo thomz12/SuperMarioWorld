@@ -144,9 +144,6 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            Coin coin = new Coin(new Vector2(position.X, position.Y - 16), true);
-            create(coin);
-
             if (_invunerable)
             {
                 _invunerableTimer -= (float)gameTime.ElapsedGameTime.Milliseconds / 1000.0f;
