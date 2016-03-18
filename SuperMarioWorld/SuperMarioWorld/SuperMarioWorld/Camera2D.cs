@@ -26,7 +26,13 @@ namespace SuperMarioWorld
         //The player the camera should track
         private GameObject _target;
 
+        /// <summary>
+        /// Height of the default SNES resolution (in px)
+        /// </summary>
         public int GameHeight { get; set; }
+        /// <summary>
+        /// Width of the default SNES resolution (in px)
+        /// </summary>
         public int GameWidth { get; set; }
 
         private float _smoothness = 4f;

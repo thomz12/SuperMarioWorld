@@ -153,6 +153,8 @@ namespace SuperMarioWorld
                 {
                     GameObject obj = null;
 
+                    //Checks the file for a character and creates the corresponding object
+                    #region CreateObjects
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
@@ -247,11 +249,12 @@ namespace SuperMarioWorld
                     {
                         obj = new MainMenu(new Vector2(0, 0), _contentManager);
                     }
+                    #endregion
 
                     if (obj != null)
                     {
                         obj.create = new CreateObject(CreateObject);
-                        obj.destory = new DestoryObject(DestoryObject);
+                        obj.destory = new DestoryObject(DestroyObject);
                         objects.Add(obj);
                     }
                 }
@@ -311,23 +314,32 @@ namespace SuperMarioWorld
         }
 
         /// <summary>
-        /// Creates an object
+        /// Creates an GameObject
         /// </summary>
-        /// <param name="gameObject"></param>
+        /// <param name="gameObject">GameObject that should be created</param>
         public void CreateObject(GameObject gameObject)
         {
-            if (loadedSprites.ContainsKey(gameObject.sprite.sourceName))
-                gameObject.sprite.texture = loadedSprites[gameObject.sprite.sourceName];
+            //Create a temp object
+            GameObject obj = gameObject;
+
+            //load in the sprites (if nesecarry)
+            if (loadedSprites.ContainsKey(obj.sprite.sourceName))
+                obj.sprite.texture = loadedSprites[obj.sprite.sourceName];
             else
-               gameObject.sprite.texture = _contentManager.Load<Texture2D>(gameObject.sprite.sourceName);
-            objects.Add(gameObject);
+               obj.sprite.texture = _contentManager.Load<Texture2D>(obj.sprite.sourceName);
+
+            //Add a create and destroy function
+            obj.create = new CreateObject(CreateObject);
+            obj.destory = new DestoryObject(DestroyObject);
+
+            objects.Add(obj);
         }
 
         /// <summary>
-        /// Destorys an object
+        /// Destorys an GameObject
         /// </summary>
-        /// <param name="gameObject"></param>
-        public void DestoryObject(GameObject gameObject)
+        /// <param name="gameObject">Destroy this GameObject</param>
+        public void DestroyObject(GameObject gameObject)
         {
             objects.Remove(gameObject);
         }
@@ -349,12 +361,23 @@ namespace SuperMarioWorld
                 //Check if the game object is within the screen
                 if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
                 {
+                    //Add the objects that are in the frame to the collision list to be checked for collisions
                     if(objects[i] is StaticBlock)
                         _collidables.Add(objects[i]);
                     if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
                     {
                         objects[i].Update(gameTime);
                         _collidables.Add(objects[i]);
+                    }
+
+                    //Check if the object has fallen out of the map (downwards)
+                    if(objects[i].position.Y > _size.Y * _gridSize + 50)
+                    {
+                        //Destroy the object if it is still alive.
+                        if(objects[i] != null)
+                        {
+                            objects[i].destory(objects[i]);
+                        }
                     }
                 }
             }

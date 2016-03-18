@@ -19,7 +19,13 @@ namespace SuperMarioWorld
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        /// <summary>
+        /// Default SNES height in pixels.
+        /// </summary>
         private const int _gameHeight = 224;
+        /// <summary>
+        /// Default SNES width in pixels.
+        /// </summary>
         private const int _gameWidth = 256;
 
 #if DEBUG

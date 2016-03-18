@@ -302,7 +302,7 @@ namespace SuperMarioWorld
                     if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
                     {
                         //The position needs changin!
-                        create(new Mushroom(new Vector2(position.X, position.Y - 64)));
+                        create(new Mushroom(new Vector2(position.X, position.Y - 128)));
                         _scores.powerUp = ScoreHandler.PowerUp.none;
                     }
                 }
