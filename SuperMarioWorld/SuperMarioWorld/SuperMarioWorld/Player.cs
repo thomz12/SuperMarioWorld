@@ -113,7 +113,6 @@ namespace SuperMarioWorld
             {
                 destory(collider);
                 _scores.coins++;
-                _scores.AddCombo();
             }
             else if (collider is OneUp)
             {

@@ -47,7 +47,7 @@ namespace SuperMarioWorld
             if (combo)
             {
                 comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(comboTimer >= 1500)
+                if(comboTimer >= 1000)
                 {
                     combo = false;
                     comboTimer = 0;
