@@ -148,6 +148,8 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            _scores.Update(gameTime);
+
 #if DEBUG
             //FPS Counter
             _counter.elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;

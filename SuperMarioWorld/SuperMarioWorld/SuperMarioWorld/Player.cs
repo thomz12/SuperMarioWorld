@@ -108,28 +108,48 @@ namespace SuperMarioWorld
         /// <param name="collider">Collision with the collider object</param>
         public override void OnCollision(GameObject collider)
         {
+            //All the scoring is done by the player.
             if(collider is Coin)
             {
                 destory(collider);
                 _scores.coins++;
+                _scores.AddCombo();
             }
             else if (collider is OneUp)
             {
                 destory(collider);
                 _scores.lives++;
+                _scores.score += 1000;
             }
             else if (collider is Mushroom)
             {
                 destory(collider);
                 if(powerState != PowerState.small)
                 {
-                    _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                    if (_scores.powerUp == ScoreHandler.PowerUp.none)
+                        _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                    else
+                        _scores.score += 1000;
                 }
                 else
                 {
                     SetAnimation(PlayerAnimationState.Dead);
                     powerState = PowerState.normal;
                     boundingBox.Height = 24;
+                }
+            }
+            else if (collider is Enemy)
+            {
+                if(momentum.Y > 3)
+                {
+                    _scores.AddCombo();
+                }
+            }
+            else if (collider is EmptyShell)
+            {
+                if (momentum.Y < 3)
+                {
+                    _scores.AddCombo();
                 }
             }
         }

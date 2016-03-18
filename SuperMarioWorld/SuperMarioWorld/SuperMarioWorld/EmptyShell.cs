@@ -35,10 +35,7 @@ namespace SuperMarioWorld
             sprite.ySize = 16;
             sprite.animationSpeed = 100;
 
-            for (int i = 0; i < 4; i++)
-            {
-                sprite.AddFrame(i, (int)_koopaType);
-            }
+            sprite.NewAnimation(0, (int)_koopaType);
 
             acceleration = 128.0f;
             maxSpeed = 160;

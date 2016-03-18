@@ -50,10 +50,9 @@ namespace SuperMarioWorld
 
         public override void DrawObject(SpriteBatch batch)
         {
-            string text = "Hello World";
+            string text = "blljoawowaj";
 
             batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, sprite.ySize / 2 + 4), Color.Black, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
-
 
             sprite.DrawSprite(batch, new Vector2(0, 0));
         }

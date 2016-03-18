@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,10 @@ namespace SuperMarioWorld
         public int score;
         public int starPoints;
 
+        private bool combo;
+        private int comboPoints;
+        private float comboTimer;
+
         public enum PowerUp
         {
             none,
@@ -31,7 +36,62 @@ namespace SuperMarioWorld
 
         public ScoreHandler()
         {
+            combo = false;
+            comboPoints = 100;
+            comboTimer = 0;
             //LoadScores()
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (combo)
+            {
+                comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if(comboTimer >= 1500)
+                {
+                    combo = false;
+                    comboTimer = 0;
+                    comboPoints = 100;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds additional score to the combo and checks if it is still running.
+        /// Things like coins and hitting enemies can increase the combo.
+        /// </summary>
+        public void AddCombo()
+        {
+            if (!combo)
+            {
+                combo = true;
+            }
+
+            score += comboPoints;
+            comboTimer = 0;
+
+            //This ugly switch should do the trick for the irregular combo points rewarded.
+            switch (comboPoints)
+            {
+                case 100:
+                    comboPoints = 200;
+                    break;
+                case 200:
+                    comboPoints = 400;
+                    break;
+                case 400:
+                    comboPoints = 500;
+                    break;
+                case 500:
+                    comboPoints = 800;
+                    break;
+                case 800:
+                    comboPoints = 1000;
+                    break;
+                case 1000:
+                    lives++;
+                    break;
+            }
         }
 
         /// <summary>
