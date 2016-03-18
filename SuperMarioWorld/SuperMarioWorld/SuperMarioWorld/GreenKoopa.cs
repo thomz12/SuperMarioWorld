@@ -24,6 +24,13 @@ namespace SuperMarioWorld
             boundingBox = new Rectangle(0, 0, 12, 24); 
         }
 
+        public override void Death(GameObject cause)
+        {
+            base.Death(cause);
+            if (!(cause is EmptyShell))
+                create(new EmptyShell(position, EmptyShell.KoopaType.green));
+        }
+
         public override void OnCollision(GameObject collider)
         {
             //Call parent's OnCollision function

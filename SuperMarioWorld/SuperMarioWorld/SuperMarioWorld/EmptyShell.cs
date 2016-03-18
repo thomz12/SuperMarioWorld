@@ -96,7 +96,7 @@ namespace SuperMarioWorld
                     //else kill it!
                     else
                     {
-                        p.Death();
+                        p.Death(this);
                     }
                 }
                 else
@@ -125,7 +125,7 @@ namespace SuperMarioWorld
             {
                 Entity e = (Entity)collider;
                 if(!(e is Coin))
-                    e.Death();
+                    e.Death(this);
             }
         }
     }

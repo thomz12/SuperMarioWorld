@@ -50,10 +50,11 @@ namespace SuperMarioWorld
             base.Update(gameTime);
         }
 
-        public override void Death()
+        public override void Death(GameObject cause)
         {
-            base.Death();
-            create(new EmptyShell(position, EmptyShell.KoopaType.red));
+            base.Death(cause);
+            if(!(cause is EmptyShell))
+                create(new EmptyShell(position, EmptyShell.KoopaType.red));
         }
 
         public override void OnCollision(GameObject collider)

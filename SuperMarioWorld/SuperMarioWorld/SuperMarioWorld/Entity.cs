@@ -60,7 +60,11 @@ namespace SuperMarioWorld
             grounded = false;
         }
 
-        public virtual void Death()
+        /// <summary>
+        /// Initiate the death animation for the entity
+        /// </summary>
+        /// <param name="cause">GameObject that caused this entities death</param>
+        public virtual void Death(GameObject cause)
         {
             if (!death)
             {

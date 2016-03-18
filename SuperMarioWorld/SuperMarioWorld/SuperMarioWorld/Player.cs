@@ -287,7 +287,7 @@ namespace SuperMarioWorld
             _animationState = animation;
         }
 
-        public override void Death()
+        public override void Death(GameObject cause)
         {
             if (!_invunerable)
             {
@@ -298,6 +298,13 @@ namespace SuperMarioWorld
                     _invunerable = true;
                     _invunerableTimer = _invunerableTime;
                     boundingBox.Height = 14;
+
+                    if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
+                    {
+                        //The position needs changin!
+                        create(new Mushroom(new Vector2(position.X, position.Y - 64)));
+                        _scores.powerUp = ScoreHandler.PowerUp.none;
+                    }
                 }
                 else if (powerState == PowerState.small)
                 {

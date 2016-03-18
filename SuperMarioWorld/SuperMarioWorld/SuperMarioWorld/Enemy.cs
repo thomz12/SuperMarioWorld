@@ -27,11 +27,11 @@ namespace SuperMarioWorld
                     p.momentum.Y = -110;
                     p.boundingBox.Y = (int)position.Y - boundingBox.Height - p.boundingBox.Height;
                     p.position.Y = position.Y - boundingBox.Height;
-                    Death();
+                    Death(collider);
                 }
                 else if(!death)
                 {
-                    p.Death();
+                    p.Death(collider);
                 }
             }
         }

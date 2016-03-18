@@ -33,7 +33,7 @@ namespace SuperMarioWorld
             Playing,
             Pause
         }
-        public GameState currentGameState = GameState.MainMenu;
+        public GameState currentGameState = GameState.Playing;
 
         private string levelPath = "DemoLevel01.sml";
 
@@ -45,8 +45,6 @@ namespace SuperMarioWorld
 
         private bool _vSync = true;
         private const int _scale = 3;
-
-        SpriteFont font;
 
 #if DEBUG
         //FPS Counter
@@ -164,20 +162,6 @@ namespace SuperMarioWorld
                 _graphics.ToggleFullScreen();
             }
 
-            if(currentGameState == GameState.MainMenu)
-            {
-
-            }
-            else if (currentGameState == GameState.Playing)
-            {
-                //Load a certain level
-                /*
-                _level = new Level("DemoLevel01.sml", _scores);
-                _level.cam.Zoom = _scale;
-                _level.cam.GameHeight = _gameHeight;
-                _level.cam.GameWidth = _gameWidth;
-                */
-            }
             _scene.Update(gameTime);
 
             base.Update(gameTime);
