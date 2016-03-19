@@ -41,7 +41,7 @@ namespace SuperMarioWorld
         }
         public GameState currentGameState = GameState.Playing;
 
-        private string levelPath = "DemoLevel01.sml";
+        private string levelPath = "MainMenu.sml";
 
         //A Level
         private Scene _scene;
@@ -149,7 +149,7 @@ namespace SuperMarioWorld
         protected override void Update(GameTime gameTime)
         {
             _scores.Update(gameTime);
-
+            InputManager.Instance.Update();
 #if DEBUG
             //FPS Counter
             _counter.elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
