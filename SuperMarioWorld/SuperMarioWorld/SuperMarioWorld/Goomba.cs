@@ -12,7 +12,7 @@ namespace SuperMarioWorld
         /// Default constructor
         /// </summary>
         /// <param name="position">Position the goomba should be on.</param>
-        public Goomba(Vector2 position) : base (position)
+        public Goomba(Point position) : base (position)
         {
             sprite.sourceName = @"Enemies\Goomba";
             sprite.xSize = 16;

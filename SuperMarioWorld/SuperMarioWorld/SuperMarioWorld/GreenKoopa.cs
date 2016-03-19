@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class GreenKoopa : Enemy
     {
-        public GreenKoopa(Vector2 position) : base (position)
+        public GreenKoopa(Point position) : base (position)
         {
             sprite.sourceName = @"Enemies\Koopas";
             sprite.xSize = 16;
@@ -28,7 +28,7 @@ namespace SuperMarioWorld
         {
             base.Death(cause);
             if (!(cause is EmptyShell))
-                create(new EmptyShell(position, EmptyShell.KoopaType.green));
+                create(new EmptyShell(new Point((int)position.X, (int)position.Y), EmptyShell.KoopaType.green));
         }
 
         public override void OnCollision(GameObject collider)

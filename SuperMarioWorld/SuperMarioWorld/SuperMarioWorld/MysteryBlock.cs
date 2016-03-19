@@ -11,7 +11,7 @@ namespace SuperMarioWorld
     {
         public GameObject content;
 
-        public MysteryBlock(Vector2 position, GameObject contents) : base (position)
+        public MysteryBlock(Point position, GameObject contents) : base (position)
         {
             //Sets the contents of the mysteryblock
             content = contents;

@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     abstract class Enemy : Entity
     {
-        public Enemy(Vector2 position) : base (position)
+        public Enemy(Point position) : base (position)
         {
             
         }

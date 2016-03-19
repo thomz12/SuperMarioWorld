@@ -27,7 +27,7 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="position">Position in the world</param>
         /// <param name="koopaType">What color was the koopa?</param>
-        public EmptyShell(Vector2 position, KoopaType koopaType) : base (position)
+        public EmptyShell(Point position, KoopaType koopaType) : base (position)
         {
             this.koopaType = koopaType;
             sprite.sourceName = @"Enemies\KoopaShells";

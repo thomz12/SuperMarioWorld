@@ -44,28 +44,28 @@ namespace SuperMarioWorld
             curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
-        public bool IsPressed(Keys key)
+        public bool KeyboardIsPressed(Keys key)
         {
             if (curKeyboardState.IsKeyDown(key))
                 return true;
             return false;
         }
 
-        public bool IsReleased(Keys key)
+        public bool KeyboardIsReleased(Keys key)
         {
             if (curKeyboardState.IsKeyUp(key))
                 return true;
             return false;
         }
 
-        public bool OnRelease(Keys key)
+        public bool KeyboardOnPress(Keys key)
         {
             if (curKeyboardState.IsKeyUp(key) && priorKeyboardState.IsKeyDown(key))
                 return true;
             return false;
         }
 
-        public bool OnPress(Keys key)
+        public bool KeyboardOnRelease(Keys key)
         {
             if (curKeyboardState.IsKeyDown(key) && priorKeyboardState.IsKeyUp(key))
                 return true;
@@ -79,9 +79,14 @@ namespace SuperMarioWorld
             return false;
         }
 
-        public float GamePadAnalogX()
+        public float GamePadAnalogLeftX()
         {
             return curGamepadState.ThumbSticks.Left.X;
+        }
+
+        public float GamePadAnalogLeftY()
+        {
+            return curGamepadState.ThumbSticks.Left.Y;
         }
 
         public bool GamePadIsPressed(Buttons button)

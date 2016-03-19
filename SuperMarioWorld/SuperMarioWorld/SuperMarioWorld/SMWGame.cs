@@ -39,9 +39,9 @@ namespace SuperMarioWorld
             Playing,
             Pause
         }
-        public GameState currentGameState = GameState.Playing;
+        public GameState currentGameState;
 
-        private string levelPath = "MainMenu.sml";
+        private string levelPath;
 
         //A Level
         private Scene _scene;
@@ -49,7 +49,7 @@ namespace SuperMarioWorld
         //Create a score tracker
         private ScoreHandler _scores;
 
-        private bool _vSync = true;
+        private bool _vSync;
         private const int _scale = 3;
 
 #if DEBUG
@@ -78,6 +78,9 @@ namespace SuperMarioWorld
             _graphics.IsFullScreen = false;
 
             IsFixedTimeStep = true;
+            _vSync = true;
+            levelPath = "MainMenu.sml";
+            currentGameState = GameState.MainMenu;
 
             //Make sure mouse is visable
             IsMouseVisible = true;

@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class OneUp : Entity
     {
-        public OneUp(Vector2 position) : base (position)
+        public OneUp(Point position) : base (position)
         {
             sprite.sourceName = @"PowerUps\OneUp";
             sprite.xSize = 16;

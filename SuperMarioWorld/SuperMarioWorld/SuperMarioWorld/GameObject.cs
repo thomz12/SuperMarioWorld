@@ -39,9 +39,10 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="position">Position of the object.</param>
         /// <param name="batch">Batch that the texture should be drawn on.</param>
-        public GameObject(Vector2 position)
+        public GameObject(Point position)
         {
-            this.position = position;
+            this.position.X = position.X;
+            this.position.Y = position.Y;
 
             sprite = new Sprite();
             sprite.layer = 0.5f;

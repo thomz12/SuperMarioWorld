@@ -19,7 +19,7 @@ namespace SuperMarioWorld
         /// Default constructor
         /// </summary>
         /// <param name="position"></param>
-        public StaticObject(Vector2 position) : base(position)
+        public StaticObject(Point position) : base(position)
         {
             blocking = true;
             isPlatform = false;

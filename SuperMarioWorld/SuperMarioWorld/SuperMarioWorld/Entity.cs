@@ -24,7 +24,7 @@ namespace SuperMarioWorld
 
         public bool hasTurned;
 
-        public Entity(Vector2 position) : base (position)
+        public Entity(Point position) : base (position)
         {
             affectedByGravity = true;
             lookRight = true;

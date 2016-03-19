@@ -55,51 +55,89 @@ namespace SuperMarioWorld
 
         private List<GameObject> _collidables = new List<GameObject>();
 
-        /// <summary>
-        /// Display a testlevel
-        /// </summary>
-        /// <param name="batch">Give the batch that the sprites should be drawn in.</param>
-        public Scene(ScoreHandler scoreHandler)
+        public void LoadSML(string fileName)
         {
-            _hud = new HUD(scoreHandler);
-            _scores = scoreHandler;
-
-            //Set a max time
-            _scores.maxTime = 420;
-
-            //TEMP, Add a object to the level
-            _player = new Player(new Vector2(0.0f, 0.0f), _scores, Player.Character.Mario);
-            objects.Add(_player);
-            objects.Add( new MysteryBlock(new Vector2(0.0f, -32.0f), null));
-            objects.Add( new Goomba(new Vector2(64.0f, 0)));
-
-            //add a floor
-            for(int i = -512; i <= 512; i+= 16)
-            {
-                objects.Add(new MysteryBlock(new Vector2(i, 16.0f), null));
-            }
-
-            //Create camera object
-            cam = new Camera2D(_player, _size, _gridSize);
-
-            _backgroundSourceName = @"Background\BushBackground";
-
-            _backOffset = (int)cam.Position.X / 2;
-        }
-
-        public Scene(string fileName, ScoreHandler scoreHandler, bool b)
-        {
-            _scores = scoreHandler;
-            _backgroundSourceName = @"Background\BushBackground";
-
-            _gridSize = 16;
-            _backOffset = 0;
-
             fileName = @"Content\Levels\" + fileName;
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
 
+            fileName = @"Content\Levels\test.sml";
 
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(fileName);
+
+            XmlNode root = xmlDoc.ChildNodes[1];
+            _size.X = int.Parse(root.Attributes[0].Value);
+            _size.Y = int.Parse(root.Attributes[1].Value);
+
+            GameObject obj = null;
+            Point pos = new Point();
+
+            foreach (XmlNode node in root.ChildNodes)
+            {
+                pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
+                pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
+
+                if (node.Name.Equals("MainMenu"))
+                {
+                    obj = new MainMenu(pos, _contentManager);
+                }
+                else if (node.Name.Equals("Player"))
+                {
+                    Random r = new Random();
+                    obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
+                    _player = (Player)obj;
+                }
+                else if (node.Name.Equals("Goomba"))
+                {
+                    obj = new Goomba(pos);
+                }
+                else if(node.Name.Equals("GreenKoopa"))
+                {
+                    obj = new GreenKoopa(pos);
+                }
+                else if(node.Name.Equals("RedKoopa"))
+                {
+                    obj = new RedKoopa(pos);
+                }
+                else if(node.Name.Equals("StaticBlock"))
+                {
+                    obj = new StaticBlock(pos, (StaticBlock.BlockType)Enum.Parse(typeof(StaticBlock.BlockType), node.FirstChild.InnerText, true), float.Parse(node.Attributes["layer"].Value));
+                }
+                else if(node.Name.Equals("Coin"))
+                {
+                    obj = new Coin(pos, false);
+                }
+                else if(node.Name.Equals("EmptyShell"))
+                {
+                    obj = new EmptyShell(pos, (EmptyShell.KoopaType)Enum.Parse(typeof(EmptyShell.KoopaType), node.FirstChild.InnerText, true));
+                }
+                else if(node.Name.Equals("Mushroom"))
+                {
+                    obj = new Mushroom(pos);
+                }
+                else if(node.Name.Equals("OneUp"))
+                {
+                    obj = new OneUp(pos);
+                }
+                
+                obj.create = new CreateObject(CreateObject);
+                obj.destory = new DestoryObject(DestroyObject);
+                objects.Add(obj);
+            }
+
+            //Create HUD object
+            _hud = new HUD(_scores);
+
+            //Create camera object
+            if (_player != null)
+            {
+                cam = new Camera2D(_player, _size, _gridSize);
+            }
+            else
+            {
+                cam = new Camera2D(null, _size, _gridSize);
+            }
         }
 
         /// <summary>
@@ -117,7 +155,7 @@ namespace SuperMarioWorld
             _gridSize = 16;
 
             _backOffset = 0;
-
+            
             //Create a streamreader
             StreamReader sr;
 
@@ -130,6 +168,7 @@ namespace SuperMarioWorld
 
             So basically all this code is useless. but it provides us with a working project for the demo.
             */
+            
             try
             {
                 sr = new StreamReader(fileName);
@@ -138,7 +177,7 @@ namespace SuperMarioWorld
             {
                 throw new FileLoadException("Could not load file " + fileName, e);
             }
-
+            
             //Read information about the level from the file
             //Read level name
             _levelName = sr.ReadLine().Split('\"')[1].Split('\"')[0];
@@ -147,7 +186,7 @@ namespace SuperMarioWorld
             //Read y size of level
             string ySize = sr.ReadLine();
             
-            //Convert x and y size to Vector2 _size
+            //Convert x and y size to Point _size
             _size.X = int.Parse(xSize.Substring(xSize.LastIndexOf("=") + 1));
             _size.Y = int.Parse(ySize.Substring(ySize.LastIndexOf("=") + 1));
 
@@ -175,96 +214,96 @@ namespace SuperMarioWorld
                     //Convert the line into objects on correct positions
                     if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
                     {
-                        obj = new MysteryBlock(new Vector2((x * _gridSize), (y * _gridSize)), new Mushroom(Vector2.Zero));
+                        obj = new MysteryBlock(new Point((x * _gridSize), (y * _gridSize)), new Mushroom(Point.Zero));
                     }
                     else if (objectChars[x].Equals('1')) //If the char represents a Player
                     {
                         Random r = new Random();
-                        obj = new Player(new Vector2((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
+                        obj = new Player(new Point((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
                         _player = (Player)obj;
                     }
                     else if (objectChars[x].Equals('G')) //If the char represents a Goomba
                     {
-                        obj = new Goomba(new Vector2((x * _gridSize), (y * _gridSize)));
+                        obj = new Goomba(new Point((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('C')) //If the char represents a coin which moves
                     {
-                        obj = new Coin(new Vector2((x * _gridSize), (y * _gridSize)), true);
+                        obj = new Coin(new Point((x * _gridSize), (y * _gridSize)), true);
                     }
                     else if (objectChars[x].Equals('c')) //If the char represents a coin which doesnt move
                     {
-                        obj = new Coin(new Vector2((x * _gridSize), (y * _gridSize)), false);
+                        obj = new Coin(new Point((x * _gridSize), (y * _gridSize)), false);
                     }
                     else if(objectChars[x].Equals('R')) //If the char represents a Grass
                     {
-                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassMiddle, 0.4f);
+                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassMiddle, 0.4f);
                         obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
-                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtMiddle, 0.1f + (float)y * (float) _gridSize / 1000f));
+                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtMiddle, 0.1f + (float)y * (float) _gridSize / 1000f));
                         }
                     }
                     else if (objectChars[x].Equals('>')) //If the char represents a Grass right block
                     {
-                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassRight, 0.4f);
+                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassRight, 0.4f);
                         obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
-                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtRight, 0.1f + (float)y * (float)_gridSize / 1000f));
+                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtRight, 0.1f + (float)y * (float)_gridSize / 1000f));
                         }
                     }
                     else if (objectChars[x].Equals('<')) //If the char represents a Grass left block
                     {
-                        StaticBlock grass = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassLeft, 0.4f);
+                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassLeft, 0.4f);
                         obj = grass;
                         for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
                         {
-                            objects.Add(new StaticBlock(new Vector2((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtLeft, 0.1f + (float)y * (float)_gridSize / 1000f));
+                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtLeft, 0.1f + (float)y * (float)_gridSize / 1000f));
                         }
                     }
                     else if (objectChars[x].Equals('K')) //If the char represents a Koopa
                     {
-                        obj = new GreenKoopa(new Vector2((x * _gridSize), (y * _gridSize)));
+                        obj = new GreenKoopa(new Point((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('S')) //If the char represents a Shell
                     {
-                        obj = new EmptyShell(new Vector2((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green);
+                        obj = new EmptyShell(new Point((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green);
                     }
                     else if (objectChars[x].Equals('L')) //If the char represents a cloud
                     {
-                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f);
+                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f);
                     }
                     else if (objectChars[x].Equals('O')) //If the char represents a rock
                     {
-                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f);
+                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f);
                     }
                     else if (objectChars[x].Equals('H')) //If the char represents a help
                     {
-                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f);
+                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f);
                     }
                     else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
                     {
-                        obj = new StaticBlock(new Vector2((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f);
+                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f);
                     }
                     else if (objectChars[x].Equals('Y')) //If the char represents a mushroom
                     {
-                        obj = new Mushroom(new Vector2((x * _gridSize), (y * _gridSize)));
+                        obj = new Mushroom(new Point((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('P')) //If the char represents a one up
                     {
-                        obj = new OneUp(new Vector2((x * _gridSize), (y * _gridSize)));
+                        obj = new OneUp(new Point((x * _gridSize), (y * _gridSize)));
                     }
                     else if (objectChars[x].Equals('r')) //If the char represents a red koopa
                     {
-                        obj = new RedKoopa(new Vector2(x * _gridSize, y * _gridSize));
+                        obj = new RedKoopa(new Point(x * _gridSize, y * _gridSize));
                     }
                     else if(objectChars[x].Equals('f')) //If the char represents a checkpoint
                     {
-                        obj = new Checkpoint(new Vector2(x * _gridSize, y * _gridSize));
+                        obj = new Checkpoint(new Point(x * _gridSize, y * _gridSize));
                     }
                     else if (objectChars[x].Equals('+')) //If the char represents a menu
                     {
-                        obj = new MainMenu(new Vector2(0, 0), _contentManager);
+                        obj = new MainMenu(new Point(0, 0), _contentManager);
                     }
                     #endregion
 
@@ -276,7 +315,7 @@ namespace SuperMarioWorld
                     }
                 }
             }
-
+            
             //Load in formation from the level file
             //TODO add a time to load from the level file
             _scores.maxTime = 420;
@@ -296,7 +335,8 @@ namespace SuperMarioWorld
             {
                 cam = new Camera2D(null, _size, _gridSize);
             }
-            SaveLevel();
+            //SaveLevel();
+            //LoadSML(fileName);
         }
 
         /// <summary>
@@ -505,7 +545,7 @@ namespace SuperMarioWorld
         {
             if (obj is MysteryBlock)
             {
-                writer.WriteStartElement("MysteryBlock");
+                writer.WriteStartElement(obj.GetType().Name);
 
                 MysteryBlock block = (MysteryBlock)obj;
 
@@ -519,8 +559,8 @@ namespace SuperMarioWorld
             {
                 StaticBlock block = (StaticBlock)obj;
 
-                writer.WriteStartElement("StaticBlock");
-
+                writer.WriteStartElement(obj.GetType().Name);
+                writer.WriteAttributeString("layer", obj.sprite.layer.ToString());
                 writer.WriteStartElement("BlockType");
                 writer.WriteString(block.blockType.ToString());
                 writer.WriteEndElement();
@@ -528,7 +568,7 @@ namespace SuperMarioWorld
             else if (obj is EmptyShell)
             {
                 EmptyShell t = (EmptyShell)obj;
-                writer.WriteStartElement("EmptyShell");
+                writer.WriteStartElement(obj.GetType().Name);
                 writer.WriteStartElement("Type");
                 writer.WriteString(t.koopaType.ToString());
                 writer.WriteEndElement();

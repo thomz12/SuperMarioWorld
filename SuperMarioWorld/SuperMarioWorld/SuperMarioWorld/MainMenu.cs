@@ -17,7 +17,7 @@ namespace SuperMarioWorld
 
         private float _textScale;
 
-        public MainMenu(Vector2 position, ContentManager contentManager) : base (position)
+        public MainMenu(Point position, ContentManager contentManager) : base (position)
         {
             sprite.sourceName = @"TitleScreen\Title";
             sprite.xSize = 256;
@@ -33,7 +33,7 @@ namespace SuperMarioWorld
             menu.Add("Play");
             menu.Add("Level Editor");
 
-            _textScale = 0.1f;
+            _textScale = 0.12f;
         }
 
         private List<string> menu;
@@ -43,12 +43,12 @@ namespace SuperMarioWorld
         {
             base.Update(gameTime);
 
-            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.W))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.W))
                 selected--;
-            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.S))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.S))
                 selected++;
 
-            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.Space))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.Space))
                 GetLevels();
 
             if (selected >= menu.Count)
@@ -90,13 +90,14 @@ namespace SuperMarioWorld
 
             for (int i = 0; i < menu.Count; i++)
             {
-                text = "";
+                Color textColor = Color.Black;
                 if (i == selected)
-                    text += "))) ";
+                    textColor = Color.White;
 
-                text += menu[i];
+                text = (selected == i ? ")))  " : "") + menu[i] + (selected == i ? "   (((" : "");
 
-                batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, i * 5 + sprite.ySize / 2 + 4), Color.Black, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
+                batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, i * 5 + sprite.ySize / 2 + 4), textColor, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
+
             }
 
             sprite.DrawSprite(batch, new Vector2(0, 0));

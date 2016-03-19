@@ -61,7 +61,7 @@ namespace SuperMarioWorld
         //Scorehandler
         private ScoreHandler _scores;
 
-        public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
+        public Player (Point position, ScoreHandler score, Character character) : base (position)
         {
             //Set a score handler, all the interactions that require a score change go through the player object.
             _scores = score;
@@ -171,7 +171,7 @@ namespace SuperMarioWorld
             if (!death)
             {
                 //If the button D is pressed
-                if (InputManager.Instance.IsPressed(Keys.D) || InputManager.Instance.GamePadIsPressed(Buttons.DPadRight) || InputManager.Instance.GamePadAnalogX() > 0.1f)
+                if (InputManager.Instance.KeyboardIsPressed(Keys.D) || InputManager.Instance.GamePadIsPressed(Buttons.DPadRight) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
                 {
                     lookRight = true;
                     if (grounded)
@@ -180,7 +180,7 @@ namespace SuperMarioWorld
                         momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
                 //If button A is pressed
-                if (InputManager.Instance.IsPressed(Keys.A) || InputManager.Instance.GamePadIsPressed(Buttons.DPadLeft) || InputManager.Instance.GamePadAnalogX() < -0.1f)
+                if (InputManager.Instance.KeyboardIsPressed(Keys.A) || InputManager.Instance.GamePadIsPressed(Buttons.DPadLeft) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
                 {
                     lookRight = false;
                     if (grounded)
@@ -188,7 +188,7 @@ namespace SuperMarioWorld
                     else
                         momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
-                if ((InputManager.Instance.OnPress(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
+                if ((InputManager.Instance.KeyboardOnRelease(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
                 {
                     momentum.Y = -140;
                     grounded = false;
@@ -321,7 +321,7 @@ namespace SuperMarioWorld
                     if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
                     {
                         //The position needs changin!
-                        create(new Mushroom(new Vector2(position.X, position.Y - 128)));
+                        create(new Mushroom(new Point((int)position.X, (int)position.Y - 128)));
                         _scores.powerUp = ScoreHandler.PowerUp.none;
                     }
                 }

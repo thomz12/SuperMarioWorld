@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class Mushroom : Entity
     {
-        public Mushroom(Vector2 position) : base (position)
+        public Mushroom(Point position) : base (position)
         {
             sprite.sourceName = @"PowerUps\Mushroom";
             sprite.xSize = 16;

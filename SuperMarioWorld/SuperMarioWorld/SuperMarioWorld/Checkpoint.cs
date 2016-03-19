@@ -8,7 +8,7 @@ namespace SuperMarioWorld
 {
     class Checkpoint : StaticObject
     {
-        public Checkpoint(Vector2 position) : base(position)
+        public Checkpoint(Point position) : base(position)
         {
             blocking = false;
 

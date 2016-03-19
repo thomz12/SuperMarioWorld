@@ -27,13 +27,13 @@ namespace SuperMarioWorld
 
         public BlockType blockType;
 
-        public StaticBlock(Vector2 position, BlockType type, float layer) : base(position) 
+        public StaticBlock(Point position, BlockType type, float layer) : base(position) 
         {
             //What type of static block is this (based on enum BlockType)
             blockType = type;
 
             //Generates a boundingbox around the block
-            boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
+            boundingBox = new Rectangle(position.X - 8, position.Y - 16, 16, 16);
 
             //Sets the sizes of the sprite
             sprite.xSize = 16;

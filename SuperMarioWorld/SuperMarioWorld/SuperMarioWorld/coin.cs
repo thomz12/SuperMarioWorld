@@ -13,7 +13,7 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="position">Position the object is created on</param>
         /// <param name="moving">Is the coin a moving coin or a static one?</param>
-        public Coin(Vector2 position, bool moving) : base (position)
+        public Coin(Point position, bool moving) : base (position)
         {
             maxSpeed = 16;
 
