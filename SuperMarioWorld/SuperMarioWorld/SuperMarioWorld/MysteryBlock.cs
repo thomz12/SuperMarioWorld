@@ -66,7 +66,7 @@ namespace SuperMarioWorld
                             //When player collides from the bottom
                             create(new StaticBlock(position, StaticBlock.BlockType.used, 0.5f));
 
-                            if (_content != null)
+                            if (content != null)
                             {
                                 create(content);
                                 content = null;
