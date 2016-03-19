@@ -116,12 +116,20 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <None Include="Levels\MainMenu.sml">
+    <Content Include="Levels\DemoLevel.sml">
+      <Name>DemoLevel</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Name>MainMenu</Name>
+    </Content>
+    <Content Include="Levels\Main_Menu.sml">
+      <Name>Main_Menu</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Levels\OLDMAINMENU.sml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>OLDMAINMENU</Name>
     </None>
-    <None Include="Levels\SMW1-2.sml">
-      <Name>SMW1-2</Name>
+    <None Include="Levels\OLDSMWLVL.sml">
+      <Name>OLDSMWLVL</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Misc\Coin.png">
@@ -155,10 +163,14 @@
       <Processor>FontDescriptionProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
+    <Content Include="Levels\SMW Level 1.sml">
+      <Name>SMW Level 1</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\DemoLevel01.sml">
-      <Name>DemoLevel01</Name>
+    <None Include="Levels\OLDDEMOLVL.sml">
+      <Name>OLDDEMOLVL</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

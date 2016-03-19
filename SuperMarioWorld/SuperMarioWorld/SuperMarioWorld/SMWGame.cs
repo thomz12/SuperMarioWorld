@@ -79,7 +79,7 @@ namespace SuperMarioWorld
 
             IsFixedTimeStep = true;
             _vSync = true;
-            levelPath = "MainMenu.sml";
+            levelPath = "DemoLevel.sml";
             currentGameState = GameState.MainMenu;
 
             //Make sure mouse is visable

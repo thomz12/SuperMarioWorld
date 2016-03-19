@@ -55,97 +55,14 @@ namespace SuperMarioWorld
 
         private List<GameObject> _collidables = new List<GameObject>();
 
-        public void LoadSML(string fileName)
-        {
-            fileName = @"Content\Levels\" + fileName;
-            if (!fileName.Contains(".sml"))
-                fileName += ".sml";
-
-            fileName = @"Content\Levels\test.sml";
-
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(fileName);
-
-            XmlNode root = xmlDoc.ChildNodes[1];
-            _size.X = int.Parse(root.Attributes[0].Value);
-            _size.Y = int.Parse(root.Attributes[1].Value);
-
-            GameObject obj = null;
-            Point pos = new Point();
-
-            foreach (XmlNode node in root.ChildNodes)
-            {
-                pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
-                pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
-
-                if (node.Name.Equals("MainMenu"))
-                {
-                    obj = new MainMenu(pos, _contentManager);
-                }
-                else if (node.Name.Equals("Player"))
-                {
-                    Random r = new Random();
-                    obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
-                    _player = (Player)obj;
-                }
-                else if (node.Name.Equals("Goomba"))
-                {
-                    obj = new Goomba(pos);
-                }
-                else if(node.Name.Equals("GreenKoopa"))
-                {
-                    obj = new GreenKoopa(pos);
-                }
-                else if(node.Name.Equals("RedKoopa"))
-                {
-                    obj = new RedKoopa(pos);
-                }
-                else if(node.Name.Equals("StaticBlock"))
-                {
-                    obj = new StaticBlock(pos, (StaticBlock.BlockType)Enum.Parse(typeof(StaticBlock.BlockType), node.FirstChild.InnerText, true), float.Parse(node.Attributes["layer"].Value));
-                }
-                else if(node.Name.Equals("Coin"))
-                {
-                    obj = new Coin(pos, false);
-                }
-                else if(node.Name.Equals("EmptyShell"))
-                {
-                    obj = new EmptyShell(pos, (EmptyShell.KoopaType)Enum.Parse(typeof(EmptyShell.KoopaType), node.FirstChild.InnerText, true));
-                }
-                else if(node.Name.Equals("Mushroom"))
-                {
-                    obj = new Mushroom(pos);
-                }
-                else if(node.Name.Equals("OneUp"))
-                {
-                    obj = new OneUp(pos);
-                }
-                
-                obj.create = new CreateObject(CreateObject);
-                obj.destory = new DestoryObject(DestroyObject);
-                objects.Add(obj);
-            }
-
-            //Create HUD object
-            _hud = new HUD(_scores);
-
-            //Create camera object
-            if (_player != null)
-            {
-                cam = new Camera2D(_player, _size, _gridSize);
-            }
-            else
-            {
-                cam = new Camera2D(null, _size, _gridSize);
-            }
-        }
-
         /// <summary>
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
         public Scene(string fileName, ScoreHandler scoreHandler)
         {
+            #region oldStuff
+            /*
             //Create the scorehandler so the level file can put information in it.
             _scores = scoreHandler;
 
@@ -160,7 +77,7 @@ namespace SuperMarioWorld
             StreamReader sr;
 
             fileName = @"Content\Levels\" + fileName;
-
+            
             //LOAD LEVEL FROM FILE
             /*
             Appearantly loading the level from a file like this prevents us from generating contents in f.ex Mystery boxes or changing the way some objects behave
@@ -168,7 +85,7 @@ namespace SuperMarioWorld
 
             So basically all this code is useless. but it provides us with a working project for the demo.
             */
-            
+            /*
             try
             {
                 sr = new StreamReader(fileName);
@@ -334,9 +251,108 @@ namespace SuperMarioWorld
             else
             {
                 cam = new Camera2D(null, _size, _gridSize);
+            }*/
+            #endregion
+
+
+            #region new stuff
+            //Set score handler
+            _scores = scoreHandler;
+
+            //Set background texture
+            _backgroundSourceName = @"Background\BushBackground";
+
+            //Set the gridsize
+            _gridSize = 16;
+            _backOffset = 0;
+
+            fileName = @"Content\Levels\" + fileName;
+            if (!fileName.Contains(".sml"))
+                fileName += ".sml";
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(fileName);
+
+            XmlNode root = xmlDoc.ChildNodes[1];
+            _size.X = int.Parse(root.Attributes[0].Value);
+            _size.Y = int.Parse(root.Attributes[1].Value);
+
+            GameObject obj = null;
+            Point pos = new Point();
+
+            foreach (XmlNode node in root.ChildNodes)
+            {
+                pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
+                pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
+
+                if (node.Name.Equals("MainMenu"))
+                {
+                    obj = new MainMenu(pos, _contentManager);
+                }
+                else if (node.Name.Equals("Player"))
+                {
+                    Random r = new Random();
+                    obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
+                    _player = (Player)obj;
+                }
+                else if (node.Name.Equals("Goomba"))
+                {
+                    obj = new Goomba(pos);
+                }
+                else if (node.Name.Equals("GreenKoopa"))
+                {
+                    obj = new GreenKoopa(pos);
+                }
+                else if (node.Name.Equals("RedKoopa"))
+                {
+                    obj = new RedKoopa(pos);
+                }
+                else if(node.Name.Equals("MysteryBlock"))
+                {
+                    obj = new MysteryBlock(pos, null);
+                }
+                else if (node.Name.Equals("StaticBlock"))
+                {
+                    obj = new StaticBlock(pos, (StaticBlock.BlockType)Enum.Parse(typeof(StaticBlock.BlockType), node.FirstChild.InnerText, true), float.Parse(node.Attributes["layer"].Value));
+                }
+                else if (node.Name.Equals("Coin"))
+                {
+                    obj = new Coin(pos, false);
+                }
+                else if (node.Name.Equals("EmptyShell"))
+                {
+                    obj = new EmptyShell(pos, (EmptyShell.KoopaType)Enum.Parse(typeof(EmptyShell.KoopaType), node.FirstChild.InnerText, true));
+                }
+                else if (node.Name.Equals("Mushroom"))
+                {
+                    obj = new Mushroom(pos);
+                }
+                else if (node.Name.Equals("OneUp"))
+                {
+                    obj = new OneUp(pos);
+                }
+
+                if (obj != null)
+                {
+                    obj.create = new CreateObject(CreateObject);
+                    obj.destory = new DestoryObject(DestroyObject);
+                    objects.Add(obj);
+                }
             }
-            //SaveLevel();
-            //LoadSML(fileName);
+
+            //Create HUD object
+            _hud = new HUD(_scores);
+
+            //Create camera object
+            if (_player != null)
+            {
+                cam = new Camera2D(_player, _size, _gridSize);
+            }
+            else
+            {
+                cam = new Camera2D(null, _size, _gridSize);
+            }
+            #endregion
         }
 
         /// <summary>
@@ -519,7 +535,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\test.sml");
+            XmlWriter writer = XmlWriter.Create(@"Content\Levels\SMW Level 1.sml");
             writer.WriteStartDocument();
 
             writer.WriteStartElement("Level");

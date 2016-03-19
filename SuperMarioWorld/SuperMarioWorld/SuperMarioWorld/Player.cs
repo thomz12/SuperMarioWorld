@@ -167,7 +167,6 @@ namespace SuperMarioWorld
                     _invunerable = false;
             }
 
-            InputManager.Instance.Update();
             if (!death)
             {
                 //If the button D is pressed

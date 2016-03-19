@@ -14,7 +14,13 @@ namespace SuperMarioWorld
         public MysteryBlock(Point position, GameObject contents) : base (position)
         {
             //Sets the contents of the mysteryblock
-            content = contents;
+            if (contents != null)
+            {
+                content = contents;
+            }
+            else
+                content = new Coin(position, true);
+
             content.position = new Vector2(position.X, position.Y - 16);
             //Generates a boundingbox around the block
             boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
@@ -64,7 +70,7 @@ namespace SuperMarioWorld
                         if (p is Player)
                         {
                             //When player collides from the bottom
-                            create(new StaticBlock(position, StaticBlock.BlockType.used, 0.5f));
+                            create(new StaticBlock(new Point((int)position.X, (int)position.Y), StaticBlock.BlockType.used, 0.5f));
 
                             if (content != null)
                             {
