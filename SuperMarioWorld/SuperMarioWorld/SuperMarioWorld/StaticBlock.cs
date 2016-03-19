@@ -25,12 +25,12 @@ namespace SuperMarioWorld
             help
         }
 
-        private BlockType _blockType;
+        public BlockType blockType;
 
         public StaticBlock(Vector2 position, BlockType type, float layer) : base(position) 
         {
             //What type of static block is this (based on enum BlockType)
-            _blockType = type;
+            blockType = type;
 
             //Generates a boundingbox around the block
             boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
@@ -42,7 +42,7 @@ namespace SuperMarioWorld
             sprite.layer = layer;
 
             //Call sprite class to load the texture and add texture to the spriteclass for each block
-            switch (_blockType)
+            switch (blockType)
             {
                 case BlockType.grassMiddle:
                     sprite.sourceName = @"Blocks\Grass";

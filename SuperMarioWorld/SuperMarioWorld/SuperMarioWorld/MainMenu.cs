@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -26,15 +26,51 @@ namespace SuperMarioWorld
             sprite.animated = false;
             sprite.layer = 1.0f;
 
-            _textScale = 0.3f;
+            selected = 0;
+
+            menu = new List<string>();
+
+            menu.Add("Play");
+            menu.Add("Level Editor");
+
+            _textScale = 0.1f;
         }
+
+        private List<string> menu;
+        private int selected;
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (InputManager.Instance.GamePadIsPressed(Microsoft.Xna.Framework.Input.Buttons.A) || InputManager.Instance.IsPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-                ;
+            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.W))
+                selected--;
+            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.S))
+                selected++;
+
+            if (InputManager.Instance.OnPress(Microsoft.Xna.Framework.Input.Keys.Space))
+                GetLevels();
+
+            if (selected >= menu.Count)
+                selected = 0;
+            if (selected < 0)
+                selected = menu.Count - 1;
+        }
+
+        private void GetLevels()
+        {
+            string[] files = Directory.GetFiles(@"Content\Levels");
+            menu.Clear();
+            foreach(string s in files)
+            { 
+                string name = Path.GetFileName(s);
+                string[] split = name.Split('.');
+
+                if (split[1].Equals("sml"))
+                {
+                    menu.Add(split[0]);
+                }
+            }
         }
 
         public override void OnCollision(GameObject collider)
@@ -52,7 +88,16 @@ namespace SuperMarioWorld
         {
             string text = "blljoawowaj";
 
-            batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, sprite.ySize / 2 + 4), Color.Black, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
+            for (int i = 0; i < menu.Count; i++)
+            {
+                text = "";
+                if (i == selected)
+                    text += "))) ";
+
+                text += menu[i];
+
+                batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, i * 5 + sprite.ySize / 2 + 4), Color.Black, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
+            }
 
             sprite.DrawSprite(batch, new Vector2(0, 0));
         }

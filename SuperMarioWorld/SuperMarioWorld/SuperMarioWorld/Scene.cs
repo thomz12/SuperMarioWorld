@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -25,6 +26,7 @@ namespace SuperMarioWorld
 
         //Size of the level.
         private Point _size;
+        private string _levelName;
 
         //Size of the grid
         private int _gridSize;
@@ -85,6 +87,21 @@ namespace SuperMarioWorld
             _backOffset = (int)cam.Position.X / 2;
         }
 
+        public Scene(string fileName, ScoreHandler scoreHandler, bool b)
+        {
+            _scores = scoreHandler;
+            _backgroundSourceName = @"Background\BushBackground";
+
+            _gridSize = 16;
+            _backOffset = 0;
+
+            fileName = @"Content\Levels\" + fileName;
+            if (!fileName.Contains(".sml"))
+                fileName += ".sml";
+
+
+        }
+
         /// <summary>
         /// Constructs the level from a chosen file
         /// </summary>
@@ -124,7 +141,7 @@ namespace SuperMarioWorld
 
             //Read information about the level from the file
             //Read level name
-            string name = sr.ReadLine().Split('\"')[1].Split('\"')[0];
+            _levelName = sr.ReadLine().Split('\"')[1].Split('\"')[0];
             //Read x size of level
             string xSize = sr.ReadLine();
             //Read y size of level
@@ -279,6 +296,7 @@ namespace SuperMarioWorld
             {
                 cam = new Camera2D(null, _size, _gridSize);
             }
+            SaveLevel();
         }
 
         /// <summary>
@@ -446,10 +464,83 @@ namespace SuperMarioWorld
             }
         }
 
+        /// <summary>
+        /// Draw the hud
+        /// </summary>
+        /// <param name="batch"></param>
         public void DrawHUD(SpriteBatch batch)
         {
             //Tell HUD to draw itself
             _hud.DrawHUD(batch);
+        }
+
+        /// <summary>
+        /// Save the level to a .sml file (xml format)
+        /// </summary>
+        public void SaveLevel()
+        {
+            XmlWriter writer = XmlWriter.Create(@"Content\Levels\test.sml");
+            writer.WriteStartDocument();
+
+            writer.WriteStartElement("Level");
+            writer.WriteAttributeString("xSize", _size.X.ToString());
+            writer.WriteAttributeString("ySize", _size.Y.ToString());
+
+            foreach(GameObject obj in objects)
+            {
+                AddGameObjectXML(writer, obj);
+            }
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
+        }
+
+        /// <summary>
+        /// Add object to XML file
+        /// </summary>
+        /// <param name="writer">the xmlWriter</param>
+        /// <param name="obj">the object to add</param>
+        private void AddGameObjectXML(XmlWriter writer, GameObject obj)
+        {
+            if (obj is MysteryBlock)
+            {
+                writer.WriteStartElement("MysteryBlock");
+
+                MysteryBlock block = (MysteryBlock)obj;
+
+                writer.WriteStartElement("Content");
+
+                writer.WriteAttributeString("gameobject", block.content.GetType().Name);
+
+                writer.WriteEndElement();
+            }
+            else if (obj is StaticBlock)
+            {
+                StaticBlock block = (StaticBlock)obj;
+
+                writer.WriteStartElement("StaticBlock");
+
+                writer.WriteStartElement("BlockType");
+                writer.WriteString(block.blockType.ToString());
+                writer.WriteEndElement();
+            }
+            else if (obj is EmptyShell)
+            {
+                EmptyShell t = (EmptyShell)obj;
+                writer.WriteStartElement("EmptyShell");
+                writer.WriteStartElement("Type");
+                writer.WriteString(t.koopaType.ToString());
+                writer.WriteEndElement();
+            }
+            else
+                writer.WriteStartElement(obj.GetType().Name);
+
+            writer.WriteStartElement("Position");
+            writer.WriteAttributeString("xPos", ((int)Math.Round(obj.position.X)).ToString());
+            writer.WriteAttributeString("yPos", ((int)Math.Round(obj.position.Y)).ToString());
+            writer.WriteEndElement();
+            writer.WriteEndElement();
         }
     }
 }

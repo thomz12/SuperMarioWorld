@@ -18,7 +18,7 @@ namespace SuperMarioWorld
             yellow = 3
         }
 
-        private KoopaType _koopaType;
+        public KoopaType koopaType;
 
         private bool moving;
 
@@ -29,13 +29,13 @@ namespace SuperMarioWorld
         /// <param name="koopaType">What color was the koopa?</param>
         public EmptyShell(Vector2 position, KoopaType koopaType) : base (position)
         {
-            _koopaType = koopaType;
+            this.koopaType = koopaType;
             sprite.sourceName = @"Enemies\KoopaShells";
             sprite.xSize = 16;
             sprite.ySize = 16;
             sprite.animationSpeed = 100;
 
-            sprite.NewAnimation(0, (int)_koopaType);
+            sprite.NewAnimation(0, (int)this.koopaType);
 
             acceleration = 128.0f;
             maxSpeed = 160;
@@ -88,7 +88,7 @@ namespace SuperMarioWorld
                         moving = false;
                         p.momentum.Y = -140;
                         momentum.X = 0;
-                        sprite.NewAnimation(0, (int)_koopaType);
+                        sprite.NewAnimation(0, (int)koopaType);
                     }
                     //else kill it!
                     else
@@ -102,7 +102,7 @@ namespace SuperMarioWorld
 
                     for (int i = 0; i < 4; i++)
                     {
-                        sprite.AddFrame(i, (int)_koopaType);
+                        sprite.AddFrame(i, (int)koopaType);
                     }
 
                     if (p.position.X > position.X)

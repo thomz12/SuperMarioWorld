@@ -9,13 +9,13 @@ namespace SuperMarioWorld
 {
     class MysteryBlock : StaticObject
     {
-        private GameObject _content;
+        public GameObject content;
 
         public MysteryBlock(Vector2 position, GameObject contents) : base (position)
         {
             //Sets the contents of the mysteryblock
-            _content = contents;
-            _content.position = new Vector2(position.X, position.Y - 16);
+            content = contents;
+            content.position = new Vector2(position.X, position.Y - 16);
             //Generates a boundingbox around the block
             boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
             
@@ -68,8 +68,8 @@ namespace SuperMarioWorld
 
                             if (_content != null)
                             {
-                                create(_content);
-                                _content = null;
+                                create(content);
+                                content = null;
                             }
 
                             destory(this);
