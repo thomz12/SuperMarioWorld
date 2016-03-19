@@ -63,13 +63,16 @@ namespace SuperMarioWorld
                         p.position.Y = position.Y + p.boundingBox.Height;
                         if (p is Player)
                         {
-                            sprite.NewAnimation();
-                            sprite.AddFrame(4, 0);
+                            //When player collides from the bottom
+                            create(new StaticBlock(position, StaticBlock.BlockType.used, 0.5f));
+
                             if (content != null)
                             {
                                 create(content);
                                 content = null;
                             }
+
+                            destory(this);
                         }
 
                         p.momentum.Y = 16;
