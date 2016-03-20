@@ -11,14 +11,38 @@ namespace SuperMarioWorld
 {
     class MainMenu : GameObject
     {
+        //The content manager
         private ContentManager _contentManager;
 
+        //Font for the menu
         private SpriteFont _spriteFont;
 
+        //Delegate to load a scene
+        public LoadScene load;
+        
+        //What menu the player is in
+        enum Menu
+        {
+            Main,
+            Play,
+            Edit
+        }
+        Menu curMenu;
+
+        //The text scale
         private float _textScale;
 
+        private List<string> menu;
+        private int selected;
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="position">position of menu</param>
+        /// <param name="contentManager">the contentmanager</param>
         public MainMenu(Point position, ContentManager contentManager) : base (position)
         {
+            //Set sprite info
             sprite.sourceName = @"TitleScreen\Title";
             sprite.xSize = 256;
             sprite.ySize = 224;
@@ -26,18 +50,19 @@ namespace SuperMarioWorld
             sprite.animated = false;
             sprite.layer = 1.0f;
 
+            //Set index for selected item
             selected = 0;
 
-            menu = new List<string>();
+            //Set current menu
+            curMenu = Menu.Main;
 
-            menu.Add("Play");
+            //Add options to list
+            menu = new List<string>();
+            menu.Add("Play Game");
             menu.Add("Level Editor");
 
             _textScale = 0.12f;
         }
-
-        private List<string> menu;
-        private int selected;
 
         public override void Update(GameTime gameTime)
         {
@@ -49,7 +74,28 @@ namespace SuperMarioWorld
                 selected++;
 
             if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.Space))
-                GetLevels();
+            {
+                //if we are in main menu
+                if (curMenu == Menu.Main)
+                {
+                    //and have "Play" selected
+                    if (selected == 0)
+                    {
+                        selected = 0;
+                        GetLevels();
+                        curMenu = Menu.Play;
+                    }
+                    //or have "Edit selected"
+                    else if(selected == 1)
+                    {
+
+                    }
+                }
+                else if (curMenu == Menu.Play)
+                {
+                    load(menu[selected]);
+                }
+            }
 
             if (selected >= menu.Count)
                 selected = 0;

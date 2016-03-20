@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    delegate void LoadScene();
+    delegate void LoadScene(string level);
 
     class Scene
     {
@@ -34,7 +34,7 @@ namespace SuperMarioWorld
         //Camera object
         public Camera2D cam;
         //player object
-        private Player _player;
+        private GameObject _player;
 
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
@@ -59,7 +59,7 @@ namespace SuperMarioWorld
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
-        public Scene(string fileName, ScoreHandler scoreHandler)
+        public Scene(string fileName, ScoreHandler scoreHandler, LoadScene loadScene, bool edit)
         {
             #region oldStuff
             /*
@@ -88,7 +88,7 @@ namespace SuperMarioWorld
             /*
             try
             {
-                sr = new StreamReader(fileName);
+                sr = new StreamReader(@"Content\Levels\Edit.sml");
             }
             catch (Exception e)
             {
@@ -253,11 +253,12 @@ namespace SuperMarioWorld
                 cam = new Camera2D(null, _size, _gridSize);
             }*/
             #endregion
-
-
+            
             #region new stuff
             //Set score handler
             _scores = scoreHandler;
+
+            load = loadScene;
 
             //Set background texture
             _backgroundSourceName = @"Background\BushBackground";
@@ -270,87 +271,105 @@ namespace SuperMarioWorld
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
 
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(fileName);
-
-            XmlNode root = xmlDoc.ChildNodes[1];
-            _size.X = int.Parse(root.Attributes[0].Value);
-            _size.Y = int.Parse(root.Attributes[1].Value);
-
-            GameObject obj = null;
-            Point pos = new Point();
-
-            foreach (XmlNode node in root.ChildNodes)
+            try
             {
-                pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
-                pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(fileName);
 
-                if (node.Name.Equals("MainMenu"))
+                XmlNode root = xmlDoc.ChildNodes[1];
+                _size.X = int.Parse(root.Attributes[0].Value);
+                _size.Y = int.Parse(root.Attributes[1].Value);
+
+                GameObject obj = null;
+                Point pos = new Point();
+
+                foreach (XmlNode node in root.ChildNodes)
                 {
-                    obj = new MainMenu(pos, _contentManager);
-                }
-                else if (node.Name.Equals("Player"))
-                {
-                    Random r = new Random();
-                    obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
-                    _player = (Player)obj;
-                }
-                else if (node.Name.Equals("Goomba"))
-                {
-                    obj = new Goomba(pos);
-                }
-                else if (node.Name.Equals("GreenKoopa"))
-                {
-                    obj = new GreenKoopa(pos);
-                }
-                else if (node.Name.Equals("RedKoopa"))
-                {
-                    obj = new RedKoopa(pos);
-                }
-                else if(node.Name.Equals("MysteryBlock"))
-                {
-                    obj = new MysteryBlock(pos, null);
-                }
-                else if (node.Name.Equals("StaticBlock"))
-                {
-                    obj = new StaticBlock(pos, (StaticBlock.BlockType)Enum.Parse(typeof(StaticBlock.BlockType), node.FirstChild.InnerText, true), float.Parse(node.Attributes["layer"].Value));
-                }
-                else if (node.Name.Equals("Coin"))
-                {
-                    obj = new Coin(pos, false);
-                }
-                else if (node.Name.Equals("EmptyShell"))
-                {
-                    obj = new EmptyShell(pos, (EmptyShell.KoopaType)Enum.Parse(typeof(EmptyShell.KoopaType), node.FirstChild.InnerText, true));
-                }
-                else if (node.Name.Equals("Mushroom"))
-                {
-                    obj = new Mushroom(pos);
-                }
-                else if (node.Name.Equals("OneUp"))
-                {
-                    obj = new OneUp(pos);
+                    pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
+                    pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
+
+                    if (node.Name.Equals("MainMenu"))
+                    {
+                        obj = new MainMenu(pos, _contentManager);
+                        MainMenu mm = (MainMenu)obj;
+                        mm.load = loadScene;
+                    }
+                    else if (node.Name.Equals("Player"))
+                    {
+                        if (!edit)
+                        {
+                            Random r = new Random();
+                            obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
+                            _player = (Player)obj;
+                        }
+                        else
+                        {
+                            obj = new Builder(pos);
+                            _player = obj;
+                        }
+                    }
+                    else if (node.Name.Equals("Goomba"))
+                    {
+                        obj = new Goomba(pos);
+                    }
+                    else if (node.Name.Equals("GreenKoopa"))
+                    {
+                        obj = new GreenKoopa(pos);
+                    }
+                    else if (node.Name.Equals("RedKoopa"))
+                    {
+                        obj = new RedKoopa(pos);
+                    }
+                    else if (node.Name.Equals("MysteryBlock"))
+                    {
+                        obj = new MysteryBlock(pos, null);
+                    }
+                    else if (node.Name.Equals("StaticBlock"))
+                    {
+                        obj = new StaticBlock(pos, (StaticBlock.BlockType)Enum.Parse(typeof(StaticBlock.BlockType), node.FirstChild.InnerText, true), float.Parse(node.Attributes["layer"].Value));
+                    }
+                    else if (node.Name.Equals("Coin"))
+                    {
+                        obj = new Coin(pos, false);
+                    }
+                    else if (node.Name.Equals("EmptyShell"))
+                    {
+                        obj = new EmptyShell(pos, (EmptyShell.KoopaType)Enum.Parse(typeof(EmptyShell.KoopaType), node.FirstChild.InnerText, true));
+                    }
+                    else if (node.Name.Equals("Mushroom"))
+                    {
+                        obj = new Mushroom(pos);
+                    }
+                    else if (node.Name.Equals("OneUp"))
+                    {
+                        obj = new OneUp(pos);
+                    }
+
+                    if (obj != null)
+                    {
+                        obj.create = new CreateObject(CreateObject);
+                        obj.destory = new DestoryObject(DestroyObject);
+                        objects.Add(obj);
+                    }
                 }
 
-                if (obj != null)
+                //Create HUD object
+                _hud = new HUD(_scores);
+
+                //Create camera object
+                if (_player != null)
                 {
-                    obj.create = new CreateObject(CreateObject);
-                    obj.destory = new DestoryObject(DestroyObject);
-                    objects.Add(obj);
+                    cam = new Camera2D(_player, _size, _gridSize);
+                }
+                else
+                {
+                    cam = new Camera2D(null, _size, _gridSize);
                 }
             }
-
-            //Create HUD object
-            _hud = new HUD(_scores);
-
-            //Create camera object
-            if (_player != null)
+            //something went wrong, we have to do something here
+            catch(Exception e)
             {
-                cam = new Camera2D(_player, _size, _gridSize);
-            }
-            else
-            {
-                cam = new Camera2D(null, _size, _gridSize);
+                throw e;
             }
             #endregion
         }
@@ -535,7 +554,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\SMW Level 1.sml");
+            XmlWriter writer = XmlWriter.Create(@"Content\Levels\Template.sml");
             writer.WriteStartDocument();
 
             writer.WriteStartElement("Level");

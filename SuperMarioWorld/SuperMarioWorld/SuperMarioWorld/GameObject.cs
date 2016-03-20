@@ -47,6 +47,7 @@ namespace SuperMarioWorld
             sprite = new Sprite();
             sprite.layer = 0.5f;
         }
+        // details
 
         /// <summary>
         /// Execute this function when colliding with something.

@@ -73,6 +73,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Checkpoint.cs" />
     <Compile Include="Coin.cs" />

@@ -79,7 +79,7 @@ namespace SuperMarioWorld
 
             IsFixedTimeStep = true;
             _vSync = true;
-            levelPath = "DemoLevel.sml";
+            levelPath = "Main_Menu.sml";
             currentGameState = GameState.MainMenu;
 
             //Make sure mouse is visable
@@ -118,21 +118,26 @@ namespace SuperMarioWorld
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
 #endif
-            LoadScene();
+            LoadScene(levelPath);
         }
 
         /// <summary>
         /// Changes the scene to the scene of the given file path
         /// </summary>
         /// <param name="sceneSourceFile">Name of the scene in the \Content\Levels folder, including extension.</param>
-        public void LoadScene()
+        public void LoadScene(string level)
         {
-            _scene = new Scene(levelPath, _scores);
+            levelPath = level;
+            _scene = new Scene(levelPath, _scores, new LoadScene(LoadScene), false);
             _scene.cam.Zoom = _scale;
             _scene.cam.GameHeight = _gameHeight;
             _scene.cam.GameWidth = _gameWidth;
             _scene.LoadContent(this.Content);
-            _scene.load = new LoadScene(LoadScene);
+
+            if (level.Equals("Main_Menu.sml"))
+                currentGameState = GameState.MainMenu;
+            else
+                currentGameState = GameState.Playing;
         }
 
         /// <summary>
@@ -164,11 +169,11 @@ namespace SuperMarioWorld
             }
 #endif
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (InputManager.Instance.KeyboardOnPress(Keys.Escape))
                 this.Exit();
 
             //Toggle Fullscreen when F11 is pressed
-            if (Keyboard.GetState().IsKeyDown(Keys.F11))
+            if (InputManager.Instance.KeyboardOnPress(Keys.F11))
             {
                 _graphics.ToggleFullScreen();
             }

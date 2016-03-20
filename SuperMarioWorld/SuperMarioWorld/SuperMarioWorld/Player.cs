@@ -61,6 +61,12 @@ namespace SuperMarioWorld
         //Scorehandler
         private ScoreHandler _scores;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="position">start position</param>
+        /// <param name="score">score handler</param>
+        /// <param name="character">what character is the player?</param>
         public Player (Point position, ScoreHandler score, Character character) : base (position)
         {
             //Set a score handler, all the interactions that require a score change go through the player object.

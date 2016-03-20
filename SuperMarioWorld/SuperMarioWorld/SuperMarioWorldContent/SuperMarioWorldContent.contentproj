@@ -124,13 +124,15 @@
       <Name>Main_Menu</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Levels\OLDMAINMENU.sml">
+    <None Include="Levels\OLDEDIT.osml">
+      <Name>OLDEDIT</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\OLDMAINMENU.osml">
       <Name>OLDMAINMENU</Name>
     </None>
-    <None Include="Levels\OLDSMWLVL.sml">
+    <None Include="Levels\OLDSMWLVL.osml">
       <Name>OLDSMWLVL</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Misc\Coin.png">
       <Name>Coin</Name>
@@ -167,11 +169,14 @@
       <Name>SMW Level 1</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Levels\Template.sml">
+      <Name>Template</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\OLDDEMOLVL.sml">
+    <None Include="Levels\OLDDEMOLVL.osml">
       <Name>OLDDEMOLVL</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
