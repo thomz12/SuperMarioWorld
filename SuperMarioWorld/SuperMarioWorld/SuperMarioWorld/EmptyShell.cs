@@ -20,7 +20,7 @@ namespace SuperMarioWorld
 
         public KoopaType koopaType;
 
-        private bool moving;
+        private bool _moving;
 
         /// <summary>
         /// Default constructor
@@ -47,7 +47,7 @@ namespace SuperMarioWorld
         protected override void Movement(GameTime gameTime)
         {
             //This now applies to all entities except the player and the smart koopa who override this function.
-            if (!death && moving)
+            if (!dead && _moving)
             {
                 if (lookRight)
                     momentum = new Vector2(momentum.X + acceleration, momentum.Y);
@@ -65,10 +65,10 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
-            if (momentum.Y > thermalVelocity)
-                momentum.Y = thermalVelocity;
-            if (momentum.Y < -thermalVelocity)
-                momentum.Y = -thermalVelocity;
+            if (momentum.Y > terminalVelocity)
+                momentum.Y = terminalVelocity;
+            if (momentum.Y < -terminalVelocity)
+                momentum.Y = -terminalVelocity;
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
@@ -80,12 +80,12 @@ namespace SuperMarioWorld
             {
                 Player p = (Player)collider;
                 //When shell is moving
-                if (moving)
+                if (_moving)
                 {
                     //Stop moving when player comes from above
                     if (p.momentum.Y > 3)
                     {
-                        moving = false;
+                        _moving = false;
                         p.momentum.Y = -140;
                         momentum.X = 0;
                         sprite.NewAnimation(0, (int)koopaType);
@@ -98,7 +98,7 @@ namespace SuperMarioWorld
                 }
                 else
                 {
-                    moving = true;
+                    _moving = true;
 
                     for (int i = 0; i < 4; i++)
                     {

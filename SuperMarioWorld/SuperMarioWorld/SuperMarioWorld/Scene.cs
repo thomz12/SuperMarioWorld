@@ -26,7 +26,6 @@ namespace SuperMarioWorld
 
         //Size of the level.
         private Point _size;
-        private string _levelName;
 
         //Size of the grid
         private int _gridSize;
@@ -496,7 +495,7 @@ namespace SuperMarioWorld
                 if (_collidables[i] is Entity)
                 {
                     Entity e = (Entity)_collidables[i];
-                    if (e.death)
+                    if (e.dead)
                         continue;
                 }
 

@@ -13,7 +13,7 @@ namespace SuperMarioWorld
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class SMWGame : Microsoft.Xna.Framework.Game
+    public class SMWGame : Game
     {
         //Graphics
         private GraphicsDeviceManager _graphics;
@@ -41,7 +41,7 @@ namespace SuperMarioWorld
         }
         public GameState currentGameState;
 
-        private string levelPath;
+        private string _scenePath;
 
         //A Level
         private Scene _scene;
@@ -53,14 +53,9 @@ namespace SuperMarioWorld
         private const int _scale = 3;
 
 #if DEBUG
-        //FPS Counter
-        struct FPSCounter
-        {
-            public int totalFrames;
-            public float elapsedTime;
-            public int fps;
-        }
-        private FPSCounter _counter;
+        private int _totalFrames;
+        private float _elapsedTime;
+        private int _fps;
 #endif
         /// <summary>
         /// Default Constructor
@@ -79,7 +74,7 @@ namespace SuperMarioWorld
 
             IsFixedTimeStep = true;
             _vSync = true;
-            levelPath = "Main_Menu.sml";
+            _scenePath = "Main_Menu.sml";
             currentGameState = GameState.MainMenu;
 
             //Make sure mouse is visable
@@ -118,23 +113,23 @@ namespace SuperMarioWorld
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
 #endif
-            LoadScene(levelPath);
+            LoadScene(_scenePath);
         }
 
         /// <summary>
         /// Changes the scene to the scene of the given file path
         /// </summary>
         /// <param name="sceneSourceFile">Name of the scene in the \Content\Levels folder, including extension.</param>
-        public void LoadScene(string level)
+        public void LoadScene(string scene)
         {
-            levelPath = level;
-            _scene = new Scene(levelPath, _scores, new LoadScene(LoadScene), false);
+            _scenePath = scene;
+            _scene = new Scene(_scenePath, _scores, new LoadScene(LoadScene), false);
             _scene.cam.Zoom = _scale;
             _scene.cam.GameHeight = _gameHeight;
             _scene.cam.GameWidth = _gameWidth;
             _scene.LoadContent(this.Content);
 
-            if (level.Equals("Main_Menu.sml"))
+            if (scene.Equals("Main_Menu.sml"))
                 currentGameState = GameState.MainMenu;
             else
                 currentGameState = GameState.Playing;
@@ -160,12 +155,12 @@ namespace SuperMarioWorld
             InputManager.Instance.Update();
 #if DEBUG
             //FPS Counter
-            _counter.elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (_counter.elapsedTime > 1000.0f)
+            _elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (_elapsedTime > 1000.0f)
             {
-                _counter.fps = _counter.totalFrames;
-                _counter.totalFrames = 0;
-                _counter.elapsedTime = 0;
+                _fps = _totalFrames;
+                _totalFrames = 0;
+                _elapsedTime = 0;
             }
 #endif
             // Allows the game to exit
@@ -191,7 +186,7 @@ namespace SuperMarioWorld
         {
 #if DEBUG
             //Only count frames we actualy draw
-            _counter.totalFrames++;
+            _totalFrames++;
 #endif
 
             //Set clear color
@@ -234,7 +229,7 @@ namespace SuperMarioWorld
 #if DEBUG
             //Draw debug
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_debugFont, "fps: " + _counter.fps, new Vector2(10, 0), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "fps: " + _fps, new Vector2(10, 0), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Update time: " + gameTime.ElapsedGameTime.TotalMilliseconds, new Vector2(10, 40), Color.Black);
             _spriteBatch.DrawString(_debugFont, GraphicsDevice.Adapter.Description, new Vector2(10, 60), Color.Black);

@@ -8,6 +8,10 @@ namespace SuperMarioWorld
 {
     abstract class Enemy : Entity
     {
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="position">The object position</param>
         public Enemy(Point position) : base (position)
         {
             
@@ -29,7 +33,7 @@ namespace SuperMarioWorld
                     p.position.Y = position.Y - boundingBox.Height;
                     Death(collider);
                 }
-                else if(!death)
+                else if(!dead)
                 {
                     p.Death(collider);
                 }

@@ -11,6 +11,11 @@ namespace SuperMarioWorld
     {
         public GameObject content;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Object position</param>
+        /// <param name="contents">What the object contains</param>
         public MysteryBlock(Point position, GameObject contents) : base (position)
         {
             //Sets the contents of the mysteryblock

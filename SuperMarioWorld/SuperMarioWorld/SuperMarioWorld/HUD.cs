@@ -22,16 +22,20 @@ namespace SuperMarioWorld
         private const string _HUDSmallNumbersSource = @"HUD\HUDSmallNumbers";
 
         //Draw these sprites
-        private Sprite marioLuigiName;
-        private Sprite largeNumbers;
-        private Sprite outline;
-        private Sprite powerUps;
-        private Sprite smallNumbers;
+        private Sprite _marioLuigiName;
+        private Sprite _largeNumbers;
+        private Sprite _outline;
+        private Sprite _powerUps;
+        private Sprite _smallNumbers;
 
         //Variables for tracking the time that is left in the level
         private int _timeLeft;
         private int _elapsedMiliseconds;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="scoreHandler">Score handler to read  out information</param>
         public HUD(ScoreHandler scoreHandler)
         {
             _scores = scoreHandler;
@@ -40,43 +44,43 @@ namespace SuperMarioWorld
             _timeLeft = _scores.maxTime;
 
             //Initialize the player character name sprite
-            marioLuigiName = new Sprite(_HUDMarioLuigiNameSource);
-            marioLuigiName.xSize = 40;
-            marioLuigiName.ySize = 8;
-            marioLuigiName.layer = 0.6f;
+            _marioLuigiName = new Sprite(_HUDMarioLuigiNameSource);
+            _marioLuigiName.xSize = 40;
+            _marioLuigiName.ySize = 8;
+            _marioLuigiName.layer = 0.6f;
 
             //Initialize the large number name sprite
-            largeNumbers = new Sprite(_HUDLargeNumbersSource);
-            largeNumbers.xSize = 8;
-            largeNumbers.ySize = 14;
+            _largeNumbers = new Sprite(_HUDLargeNumbersSource);
+            _largeNumbers.xSize = 8;
+            _largeNumbers.ySize = 14;
             
             
             //Initialize the background/outline/standard hud texture sprite
-            outline = new Sprite(_HUDOutlineSource);
-            outline.xSize = 256;
-            outline.ySize = 38;
-            outline.AddFrame(0, 0);
-            outline.layer = 0.5f;
+            _outline = new Sprite(_HUDOutlineSource);
+            _outline.xSize = 256;
+            _outline.ySize = 38;
+            _outline.AddFrame(0, 0);
+            _outline.layer = 0.5f;
 
             //Initialize the powerup sprite
-            powerUps = new Sprite(_HUDPowerUpsSource);
-            powerUps.xSize = 18;
-            powerUps.ySize = 18;
+            _powerUps = new Sprite(_HUDPowerUpsSource);
+            _powerUps.xSize = 18;
+            _powerUps.ySize = 18;
 
             //Initialize the small number sprite
-            smallNumbers = new Sprite(_HUDSmallNumbersSource);
-            smallNumbers.xSize = 8;
-            smallNumbers.ySize = 7;
+            _smallNumbers = new Sprite(_HUDSmallNumbersSource);
+            _smallNumbers.xSize = 8;
+            _smallNumbers.ySize = 7;
         }
 
         public void LoadContent(ContentManager c)
         {
             //Load all the content that is needed for the HUD
-            largeNumbers.texture = c.Load<Texture2D>(largeNumbers.sourceName);
-            marioLuigiName.texture = c.Load<Texture2D>(marioLuigiName.sourceName);
-            outline.texture = c.Load<Texture2D>(outline.sourceName);
-            powerUps.texture = c.Load<Texture2D>(powerUps.sourceName);
-            smallNumbers.texture = c.Load<Texture2D>(smallNumbers.sourceName);
+            _largeNumbers.texture = c.Load<Texture2D>(_largeNumbers.sourceName);
+            _marioLuigiName.texture = c.Load<Texture2D>(_marioLuigiName.sourceName);
+            _outline.texture = c.Load<Texture2D>(_outline.sourceName);
+            _powerUps.texture = c.Load<Texture2D>(_powerUps.sourceName);
+            _smallNumbers.texture = c.Load<Texture2D>(_smallNumbers.sourceName);
         }
 
         public void Update(GameTime gameTime)
@@ -111,30 +115,30 @@ namespace SuperMarioWorld
         public void DrawHUD(SpriteBatch batch)
         {
             //Draw the hud background or whatever
-            outline.DrawSprite(batch, new Vector2(0, 0));
+            _outline.DrawSprite(batch, new Vector2(0, 0));
 
             //Draw the name of the character
-            marioLuigiName.AddFrame(0, 0);
-            marioLuigiName.DrawSprite(batch, new Vector2(15, 15));
+            _marioLuigiName.AddFrame(0, 0);
+            _marioLuigiName.DrawSprite(batch, new Vector2(15, 15));
 
             //Draw reserve powerup
             switch (_scores.powerUp)
             {
                 case ScoreHandler.PowerUp.mushroom:
-                    powerUps.NewAnimation(0, 0);
-                    powerUps.DrawSprite(batch, new Vector2(119, 14));
+                    _powerUps.NewAnimation(0, 0);
+                    _powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
                 case ScoreHandler.PowerUp.fireFlower:
-                    powerUps.NewAnimation(1, 0);
-                    powerUps.DrawSprite(batch, new Vector2(119, 14));
+                    _powerUps.NewAnimation(1, 0);
+                    _powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
                 case ScoreHandler.PowerUp.feather:
-                    powerUps.NewAnimation(2, 0);
-                    powerUps.DrawSprite(batch, new Vector2(119, 14));
+                    _powerUps.NewAnimation(2, 0);
+                    _powerUps.DrawSprite(batch, new Vector2(119, 14));
                     break;
                 default:
                     //No powerup so nothing to add to animation
-                    powerUps.NewAnimation();
+                    _powerUps.NewAnimation();
                     break;
             }
 
@@ -150,9 +154,9 @@ namespace SuperMarioWorld
                 //get a number and parse it to an int
                 int num = int.Parse(array[i].ToString());
                 //Set the number's sprite equivalent in the animation list
-                smallNumbers.NewAnimation(num, 0);
+                _smallNumbers.NewAnimation(num, 0);
                 //Draw the number
-                smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 25));
+                _smallNumbers.DrawSprite(batch, new Vector2(240 - (i * _smallNumbers.xSize), 25));
             }
 
             //Draw coins, coins is lined out on the right
@@ -162,8 +166,8 @@ namespace SuperMarioWorld
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
-                smallNumbers.NewAnimation(num, 0);
-                smallNumbers.DrawSprite(batch, new Vector2(240 - (i * smallNumbers.xSize), 16));
+                _smallNumbers.NewAnimation(num, 0);
+                _smallNumbers.DrawSprite(batch, new Vector2(240 - (i * _smallNumbers.xSize), 16));
             }
 
             //Draw time, time is lined out on the right
@@ -173,8 +177,8 @@ namespace SuperMarioWorld
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
-                smallNumbers.NewAnimation(num, 1);
-                smallNumbers.DrawSprite(batch, new Vector2(168 - (i * smallNumbers.xSize), 25));
+                _smallNumbers.NewAnimation(num, 1);
+                _smallNumbers.DrawSprite(batch, new Vector2(168 - (i * _smallNumbers.xSize), 25));
             }
 
             //Draw lives, lives are lined out on the left.
@@ -182,8 +186,8 @@ namespace SuperMarioWorld
             {
                 string s = _scores.lives.ToString();
                 int num = int.Parse(s[i].ToString());
-                smallNumbers.NewAnimation(num, 0);
-                smallNumbers.DrawSprite(batch, new Vector2(33 + (i * smallNumbers.xSize), 24));
+                _smallNumbers.NewAnimation(num, 0);
+                _smallNumbers.DrawSprite(batch, new Vector2(33 + (i * _smallNumbers.xSize), 24));
             }
 
             //Draw Starpoints, starpoints are lined out on the right
@@ -193,8 +197,8 @@ namespace SuperMarioWorld
                 char[] array = s.ToCharArray();
                 Array.Reverse(array);
                 int num = int.Parse(array[i].ToString());
-                largeNumbers.NewAnimation(num, 0);
-                largeNumbers.DrawSprite(batch, new Vector2(100 - (i * largeNumbers.xSize), 17));
+                _largeNumbers.NewAnimation(num, 0);
+                _largeNumbers.DrawSprite(batch, new Vector2(100 - (i * _largeNumbers.xSize), 17));
             }
         }
     }

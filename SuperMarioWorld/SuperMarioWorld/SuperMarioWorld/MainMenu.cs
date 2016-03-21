@@ -32,8 +32,8 @@ namespace SuperMarioWorld
         //The text scale
         private float _textScale;
 
-        private List<string> menu;
-        private int selected;
+        private List<string> _menuContent;
+        private int _selected;
 
         /// <summary>
         /// default constructor
@@ -51,15 +51,15 @@ namespace SuperMarioWorld
             sprite.layer = 1.0f;
 
             //Set index for selected item
-            selected = 0;
+            _selected = 0;
 
             //Set current menu
             curMenu = Menu.Main;
 
             //Add options to list
-            menu = new List<string>();
-            menu.Add("Play Game");
-            menu.Add("Level Editor");
+            _menuContent = new List<string>();
+            _menuContent.Add("Play Game");
+            _menuContent.Add("Level Editor");
 
             _textScale = 0.12f;
         }
@@ -69,9 +69,9 @@ namespace SuperMarioWorld
             base.Update(gameTime);
 
             if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.W))
-                selected--;
+                _selected--;
             if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.S))
-                selected++;
+                _selected++;
 
             if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.Space))
             {
@@ -79,34 +79,34 @@ namespace SuperMarioWorld
                 if (curMenu == Menu.Main)
                 {
                     //and have "Play" selected
-                    if (selected == 0)
+                    if (_selected == 0)
                     {
-                        selected = 0;
+                        _selected = 0;
                         GetLevels();
                         curMenu = Menu.Play;
                     }
                     //or have "Edit selected"
-                    else if(selected == 1)
+                    else if(_selected == 1)
                     {
 
                     }
                 }
                 else if (curMenu == Menu.Play)
                 {
-                    load(menu[selected]);
+                    load(_menuContent[_selected]);
                 }
             }
 
-            if (selected >= menu.Count)
-                selected = 0;
-            if (selected < 0)
-                selected = menu.Count - 1;
+            if (_selected >= _menuContent.Count)
+                _selected = 0;
+            if (_selected < 0)
+                _selected = _menuContent.Count - 1;
         }
 
         private void GetLevels()
         {
             string[] files = Directory.GetFiles(@"Content\Levels");
-            menu.Clear();
+            _menuContent.Clear();
             foreach(string s in files)
             { 
                 string name = Path.GetFileName(s);
@@ -114,7 +114,7 @@ namespace SuperMarioWorld
 
                 if (split[1].Equals("sml"))
                 {
-                    menu.Add(split[0]);
+                    _menuContent.Add(split[0]);
                 }
             }
         }
@@ -132,15 +132,15 @@ namespace SuperMarioWorld
 
         public override void DrawObject(SpriteBatch batch)
         {
-            string text = "blljoawowaj";
+            string text = String.Empty;
 
-            for (int i = 0; i < menu.Count; i++)
+            for (int i = 0; i < _menuContent.Count; i++)
             {
                 Color textColor = Color.Black;
-                if (i == selected)
+                if (i == _selected)
                     textColor = Color.White;
 
-                text = (selected == i ? ")))  " : "") + menu[i] + (selected == i ? "   (((" : "");
+                text = (_selected == i ? ")))  " : "") + _menuContent[i] + (_selected == i ? "   (((" : "");
 
                 batch.DrawString(_spriteFont, text, new Vector2(sprite.xSize / 2, i * 5 + sprite.ySize / 2 + 4), textColor, 0, _spriteFont.MeasureString(text) * 0.5f, _textScale, SpriteEffects.None, sprite.layer);
 

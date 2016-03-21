@@ -8,6 +8,8 @@ namespace SuperMarioWorld
 {
     class Checkpoint : StaticObject
     {
+        public bool isFinish;
+
         public Checkpoint(Point position) : base(position)
         {
             blocking = false;

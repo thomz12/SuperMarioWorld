@@ -9,103 +9,155 @@ namespace SuperMarioWorld
 {
     class InputManager
     {
+        private static InputManager _inputManager;
 
-        private static InputManager inputManager;
+        //Keyboard states
+        private KeyboardState _priorKeyboardState;
+        private KeyboardState _curKeyboardState;
 
-        KeyboardState priorKeyboardState;
-        KeyboardState curKeyboardState;
+        //Gamepad states
+        private GamePadState _priorGamepadState;
+        private GamePadState _curGamepadState;
 
-        GamePadState priorGamepadState;
-        GamePadState curGamepadState;
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public InputManager()
         {
-            curKeyboardState = Keyboard.GetState();
+            _curKeyboardState = Keyboard.GetState();
 
-            curGamepadState = GamePad.GetState(PlayerIndex.One);
+            _curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
         public static InputManager Instance
         {
             get
             {
-                if (inputManager == null)
-                    inputManager = new InputManager();
-                return inputManager;
+                if (_inputManager == null)
+                    _inputManager = new InputManager();
+                return _inputManager;
             }
         }
 
         public void Update()
         {
-            priorKeyboardState = curKeyboardState;
-            priorGamepadState = curGamepadState;
+            _priorKeyboardState = _curKeyboardState;
+            _priorGamepadState = _curGamepadState;
 
-            curKeyboardState = Keyboard.GetState();
-            curGamepadState = GamePad.GetState(PlayerIndex.One);
+            _curKeyboardState = Keyboard.GetState();
+            _curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
+        /// <summary>
+        /// Return true if key is pressed
+        /// </summary>
+        /// <param name="key">The key you want to know</param>
+        /// <returns></returns>
         public bool KeyboardIsPressed(Keys key)
         {
-            if (curKeyboardState.IsKeyDown(key))
+            if (_curKeyboardState.IsKeyDown(key))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Return strue is the key is released
+        /// </summary>
+        /// <param name="key">The key you want to know</param>
+        /// <returns></returns>
         public bool KeyboardIsReleased(Keys key)
         {
-            if (curKeyboardState.IsKeyUp(key))
+            if (_curKeyboardState.IsKeyUp(key))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Returns true if the key is pressed
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <returns></returns>
         public bool KeyboardOnPress(Keys key)
         {
-            if (curKeyboardState.IsKeyUp(key) && priorKeyboardState.IsKeyDown(key))
+            if (_curKeyboardState.IsKeyUp(key) && _priorKeyboardState.IsKeyDown(key))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Returns true if the key is released
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <returns></returns>
         public bool KeyboardOnRelease(Keys key)
         {
-            if (curKeyboardState.IsKeyDown(key) && priorKeyboardState.IsKeyUp(key))
+            if (_curKeyboardState.IsKeyDown(key) && _priorKeyboardState.IsKeyUp(key))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Returns true if button is released
+        /// </summary>
+        /// <param name="button">The button</param>
+        /// <returns></returns>
         public bool GamePadIsReleased(Buttons button)
         {
-            if (curGamepadState.IsButtonUp(button))
+            if (_curGamepadState.IsButtonUp(button))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Get the left joystick value of the controller on the X-axis
+        /// </summary>
+        /// <returns>-1.0 - 1.0</returns>
         public float GamePadAnalogLeftX()
         {
-            return curGamepadState.ThumbSticks.Left.X;
+            return _curGamepadState.ThumbSticks.Left.X;
         }
 
+        /// <summary>
+        /// Get the left joystick value of the controller on the Y-axis
+        /// </summary>
+        /// <returns></returns>
         public float GamePadAnalogLeftY()
         {
-            return curGamepadState.ThumbSticks.Left.Y;
+            return _curGamepadState.ThumbSticks.Left.Y;
         }
 
+        /// <summary>
+        /// Is button pressed
+        /// </summary>
+        /// <param name="button">The button</param>
+        /// <returns></returns>
         public bool GamePadIsPressed(Buttons button)
         {
-            if (curGamepadState.IsButtonDown(button))
+            if (_curGamepadState.IsButtonDown(button))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Returns true on release of the button
+        /// </summary>
+        /// <param name="button">The button you want to know</param>
+        /// <returns></returns>
         public bool GamePadOnRelease(Buttons button)
         {
-            if (curGamepadState.IsButtonUp(button) && priorGamepadState.IsButtonDown(button))
+            if (_curGamepadState.IsButtonUp(button) && _priorGamepadState.IsButtonDown(button))
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// Returns true on press of the button
+        /// </summary>
+        /// <param name="button">The button you want to know</param>
+        /// <returns></returns>
         public bool GamePadOnPress(Buttons button)
         {
-            if (curGamepadState.IsButtonDown(button) && priorGamepadState.IsButtonUp(button))
+            if (_curGamepadState.IsButtonDown(button) && _priorGamepadState.IsButtonUp(button))
                 return true;
             return false;
         }
