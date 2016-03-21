@@ -18,9 +18,9 @@ namespace SuperMarioWorld
         public int score;
         public int starPoints;
 
-        private bool combo;
-        private int comboPoints;
-        private float comboTimer;
+        private bool _combo;
+        private int _comboPoints;
+        private float _comboTimer;
 
         public enum PowerUp
         {
@@ -36,22 +36,21 @@ namespace SuperMarioWorld
 
         public ScoreHandler()
         {
-            combo = false;
-            comboPoints = 100;
-            comboTimer = 0;
-            //LoadScores()
+            _combo = false;
+            _comboPoints = 100;
+            _comboTimer = 0;
         }
 
         public void Update(GameTime gameTime)
         {
-            if (combo)
+            if (_combo)
             {
-                comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(comboTimer >= 1000)
+                _comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if(_comboTimer >= 1000)
                 {
-                    combo = false;
-                    comboTimer = 0;
-                    comboPoints = 100;
+                    _combo = false;
+                    _comboTimer = 0;
+                    _comboPoints = 100;
                 }
             }
         }
@@ -62,52 +61,36 @@ namespace SuperMarioWorld
         /// </summary>
         public void AddCombo()
         {
-            if (!combo)
+            if (!_combo)
             {
-                combo = true;
+                _combo = true;
             }
 
-            score += comboPoints;
-            comboTimer = 0;
+            score += _comboPoints;
+            _comboTimer = 0;
 
             //This ugly switch should do the trick for the irregular combo points rewarded.
-            switch (comboPoints)
+            switch (_comboPoints)
             {
                 case 100:
-                    comboPoints = 200;
+                    _comboPoints = 200;
                     break;
                 case 200:
-                    comboPoints = 400;
+                    _comboPoints = 400;
                     break;
                 case 400:
-                    comboPoints = 500;
+                    _comboPoints = 500;
                     break;
                 case 500:
-                    comboPoints = 800;
+                    _comboPoints = 800;
                     break;
                 case 800:
-                    comboPoints = 1000;
+                    _comboPoints = 1000;
                     break;
                 case 1000:
                     lives++;
                     break;
             }
-        }
-
-        /// <summary>
-        /// Load scores from a file
-        /// </summary>
-        private void LoadScores()
-        {
-            //Load the scores from score.sms (only implemented when we are going to use savegames)
-        }
-
-        /// <summary>
-        /// Save current scores to a file
-        /// </summary>
-        private void SaveScores()
-        {
-            //Saves coins, lives, score and starPoints in a score.sms file
         }
     }
 }

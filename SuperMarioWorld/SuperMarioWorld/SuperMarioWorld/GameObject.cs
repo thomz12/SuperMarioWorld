@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-
     delegate void CreateObject(GameObject gameObject);
     delegate void DestoryObject(GameObject gameObject);
 

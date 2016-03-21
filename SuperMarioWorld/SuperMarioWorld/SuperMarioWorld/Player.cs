@@ -26,8 +26,6 @@ namespace SuperMarioWorld
         {
             small = 0,
             normal = 1,
-            fire = 2,
-            feather = 3
         }
 
         /// <summary>
@@ -52,11 +50,11 @@ namespace SuperMarioWorld
             falling,
             lookup,
             running,
-            Dead
+            dead
         }
 
         //Higher value -> less controll in the air
-        private float _airControl = 3.0f;
+        private float _airControl;
 
         //Scorehandler
         private ScoreHandler _scores;
@@ -80,8 +78,9 @@ namespace SuperMarioWorld
             sprite.AddFrame(0, 0);
 
             acceleration = 500.0f;
-            thermalVelocity = 150;
+            terminalVelocity = 150;
             maxSpeed = 64;
+            _airControl = 3.0f;
 
             switch (character)
             {
@@ -138,7 +137,7 @@ namespace SuperMarioWorld
                 }
                 else
                 {
-                    SetAnimation(PlayerAnimationState.Dead);
+                    SetAnimation(PlayerAnimationState.dead);
                     powerState = PowerState.normal;
                     boundingBox.Height = 24;
                 }
@@ -173,7 +172,7 @@ namespace SuperMarioWorld
                     _invunerable = false;
             }
 
-            if (!death)
+            if (!dead)
             {
                 //If the button D is pressed
                 if (InputManager.Instance.KeyboardIsPressed(Keys.D) || InputManager.Instance.GamePadIsPressed(Buttons.DPadRight) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
@@ -230,7 +229,7 @@ namespace SuperMarioWorld
             }
             else
             {
-                SetAnimation(PlayerAnimationState.Dead);
+                SetAnimation(PlayerAnimationState.dead);
             }
             //Calculate player movement
             Movement(gameTime);
@@ -274,7 +273,7 @@ namespace SuperMarioWorld
                     case PlayerAnimationState.lookup:
                         sprite.AddFrame(9, 0);
                         break;
-                    case PlayerAnimationState.Dead:
+                    case PlayerAnimationState.dead:
                         sprite.AddFrame(10, 0);
                         sprite.AddFrame(11, 0);
                         break;
@@ -332,7 +331,7 @@ namespace SuperMarioWorld
                 }
                 else if (powerState == PowerState.small)
                 {
-                    death = true;
+                    dead = true;
                     momentum.X = 0;
                     momentum.Y = -500;
                     boundingBox.Width = 0;
@@ -371,10 +370,10 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
-            if (momentum.Y > thermalVelocity)
-                momentum.Y = thermalVelocity;
-            if (momentum.Y < -thermalVelocity)
-                momentum.Y = -thermalVelocity;
+            if (momentum.Y > terminalVelocity)
+                momentum.Y = terminalVelocity;
+            if (momentum.Y < -terminalVelocity)
+                momentum.Y = -terminalVelocity;
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);

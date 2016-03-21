@@ -104,10 +104,5 @@ namespace SuperMarioWorld
                     break;
             }
         }
-
-        public override void OnCollision(GameObject collider)
-        {
-            base.OnCollision(collider);
-        }
     }
 }

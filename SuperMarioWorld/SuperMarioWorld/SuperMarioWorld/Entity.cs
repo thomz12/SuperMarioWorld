@@ -15,22 +15,27 @@ namespace SuperMarioWorld
 
         public bool lookRight;
 
-        protected float acceleration = 16f;
+        protected float acceleration;
 
-        public bool death;
+        public bool dead;
 
         protected float maxSpeed;
-        protected float thermalVelocity;
+        protected float terminalVelocity;
 
         public bool hasTurned;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position"></param>
         public Entity(Point position) : base (position)
         {
             affectedByGravity = true;
             lookRight = true;
             grounded = false;
             maxSpeed = 256.0f;
-            thermalVelocity = 128.0f;
+            terminalVelocity = 128.0f;
+            acceleration = 16f;
             hasTurned = false;
         }
 
@@ -39,7 +44,7 @@ namespace SuperMarioWorld
             hasTurned = false;
 
             //Flip sprite when looking left/right
-            if (!death)
+            if (!dead)
             {
                 if (lookRight)
                     sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
@@ -66,9 +71,9 @@ namespace SuperMarioWorld
         /// <param name="cause">GameObject that caused this entities death</param>
         public virtual void Death(GameObject cause)
         {
-            if (!death)
+            if (!dead)
             {
-                death = true;
+                dead = true;
                 momentum.Y = -200;
                 momentum.X /= 4;
                 boundingBox.Height = 0;
@@ -88,7 +93,7 @@ namespace SuperMarioWorld
         protected virtual void Movement(GameTime gameTime)
         {
             //This now applies to all entities except the player and the smart koopa who override this function.
-            if (!death)
+            if (!dead)
             {
                 if (lookRight)
                     momentum = new Vector2(momentum.X + acceleration, momentum.Y);
@@ -106,10 +111,10 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
-            if (momentum.Y > thermalVelocity)
-                momentum.Y = thermalVelocity;
-            if (momentum.Y < -thermalVelocity)
-                momentum.Y = -thermalVelocity;
+            if (momentum.Y > terminalVelocity)
+                momentum.Y = terminalVelocity;
+            if (momentum.Y < -terminalVelocity)
+                momentum.Y = -terminalVelocity;
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);

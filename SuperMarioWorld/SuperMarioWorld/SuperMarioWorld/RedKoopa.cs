@@ -12,6 +12,10 @@ namespace SuperMarioWorld
 
         private bool _onPlatform;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Object position</param>
         public RedKoopa(Point position) : base (position)
         {
             sprite.sourceName = @"Enemies\Koopas";
@@ -73,8 +77,6 @@ namespace SuperMarioWorld
                     }
                 }
             }
-
-
             base.OnCollision(collider);
         }
     }
