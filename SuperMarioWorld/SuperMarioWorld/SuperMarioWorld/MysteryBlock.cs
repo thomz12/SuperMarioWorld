@@ -7,15 +7,26 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class MysteryBlock : Object
+    class MysteryBlock : StaticObject
     {
-        private GameObject _content;
+        public GameObject content;
 
-        public MysteryBlock(Vector2 position, GameObject contents) : base (position)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Object position</param>
+        /// <param name="contents">What the object contains</param>
+        public MysteryBlock(Point position, GameObject contents) : base (position)
         {
             //Sets the contents of the mysteryblock
-            _content = contents;
+            if (contents != null)
+            {
+                content = contents;
+            }
+            else
+                content = new Coin(position, true);
 
+            content.position = new Vector2(position.X, position.Y - 16);
             //Generates a boundingbox around the block
             boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
             
@@ -24,7 +35,7 @@ namespace SuperMarioWorld
             sprite.ySize = 16;
 
             //Call sprite class to load the texture
-            sprite.sourceName = "MysteryBlock";
+            sprite.sourceName = @"Blocks\MysteryBlock";
 
             //Sprite animation
             sprite.NewAnimation();
@@ -45,23 +56,34 @@ namespace SuperMarioWorld
 
                 Rectangle overlap;
                 Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
-
                 if (overlap.Width > overlap.Height)
                 {
                     if (p.position.Y < position.Y)
                     {
-                        p.position.Y = position.Y - boundingBox.Height / 2 - p.boundingBox.Height / 2;
-                        p.momentum.Y = 16;
-                        p.grounded = true;
-                        p.momentum.Y = 0;
+                        if (p.momentum.Y > 0)
+                        {
+                            //When entity collides from the top
+                            p.position.Y = position.Y - boundingBox.Height + 1;
+                            p.momentum.Y = 16;
+                            p.grounded = true;
+                            p.momentum.Y = 0;
+                        }
                     }
                     else
                     {
-                        p.position.Y = position.Y + boundingBox.Height / 2 + p.boundingBox.Height / 2;
+                        p.position.Y = position.Y + p.boundingBox.Height;
                         if (p is Player)
                         {
-                            sprite.NewAnimation();
-                            sprite.AddFrame(4, 0);
+                            //When player collides from the bottom
+                            create(new StaticBlock(new Point((int)position.X, (int)position.Y), StaticBlock.BlockType.used, 0.5f));
+
+                            if (content != null)
+                            {
+                                create(content);
+                                content = null;
+                            }
+
+                            destory(this);
                         }
 
                         p.momentum.Y = 16;

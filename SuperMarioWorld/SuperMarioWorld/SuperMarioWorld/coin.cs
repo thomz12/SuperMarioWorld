@@ -8,9 +8,26 @@ namespace SuperMarioWorld
 {
     class Coin : Entity
     {
-        public Coin(Vector2 position) : base (position)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">Position the object is created on</param>
+        /// <param name="moving">Is the coin a moving coin or a static one?</param>
+        public Coin(Point position, bool moving) : base (position)
         {
             maxSpeed = 16;
+
+            if (moving)
+            {
+                acceleration = 16;
+            }
+            else
+            {
+                acceleration = 0;
+                grounded = true;
+                affectedByGravity = false;
+            }
+
             lookRight = false;
 
             //Generates a boundingbox around the coin
@@ -21,7 +38,7 @@ namespace SuperMarioWorld
             sprite.ySize = 16;
 
             //Call sprite class to load the texture
-            sprite.sourceName = "coin";
+            sprite.sourceName = @"Misc\Coin";
 
             //Add animation
             sprite.NewAnimation();
@@ -36,7 +53,7 @@ namespace SuperMarioWorld
 
         public override void OnCollision(GameObject collider)
         {
-            //Destroy me
+
         }
     }
 }

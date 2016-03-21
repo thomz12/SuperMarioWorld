@@ -8,24 +8,36 @@ namespace SuperMarioWorld
 {
     abstract class Enemy : Entity
     {
-        protected bool flying;
-        protected bool huge;
-
-        protected GameObject drop;
-
-        public Enemy(Vector2 position) : base (position)
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="position">The object position</param>
+        public Enemy(Point position) : base (position)
         {
-
-        }
-
-        public void Death()
-        {
-
+            
         }
 
         public override void OnCollision(GameObject collider)
         {
+            //Also turn around if an enemy collides with an enemy.
+            if (collider is Enemy)
+                lookRight = !lookRight;
 
+            if(collider is Player)
+            {
+                Player p = (Player)collider;
+                if (p.momentum.Y > 3)
+                {
+                    p.momentum.Y = -110;
+                    p.boundingBox.Y = (int)position.Y - boundingBox.Height - p.boundingBox.Height;
+                    p.position.Y = position.Y - boundingBox.Height;
+                    Death(collider);
+                }
+                else if(!dead)
+                {
+                    p.Death(collider);
+                }
+            }
         }
 
         protected override void Movement(GameTime gameTime)

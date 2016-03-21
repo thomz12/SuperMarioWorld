@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,10 @@ namespace SuperMarioWorld
         /// <summary>
         /// Tracks if mario is small, big, empowered or something else
         /// </summary>
-        private int _powerState { get; set; }
+        public PowerState powerState = PowerState.small;
+        private bool _invunerable;
+        private float _invunerableTimer;
+        private float _invunerableTime = 2;
 
         /// <summary>
         /// Different powerstates that the player can have
@@ -22,8 +26,6 @@ namespace SuperMarioWorld
         {
             small = 0,
             normal = 1,
-            fire = 2,
-            feather = 3
         }
 
         /// <summary>
@@ -36,7 +38,8 @@ namespace SuperMarioWorld
             Mario,
             Luigi,
             Wario,
-            Waluigi
+            Waluigi,
+            Peach
         }
 
         public enum PlayerAnimationState
@@ -46,16 +49,23 @@ namespace SuperMarioWorld
             jumping,
             falling,
             lookup,
-            running
+            running,
+            dead
         }
 
         //Higher value -> less controll in the air
-        private float _airControl = 3.0f;
+        private float _airControl;
 
         //Scorehandler
         private ScoreHandler _scores;
 
-        public Player (Vector2 position, ScoreHandler score, Character character) : base (position)
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        /// <param name="position">start position</param>
+        /// <param name="score">score handler</param>
+        /// <param name="character">what character is the player?</param>
+        public Player (Point position, ScoreHandler score, Character character) : base (position)
         {
             //Set a score handler, all the interactions that require a score change go through the player object.
             _scores = score;
@@ -68,24 +78,29 @@ namespace SuperMarioWorld
             sprite.AddFrame(0, 0);
 
             acceleration = 500.0f;
+            terminalVelocity = 150;
             maxSpeed = 64;
+            _airControl = 3.0f;
 
             switch (character)
             {
                 case Character.Mario:
-                    sprite.sourceName = "Mario";
+                    sprite.sourceName = @"Players\Mario";
                     break;
                 case Character.Luigi:
-                    sprite.sourceName = "Luigi";
+                    sprite.sourceName = @"Players\Luigi";
                     break;
                 case Character.Wario:
-                    sprite.sourceName = "Wario";
+                    sprite.sourceName = @"Players\Wario";
                     sprite.xSize = 24;
                     break;
                 case Character.Waluigi:
-                    sprite.sourceName = "Waluigi";
+                    sprite.sourceName = @"Players\Waluigi";
                     sprite.xSize = 24;
                     sprite.ySize = 40;
+                    break;
+                case Character.Peach:
+                    sprite.sourceName = @"Players\Peach";
                     break;
                 default:
                     break;
@@ -98,11 +113,49 @@ namespace SuperMarioWorld
         /// <param name="collider">Collision with the collider object</param>
         public override void OnCollision(GameObject collider)
         {
+            //All the scoring is done by the player.
             if(collider is Coin)
             {
+                destory(collider);
                 _scores.coins++;
             }
-            //throw new NotImplementedException();
+            else if (collider is OneUp)
+            {
+                destory(collider);
+                _scores.lives++;
+                _scores.score += 1000;
+            }
+            else if (collider is Mushroom)
+            {
+                destory(collider);
+                if(powerState != PowerState.small)
+                {
+                    if (_scores.powerUp == ScoreHandler.PowerUp.none)
+                        _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                    else
+                        _scores.score += 1000;
+                }
+                else
+                {
+                    SetAnimation(PlayerAnimationState.dead);
+                    powerState = PowerState.normal;
+                    boundingBox.Height = 24;
+                }
+            }
+            else if (collider is Enemy)
+            {
+                if(momentum.Y > 3)
+                {
+                    _scores.AddCombo();
+                }
+            }
+            else if (collider is EmptyShell)
+            {
+                if (momentum.Y < 3)
+                {
+                    _scores.AddCombo();
+                }
+            }
         }
 
         /// <summary>
@@ -111,59 +164,73 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            //If the button D is pressed
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (_invunerable)
             {
-                lookRight = true;
-                if(grounded)
-                    momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-                else
-                    momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-            }
-            //If button A is pressed
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                lookRight = false;
-                if (grounded)
-                    momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-                else
-                    momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-            }
-            if(Keyboard.GetState().IsKeyDown(Keys.Space) && grounded)
-            {
-                momentum.Y = -140;
-                grounded = false;
+                _invunerableTimer -= (float)gameTime.ElapsedGameTime.Milliseconds / 1000.0f;
+
+                if (_invunerableTimer < 0)
+                    _invunerable = false;
             }
 
-            //Handle animations
-            //if player is moving
-            sprite.animationSpeed = 150.0f;
-            if(Math.Abs(momentum.X) > 0.5f && grounded)
+            if (!dead)
             {
-                sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
-                SetAnimation(PlayerAnimationState.walking);
+                //If the button D is pressed
+                if (InputManager.Instance.KeyboardIsPressed(Keys.D) || InputManager.Instance.GamePadIsPressed(Buttons.DPadRight) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
+                {
+                    lookRight = true;
+                    if (grounded)
+                        momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    else
+                        momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                }
+                //If button A is pressed
+                if (InputManager.Instance.KeyboardIsPressed(Keys.A) || InputManager.Instance.GamePadIsPressed(Buttons.DPadLeft) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
+                {
+                    lookRight = false;
+                    if (grounded)
+                        momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                    else
+                        momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                }
+                if ((InputManager.Instance.KeyboardOnRelease(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
+                {
+                    momentum.Y = -140;
+                    grounded = false;
+                }
+
+                //Handle animations
+                //if player is moving
+                sprite.animationSpeed = 150.0f;
+                if (Math.Abs(momentum.X) > 0.5f && grounded)
+                {
+                    sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
+                    SetAnimation(PlayerAnimationState.walking);
+                }
+                //if up is pressed, and not moving
+                else if (Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
+                {
+                    SetAnimation(PlayerAnimationState.lookup);
+                }
+                //if player is falling
+                else if (grounded == false && momentum.Y > 0.5f)
+                {
+                    SetAnimation(PlayerAnimationState.falling);
+                }
+                //If player is jumping
+                else if (grounded == false && momentum.Y < 0.5f)
+                {
+                    SetAnimation(PlayerAnimationState.jumping);
+                }
+                //player is doing nothing
+                else
+                {
+                    SetAnimation(PlayerAnimationState.idle);
+                }
             }
-            //if up is pressed, and not moving
-            else if(Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
-            {
-                SetAnimation(PlayerAnimationState.lookup);
-            }
-            //if player is falling
-            else if(grounded == false && momentum.Y > 0.5f)
-            {
-                SetAnimation(PlayerAnimationState.falling);
-            }
-            //If player is jumping
-            else if(grounded == false && momentum.Y < 0.5f)
-            {
-                SetAnimation(PlayerAnimationState.jumping);
-            }
-            //player is doing nothing
             else
             {
-                SetAnimation(PlayerAnimationState.idle);
+                SetAnimation(PlayerAnimationState.dead);
             }
-
             //Calculate player movement
             Movement(gameTime);
             grounded = false;
@@ -180,32 +247,109 @@ namespace SuperMarioWorld
             //Clear current animation
             sprite.NewAnimation();
 
-            //Set new animation
-            switch (animation)
+            if (powerState == PowerState.small)
             {
-                //small mario standing
-                case PlayerAnimationState.idle:
-                    sprite.AddFrame(0, 0);
-                    break;
-                //small mario walk
-                case PlayerAnimationState.walking:
-                    sprite.AddFrame(0, 0);
-                    sprite.AddFrame(1, 0);
-                    break;
-                //small mario jump
-                case PlayerAnimationState.jumping:
-                    sprite.AddFrame(2, 0);
-                    break;
-                //small mario fall
-                case PlayerAnimationState.falling:
-                    sprite.AddFrame(3, 0);
-                    break;
-                //small mario look up
-                case PlayerAnimationState.lookup:
-                    sprite.AddFrame(9, 0);
-                    break;
+                //Set new animation
+                switch (animation)
+                {
+                    //small mario standing
+                    case PlayerAnimationState.idle:
+                        sprite.AddFrame(0, 0);
+                        break;
+                    //small mario walk
+                    case PlayerAnimationState.walking:
+                        sprite.AddFrame(0, 0);
+                        sprite.AddFrame(1, 0);
+                        break;
+                    //small mario jump
+                    case PlayerAnimationState.jumping:
+                        sprite.AddFrame(2, 0);
+                        break;
+                    //small mario fall
+                    case PlayerAnimationState.falling:
+                        sprite.AddFrame(3, 0);
+                        break;
+                    //small mario look up
+                    case PlayerAnimationState.lookup:
+                        sprite.AddFrame(9, 0);
+                        break;
+                    case PlayerAnimationState.dead:
+                        sprite.AddFrame(10, 0);
+                        sprite.AddFrame(11, 0);
+                        break;
+                }
+            }
+            else
+            {
+                switch (animation)
+                {
+                    //mario standing
+                    case PlayerAnimationState.idle:
+                        sprite.AddFrame(0, 1);
+                        break;
+                    //mario walk
+                    case PlayerAnimationState.walking:
+                        sprite.AddFrame(2, 1);
+                        sprite.AddFrame(1, 1);
+                        sprite.AddFrame(0, 1);
+                        break;
+                    //mario jump
+                    case PlayerAnimationState.jumping:
+                        sprite.AddFrame(3, 1);
+                        break;
+                    //mario fall
+                    case PlayerAnimationState.falling:
+                        sprite.AddFrame(4, 1);
+                        break;
+                    //mario look up
+                    case PlayerAnimationState.lookup:
+                        sprite.AddFrame(10, 1);
+                        break;
+                }
             }
             _animationState = animation;
+        }
+
+        public override void Death(GameObject cause)
+        {
+            if (!_invunerable)
+            {
+                if (powerState != PowerState.small)
+                {
+                    SetAnimation(PlayerAnimationState.idle);
+                    powerState = PowerState.small;
+                    _invunerable = true;
+                    _invunerableTimer = _invunerableTime;
+                    boundingBox.Height = 14;
+
+                    if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
+                    {
+                        //The position needs changin!
+                        create(new Mushroom(new Point((int)position.X, (int)position.Y - 128)));
+                        _scores.powerUp = ScoreHandler.PowerUp.none;
+                    }
+                }
+                else if (powerState == PowerState.small)
+                {
+                    dead = true;
+                    momentum.X = 0;
+                    momentum.Y = -500;
+                    boundingBox.Width = 0;
+                    boundingBox.Height = 0;
+                    _scores.lives--;
+                }
+            }
+        }
+
+        public override void DrawObject(SpriteBatch batch)
+        {
+            if(_invunerable)
+            {
+                if ((int)Math.Round(_invunerableTimer * 100) % 2 == 0)
+                    return;
+            }
+            //Call the draw function of sprite
+            sprite.DrawSpriteCentered(batch, position);
         }
 
         /// <summary>
@@ -226,10 +370,10 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
-            if (momentum.Y > thermalVelocity)
-                momentum.Y = thermalVelocity;
-            if (momentum.Y < -thermalVelocity)
-                momentum.Y = -thermalVelocity;
+            if (momentum.Y > terminalVelocity)
+                momentum.Y = terminalVelocity;
+            if (momentum.Y < -terminalVelocity)
+                momentum.Y = -terminalVelocity;
 
             //add momentum to position
             position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);

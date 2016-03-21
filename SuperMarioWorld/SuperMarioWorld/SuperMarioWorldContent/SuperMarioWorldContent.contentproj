@@ -30,38 +30,11 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultFont.spritefont">
+    <Compile Include="Fonts\DefaultFont.spritefont">
       <Name>DefaultFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Mario.png">
-      <Name>Mario</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Luigi.png">
-      <Name>Luigi</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Wario.png">
-      <Name>Wario</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Waluigi.png">
-      <Name>Waluigi</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -72,76 +45,167 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MysteryBlock.png">
+    <Compile Include="Blocks\Grass.png">
+      <Name>Grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Blocks\MysteryBlock.png">
       <Name>MysteryBlock</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Goomba.png">
+    <Compile Include="Blocks\RotatingBlock.png">
+      <Name>RotatingBlock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Blocks\StaticBlocks.png">
+      <Name>StaticBlocks</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Enemies\Goomba.png">
       <Name>Goomba</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Levels\0.sml">
-      <Name>0</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BushBackground.png">
-      <Name>BushBackground</Name>
+    <Compile Include="Enemies\Koopas.png">
+      <Name>Koopas</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HUDLargeNumbers.png">
+    <Compile Include="Enemies\KoopaShells.png">
+      <Name>KoopaShells</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\HUDLargeNumbers.png">
       <Name>HUDLargeNumbers</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="HUDMarioLuigiName.png">
+    <Compile Include="HUD\HUDMarioLuigiName.png">
       <Name>HUDMarioLuigiName</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="HUDOutline.png">
+    <Compile Include="HUD\HUDOutline.png">
       <Name>HUDOutline</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="HUDPowerUps.png">
+    <Compile Include="HUD\HUDPowerUps.png">
       <Name>HUDPowerUps</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="HUDSmallNumbers.png">
+    <Compile Include="HUD\HUDSmallNumbers.png">
       <Name>HUDSmallNumbers</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Background\BushBackground.png">
+      <Name>BushBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TitleScreen\Title.png">
+      <Name>Title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="Levels\DemoLevel.sml">
+      <Name>DemoLevel</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Main_Menu.sml">
+      <Name>Main_Menu</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Levels\OLDEDIT.osml">
+      <Name>OLDEDIT</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\OLDMAINMENU.osml">
+      <Name>OLDMAINMENU</Name>
+    </None>
+    <None Include="Levels\OLDSMWLVL.osml">
+      <Name>OLDSMWLVL</Name>
+    </None>
+    <Compile Include="Misc\Coin.png">
+      <Name>Coin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Players\Luigi.png">
+      <Name>Luigi</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Players\Mario.png">
+      <Name>Mario</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Players\Waluigi.png">
+      <Name>Waluigi</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Players\Wario.png">
+      <Name>Wario</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\MainMenuFont.spritefont">
+      <Name>MainMenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+    <Content Include="Levels\SMW Level 1.sml">
+      <Name>SMW Level 1</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Template.sml">
+      <Name>Template</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="generalSpriteSheet.png">
-      <Name>generalSpriteSheet</Name>
+    <None Include="Levels\OLDDEMOLVL.osml">
+      <Name>OLDDEMOLVL</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PowerUps\FireFlower.png">
+      <Name>FireFlower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="PowerUps\Mushroom.png">
+      <Name>Mushroom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="PowerUps\OneUp.png">
+      <Name>OneUp</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="coin.png">
-      <Name>coin</Name>
+    <Compile Include="Players\Peach.png">
+      <Name>Peach</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grass.png">
-      <Name>Grass</Name>
+    <Compile Include="Blocks\checkpoint.png">
+      <Name>checkpoint</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

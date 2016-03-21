@@ -22,14 +22,17 @@ namespace SuperMarioWorld
         public Texture2D texture { get; set; }
 
         //X & Y size of a single sprite in sprite sheet
-        public int xSize, ySize;
+        public int xSize;
+        public int ySize;
 
         //Vars for cycling and displaying animated sprite sheets
         private List<Point> animationPositions;
         public bool animated;
 
         //Coords of frame (top left)
-        private int _texCoordX, _texCoordY;
+        private int _texCoordX;
+        private int _texCoordY;
+
         //The frame the animation is at
         private int _animIndex = 0;
         //effect to flip the sprite
@@ -147,7 +150,5 @@ namespace SuperMarioWorld
         {
             batch.Draw(texture, new Rectangle((int)Math.Round(position.X), (int)Math.Round(position.Y), xSize, ySize), new Rectangle(_texCoordX, _texCoordY, xSize, ySize), Color.White, 0, Vector2.Zero, effect, layer);
         }
-
-
     }
 }

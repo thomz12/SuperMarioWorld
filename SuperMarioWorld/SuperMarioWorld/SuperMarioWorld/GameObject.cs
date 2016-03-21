@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
+    delegate void CreateObject(GameObject gameObject);
+    delegate void DestoryObject(GameObject gameObject);
+
     abstract class GameObject
     {
         //Sprite (texture) of this object
@@ -16,15 +19,18 @@ namespace SuperMarioWorld
         //Current position of this object
         public Vector2 position;
 
+        public CreateObject create;
+        public DestoryObject destory;
+
         /// <summary>
         /// Default constructor
         /// </summary>
         public GameObject()
         {
-            this.position = Vector2.Zero;
+            position = Vector2.Zero;
 
             sprite = new Sprite();
-            sprite.layer = 0.5f;
+            sprite.layer = 0.5f;  
         }
 
         /// <summary>
@@ -32,14 +38,20 @@ namespace SuperMarioWorld
         /// </summary>
         /// <param name="position">Position of the object.</param>
         /// <param name="batch">Batch that the texture should be drawn on.</param>
-        public GameObject(Vector2 position)
+        public GameObject(Point position)
         {
-            this.position = position;
+            this.position.X = position.X;
+            this.position.Y = position.Y;
 
             sprite = new Sprite();
             sprite.layer = 0.5f;
         }
+        // details
 
+        /// <summary>
+        /// Execute this function when colliding with something.
+        /// </summary>
+        /// <param name="collider">the other thing that is being collided with.</param>
         public abstract void OnCollision(GameObject collider);
 
         /// <summary>
@@ -55,7 +67,7 @@ namespace SuperMarioWorld
         /// Called to draw the game object
         /// </summary>
         /// <param name="batch">Spritebatch to draw to</param>
-        public void DrawObject(SpriteBatch batch)
+        public virtual void DrawObject(SpriteBatch batch)
         {
             //Call the draw function of sprite
             sprite.DrawSpriteCentered(batch, position);

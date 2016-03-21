@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,24 @@ namespace SuperMarioWorld
     class ScoreHandler
     {
         public int coins;
-        public int lives;
+        public int lives = 3;
         public int maxTime;
         public int score;
         public int starPoints;
 
-        public Player.PowerState powerUp;
+        private bool _combo;
+        private int _comboPoints;
+        private float _comboTimer;
+
+        public enum PowerUp
+        {
+            none,
+            mushroom,
+            fireFlower,
+            feather
+        }
+
+        public PowerUp powerUp;
 
         private string _scoreFilePath = "score.sms";
 
@@ -26,23 +39,61 @@ namespace SuperMarioWorld
         /// </summary>
         public ScoreHandler()
         {
-            //LoadScores()
+            _combo = false;
+            _comboPoints = 100;
+            _comboTimer = 0;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (_combo)
+            {
+                _comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if(_comboTimer >= 1000)
+                {
+                    _combo = false;
+                    _comboTimer = 0;
+                    _comboPoints = 100;
+                }
+            }
         }
 
         /// <summary>
-        /// Load scores from a file
+        /// Adds additional score to the combo and checks if it is still running.
+        /// Things like coins and hitting enemies can increase the combo.
         /// </summary>
-        private void LoadScores()
+        public void AddCombo()
         {
-            //Load the scores from score.sms (only implemented when we are going to use savegames)
-        }
+            if (!_combo)
+            {
+                _combo = true;
+            }
 
-        /// <summary>
-        /// Save current scores to a file
-        /// </summary>
-        private void SaveScores()
-        {
-            //Saves coins, lives, score and starPoints in a score.sms file
+            score += _comboPoints;
+            _comboTimer = 0;
+
+            //This ugly switch should do the trick for the irregular combo points rewarded.
+            switch (_comboPoints)
+            {
+                case 100:
+                    _comboPoints = 200;
+                    break;
+                case 200:
+                    _comboPoints = 400;
+                    break;
+                case 400:
+                    _comboPoints = 500;
+                    break;
+                case 500:
+                    _comboPoints = 800;
+                    break;
+                case 800:
+                    _comboPoints = 1000;
+                    break;
+                case 1000:
+                    lives++;
+                    break;
+            }
         }
     }
 }
