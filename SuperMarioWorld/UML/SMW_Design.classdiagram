@@ -2807,7 +2807,7 @@
       <class Id="bfece8c2-9a00-4ea9-8469-9a78b708a540" name="InputManager" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="32ccd428-a322-4201-a9cc-8105fc31ae28" />
         <ownedAttributesInternal>
-          <property Id="f52a77f1-30e9-4f63-8fd0-a4cf9fbcab5a" name="_inputMangager" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="f52a77f1-30e9-4f63-8fd0-a4cf9fbcab5a" name="_inputMangager" visibility="Private" isLeaf="false" isStatic="true" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="b831690f-9d3d-4b21-b151-e890d16934c3" />
             <type_NamedElement>
               <referencedTypeMoniker Id="3cb2870a-afeb-4485-b1d6-94e1d587317b" LastKnownName="InputManager" />
@@ -2842,7 +2842,7 @@
           <operation Id="f7ff09ea-b030-4666-b2f6-a10c13c86ab2" name="InputManager" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="47f9e72c-871a-402d-8f16-aaa6ff10b6cb" />
           </operation>
-          <operation Id="78dabe33-6bc8-4ec5-9739-26f6a76eb0b3" name="Instance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="78dabe33-6bc8-4ec5-9739-26f6a76eb0b3" name="Instance" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="9c3d9a0b-5532-46ad-b833-7c71e7f80c18" />
             <ownedParameters>
               <operationHasOwnedParameters>

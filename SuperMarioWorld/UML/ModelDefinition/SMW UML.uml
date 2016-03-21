@@ -6158,7 +6158,7 @@
             name="_inputMangager"
             visibility="Private"
             isLeaf="false"
-            isStatic="false"
+            isStatic="true"
             isReadOnly="false"
             isUnique="false"
             isDerived="false"
@@ -6262,7 +6262,7 @@
             Id="9c3d9a0b-5532-46ad-b833-7c71e7f80c18"
             name="Instance"
             isLeaf="false"
-            isStatic="false"
+            isStatic="true"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
