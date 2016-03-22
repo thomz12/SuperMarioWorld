@@ -83,7 +83,7 @@ namespace SuperMarioWorld
                                 content = null;
                             }
 
-                            destory(this);
+                            destroy(this);
                         }
 
                         p.momentum.Y = 16;

@@ -89,7 +89,7 @@ namespace SuperMarioWorld
                 for(int i = 0; i < allObjects.Count; i++)
                 {
                     if (Vector2.Distance(_objectToPlace.position, allObjects[i].position) < 8)
-                        destory(allObjects[i]);
+                        destroy(allObjects[i]);
                 }
 
                 if (_objectToPlace is Coin)
@@ -115,7 +115,7 @@ namespace SuperMarioWorld
             else
             {
                 create(_objectToPlace);
-                destory(_objectToPlace);
+                destroy(_objectToPlace);
             }
             Movement(gameTime);
         }

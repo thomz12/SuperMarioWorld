@@ -18,7 +18,7 @@ namespace SuperMarioWorld
         private SpriteFont _spriteFont;
 
         //Delegate to load a scene
-        public LoadScene load;
+        public Scene.LoadScene load;
         
         //What menu the player is in
         enum Menu

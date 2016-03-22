@@ -123,7 +123,7 @@ namespace SuperMarioWorld
         public void LoadScene(string scene, bool edit)
         {
             _scenePath = scene;
-            _scene = new Scene(_scenePath, _scores, new LoadScene(LoadScene), edit);
+            _scene = new Scene(_scenePath, _scores, new Scene.LoadScene(LoadScene), edit);
             _scene.cam.Zoom = _scale;
             _scene.cam.GameHeight = _gameHeight;
             _scene.cam.GameWidth = _gameWidth;

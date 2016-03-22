@@ -11,12 +11,14 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    delegate void LoadScene(string level, bool edit);
 
     public class Scene
     {
         //Content manager
         private ContentManager _contentManager;
+
+        //Delegate to load level
+        public delegate void LoadScene(string level, bool edit);
 
         //HUD
         private HUD _hud;
@@ -346,8 +348,8 @@ namespace SuperMarioWorld
 
                     if (obj != null)
                     {
-                        obj.create = new CreateObject(CreateObject);
-                        obj.destory = new DestoryObject(DestroyObject);
+                        obj.create = new GameObject.CreateObject(CreateObject);
+                        obj.destroy = new GameObject.DestroyObject(DestroyObject);
                         objects.Add(obj);
                     }
                 }
@@ -421,8 +423,8 @@ namespace SuperMarioWorld
                obj.sprite.texture = _contentManager.Load<Texture2D>(obj.sprite.sourceName);
 
             //Add a create and destroy function
-            obj.create = new CreateObject(CreateObject);
-            obj.destory = new DestoryObject(DestroyObject);
+            obj.create = new GameObject.CreateObject(CreateObject);
+            obj.destroy = new GameObject.DestroyObject(DestroyObject);
 
             objects.Add(obj);
         }
@@ -484,7 +486,7 @@ namespace SuperMarioWorld
                         //Destroy the object if it is still alive.
                         if(objects[i] != null)
                         {
-                            objects[i].destory(objects[i]);
+                            objects[i].destroy(objects[i]);
                         }
                     }
                 }

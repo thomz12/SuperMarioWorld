@@ -116,18 +116,18 @@ namespace SuperMarioWorld
             //All the scoring is done by the player.
             if(collider is Coin)
             {
-                destory(collider);
+                destroy(collider);
                 _scores.coins++;
             }
             else if (collider is OneUp)
             {
-                destory(collider);
+                destroy(collider);
                 _scores.lives++;
                 _scores.score += 1000;
             }
             else if (collider is Mushroom)
             {
-                destory(collider);
+                destroy(collider);
                 if(powerState != PowerState.small)
                 {
                     if (_scores.powerUp == ScoreHandler.PowerUp.none)

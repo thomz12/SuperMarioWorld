@@ -9,7 +9,7 @@ namespace SuperMarioWorld
 { 
     public abstract class GameObject
     {
-        public delegate void DestoryObject(GameObject gameObject);
+        public delegate void DestroyObject(GameObject gameObject);
         public delegate void CreateObject(GameObject gameObject);
 
         //Sprite (texture) of this object
@@ -20,7 +20,7 @@ namespace SuperMarioWorld
         public Vector2 position;
 
         public CreateObject create;
-        public DestoryObject destory;
+        public DestroyObject destroy;
 
         /// <summary>
         /// Default constructor
