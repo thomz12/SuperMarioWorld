@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioWorldContent", "S
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SuperMarioWorld UML", "UML\SuperMarioWorld UML.modelproj", "{34698730-D315-4042-BB44-20C620CBBCFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMW Unit Tests", "UnitTestProject1\SMW Unit Tests.csproj", "{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,14 @@ Global
 		{34698730-D315-4042-BB44-20C620CBBCFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34698730-D315-4042-BB44-20C620CBBCFB}.Release|x86.ActiveCfg = Release|Any CPU
 		{34698730-D315-4042-BB44-20C620CBBCFB}.Release|x86.Build.0 = Release|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Debug|x86.Build.0 = Debug|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Release|x86.ActiveCfg = Release|Any CPU
+		{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
