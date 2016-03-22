@@ -88,12 +88,12 @@ namespace SuperMarioWorld
                     //or have "Edit selected"
                     else if(_selected == 1)
                     {
-
+                        load("Template.sml", true);
                     }
                 }
                 else if (curMenu == Menu.Play)
                 {
-                    load(_menuContent[_selected]);
+                    load(_menuContent[_selected], false);
                 }
             }
 

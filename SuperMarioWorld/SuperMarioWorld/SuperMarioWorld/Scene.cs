@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    delegate void LoadScene(string level);
+    delegate void LoadScene(string level, bool edit);
 
     class Scene
     {
