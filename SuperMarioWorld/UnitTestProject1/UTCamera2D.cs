@@ -20,7 +20,7 @@ namespace SuperMarioWorldTEST
         }
 
         [TestMethod]
-        public void k()
+        public void UT()
         {
 
         }

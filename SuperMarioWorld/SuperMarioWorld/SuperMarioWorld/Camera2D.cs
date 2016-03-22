@@ -96,22 +96,22 @@ namespace SuperMarioWorld
 
                     //Y axis
                     //if the lower bounds of the camera vieuwport is lower than the lowest pixel in the level (y+ == lower)
-                    //if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
-                    //{
-                    //    //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
-                    //    Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
+                    if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
+                    {
+                        //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
+                        Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
 
-                    //    //If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
-                    //    if (delta.Y < -(GameHeight / 4))
-                    //    {
-                    //        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    //If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
-                    //    Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
-                    //}
+                        //If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
+                        if (delta.Y < -(GameHeight / 4))
+                        {
+                            Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
+                        }
+                    }
+                    else
+                    {
+                        //If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
+                        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
+                    }
                 }
             }
             else
@@ -119,16 +119,6 @@ namespace SuperMarioWorld
                 //Set the position of the camera to the center of the level
                 Position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
             }
-        }
-
-        /// <summary>
-        /// Change the position of the cameraby a specific amount.
-        /// </summary>
-        /// <param name="amount">The amount which a camera should move.</param>
-        public void Move(Vector2 amount)
-        {
-            if(_moveable)
-            Position += amount;
         }
 
         /// <summary>
