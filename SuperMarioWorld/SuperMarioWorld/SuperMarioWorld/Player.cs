@@ -151,7 +151,7 @@ namespace SuperMarioWorld
             }
             else if (collider is EmptyShell)
             {
-                if (momentum.Y < 3)
+                if (momentum.Y > 3)
                 {
                     _scores.AddCombo();
                 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level xSize="128" ySize="16">
 	<Player>
-		<Position xPos="96" yPos="224" />
+		<Position xPos="256" yPos="224" />
 	</Player>
 	<StaticBlock layer="0.34">
 		<BlockType>dirtMiddle</BlockType>
