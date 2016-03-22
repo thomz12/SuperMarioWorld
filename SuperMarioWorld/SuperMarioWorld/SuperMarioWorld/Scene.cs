@@ -510,13 +510,6 @@ namespace SuperMarioWorld
             //Cycle through every GameObject in _collidables
             for(int i  = 0; i < _collidables.Count; i++)
             {
-                if (_collidables[i] is Entity)
-                {
-                    Entity e = (Entity)_collidables[i];
-                    if (e.dead)
-                        continue;
-                }
-
                 for (int j = i + 1; j < _collidables.Count; j++)
                 {
                     //Check if two objects collide
