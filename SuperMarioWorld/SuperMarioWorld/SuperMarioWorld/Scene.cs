@@ -454,6 +454,15 @@ namespace SuperMarioWorld
                 b.allObjects = objects;
             }
 
+            //TEMP 
+            if(_player is Player)
+            {
+                Player p = (Player)_player;
+                if (p.dead && p.position.Y > 200)
+                    load("Main_Menu.sml", false);
+            }
+            ///TEMP
+
             //Call the update method for all gameobjects
             for (int i = 0; i < objects.Count; i++)
             {
