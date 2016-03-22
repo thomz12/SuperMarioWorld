@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    delegate void LoadScene(string level);
+    delegate void LoadScene(string level, bool edit);
 
     class Scene
     {
@@ -447,6 +447,22 @@ namespace SuperMarioWorld
 
             _collidables.Clear();
 
+            //Give Builder object all the level information
+            if (_player is Builder)
+            {
+                Builder b = (Builder)_player;
+                b.allObjects = objects;
+            }
+
+            //TEMP 
+            if(_player is Player)
+            {
+                Player p = (Player)_player;
+                if (p.dead && p.position.Y > 200)
+                    load("Main_Menu.sml", false);
+            }
+            ///TEMP
+
             //Call the update method for all gameobjects
             for (int i = 0; i < objects.Count; i++)
             {
@@ -456,7 +472,7 @@ namespace SuperMarioWorld
                     //Add the objects that are in the frame to the collision list to be checked for collisions
                     if(objects[i] is StaticBlock)
                         _collidables.Add(objects[i]);
-                    if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
+                    else if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
                     {
                         objects[i].Update(gameTime);
                         _collidables.Add(objects[i]);
@@ -473,7 +489,7 @@ namespace SuperMarioWorld
                     }
                 }
             }
-        
+
             //Check collisions
             CheckCollisions();
 

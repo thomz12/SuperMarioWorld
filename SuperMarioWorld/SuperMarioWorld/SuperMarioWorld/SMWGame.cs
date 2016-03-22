@@ -113,17 +113,17 @@ namespace SuperMarioWorld
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
 #endif
-            LoadScene(_scenePath);
+            LoadScene(_scenePath, false);
         }
 
         /// <summary>
         /// Changes the scene to the scene of the given file path
         /// </summary>
         /// <param name="sceneSourceFile">Name of the scene in the \Content\Levels folder, including extension.</param>
-        public void LoadScene(string scene)
+        public void LoadScene(string scene, bool edit)
         {
             _scenePath = scene;
-            _scene = new Scene(_scenePath, _scores, new LoadScene(LoadScene), false);
+            _scene = new Scene(_scenePath, _scores, new LoadScene(LoadScene), edit);
             _scene.cam.Zoom = _scale;
             _scene.cam.GameHeight = _gameHeight;
             _scene.cam.GameWidth = _gameWidth;
