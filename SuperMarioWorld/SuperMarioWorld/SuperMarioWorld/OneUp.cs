@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class OneUp : Entity
+    public class OneUp : Entity
     {
         public OneUp(Point position) : base (position)
         {

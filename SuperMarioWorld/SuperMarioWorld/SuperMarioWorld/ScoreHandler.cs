@@ -10,7 +10,7 @@ namespace SuperMarioWorld
     /// This class has every score that needs to be displayed int he HUD
     /// and tracks the maximum allowed time for a level
     /// </summary>
-    class ScoreHandler
+    public class ScoreHandler
     {
         public int coins;
         public int lives = 3;

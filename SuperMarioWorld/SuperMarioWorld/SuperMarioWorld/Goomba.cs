@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Goomba : Enemy
+    public class Goomba : Enemy
     {
         /// <summary>
         /// Default constructor

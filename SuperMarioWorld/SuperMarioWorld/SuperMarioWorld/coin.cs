@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Coin : Entity
+    public class Coin : Entity
     {
         /// <summary>
         /// Default constructor

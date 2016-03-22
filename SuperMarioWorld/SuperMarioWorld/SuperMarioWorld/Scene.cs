@@ -13,7 +13,7 @@ namespace SuperMarioWorld
 {
     delegate void LoadScene(string level, bool edit);
 
-    class Scene
+    public class Scene
     {
         //Content manager
         private ContentManager _contentManager;

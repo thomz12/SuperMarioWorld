@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    abstract class Entity : GameObject
+    public abstract class Entity : GameObject
     {
         public Vector2 momentum;
 

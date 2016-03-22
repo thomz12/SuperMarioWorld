@@ -9,7 +9,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class MainMenu : GameObject
+    public class MainMenu : GameObject
     {
         //The content manager
         private ContentManager _contentManager;

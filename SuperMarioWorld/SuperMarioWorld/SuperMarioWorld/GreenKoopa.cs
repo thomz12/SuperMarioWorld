@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class GreenKoopa : Enemy
+    public class GreenKoopa : Enemy
     {
         public GreenKoopa(Point position) : base (position)
         {

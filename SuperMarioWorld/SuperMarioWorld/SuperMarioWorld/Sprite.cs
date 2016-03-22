@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-    class Sprite
+    public class Sprite
     {
         //Speed of the animation of the sprite. (ms per frame)
         public float animationSpeed = 250.0f;

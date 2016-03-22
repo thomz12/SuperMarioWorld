@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Mushroom : Entity
+    public class Mushroom : Entity
     {
         public Mushroom(Point position) : base (position)
         {

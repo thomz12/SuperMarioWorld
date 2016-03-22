@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    abstract class Enemy : Entity
+    public abstract class Enemy : Entity
     {
         /// <summary>
         /// default constructor

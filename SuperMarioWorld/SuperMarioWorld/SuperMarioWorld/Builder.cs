@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SuperMarioWorld
 {
-    class Builder : Entity
+    public class Builder : Entity
     {
         private GameObject _objectToPlace;    
         private Dictionary<string, GameObject> _placeableObjects;

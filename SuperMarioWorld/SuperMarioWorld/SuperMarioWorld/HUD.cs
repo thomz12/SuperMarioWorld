@@ -9,7 +9,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class HUD
+    public class HUD
     {
         //Score handler to pull information from
         private ScoreHandler _scores;

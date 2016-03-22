@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class EmptyShell : Entity
+    public class EmptyShell : Entity
     {
         public enum KoopaType
         {

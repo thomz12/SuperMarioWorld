@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class RedKoopa : Enemy
+    public class RedKoopa : Enemy
     {
         public Rectangle checkPlatformBox;
 

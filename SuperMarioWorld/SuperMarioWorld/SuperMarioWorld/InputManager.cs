@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class InputManager
+    public class InputManager
     {
         private static InputManager _inputManager;
 

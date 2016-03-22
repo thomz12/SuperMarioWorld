@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-    class Checkpoint : StaticObject
+    public class Checkpoint : StaticObject
     {
         public bool isFinish;
 

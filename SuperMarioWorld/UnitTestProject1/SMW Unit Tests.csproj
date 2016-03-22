@@ -54,6 +54,12 @@
     <Compile Include="UTCamera2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperMarioWorld\SuperMarioWorld\SuperMarioWorld.csproj">
+      <Project>{d93bc94e-c467-462a-a16b-7a6d8e7eb75d}</Project>
+      <Name>SuperMarioWorld</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

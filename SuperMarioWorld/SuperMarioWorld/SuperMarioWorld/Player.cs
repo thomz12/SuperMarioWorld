@@ -9,7 +9,7 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class Player : Entity
+    public class Player : Entity
     {
         /// <summary>
         /// Tracks if mario is small, big, empowered or something else

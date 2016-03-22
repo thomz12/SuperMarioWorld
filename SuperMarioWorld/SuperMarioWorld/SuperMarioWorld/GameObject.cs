@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
-{
-    delegate void CreateObject(GameObject gameObject);
-    delegate void DestoryObject(GameObject gameObject);
-
-    abstract class GameObject
+{ 
+    public abstract class GameObject
     {
+        public delegate void DestoryObject(GameObject gameObject);
+        public delegate void CreateObject(GameObject gameObject);
+
         //Sprite (texture) of this object
         public Sprite sprite;
         //Collision box of this object

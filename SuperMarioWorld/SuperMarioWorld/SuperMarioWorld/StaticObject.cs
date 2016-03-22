@@ -7,7 +7,7 @@ using System.Text;
 namespace SuperMarioWorld
 {
     //Yes we hit our hands with a hammer.
-    abstract class StaticObject : GameObject
+    public abstract class StaticObject : GameObject
     {
         //Does the object have a bounding box?
         public bool blocking;
