@@ -50,7 +50,7 @@ namespace SuperMarioWorld
         private ScoreHandler _scores;
 
         private bool _vSync;
-        private const int _scale = 3;
+        private const int _scale = 4;
 
 #if DEBUG
         private int _totalFrames;
@@ -165,7 +165,12 @@ namespace SuperMarioWorld
 #endif
             // Allows the game to exit
             if (InputManager.Instance.KeyboardOnPress(Keys.Escape))
-                this.Exit();
+            {
+                if (currentGameState == GameState.MainMenu)
+                    this.Exit();
+                else
+                    LoadScene("Main_Menu.sml", false);
+            }
 
             //Toggle Fullscreen when F11 is pressed
             if (InputManager.Instance.KeyboardOnPress(Keys.F11))
@@ -233,6 +238,9 @@ namespace SuperMarioWorld
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Update time: " + gameTime.ElapsedGameTime.TotalMilliseconds, new Vector2(10, 40), Color.Black);
             _spriteBatch.DrawString(_debugFont, GraphicsDevice.Adapter.Description, new Vector2(10, 60), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Preferred Backbuffer: " + _graphics.PreferredBackBufferWidth + "x" + _graphics.PreferredBackBufferHeight, new Vector2(10, 80), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Actual Backbuffer: " + GraphicsDevice.Viewport.Width + "x" + GraphicsDevice.Viewport.Height, new Vector2(10, 100), Color.Black);
+
             _spriteBatch.End();
 #endif
             base.Draw(gameTime);

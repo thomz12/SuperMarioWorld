@@ -56,6 +56,8 @@ namespace SuperMarioWorld
         //Higher value -> less controll in the air
         private float _airControl;
 
+        private float _jumpForce;
+
         //Scorehandler
         private ScoreHandler _scores;
 
@@ -80,6 +82,7 @@ namespace SuperMarioWorld
             acceleration = 500.0f;
             terminalVelocity = 150;
             maxSpeed = 64;
+            _jumpForce = -140;
             _airControl = 3.0f;
 
             switch (character)
@@ -88,16 +91,20 @@ namespace SuperMarioWorld
                     sprite.sourceName = @"Players\Mario";
                     break;
                 case Character.Luigi:
-                    sprite.sourceName = @"Players\Luigi";
+                    sprite.sourceName = @"Players\Luigi";                   
+                    _jumpForce = -200;
                     break;
                 case Character.Wario:
                     sprite.sourceName = @"Players\Wario";
+                    _airControl = 2.0f;
+                    acceleration = 400.0f;
                     sprite.xSize = 24;
                     break;
                 case Character.Waluigi:
                     sprite.sourceName = @"Players\Waluigi";
                     sprite.xSize = 24;
                     sprite.ySize = 40;
+                    _airControl = 1.5f;
                     break;
                 case Character.Peach:
                     sprite.sourceName = @"Players\Peach";
@@ -194,7 +201,7 @@ namespace SuperMarioWorld
                 }
                 if ((InputManager.Instance.KeyboardOnRelease(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
                 {
-                    momentum.Y = -140;
+                    momentum.Y = _jumpForce;
                     grounded = false;
                 }
 

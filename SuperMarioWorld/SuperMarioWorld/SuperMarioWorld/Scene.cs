@@ -500,6 +500,9 @@ namespace SuperMarioWorld
 
             //Tell HUD to update
             _hud.Update(gameTime);
+
+            if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter))
+                SaveLevel();
         }
 
         /// <summary>
@@ -564,7 +567,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\Template.sml");
+            XmlWriter writer = XmlWriter.Create(@"Content\Levels\MyLevel.sml");
             writer.WriteStartDocument();
 
             writer.WriteStartElement("Level");
@@ -617,6 +620,10 @@ namespace SuperMarioWorld
                 writer.WriteStartElement("Type");
                 writer.WriteString(t.koopaType.ToString());
                 writer.WriteEndElement();
+            }
+            else if(obj is Builder)
+            {
+                writer.WriteStartElement("Player");
             }
             else
                 writer.WriteStartElement(obj.GetType().Name);

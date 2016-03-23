@@ -118,7 +118,7 @@ namespace SuperMarioWorld
 
                 }
             }
-            else if (collider is Entity && Math.Abs(momentum.X) > 3)
+            else if (collider is Entity && _moving)
             {
                 Entity e = (Entity)collider;
                 if(!(e is Coin))
