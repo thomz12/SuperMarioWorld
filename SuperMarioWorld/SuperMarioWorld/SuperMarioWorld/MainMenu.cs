@@ -103,6 +103,11 @@ namespace SuperMarioWorld
                 _selected = _menuContent.Count - 1;
         }
 
+        public override void OnCollision(GameObject collider)
+        {
+            return;
+        }
+
         private void GetLevels()
         {
             string[] files = Directory.GetFiles(@"Content\Levels");
@@ -117,11 +122,6 @@ namespace SuperMarioWorld
                     _menuContent.Add(split[0]);
                 }
             }
-        }
-
-        public override void OnCollision(GameObject collider)
-        {
-            return;
         }
 
         public void LoadContent(ContentManager contentManager)
