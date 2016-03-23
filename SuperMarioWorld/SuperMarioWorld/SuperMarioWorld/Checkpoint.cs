@@ -10,9 +10,12 @@ namespace SuperMarioWorld
     {
         public bool isFinish;
 
-        public Checkpoint(Point position) : base(position)
+        public Scene.LoadScene load;
+
+        public Checkpoint(Point position, bool isFinish) : base(position)
         {
             blocking = false;
+            this.isFinish = isFinish;
 
             sprite.xSize = 32;
             sprite.ySize = 64;
@@ -26,6 +29,18 @@ namespace SuperMarioWorld
             sprite.AddFrame(3, 0);
 
             sprite.animationSpeed = 75.0f;
+        }
+
+        public override void OnCollision(GameObject collider)
+        {
+            //check if this checkpoint is a finish
+            if (isFinish)
+            {
+                if(collider is Player)
+                {
+                    load("Main_Menu.sml", false);
+                }
+            }
         }
     }
 }

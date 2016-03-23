@@ -345,6 +345,12 @@ namespace SuperMarioWorld
                     {
                         obj = new OneUp(pos);
                     }
+                    else if(node.Name.Equals("Checkpoint"))
+                    {
+                        obj = new Checkpoint(pos, bool.Parse(node.FirstChild.InnerText));
+                        Checkpoint c = (Checkpoint)obj;
+                        c.load = loadScene;
+                    }
 
                     if (obj != null)
                     {
@@ -621,9 +627,16 @@ namespace SuperMarioWorld
                 writer.WriteString(t.koopaType.ToString());
                 writer.WriteEndElement();
             }
-            else if(obj is Builder)
+            else if (obj is Checkpoint)
             {
-                writer.WriteStartElement("Player");
+                Checkpoint c = (Checkpoint)obj;
+                writer.WriteStartElement(obj.GetType().Name);
+                writer.WriteStartElement("Finish");
+                if (c.isFinish)
+                    writer.WriteString("true");
+                else
+                    writer.WriteString("false");
+                writer.WriteEndElement();
             }
             else
                 writer.WriteStartElement(obj.GetType().Name);
