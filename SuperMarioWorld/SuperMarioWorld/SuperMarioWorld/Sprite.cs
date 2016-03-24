@@ -107,8 +107,8 @@ namespace SuperMarioWorld
             NewAnimation();
             animationPositions.Add(new Point(x, y));
 
-            _texCoordX = (int)animationPositions[_animIndex].X * xSize;
-            _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
+            _texCoordX = animationPositions[_animIndex].X * xSize;
+            _texCoordY = animationPositions[_animIndex].Y * ySize;
         }
 
         /// <summary>
@@ -119,6 +119,8 @@ namespace SuperMarioWorld
             _animIndex = 0;
             _animationProgress = animationSpeed;
             animationPositions.Clear();
+
+
         }
 
         /// <summary>
@@ -129,6 +131,8 @@ namespace SuperMarioWorld
         public void AddFrame(int x, int y)
         {
             animationPositions.Add(new Point(x, y));
+            _texCoordX = animationPositions[0].X * xSize;
+            _texCoordY = animationPositions[0].Y * ySize;
         }
 
         /// <summary>

@@ -37,6 +37,9 @@ namespace SuperMarioWorld
         //player object
         private GameObject _player;
 
+        //Is the level in edit mode?
+        private bool _edit;
+
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
@@ -261,6 +264,8 @@ namespace SuperMarioWorld
 
             load = loadScene;
 
+            _edit = edit;
+
             //Set background texture
             _backgroundSourceName = @"Background\BushBackground";
 
@@ -294,6 +299,7 @@ namespace SuperMarioWorld
                         obj = new MainMenu(pos, _contentManager);
                         MainMenu mm = (MainMenu)obj;
                         mm.load = loadScene;
+                        
                     }
                     else if (node.Name.Equals("Player"))
                     {
@@ -323,7 +329,16 @@ namespace SuperMarioWorld
                     }
                     else if (node.Name.Equals("MysteryBlock"))
                     {
-                        obj = new MysteryBlock(pos, null);
+                        GameObject content;
+
+                        if (node.FirstChild.Attributes[0].Value.Equals("Mushroom"))
+                            content = new Mushroom(Point.Zero);
+                        else if (node.FirstChild.Attributes[0].Value.Equals("OneUp"))
+                            content = new OneUp(Point.Zero);
+                        else
+                            content = new Coin(Point.Zero, true);
+
+                        obj = new MysteryBlock(pos, content);
                     }
                     else if (node.Name.Equals("StaticBlock"))
                     {
@@ -405,6 +420,11 @@ namespace SuperMarioWorld
                     MainMenu mainMenu = (MainMenu)go;
                     mainMenu.LoadContent(contentManager);
                 }
+                if(go is Builder)
+                {
+                    Builder builder = (Builder)go;
+                    builder.LoadContent(contentManager);
+                }
 
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
@@ -482,7 +502,11 @@ namespace SuperMarioWorld
                         _collidables.Add(objects[i]);
                     else if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
                     {
+                        if (_edit && objects[i] is Enemy)
+                            continue;
+
                         objects[i].Update(gameTime);
+
                         _collidables.Add(objects[i]);
                     }
 
@@ -637,6 +661,10 @@ namespace SuperMarioWorld
                 else
                     writer.WriteString("false");
                 writer.WriteEndElement();
+            }
+            else if(obj is Builder)
+            {
+                writer.WriteStartElement("Player");
             }
             else
                 writer.WriteStartElement(obj.GetType().Name);
