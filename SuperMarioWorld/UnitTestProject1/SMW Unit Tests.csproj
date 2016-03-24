@@ -51,8 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="StaticBlock.cs" />
-    <Compile Include="UTCamera2D.cs" />
+    <Compile Include="UTScoreHandler.cs" />
+    <Compile Include="UTStaticBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

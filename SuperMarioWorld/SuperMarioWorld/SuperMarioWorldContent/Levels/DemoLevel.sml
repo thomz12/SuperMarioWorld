@@ -1969,7 +1969,7 @@
 	</StaticBlock>
 	<Checkpoint>
 		<Finish>true</Finish>
-		<Position xPos="896" yPos="176" />
+		<Position xPos="1552" yPos="176" />
 	</Checkpoint>
 	<Coin>
 		<Position xPos="1072" yPos="176" />

@@ -20,7 +20,6 @@ namespace SuperMarioWorld
 
         private bool _combo;
         private int _comboPoints;
-        private float _comboTimer;
 
         public enum PowerUp
         {
@@ -38,21 +37,6 @@ namespace SuperMarioWorld
         {
             _combo = false;
             _comboPoints = 100;
-            _comboTimer = 0;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            if (_combo)
-            {
-                _comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(_comboTimer >= 1000)
-                {
-                    _combo = false;
-                    _comboTimer = 0;
-                    _comboPoints = 100;
-                }
-            }
         }
 
         /// <summary>
@@ -67,7 +51,6 @@ namespace SuperMarioWorld
             }
 
             score += _comboPoints;
-            _comboTimer = 0;
 
             //This ugly switch should do the trick for the irregular combo points rewarded.
             switch (_comboPoints)
@@ -91,6 +74,12 @@ namespace SuperMarioWorld
                     lives++;
                     break;
             }
+        }
+
+        public void ResetCombo()
+        {
+            _comboPoints = 100;
+            _combo = false;
         }
     }
 }
