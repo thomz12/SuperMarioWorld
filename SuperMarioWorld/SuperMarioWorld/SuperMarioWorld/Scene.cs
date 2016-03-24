@@ -468,6 +468,11 @@ namespace SuperMarioWorld
                 Player p = (Player)_player;
                 if (p.dead && p.position.Y > 200)
                     load("Main_Menu.sml", false);
+
+                if(p.position.Y >= _size.Y * _gridSize)
+                {
+                    p.Death(null);
+                }
             }
             ///TEMP
 

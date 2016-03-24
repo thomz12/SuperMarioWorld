@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using SuperMarioWorld;
 using Microsoft.Xna.Framework;
 
-namespace UnitTestProject1
+namespace SMWUT
 {
     [TestClass]
-    public class StaticBlock
+    public class UTStaticBlock
     {
         Player player;
         StaticBlock block;
@@ -19,7 +19,19 @@ namespace UnitTestProject1
         public void Init()
         {
             player = new Player(Point.Zero, null, Player.Character.Mario);
-            StaticBlock block = new StaticBlock();
+            block = new StaticBlock(new Point(0, 0), StaticBlock.BlockType.used, 0.5f);
+        }
+
+        [TestMethod]
+        public void TestCollision()
+        {
+            player.position = new Vector2(0, 0.1f);
+            block.position = new Vector2(0, 0);
+
+            if (player.boundingBox.Intersects(block.boundingBox))
+            {
+                block.OnCollision(player);
+            }
         }
     }
 }

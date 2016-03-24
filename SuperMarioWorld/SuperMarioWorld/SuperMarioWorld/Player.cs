@@ -171,6 +171,11 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            if (grounded)
+            {
+                _scores.ResetCombo();
+            }
+
             if (_invunerable)
             {
                 _invunerableTimer -= (float)gameTime.ElapsedGameTime.Milliseconds / 1000.0f;
@@ -344,6 +349,7 @@ namespace SuperMarioWorld
                     boundingBox.Width = 0;
                     boundingBox.Height = 0;
                     _scores.lives--;
+                    _scores.ResetCombo();
                 }
             }
         }
