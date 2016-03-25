@@ -8,7 +8,7 @@ namespace SuperMarioWorld
     public class Sprite
     {
         //Speed of the animation of the sprite. (ms per frame)
-        public float animationSpeed = 250.0f;
+        public float animationSpeed;
         private float _animationProgress;
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace SuperMarioWorld
         private int _texCoordY;
 
         //The frame the animation is at
-        private int _animIndex = 0;
+        private int _animIndex;
         //effect to flip the sprite
-        public SpriteEffects effect = SpriteEffects.None;
+        public SpriteEffects effect;
         //set the layer of this sprite to be drawn in.
         public float layer;
 
@@ -45,9 +45,12 @@ namespace SuperMarioWorld
         /// </summary>
         public Sprite()
         {
+            _animIndex = 0;
             animationPositions = new List<Point>();
+            animationSpeed = 250.0f;
             _animationProgress = animationSpeed;
             animated = true;
+            effect = SpriteEffects.None;
         }
 
         /// <summary>
@@ -56,10 +59,13 @@ namespace SuperMarioWorld
         /// <param name="sourceName">Name of the sprite that should be loaded from the Content folder without extension.</param>
         public Sprite(string sourceName)
         {
+            _animIndex = 0;
             this.sourceName = sourceName;
             animationPositions = new List<Point>();
+            animationSpeed = 250.0f;
             _animationProgress = animationSpeed;
             animated = true;
+            effect = SpriteEffects.None;
         }
 
         /// <summary>
