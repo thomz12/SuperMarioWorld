@@ -39,6 +39,7 @@ namespace SuperMarioWorld
 
         //Is the level in edit mode?
         private bool _edit;
+        private string _name;
 
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
@@ -276,6 +277,8 @@ namespace SuperMarioWorld
             fileName = @"Content\Levels\" + fileName;
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
+
+            _name = fileName;
 
             try
             {
@@ -536,7 +539,7 @@ namespace SuperMarioWorld
             //Tell HUD to update
             _hud.Update(gameTime);
 
-            if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter))
+            if (_edit && ( InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.Start)))
                 SaveLevel();
         }
 
@@ -602,7 +605,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\MyLevel.sml");
+            XmlWriter writer = XmlWriter.Create(_name);
             writer.WriteStartDocument();
 
             writer.WriteStartElement("Level");

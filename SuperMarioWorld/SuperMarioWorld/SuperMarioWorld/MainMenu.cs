@@ -68,12 +68,12 @@ namespace SuperMarioWorld
         {
             base.Update(gameTime);
 
-            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.W))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.DPadUp))
                 _selected--;
-            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.S))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.DPadDown))
                 _selected++;
 
-            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.Space))
+            if (InputManager.Instance.KeyboardOnRelease(Microsoft.Xna.Framework.Input.Keys.Space) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.A))
             {
                 //if we are in main menu
                 if (curMenu == Menu.Main)
@@ -88,12 +88,18 @@ namespace SuperMarioWorld
                     //or have "Edit selected"
                     else if(_selected == 1)
                     {
-                        load("Template.sml", true);
+                        _selected = 0;
+                        GetLevels();
+                        curMenu = Menu.Edit;
                     }
                 }
                 else if (curMenu == Menu.Play)
                 {
                     load(_menuContent[_selected], false);
+                }
+                else if(curMenu == Menu.Edit)
+                {
+                    load(_menuContent[_selected], true);
                 }
             }
 

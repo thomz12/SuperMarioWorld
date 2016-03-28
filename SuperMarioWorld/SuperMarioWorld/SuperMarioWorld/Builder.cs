@@ -68,14 +68,23 @@ namespace SuperMarioWorld
         public override void Update(GameTime gameTime)
         {
             momentum = Vector2.Zero;
-            if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadAnalogLeftY() < -0.1f)
+            if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadAnalogLeftY() > 0.1f)
                 momentum.Y = -terminalVelocity;
-            if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadAnalogLeftY() > 0.1f)
+            if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadAnalogLeftY() < -0.1f)
                 momentum.Y = terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.A) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
                 momentum.X = -maxSpeed;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.D) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
                 momentum.X = maxSpeed;
+
+            if(InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.F) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.B))
+            {
+                for (int i = 0; i < allObjects.Count; i++)
+                {
+                    if (Vector2.Distance(_objectToPlace.position, allObjects[i].position) < 8 && !(allObjects[i] is Builder)) 
+                        destroy(allObjects[i]);
+                }
+            }
 
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Q) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.LeftShoulder))
                 selected--;

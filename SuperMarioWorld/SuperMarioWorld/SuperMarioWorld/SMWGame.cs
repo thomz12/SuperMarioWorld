@@ -36,8 +36,7 @@ namespace SuperMarioWorld
         public enum GameState
         {
             MainMenu,
-            Playing,
-            Pause
+            Playing
         }
         public GameState currentGameState;
 
@@ -163,7 +162,7 @@ namespace SuperMarioWorld
             }
 #endif
             // Allows the game to exit
-            if (InputManager.Instance.KeyboardOnPress(Keys.Escape))
+            if (InputManager.Instance.KeyboardOnPress(Keys.Escape) || InputManager.Instance.GamePadOnPress(Buttons.Back))
             {
                 if (currentGameState == GameState.MainMenu)
                     this.Exit();
