@@ -53,7 +53,6 @@ namespace SuperMarioWorld
             }
             checkPlatformBox.Y = (int)Math.Round(position.Y);
 
-
             base.Update(gameTime);
         }
 

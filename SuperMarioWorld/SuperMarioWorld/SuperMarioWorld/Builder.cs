@@ -135,6 +135,7 @@ namespace SuperMarioWorld
         /// </summary>
         private void PlaceBlock()
         {
+            //Destory block on position
             for (int i = 0; i < allObjects.Count; i++)
             {
                 if (Vector2.Distance(_objectToPlace.position, allObjects[i].position) < 8)
@@ -146,6 +147,7 @@ namespace SuperMarioWorld
                     }
             }
 
+            
             Point pos = new Point((int)_objectToPlace.position.X, (int)_objectToPlace.position.Y);
 
             if (_objectToPlace is StaticBlock)

@@ -55,7 +55,7 @@ namespace SuperMarioWorld
 
         //Higher value -> less controll in the air
         private float _airControl;
-
+        private float _friction;
         private float _jumpForce;
 
         //Scorehandler
@@ -81,6 +81,7 @@ namespace SuperMarioWorld
 
             acceleration = 500.0f;
             terminalVelocity = 150;
+            _friction = 8.0f;
             maxSpeed = 64;
             _jumpForce = -140;
             _airControl = 3.0f;
@@ -91,7 +92,8 @@ namespace SuperMarioWorld
                     sprite.sourceName = @"Players\Mario";
                     break;
                 case Character.Luigi:
-                    sprite.sourceName = @"Players\Luigi";                   
+                    sprite.sourceName = @"Players\Luigi";
+                    _friction = 4.0f;               
                     _jumpForce = -200;
                     break;
                 case Character.Wario:
@@ -378,7 +380,7 @@ namespace SuperMarioWorld
         {
             //calculate friction
             if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
-                momentum.X /= 8.0f * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
+                momentum.X /= _friction * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             if (!grounded)
                 momentum.Y += 150 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
