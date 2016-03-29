@@ -121,7 +121,7 @@ namespace SuperMarioWorld
             else if (collider is Entity && _moving)
             {
                 Entity e = (Entity)collider;
-                if(!(e is Coin))
+                if(!(e is Coin) && !(e is Mushroom) && !(e is OneUp))
                     e.Death(this);
             }
         }

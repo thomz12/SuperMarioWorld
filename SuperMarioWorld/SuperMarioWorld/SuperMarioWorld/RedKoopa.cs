@@ -36,9 +36,12 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
-            if (!_onPlatform)
-                lookRight = !lookRight;
-            _onPlatform = false;
+            if (grounded)
+            {
+                if (!_onPlatform)
+                    lookRight = !lookRight;
+                _onPlatform = false;
+            }
 
             if (lookRight)
             {

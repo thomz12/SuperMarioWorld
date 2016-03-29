@@ -21,7 +21,13 @@ namespace SuperMarioWorld
         {
             //Also turn around if an enemy collides with an enemy.
             if (collider is Enemy)
+            {
                 lookRight = !lookRight;
+                if (collider.position.X < position.X)
+                    collider.position.X = position.X - (collider.boundingBox.Width / 2) - (boundingBox.Width / 2);
+                if (collider.position.X > position.X)
+                    collider.position.X = position.X + (collider.boundingBox.Width / 2) + (boundingBox.Width / 2);
+            }
 
             if(collider is Player)
             {

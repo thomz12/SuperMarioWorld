@@ -262,6 +262,7 @@ namespace SuperMarioWorld
             #region new stuff
             //Set score handler
             _scores = scoreHandler;
+            _scores.maxTime = 200;
 
             load = loadScene;
 
