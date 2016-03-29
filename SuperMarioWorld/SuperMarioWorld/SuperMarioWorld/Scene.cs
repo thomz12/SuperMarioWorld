@@ -314,7 +314,7 @@ namespace SuperMarioWorld
                         }
                         else
                         {
-                            obj = new Builder(pos);
+                            obj = new Builder(pos, _size);
                             _player = obj;
                         }
                     }
