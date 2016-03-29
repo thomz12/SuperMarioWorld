@@ -108,6 +108,9 @@ namespace SuperMarioWorld
                     break;
                 case Character.Peach:
                     sprite.sourceName = @"Players\Peach";
+                    terminalVelocity = 150;
+                    _jumpForce = -150;
+                    _airControl = 4.0f;
                     break;
                 default:
                     break;
@@ -334,11 +337,14 @@ namespace SuperMarioWorld
                     _invunerableTimer = _invunerableTime;
                     boundingBox.Height = 14;
 
-                    if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
+                    if (_scores != null)
                     {
-                        //The position needs changin!
-                        create(new Mushroom(new Point((int)position.X, (int)position.Y - 128)));
-                        _scores.powerUp = ScoreHandler.PowerUp.none;
+                        if (_scores.powerUp == ScoreHandler.PowerUp.mushroom)
+                        {
+                            //The position needs changin!
+                            create(new Mushroom(new Point((int)position.X, (int)position.Y - 128)));
+                            _scores.powerUp = ScoreHandler.PowerUp.none;
+                        }
                     }
                 }
                 else if (powerState == PowerState.small)

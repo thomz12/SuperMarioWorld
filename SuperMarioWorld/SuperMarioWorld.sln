@@ -11,6 +11,11 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SuperMarioWorld UML", "UML\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMW Unit Tests", "UnitTestProject1\SMW Unit Tests.csproj", "{1572A7CB-FCA8-4300-AA21-87B4A2C65EFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{827C580E-D7F4-4EE9-A417-8F512626C0C9}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
