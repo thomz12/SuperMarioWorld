@@ -21,6 +21,13 @@ namespace SMWUT
         }
 
         [TestMethod]
+        public void UTScoreHandlerConstructor()
+        {
+            ScoreHandler s = new ScoreHandler();
+            Assert.IsNotNull(s);
+        }
+
+        [TestMethod]
         public void UTAddCombo1()
         {
             score.AddCombo();
@@ -43,5 +50,7 @@ namespace SMWUT
             score.AddCombo();
             Assert.IsTrue(score.score == 200);
         }
+
+
     }
 }

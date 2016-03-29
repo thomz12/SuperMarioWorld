@@ -489,7 +489,7 @@ namespace SuperMarioWorld
             if(_player is Player)
             {
                 Player p = (Player)_player;
-                if (p.dead && p.position.Y >= _size.Y * _gridSize)
+                if (p.dead && p.position.Y >= _size.Y * _gridSize + 20)
                     load("Main_Menu.sml", false);
 
                 if(p.position.Y >= _size.Y * _gridSize)

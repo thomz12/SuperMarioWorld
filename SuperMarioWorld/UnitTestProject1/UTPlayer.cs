@@ -28,7 +28,7 @@ namespace SMWUT
         {
             player.powerState = Player.PowerState.normal;
 
-            player.Death(new Goomba(new Point(0, 0)));
+            player.Death(null);
             Assert.IsTrue(player.powerState == Player.PowerState.small);
         }
 
@@ -36,7 +36,7 @@ namespace SMWUT
         public void UTDeath()
         {
             player.powerState = Player.PowerState.small;
-            player.Death(new Goomba(new Point(0, 0)));
+            player.Death(null);
             Assert.IsTrue(player.dead);
         }
 
@@ -61,6 +61,22 @@ namespace SMWUT
             score.lives = 0;
             player.OnCollision(new OneUp(new Point(0, 0)));
             Assert.IsTrue(score.lives == 1);
+        }
+
+        [TestMethod]
+        public void UTOnCollisionMushroomSmall()
+        {
+            player.powerState = Player.PowerState.small;
+            player.OnCollision(new Mushroom(new Point(0, 0)));
+            Assert.IsTrue(player.powerState == Player.PowerState.normal);
+        }
+
+        [TestMethod]
+        public void UTOnCollisionMushroomNormal()
+        {
+            player.powerState = Player.PowerState.normal;
+            player.OnCollision(new Mushroom(new Point(0, 0)));
+            Assert.IsTrue(score.powerUp == ScoreHandler.PowerUp.mushroom);
         }
     }
 }

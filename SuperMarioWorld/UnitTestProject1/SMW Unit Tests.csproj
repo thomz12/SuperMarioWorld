@@ -53,9 +53,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="UTScene.cs" />
+    <Compile Include="UTStaticObject.cs" />
+    <Compile Include="UTEntity.cs" />
     <Compile Include="UTPlayer.cs" />
     <Compile Include="UTScoreHandler.cs" />
-    <Compile Include="UTStaticBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
