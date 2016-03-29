@@ -12,12 +12,13 @@ namespace SuperMarioWorld
     {
         private GameObject _objectToPlace;    
         private Dictionary<string, GameObject> _placeableObjects;
-        private int selected;
+        private int _selected;
 
+        private Point _size;
         public List<GameObject> allObjects;
         SpriteFont font;
 
-        public Builder(Point position) : base(position)
+        public Builder(Point position, Point levelSize) : base(position)
         {
             sprite.layer = 0.9f;
             boundingBox = new Rectangle(0, 0, 0, 0);
@@ -30,6 +31,8 @@ namespace SuperMarioWorld
             acceleration = 500.0f;
             terminalVelocity = 180;
             maxSpeed = 180;
+
+            _size = levelSize;
 
             LoadObjects();
         }
@@ -45,9 +48,9 @@ namespace SuperMarioWorld
             _placeableObjects.Add("Stone", new StaticBlock(pos, StaticBlock.BlockType.rock, 0.2f));
             _placeableObjects.Add("Cloud", new StaticBlock(pos, StaticBlock.BlockType.cloud, 0.2f));
             _placeableObjects.Add("Help", new StaticBlock(pos, StaticBlock.BlockType.help, 0.2f));
-            _placeableObjects.Add("Grass Left", new StaticBlock(pos, StaticBlock.BlockType.grassLeft, 0.2f));
-            _placeableObjects.Add("Grass", new StaticBlock(pos, StaticBlock.BlockType.grassMiddle, 0.2f));
-            _placeableObjects.Add("Grass Right", new StaticBlock(pos, StaticBlock.BlockType.grassRight, 0.2f));
+            _placeableObjects.Add("Grass Left", new StaticBlock(pos, StaticBlock.BlockType.grassLeft, 0.4f));
+            _placeableObjects.Add("Grass", new StaticBlock(pos, StaticBlock.BlockType.grassMiddle, 0.4f));
+            _placeableObjects.Add("Grass Right", new StaticBlock(pos, StaticBlock.BlockType.grassRight, 0.4f));
             _placeableObjects.Add("MysteryBlock Coin", new MysteryBlock(pos, new Coin(pos, false)));
             _placeableObjects.Add("MysteryBlock Mushroom", new MysteryBlock(pos, new Mushroom(pos)));
             _placeableObjects.Add("MysteryBlock OneUp", new MysteryBlock(pos, new OneUp(pos)));
@@ -102,16 +105,16 @@ namespace SuperMarioWorld
             }
 
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Q) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.LeftShoulder))
-                selected--;
+                _selected--;
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.E) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.RightShoulder))
-                selected++;
+                _selected++;
 
-            if (selected < 0)
-                selected = _placeableObjects.Count - 1;
-            if (selected > _placeableObjects.Count - 1)
-                selected = 0;
+            if (_selected < 0)
+                _selected = _placeableObjects.Count - 1;
+            if (_selected > _placeableObjects.Count - 1)
+                _selected = 0;
 
-            _objectToPlace = _placeableObjects[_placeableObjects.Keys.ElementAt(selected)];
+            _objectToPlace = _placeableObjects[_placeableObjects.Keys.ElementAt(_selected)];
 
             _objectToPlace.position = new Vector2((float)Math.Round(position.X / 16f) * 16 + 16, (float)Math.Round(position.Y / 16) * 16f);
 
@@ -160,9 +163,9 @@ namespace SuperMarioWorld
                     else
                         type = StaticBlock.BlockType.dirtRight;
 
-                    for (int i = (int)((block.position.Y + 1) / 16); i > 0; i--)
+                    for (int i = (int)((block.position.Y ) / 16) + 1; i <= _size.Y; i++)
                     {
-                        create(new StaticBlock(new Point((int)block.position.X, (int)block.position.Y + i * 16), type, 0.1f));
+                        create(new StaticBlock(new Point((int)block.position.X, i * 16), type, 0.1f + (block.position.Y / 16 / 100)));
                     }
                 }
             }
@@ -190,7 +193,7 @@ namespace SuperMarioWorld
             if(_objectToPlace != null)
                 _objectToPlace.DrawObject(batch);
 
-            batch.DrawString(font, _placeableObjects.ElementAt(selected).Key, new Vector2(position.X, position.Y + 8), Color.Black, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 1);
+            batch.DrawString(font, _placeableObjects.ElementAt(_selected).Key, new Vector2(position.X, position.Y + 8), Color.Black, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 1);
         }
 
         protected override void Movement(GameTime gameTime)
