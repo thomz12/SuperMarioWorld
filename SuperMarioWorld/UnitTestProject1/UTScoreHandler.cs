@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework;
 
 namespace SMWUT
 {
-    class UTScoreHandler
+    [TestClass]
+    public class UTScoreHandler
     {
         SuperMarioWorld.ScoreHandler score;
 
@@ -32,6 +33,15 @@ namespace SMWUT
             score.AddCombo();
             score.AddCombo();
             Assert.IsTrue(score.score == 300);
+        }
+
+        [TestMethod]
+        public void UTResetCombo()
+        {
+            score.AddCombo();
+            score.ResetCombo();
+            score.AddCombo();
+            Assert.IsTrue(score.score == 200);
         }
     }
 }
