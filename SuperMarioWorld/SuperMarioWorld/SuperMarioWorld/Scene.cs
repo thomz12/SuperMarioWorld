@@ -37,6 +37,10 @@ namespace SuperMarioWorld
         //player object
         private GameObject _player;
 
+        //Is the level in edit mode?
+        private bool _edit;
+        private string _name;
+
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
@@ -261,6 +265,8 @@ namespace SuperMarioWorld
 
             load = loadScene;
 
+            _edit = edit;
+
             //Set background texture
             _backgroundSourceName = @"Background\BushBackground";
 
@@ -271,6 +277,8 @@ namespace SuperMarioWorld
             fileName = @"Content\Levels\" + fileName;
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
+
+            _name = fileName;
 
             try
             {
@@ -294,6 +302,7 @@ namespace SuperMarioWorld
                         obj = new MainMenu(pos, _contentManager);
                         MainMenu mm = (MainMenu)obj;
                         mm.load = loadScene;
+                        
                     }
                     else if (node.Name.Equals("Player"))
                     {
@@ -323,7 +332,16 @@ namespace SuperMarioWorld
                     }
                     else if (node.Name.Equals("MysteryBlock"))
                     {
-                        obj = new MysteryBlock(pos, null);
+                        GameObject content;
+
+                        if (node.FirstChild.Attributes[0].Value.Equals("Mushroom"))
+                            content = new Mushroom(Point.Zero);
+                        else if (node.FirstChild.Attributes[0].Value.Equals("OneUp"))
+                            content = new OneUp(Point.Zero);
+                        else
+                            content = new Coin(Point.Zero, true);
+
+                        obj = new MysteryBlock(pos, content);
                     }
                     else if (node.Name.Equals("StaticBlock"))
                     {
@@ -405,6 +423,11 @@ namespace SuperMarioWorld
                     MainMenu mainMenu = (MainMenu)go;
                     mainMenu.LoadContent(contentManager);
                 }
+                if(go is Builder)
+                {
+                    Builder builder = (Builder)go;
+                    builder.LoadContent(contentManager);
+                }
 
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
@@ -466,7 +489,7 @@ namespace SuperMarioWorld
             if(_player is Player)
             {
                 Player p = (Player)_player;
-                if (p.dead && p.position.Y > 200)
+                if (p.dead && p.position.Y >= _size.Y * _gridSize)
                     load("Main_Menu.sml", false);
 
                 if(p.position.Y >= _size.Y * _gridSize)
@@ -487,7 +510,11 @@ namespace SuperMarioWorld
                         _collidables.Add(objects[i]);
                     else if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
                     {
+                        if (_edit && objects[i] is Enemy)
+                            continue;
+
                         objects[i].Update(gameTime);
+
                         _collidables.Add(objects[i]);
                     }
 
@@ -512,7 +539,7 @@ namespace SuperMarioWorld
             //Tell HUD to update
             _hud.Update(gameTime);
 
-            if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter))
+            if (_edit && ( InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.Start)))
                 SaveLevel();
         }
 
@@ -578,7 +605,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\MyLevel.sml");
+            XmlWriter writer = XmlWriter.Create(_name);
             writer.WriteStartDocument();
 
             writer.WriteStartElement("Level");
@@ -642,6 +669,10 @@ namespace SuperMarioWorld
                 else
                     writer.WriteString("false");
                 writer.WriteEndElement();
+            }
+            else if(obj is Builder)
+            {
+                writer.WriteStartElement("Player");
             }
             else
                 writer.WriteStartElement(obj.GetType().Name);
