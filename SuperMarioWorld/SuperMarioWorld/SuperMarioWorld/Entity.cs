@@ -52,13 +52,14 @@ namespace SuperMarioWorld
                     sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
             }
 
+            //move
             Movement(gameTime);
-            //Calls the update function from gameobject
 
             //Move the bounding box of the object
             boundingBox.X = (int)Math.Round(position.X) - boundingBox.Width / 2;
             boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
+            //update
             base.Update(gameTime);
 
             //If the object is affected by gravity set the grounded bool to false every update (needs a change)

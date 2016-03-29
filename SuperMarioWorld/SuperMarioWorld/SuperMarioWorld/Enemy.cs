@@ -45,10 +45,5 @@ namespace SuperMarioWorld
                 }
             }
         }
-
-        protected override void Movement(GameTime gameTime)
-        {
-            base.Movement(gameTime);
-        }
     }
 }
