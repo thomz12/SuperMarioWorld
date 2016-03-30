@@ -16,9 +16,6 @@ namespace SuperMarioWorld
 
         //Font for the menu
         private SpriteFont _spriteFont;
-
-        //Delegate to load a scene
-        public Scene.LoadScene load;
         
         //What menu the player is in
         enum Menu
@@ -95,11 +92,11 @@ namespace SuperMarioWorld
                 }
                 else if (curMenu == Menu.Play)
                 {
-                    load(_menuContent[_selected], false);
+                    SceneManager.Instance.LoadScene(_menuContent[_selected], false);
                 }
                 else if(curMenu == Menu.Edit)
                 {
-                    load(_menuContent[_selected], true);
+                    SceneManager.Instance.LoadScene(_menuContent[_selected], true);
                 }
             }
 
