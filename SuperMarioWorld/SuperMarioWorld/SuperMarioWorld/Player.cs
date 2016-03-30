@@ -41,6 +41,7 @@ namespace SuperMarioWorld
             Waluigi,
             Peach
         }
+        private Character _character;
 
         public enum PlayerAnimationState
         {
@@ -57,6 +58,7 @@ namespace SuperMarioWorld
         private float _airControl;
         private float _friction;
         private float _jumpForce;
+        private float fallVelocity;
 
         //Scorehandler
         private ScoreHandler _scores;
@@ -71,6 +73,7 @@ namespace SuperMarioWorld
         {
             //Set a score handler, all the interactions that require a score change go through the player object.
             _scores = score;
+            _character = character;
 
             sprite.layer = 0.9f;
             boundingBox = new Rectangle(0, 0, 9, 15);
@@ -79,38 +82,56 @@ namespace SuperMarioWorld
             sprite.ySize = 32;
             sprite.AddFrame(0, 0);
 
+            //Set default values
+
+            //Accelertion of the player
             acceleration = 500.0f;
+            //max vertical velocity
             terminalVelocity = 150;
+            //max velocity when falling (different for peach)
+            fallVelocity = terminalVelocity;
+            //how much the player slows when grounded
             _friction = 8.0f;
+            //maximum horizontal velocity
             maxSpeed = 64;
+            //jump force
             _jumpForce = -140;
+            //how much control in the air (lower is better)
             _airControl = 3.0f;
 
             switch (character)
             {
+                //Mario, keeps default values
                 case Character.Mario:
                     sprite.sourceName = @"Players\Mario";
                     break;
+                //Luigi, jumps higher, less friction
                 case Character.Luigi:
                     sprite.sourceName = @"Players\Luigi";
                     _friction = 4.0f;               
                     _jumpForce = -200;
                     break;
+                //Wario slower, but more air control
                 case Character.Wario:
                     sprite.sourceName = @"Players\Wario";
                     _airControl = 2.0f;
-                    acceleration = 400.0f;
+                    acceleration = 420.0f;
                     sprite.xSize = 24;
                     break;
+                //Waluigi runs faster
                 case Character.Waluigi:
                     sprite.sourceName = @"Players\Waluigi";
                     sprite.xSize = 24;
                     sprite.ySize = 40;
-                    _airControl = 1.5f;
+                    _friction = 4.0f;
+                    _airControl = 4.0f;
+                    maxSpeed = 90;
                     break;
+                //Peach falls slower to the ground
                 case Character.Peach:
                     sprite.sourceName = @"Players\Peach";
                     terminalVelocity = 150;
+                    fallVelocity = terminalVelocity / 2;
                     _jumpForce = -150;
                     _airControl = 4.0f;
                     break;
@@ -129,7 +150,11 @@ namespace SuperMarioWorld
             if(collider is Coin)
             {
                 destroy(collider);
-                _scores.coins++;
+                //If player is Wario, collect bonus coins
+                if (_character == Character.Wario)
+                    _scores.coins += 2;
+                else
+                    _scores.coins++;
             }
             else if (collider is OneUp)
             {
@@ -391,8 +416,8 @@ namespace SuperMarioWorld
             if (momentum.X < -maxSpeed)
                 momentum = new Vector2(-maxSpeed, momentum.Y);
 
-            if (momentum.Y > terminalVelocity)
-                momentum.Y = terminalVelocity;
+            if (momentum.Y > fallVelocity)
+                momentum.Y = fallVelocity;
             if (momentum.Y < -terminalVelocity)
                 momentum.Y = -terminalVelocity;
 
