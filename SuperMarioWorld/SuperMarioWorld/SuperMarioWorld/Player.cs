@@ -33,6 +33,9 @@ namespace SuperMarioWorld
         /// </summary>
         private PlayerAnimationState _animationState { get; set; }
 
+        /// <summary>
+        /// Different characters have different aspects
+        /// </summary>
         public enum Character
         {
             Mario,
@@ -43,6 +46,9 @@ namespace SuperMarioWorld
         }
         private Character _character;
 
+        /// <summary>
+        /// Different animation states for every type of state
+        /// </summary>
         public enum PlayerAnimationState
         {
             idle,
@@ -58,9 +64,9 @@ namespace SuperMarioWorld
         private float _airControl;
         private float _friction;
         private float _jumpForce;
-        private float fallVelocity;
+        private float _fallVelocity;
 
-        //Scorehandler
+        //The score handler so player can access it.
         private ScoreHandler _scores;
 
         /// <summary>
@@ -89,7 +95,7 @@ namespace SuperMarioWorld
             //max vertical velocity
             terminalVelocity = 150;
             //max velocity when falling (different for peach)
-            fallVelocity = terminalVelocity;
+            _fallVelocity = terminalVelocity;
             //how much the player slows when grounded
             _friction = 8.0f;
             //maximum horizontal velocity
@@ -131,7 +137,7 @@ namespace SuperMarioWorld
                 case Character.Peach:
                     sprite.sourceName = @"Players\Peach";
                     terminalVelocity = 150;
-                    fallVelocity = terminalVelocity / 2;
+                    _fallVelocity = terminalVelocity / 2;
                     _jumpForce = -150;
                     _airControl = 4.0f;
                     break;
@@ -416,8 +422,8 @@ namespace SuperMarioWorld
             if (velocity.X < -maxSpeed)
                 velocity = new Vector2(-maxSpeed, velocity.Y);
 
-            if (velocity.Y > fallVelocity)
-                velocity.Y = fallVelocity;
+            if (velocity.Y > _fallVelocity)
+                velocity.Y = _fallVelocity;
             if (velocity.Y < -terminalVelocity)
                 velocity.Y = -terminalVelocity;
 
