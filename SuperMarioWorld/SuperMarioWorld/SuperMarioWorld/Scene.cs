@@ -184,7 +184,15 @@ namespace SuperMarioWorld
                 }
 
                 //Create HUD object
-                _hud = new HUD(_scores);
+                if (_player is Player)
+                {
+                    Player p = (Player)_player;
+                    _hud = new HUD(_scores, p);
+                }
+                else
+                {
+                    _hud = new HUD(_scores, null);
+                }
 
                 //Create camera object
                 if (_player != null)

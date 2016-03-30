@@ -38,8 +38,8 @@ namespace SuperMarioWorld
         /// <summary>
         /// Load a scene
         /// </summary>
-        /// <param name="scene"></param>
-        /// <param name="edit"></param>
+        /// <param name="scene">scene to be loaded</param>
+        /// <param name="edit">in edit mode</param>
         public void LoadScene(string scene, bool edit)
         {
             //Create new scene
