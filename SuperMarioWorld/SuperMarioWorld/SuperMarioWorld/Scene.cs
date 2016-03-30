@@ -74,29 +74,38 @@ namespace SuperMarioWorld
             _gridSize = 16;
             _backOffset = 0;
 
+            //Add file path to lvl name
             fileName = @"Content\Levels\" + fileName;
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
 
             _name = fileName;
 
+            //
             try
             {
+                //Create new xml document (to read XML)
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(fileName);
 
+                //get root node
                 XmlNode root = xmlDoc.ChildNodes[1];
                 _size.X = int.Parse(root.Attributes[0].Value);
                 _size.Y = int.Parse(root.Attributes[1].Value);
 
+                //Gameobject to add
                 GameObject obj = null;
+                //At position
                 Point pos = new Point();
 
+                //Go through all elements
                 foreach (XmlNode node in root.ChildNodes)
                 {
+                    //Get the position first
                     pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
                     pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
 
+                    //Check element name, and create object
                     if (node.Name.Equals("MainMenu"))
                     {
                         obj = new MainMenu(pos, _contentManager);
