@@ -497,6 +497,7 @@ namespace SuperMarioWorld
                 }
                 else if(p.position.Y >= _size.Y * _gridSize)
                 {
+                    p.powerState = Player.PowerState.small;
                     p.Death(null);
                 }
             }
