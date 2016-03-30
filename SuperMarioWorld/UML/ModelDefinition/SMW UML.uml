@@ -3128,58 +3128,6 @@
         </suppliersInternal>
         <targetEnds>
           <association
-            Id="459dd8f2-6c59-4c96-98c9-a5bb9c187f9e"
-            isDerived="false"
-            sourceEndRoleName="Is in a"
-            targetEndRoleName="contains"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
-              LastKnownName="GameObject"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="771666a1-cd45-4e6f-a926-0d3f8da2e4a8"
-                  name="Is in a"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f23326a8-223d-4a06-b553-ff110ee3b168"
-                  name="contains"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="4cbe0f1e-4134-4332-848d-167d34ce27fe"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="d5773ee8-3ed4-4019-a82b-7ed1cb5f52b2"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="772e0b29-3a60-4d60-aaf0-e75f3c5f3ecd"
             isDerived="false"
             sourceEndRoleName="is in"
@@ -3232,10 +3180,10 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="5ce1e299-9aed-4bc0-b3f8-a0aa547e5e87"
+            Id="e52c90b5-d480-4cbb-92f3-7277840540a8"
             isDerived="false"
-            sourceEndRoleName="is part of"
-            targetEndRoleName="has a"
+            sourceEndRoleName="Scene"
+            targetEndRoleName="HUD"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -3245,28 +3193,80 @@
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="d4fedd26-f94f-4cde-bb82-32aeb2610b23"
-                  name="is part of"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="0cdecba2-d5db-46d8-bafc-70f97b5c4bde"
-                  name="has a"
+                  Id="77251be5-3104-4705-93e0-3ffcb95f2173"
+                  name="Scene"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true" />
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3ad5ffed-631e-48bc-8068-b0b6e5480610"
+                  name="HUD"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ca8d3e4e-0b6e-4230-adf3-e28c1020467a"
+            isDerived="false"
+            sourceEndRoleName="is part of"
+            targetEndRoleName="contains list of"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+              LastKnownName="GameObject"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="77a87a2b-d88b-466e-9015-ba30c0fa8ec1"
+                  name="is part of"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b91b7dd1-ae9f-41fc-81c9-4f15f33ad593"
+                  name="contains list of"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="933f1eb7-76a0-42c0-abc7-4ed6c3d60325"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c1a12ecc-b766-4eaf-a74c-fb98ebc07a9d"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -4933,47 +4933,14 @@
               LastKnownName="Sprite"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
-        </suppliersInternal>
-        <targetEnds>
-          <association
-            Id="d55ee32e-2c62-4077-a0cb-092553490516"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="gets information from"
-            isLeaf="false"
-            isAbstract="false">
+          <dependency
+            Id="c181c1a4-2943-49b3-abf5-5e2b70c53ffe">
             <classMoniker
               Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
               LastKnownName="ScoreHandler"
               LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="4f4771fa-f633-4796-bb67-35501c2d79a6"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Shared"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="280c71b9-6794-4898-bdf3-bae9c7321536"
-                  name="gets information from"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
+          </dependency>
+        </suppliersInternal>
         <ownedAttributesInternal>
           <property
             Id="35be4ff6-4ed1-4096-b947-0e00f66f6a2e"
