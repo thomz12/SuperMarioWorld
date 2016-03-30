@@ -17,12 +17,18 @@ namespace SuperMarioWorld
             
         }
 
+        /// <summary>
+        /// Override for the collision function, all enemies
+        /// </summary>
+        /// <param name="collider"></param>
         public override void OnCollision(GameObject collider)
         {
-            //Also turn around if an enemy collides with an enemy.
             if (collider is Enemy)
             {
+                //Turn around
                 lookRight = !lookRight;
+
+                //Set this enemy outside of the other enemy.
                 if (collider.position.X < position.X)
                     collider.position.X = position.X - (collider.boundingBox.Width / 2) - (boundingBox.Width / 2);
                 if (collider.position.X > position.X)
@@ -31,17 +37,28 @@ namespace SuperMarioWorld
 
             if(collider is Player)
             {
-                Player p = (Player)collider;
-                if (p.velocity.Y > 3)
+                //Cast the collider to the player
+                Player player = (Player)collider;
+
+                //When the players Y velocity is high the player comes from above
+                if (player.velocity.Y > 10)
                 {
-                    p.velocity.Y = -110;
-                    p.boundingBox.Y = (int)position.Y - boundingBox.Height - p.boundingBox.Height;
-                    p.position.Y = position.Y - boundingBox.Height;
+                    //Bounce the player back up
+                    player.velocity.Y = -110;
+
+                    //Set the players bounding box outside of this bounding box to prevent death when jumping on multiple enemies at once
+                    player.boundingBox.Y = (int)position.Y - boundingBox.Height - player.boundingBox.Height;
+                    
+                    //Update the players position
+                    player.position.Y = position.Y - boundingBox.Height;
+
+                    //This Enemy is dead
                     Death(collider);
                 }
                 else if(!dead)
                 {
-                    p.Death(collider);
+                    //If the player is not coming from above the player is dead.
+                    player.Death(collider);
                 }
             }
         }
