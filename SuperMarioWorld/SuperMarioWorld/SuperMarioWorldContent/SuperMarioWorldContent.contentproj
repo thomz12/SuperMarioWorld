@@ -116,10 +116,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Levels\DemoLevel.sml">
-      <Name>DemoLevel</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Levels\Level03.sml">
       <Name>Level03</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -168,16 +164,6 @@
       <Name>Level10</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Levels\OLDEDIT.osml">
-      <Name>OLDEDIT</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Levels\OLDMAINMENU.osml">
-      <Name>OLDMAINMENU</Name>
-    </None>
-    <None Include="Levels\OLDSMWLVL.osml">
-      <Name>OLDSMWLVL</Name>
-    </None>
     <Compile Include="Misc\Coin.png">
       <Name>Coin</Name>
       <Importer>TextureImporter</Importer>
@@ -209,19 +195,6 @@
       <Processor>FontDescriptionProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
-    <Content Include="Levels\SMW Level 1.sml">
-      <Name>SMW Level 1</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\Template.sml">
-      <Name>Template</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Levels\OLDDEMOLVL.osml">
-      <Name>OLDDEMOLVL</Name>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PowerUps\FireFlower.png">
