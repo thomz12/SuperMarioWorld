@@ -10,33 +10,52 @@ namespace SuperMarioWorld
 {
     public class Builder : Entity
     {
+        //The object to place (preview it too)
         private GameObject _objectToPlace;    
+        //All objects the builder can place. Key is the item name, Gameobject is the object
         private Dictionary<string, GameObject> _placeableObjects;
+        //Selected item in the dictionary
         private int _selected;
 
+        //Size of the level
         private Point _size;
+        //List containing all objects in the level
         public List<GameObject> allObjects;
+        //The font to display selected block
         SpriteFont font;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="position">The builder position</param>
+        /// <param name="levelSize">The size of the level</param>
         public Builder(Point position, Point levelSize) : base(position)
         {
+            //Set layer
             sprite.layer = 0.9f;
+            //Set the bounding box (no collision)
             boundingBox = new Rectangle(0, 0, 0, 0);
 
+            //set sprite values
             sprite.xSize = 16;
             sprite.ySize = 32;
             sprite.AddFrame(11, 1);
             sprite.sourceName = @"Players\Mario";
 
-            acceleration = 500.0f;
+            //Set the max Horizontal and vertical speed
             terminalVelocity = 180;
             maxSpeed = 180;
 
+            //set level size
             _size = levelSize;
 
+            //Load all the objects in the dictionary
             LoadObjects();
         }
 
+        /// <summary>
+        /// Loads all placeable objects in an dictionary
+        /// </summary>
         private void LoadObjects()
         {
             _placeableObjects = new Dictionary<string, GameObject>();
@@ -64,16 +83,16 @@ namespace SuperMarioWorld
         /// <summary>
         /// Load in font
         /// </summary>
-        /// <param name="manager"></param>
+        /// <param name="manager">the content manager</param>
         public void LoadContent(ContentManager manager)
         {
             font = manager.Load<SpriteFont>(@"Fonts\MainMenuFont");
         }
 
         /// <summary>
-        /// When builder dies (spoiler: he doesn't!)
+        /// When builder dies (spoiler: he won't!)
         /// </summary>
-        /// <param name="cause"></param>
+        /// <param name="cause">Object cause</param>
         public override void Death(GameObject cause)
         {
             
@@ -82,10 +101,13 @@ namespace SuperMarioWorld
         /// <summary>
         /// Update function (called every frame)
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">The game time</param>
         public override void Update(GameTime gameTime)
         {
+            //Reset velocity
             momentum = Vector2.Zero;
+
+            //Take input and move
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadAnalogLeftY() > 0.1f)
                 momentum.Y = -terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadAnalogLeftY() < -0.1f)
@@ -95,6 +117,7 @@ namespace SuperMarioWorld
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.D) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
                 momentum.X = maxSpeed;
 
+            //If F OR B is pressed, destory the objects on the selected position
             if(InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.F) || InputManager.Instance.GamePadIsPressed(Microsoft.Xna.Framework.Input.Buttons.B))
             {
                 for (int i = 0; i < allObjects.Count; i++)
@@ -104,11 +127,13 @@ namespace SuperMarioWorld
                 }
             }
 
+            //Cycle the dictionary with Q/E or shoulder buttons
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Q) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.LeftShoulder))
                 _selected--;
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.E) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.RightShoulder))
                 _selected++;
 
+            //Make sure selected cant get out of range
             if (_selected < 0)
                 _selected = _placeableObjects.Count - 1;
             if (_selected > _placeableObjects.Count - 1)
@@ -118,15 +143,23 @@ namespace SuperMarioWorld
 
             _objectToPlace.position = new Vector2((float)Math.Round(position.X / 16f) * 16 + 16, (float)Math.Round(position.Y / 16) * 16f);
 
+            //When player presses SPACE or A, place the block
             if (InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Space) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.A))
             {
+                //Place object to place
                 PlaceBlock();
             }
             else
             {
-                create(_objectToPlace);
-                destroy(_objectToPlace);
+                //Create and destroy the object to place to load in its sprite
+                if (_objectToPlace.sprite.texture == null)
+                {
+                    create(_objectToPlace);
+                    destroy(_objectToPlace);
+                }
             }
+
+            //Apply the movement
             Movement(gameTime);
         }
 
@@ -139,12 +172,16 @@ namespace SuperMarioWorld
             for (int i = 0; i < allObjects.Count; i++)
             {
                 if (Vector2.Distance(_objectToPlace.position, allObjects[i].position) < 8)
+                {
                     if (allObjects[i] is StaticBlock)
                     {
                         StaticBlock block = (StaticBlock)allObjects[i];
-                        if(block.blockType != StaticBlock.BlockType.dirtMiddle && block.blockType != StaticBlock.BlockType.dirtRight && block.blockType != StaticBlock.BlockType.dirtLeft)
+                        if (block.blockType != StaticBlock.BlockType.dirtMiddle && block.blockType != StaticBlock.BlockType.dirtRight && block.blockType != StaticBlock.BlockType.dirtLeft)
                             destroy(allObjects[i]);
                     }
+                    else
+                        destroy(allObjects[i]);
+                }
             }
 
             
