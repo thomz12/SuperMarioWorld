@@ -10,8 +10,6 @@ namespace SuperMarioWorld
     {
         public bool isFinish;
 
-        public Scene.LoadScene load;
-
         public Checkpoint(Point position, bool isFinish) : base(position)
         {
             blocking = false;
@@ -38,7 +36,7 @@ namespace SuperMarioWorld
             {
                 if(collider is Player)
                 {
-                    load("Main_Menu.sml", false);
+                    SceneManager.Instance.LoadMainMenu();
                 }
             }
         }

@@ -17,9 +17,6 @@ namespace SuperMarioWorld
         //Content manager
         private ContentManager _contentManager;
 
-        //Delegate to load level
-        public delegate void LoadScene(string level, bool edit);
-
         //HUD
         private HUD _hud;
 
@@ -49,8 +46,6 @@ namespace SuperMarioWorld
         //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
         private Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        public LoadScene load;
-
         //Variables for the background
         private string _backgroundSourceName;
         private Texture2D _backgroundTexture;
@@ -64,7 +59,7 @@ namespace SuperMarioWorld
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
-        public Scene(string fileName, ScoreHandler scoreHandler, LoadScene loadScene, bool edit)
+        public Scene(string fileName, ScoreHandler scoreHandler, bool edit)
         {
             #region oldStuff
             /*
@@ -264,8 +259,6 @@ namespace SuperMarioWorld
             _scores = scoreHandler;
             _scores.maxTime = 200;
 
-            load = loadScene;
-
             _edit = edit;
 
             //Set background texture
@@ -301,9 +294,7 @@ namespace SuperMarioWorld
                     if (node.Name.Equals("MainMenu"))
                     {
                         obj = new MainMenu(pos, _contentManager);
-                        MainMenu mm = (MainMenu)obj;
-                        mm.load = loadScene;
-                        
+                        MainMenu mm = (MainMenu)obj;                  
                     }
                     else if (node.Name.Equals("Player"))
                     {
@@ -367,8 +358,6 @@ namespace SuperMarioWorld
                     else if(node.Name.Equals("Checkpoint"))
                     {
                         obj = new Checkpoint(pos, bool.Parse(node.FirstChild.InnerText));
-                        Checkpoint c = (Checkpoint)obj;
-                        c.load = loadScene;
                     }
 
                     if (obj != null)
@@ -492,11 +481,12 @@ namespace SuperMarioWorld
                 Player p = (Player)_player;
                 if (p.dead)
                 {
-                    if(p.position.Y >= _size.Y * _gridSize + 20)
-                        load("Main_Menu.sml", false);
+                    if (p.position.Y >= _size.Y * _gridSize + 20)
+                        SceneManager.Instance.LoadMainMenu();
                 }
                 else if(p.position.Y >= _size.Y * _gridSize)
                 {
+                    p.powerState = Player.PowerState.small;
                     p.Death(null);
                 }
             }
