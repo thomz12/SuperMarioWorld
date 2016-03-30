@@ -32,9 +32,9 @@ namespace SuperMarioWorld
             if(collider is Player)
             {
                 Player p = (Player)collider;
-                if (p.momentum.Y > 3)
+                if (p.velocity.Y > 3)
                 {
-                    p.momentum.Y = -110;
+                    p.velocity.Y = -110;
                     p.boundingBox.Y = (int)position.Y - boundingBox.Height - p.boundingBox.Height;
                     p.position.Y = position.Y - boundingBox.Height;
                     Death(collider);

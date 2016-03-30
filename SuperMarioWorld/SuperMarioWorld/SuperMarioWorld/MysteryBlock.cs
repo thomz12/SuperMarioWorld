@@ -60,13 +60,13 @@ namespace SuperMarioWorld
                 {
                     if (p.position.Y < position.Y)
                     {
-                        if (p.momentum.Y > 0)
+                        if (p.velocity.Y > 0)
                         {
                             //When entity collides from the top
                             p.position.Y = position.Y - boundingBox.Height + 1;
-                            p.momentum.Y = 16;
+                            p.velocity.Y = 16;
                             p.grounded = true;
-                            p.momentum.Y = 0;
+                            p.velocity.Y = 0;
                         }
                     }
                     else
@@ -86,7 +86,7 @@ namespace SuperMarioWorld
                             destroy(this);
                         }
 
-                        p.momentum.Y = 16;
+                        p.velocity.Y = 16;
                     }
                 }
                 else
@@ -106,7 +106,7 @@ namespace SuperMarioWorld
                         if (!(p is Player))
                             p.lookRight = !p.lookRight;
 
-                        p.momentum.X = 0;
+                        p.velocity.X = 0;
                     }
                 }
             }

@@ -50,28 +50,28 @@ namespace SuperMarioWorld
             if (!dead && _moving)
             {
                 if (lookRight)
-                    momentum = new Vector2(momentum.X + acceleration, momentum.Y);
+                    velocity = new Vector2(velocity.X + acceleration, velocity.Y);
                 else
-                    momentum = new Vector2(momentum.X - acceleration, momentum.Y);
+                    velocity = new Vector2(velocity.X - acceleration, velocity.Y);
             }
 
             //Add gravity
             if (!grounded)
-                momentum.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                velocity.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object
-            if (momentum.X > maxSpeed)
-                momentum = new Vector2(maxSpeed, momentum.Y);
-            if (momentum.X < -maxSpeed)
-                momentum = new Vector2(-maxSpeed, momentum.Y);
+            if (velocity.X > maxSpeed)
+                velocity = new Vector2(maxSpeed, velocity.Y);
+            if (velocity.X < -maxSpeed)
+                velocity = new Vector2(-maxSpeed, velocity.Y);
 
-            if (momentum.Y > terminalVelocity)
-                momentum.Y = terminalVelocity;
-            if (momentum.Y < -terminalVelocity)
-                momentum.Y = -terminalVelocity;
+            if (velocity.Y > terminalVelocity)
+                velocity.Y = terminalVelocity;
+            if (velocity.Y < -terminalVelocity)
+                velocity.Y = -terminalVelocity;
 
             //add momentum to position
-            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
+            position += velocity * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
 
         public override void OnCollision(GameObject collider)
@@ -83,11 +83,11 @@ namespace SuperMarioWorld
                 if (_moving)
                 {
                     //Stop moving when player comes from above
-                    if (p.momentum.Y > 3)
+                    if (p.velocity.Y > 3)
                     {
                         _moving = false;
-                        p.momentum.Y = -140;
-                        momentum.X = 0;
+                        p.velocity.Y = -140;
+                        velocity.X = 0;
                         sprite.NewAnimation(0, (int)koopaType);
                     }
                     //else kill it!

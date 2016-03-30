@@ -41,13 +41,13 @@ namespace SuperMarioWorld
                 {
                     if (e.position.Y < position.Y)
                     {
-                        if (e.momentum.Y > 0)
+                        if (e.velocity.Y > 0)
                         {
                             //When entity collides from the top
                             e.position.Y = position.Y - boundingBox.Height + 1;
-                            e.momentum.Y = 16;
+                            e.velocity.Y = 16;
                             e.grounded = true;
-                            e.momentum.Y = 0;
+                            e.velocity.Y = 0;
                         }
                     }
                     else if(!isPlatform)
@@ -55,7 +55,7 @@ namespace SuperMarioWorld
                         //When entity collides from the buttom
                         e.position.Y = position.Y + e.boundingBox.Height;
 
-                        e.momentum.Y = 16;
+                        e.velocity.Y = 16;
                     }
                 }
                 else if(!isPlatform)
@@ -80,7 +80,7 @@ namespace SuperMarioWorld
                             e.hasTurned = true;
                         }
 
-                        e.momentum.X = 0;
+                        e.velocity.X = 0;
                     }
                 }
             }

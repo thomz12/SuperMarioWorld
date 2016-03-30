@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SuperMarioWorld;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace SMWUT
 {

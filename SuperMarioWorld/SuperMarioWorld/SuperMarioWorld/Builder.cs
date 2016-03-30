@@ -85,15 +85,15 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            momentum = Vector2.Zero;
+            velocity = Vector2.Zero;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadAnalogLeftY() > 0.1f)
-                momentum.Y = -terminalVelocity;
+                velocity.Y = -terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadAnalogLeftY() < -0.1f)
-                momentum.Y = terminalVelocity;
+                velocity.Y = terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.A) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
-                momentum.X = -maxSpeed;
+                velocity.X = -maxSpeed;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.D) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
-                momentum.X = maxSpeed;
+                velocity.X = maxSpeed;
 
             if(InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.F) || InputManager.Instance.GamePadIsPressed(Microsoft.Xna.Framework.Input.Buttons.B))
             {
@@ -200,19 +200,24 @@ namespace SuperMarioWorld
 
         protected override void Movement(GameTime gameTime)
         {
-            if (momentum.X > maxSpeed)
-                momentum = new Vector2(maxSpeed, momentum.Y);
-            if (momentum.X < -maxSpeed)
-                momentum = new Vector2(-maxSpeed, momentum.Y);
+            if (velocity.X > maxSpeed)
+                velocity = new Vector2(maxSpeed, velocity.Y);
+            if (velocity.X < -maxSpeed)
+                velocity = new Vector2(-maxSpeed, velocity.Y);
 
-            if (momentum.Y > terminalVelocity)
-                momentum.Y = terminalVelocity;
-            if (momentum.Y < -terminalVelocity)
-                momentum.Y = -terminalVelocity;
+            if (velocity.Y > terminalVelocity)
+                velocity.Y = terminalVelocity;
+            if (velocity.Y < -terminalVelocity)
+                velocity.Y = -terminalVelocity;
 
             //add momentum to position
-            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
+            position += velocity * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
 
+        //The builder does not interact with anything.
+        public override void OnCollision(GameObject collider)
+        {
+            return;
+        }
     }
 }

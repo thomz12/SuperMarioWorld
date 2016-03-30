@@ -36,29 +36,39 @@ namespace SuperMarioWorld
 
         public override void Update(GameTime gameTime)
         {
+            //Check if the koopa was on the ground in the last update, then check if the variable _onPlatform is false (the koopa is about to walk off the platform)
             if (grounded)
             {
                 if (!_onPlatform)
+                    //Turn around because koopa is about to fall off the platform
                     lookRight = !lookRight;
                 _onPlatform = false;
             }
 
+            //Set the position of the bounding box to the correct position.
             if (lookRight)
             {
+                //When the koopa is looking to the right the bounding box is offset to the right
                 checkPlatformBox.X = (int)Math.Round(position.X) + boundingBox.Width / 2 - checkPlatformBox.Width;
             }
             else
             {
+                //when the koopa is looking to the left, the bounding box is offset to the left
                 checkPlatformBox.X = (int)Math.Round(position.X) - boundingBox.Width / 2;
             }
+            //koopa's Y coord of the check collision box is at the koopas feet, the anchor point of the koopa is in the bottom center.
             checkPlatformBox.Y = (int)Math.Round(position.Y);
 
+            //execute enemy.Update()
             base.Update(gameTime);
         }
 
         public override void Death(GameObject cause)
         {
+            //Call enemy.Death()
             base.Death(cause);
+
+            //If a koopa is not killed by an EmptyShell, it creates an EmptyShell.
             if(!(cause is EmptyShell))
                 create(new EmptyShell(new Point((int)position.X, (int)position.Y), EmptyShell.KoopaType.red));
         }
