@@ -187,6 +187,7 @@ namespace SuperMarioWorld
             
             Point pos = new Point((int)_objectToPlace.position.X, (int)_objectToPlace.position.Y);
 
+            //Place staticblock
             if (_objectToPlace is StaticBlock)
             {
                 StaticBlock block = (StaticBlock)_objectToPlace;
@@ -208,33 +209,49 @@ namespace SuperMarioWorld
                     }
                 }
             }
+            //place mysteryblock
             else if (_objectToPlace is MysteryBlock)
             {
                 MysteryBlock block = (MysteryBlock)_objectToPlace;
                 create(new MysteryBlock(pos, block.content));
             }
+            //place coin
             else if (_objectToPlace is Coin)
                 create(new Coin(pos, false));
+            //place red koopa
             else if (_objectToPlace is RedKoopa)
                 create(new RedKoopa(pos));
+            //place green koopa
             else if (_objectToPlace is GreenKoopa)
                 create(new GreenKoopa(pos));
+            //place goomba
             else if (_objectToPlace is Goomba)
                 create(new Goomba(pos));
+            //place checkpoint
             else if (_objectToPlace is Checkpoint)
                 create(new Checkpoint(pos, true));
         }
 
+        /// <summary>
+        /// Draw this object and preview block
+        /// </summary>
+        /// <param name="batch"></param>
         public override void DrawObject(SpriteBatch batch)
         {
             base.DrawObject(batch);
 
+            //If there is a preview block, draw it
             if(_objectToPlace != null)
                 _objectToPlace.DrawObject(batch);
 
+            //draw Block name string
             batch.DrawString(font, _placeableObjects.ElementAt(_selected).Key, new Vector2(position.X, position.Y + 8), Color.Black, 0, Vector2.Zero, 0.1f, SpriteEffects.None, 1);
         }
 
+        /// <summary>
+        /// Movement function
+        /// </summary>
+        /// <param name="gameTime">The gametime</param>
         protected override void Movement(GameTime gameTime)
         {
             if (momentum.X > maxSpeed)
