@@ -31,8 +31,6 @@ namespace SuperMarioWorld
 
         public PowerUp powerUp;
 
-        private string _scoreFilePath = "score.sms";
-
         public ScoreHandler()
         {
             _combo = false;

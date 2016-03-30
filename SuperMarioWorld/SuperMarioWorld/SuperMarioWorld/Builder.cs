@@ -105,17 +105,17 @@ namespace SuperMarioWorld
         public override void Update(GameTime gameTime)
         {
             //Reset velocity
-            momentum = Vector2.Zero;
+            velocity = Vector2.Zero;
 
             //Take input and move
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.W) || InputManager.Instance.GamePadAnalogLeftY() > 0.1f)
-                momentum.Y = -terminalVelocity;
+                velocity.Y = -terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.S) || InputManager.Instance.GamePadAnalogLeftY() < -0.1f)
-                momentum.Y = terminalVelocity;
+                velocity.Y = terminalVelocity;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.A) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
-                momentum.X = -maxSpeed;
+                velocity.X = -maxSpeed;
             if (InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.D) || InputManager.Instance.GamePadAnalogLeftX() > 0.1f)
-                momentum.X = maxSpeed;
+                velocity.X = maxSpeed;
 
             //If F OR B is pressed, destory the objects on the selected position
             if(InputManager.Instance.KeyboardIsPressed(Microsoft.Xna.Framework.Input.Keys.F) || InputManager.Instance.GamePadIsPressed(Microsoft.Xna.Framework.Input.Buttons.B))
@@ -154,9 +154,9 @@ namespace SuperMarioWorld
                 //Create and destroy the object to place to load in its sprite
                 if (_objectToPlace.sprite.texture == null)
                 {
-                    create(_objectToPlace);
-                    destroy(_objectToPlace);
-                }
+                create(_objectToPlace);
+                destroy(_objectToPlace);
+            }
             }
 
             //Apply the movement
@@ -180,8 +180,8 @@ namespace SuperMarioWorld
                             destroy(allObjects[i]);
                     }
                     else
-                        destroy(allObjects[i]);
-                }
+                            destroy(allObjects[i]);
+                    }
             }
 
             
@@ -254,19 +254,24 @@ namespace SuperMarioWorld
         /// <param name="gameTime">The gametime</param>
         protected override void Movement(GameTime gameTime)
         {
-            if (momentum.X > maxSpeed)
-                momentum = new Vector2(maxSpeed, momentum.Y);
-            if (momentum.X < -maxSpeed)
-                momentum = new Vector2(-maxSpeed, momentum.Y);
+            if (velocity.X > maxSpeed)
+                velocity = new Vector2(maxSpeed, velocity.Y);
+            if (velocity.X < -maxSpeed)
+                velocity = new Vector2(-maxSpeed, velocity.Y);
 
-            if (momentum.Y > terminalVelocity)
-                momentum.Y = terminalVelocity;
-            if (momentum.Y < -terminalVelocity)
-                momentum.Y = -terminalVelocity;
+            if (velocity.Y > terminalVelocity)
+                velocity.Y = terminalVelocity;
+            if (velocity.Y < -terminalVelocity)
+                velocity.Y = -terminalVelocity;
 
             //add momentum to position
-            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
+            position += velocity * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
 
+        //The builder does not interact with anything.
+        public override void OnCollision(GameObject collider)
+        {
+            return;
+        }
     }
 }

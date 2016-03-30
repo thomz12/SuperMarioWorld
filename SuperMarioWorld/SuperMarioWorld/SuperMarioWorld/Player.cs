@@ -181,14 +181,14 @@ namespace SuperMarioWorld
             }
             else if (collider is Enemy)
             {
-                if(momentum.Y > 3)
+                if(velocity.Y > 3)
                 {
                     _scores.AddCombo();
                 }
             }
             else if (collider is EmptyShell)
             {
-                if (momentum.Y > 3)
+                if (velocity.Y > 3)
                 {
                     _scores.AddCombo();
                 }
@@ -221,45 +221,45 @@ namespace SuperMarioWorld
                 {
                     lookRight = true;
                     if (grounded)
-                        momentum.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                        velocity.X += acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                     else
-                        momentum.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                        velocity.X += acceleration / 3 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
                 //If button A is pressed
                 if (InputManager.Instance.KeyboardIsPressed(Keys.A) || InputManager.Instance.GamePadIsPressed(Buttons.DPadLeft) || InputManager.Instance.GamePadAnalogLeftX() < -0.1f)
                 {
                     lookRight = false;
                     if (grounded)
-                        momentum.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                        velocity.X -= acceleration * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                     else
-                        momentum.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                        velocity.X -= acceleration / _airControl * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
                 }
                 if ((InputManager.Instance.KeyboardOnRelease(Keys.Space) || InputManager.Instance.GamePadOnPress(Buttons.A)) && grounded)
                 {
-                    momentum.Y = _jumpForce;
+                    velocity.Y = _jumpForce;
                     grounded = false;
                 }
 
                 //Handle animations
                 //if player is moving
                 sprite.animationSpeed = 150.0f;
-                if (Math.Abs(momentum.X) > 0.5f && grounded)
+                if (Math.Abs(velocity.X) > 0.5f && grounded)
                 {
-                    sprite.animationSpeed = -3 * Math.Abs(momentum.X) + 300;
+                    sprite.animationSpeed = -3 * Math.Abs(velocity.X) + 300;
                     SetAnimation(PlayerAnimationState.walking);
                 }
                 //if up is pressed, and not moving
-                else if (Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(momentum.X) < 0.5f && grounded)
+                else if (Keyboard.GetState().IsKeyDown(Keys.W) && Math.Abs(velocity.X) < 0.5f && grounded)
                 {
                     SetAnimation(PlayerAnimationState.lookup);
                 }
                 //if player is falling
-                else if (grounded == false && momentum.Y > 0.5f)
+                else if (grounded == false && velocity.Y > 0.5f)
                 {
                     SetAnimation(PlayerAnimationState.falling);
                 }
                 //If player is jumping
-                else if (grounded == false && momentum.Y < 0.5f)
+                else if (grounded == false && velocity.Y < 0.5f)
                 {
                     SetAnimation(PlayerAnimationState.jumping);
                 }
@@ -377,8 +377,8 @@ namespace SuperMarioWorld
                 else if (powerState == PowerState.small)
                 {
                     dead = true;
-                    momentum.X = 0;
-                    momentum.Y = -500;
+                    velocity.X = 0;
+                    velocity.Y = -500;
                     boundingBox.Width = 0;
                     boundingBox.Height = 0;
                     _scores.lives--;
@@ -405,24 +405,24 @@ namespace SuperMarioWorld
         {
             //calculate friction
             if(gameTime.ElapsedGameTime.TotalMilliseconds != 0 && grounded)
-                momentum.X /= _friction * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
+                velocity.X /= _friction * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f) + 1;
 
             if (!grounded)
-                momentum.Y += 150 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+                velocity.Y += 150 * (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
 
             //Limit the momentum for the object
-            if (momentum.X > maxSpeed)
-                momentum = new Vector2(maxSpeed, momentum.Y);
-            if (momentum.X < -maxSpeed)
-                momentum = new Vector2(-maxSpeed, momentum.Y);
+            if (velocity.X > maxSpeed)
+                velocity = new Vector2(maxSpeed, velocity.Y);
+            if (velocity.X < -maxSpeed)
+                velocity = new Vector2(-maxSpeed, velocity.Y);
 
-            if (momentum.Y > fallVelocity)
-                momentum.Y = fallVelocity;
-            if (momentum.Y < -terminalVelocity)
-                momentum.Y = -terminalVelocity;
+            if (velocity.Y > fallVelocity)
+                velocity.Y = fallVelocity;
+            if (velocity.Y < -terminalVelocity)
+                velocity.Y = -terminalVelocity;
 
             //add momentum to position
-            position += momentum * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
+            position += velocity * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
     }
 }

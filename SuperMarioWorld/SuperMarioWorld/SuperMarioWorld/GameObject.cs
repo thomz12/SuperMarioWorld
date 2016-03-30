@@ -46,7 +46,6 @@ namespace SuperMarioWorld
             sprite = new Sprite();
             sprite.layer = 0.5f;
         }
-        // details
 
         /// <summary>
         /// Execute this function when colliding with something.
@@ -60,6 +59,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Gametime that has passed since prev. frame</param>
         public virtual void Update(GameTime gameTime)
         {
+            //call this objects sprite to update its animation
             sprite.UpdateAnimation(gameTime);
         }
 
