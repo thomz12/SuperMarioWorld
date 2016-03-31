@@ -382,13 +382,16 @@ namespace SuperMarioWorld
                 }
                 else if (powerState == PowerState.small)
                 {
-                    dead = true;
-                    velocity.X = 0;
-                    velocity.Y = -500;
-                    boundingBox.Width = 0;
-                    boundingBox.Height = 0;
-                    _scores.lives--;
-                    _scores.ResetCombo();
+                    if (!dead)
+                    {
+                        dead = true;
+                        velocity.X = 0;
+                        velocity.Y = -500;
+                        boundingBox.Width = 0;
+                        boundingBox.Height = 0;
+                        _scores.lives--;
+                        _scores.ResetCombo();
+                    }
                 }
             }
         }
