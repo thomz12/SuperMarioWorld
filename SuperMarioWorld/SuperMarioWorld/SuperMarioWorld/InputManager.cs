@@ -9,23 +9,25 @@ namespace SuperMarioWorld
 {
     public class InputManager
     {
-        private static InputManager _inputManager;
+        // Input manager instance
+        private static InputManager _instance;
 
+        // Create itself (singleton)
         public static InputManager Instance
         {
             get
             {
-                if (_inputManager == null)
-                    _inputManager = new InputManager();
-                return _inputManager;
+                if (_instance == null)
+                    _instance = new InputManager();
+                return _instance;
             }
         }
 
-        //Keyboard states
+        // Keyboard states
         private KeyboardState _priorKeyboardState;
         private KeyboardState _curKeyboardState;
 
-        //Gamepad states
+        // Gamepad states
         private GamePadState _priorGamepadState;
         private GamePadState _curGamepadState;
 
@@ -38,7 +40,9 @@ namespace SuperMarioWorld
             _curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
-
+        /// <summary>
+        /// This function gets called every update of the game
+        /// </summary>
         public void Update()
         {
             _priorKeyboardState = _curKeyboardState;

@@ -11,6 +11,9 @@ namespace SuperMarioWorld
     /// </summary>
     public class StaticBlock : StaticObject
     {
+        /// <summary>
+        /// Types of static block
+        /// </summary>
         public enum BlockType
         {
             grassMiddle,
@@ -27,21 +30,27 @@ namespace SuperMarioWorld
 
         public BlockType blockType;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <param name="position">the position of the block</param>
+        /// <param name="type">the type of the block</param>
+        /// <param name="layer">the layer in which the block is drawn</param>
         public StaticBlock(Point position, BlockType type, float layer) : base(position) 
         {
-            //What type of static block is this (based on enum BlockType)
+            // What type of static block is this (based on enum BlockType)
             blockType = type;
 
-            //Generates a boundingbox around the block
+            // Generates a boundingbox around the block
             boundingBox = new Rectangle(position.X - 8, position.Y - 16, 16, 16);
 
-            //Sets the sizes of the sprite
+            // Sets the sizes of the sprite
             sprite.xSize = 16;
             sprite.ySize = 16;
             sprite.animated = false;
             sprite.layer = layer;
 
-            //Call sprite class to load the texture and add texture to the spriteclass for each block
+            // Call sprite class to load the texture and add texture to the spriteclass for each block
             switch (blockType)
             {
                 case BlockType.grassMiddle:
