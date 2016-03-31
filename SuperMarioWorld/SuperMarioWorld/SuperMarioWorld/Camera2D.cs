@@ -28,9 +28,9 @@ namespace SuperMarioWorld
         private GameObject _target;
 
         /// <summary>Height of the default SNES resolution (in px)</summary>
-        private int _gameHeight;
+        public int gameHeight;
         /// <summary>Width of the default SNES resolution (in px)</summary>
-        private int _gameWidth;
+        public int gameWidth;
 
         // A value for smooth damping, the higher the value the faster the camera moves to its target position.
         private float _smoothness = 4f;
@@ -96,21 +96,21 @@ namespace SuperMarioWorld
                     }
 
                     // Limit the camera to the left edge of the map
-                    if (position.X < (_gameWidth / 2) - (_gridSize / 2))
-                        position = new Vector2((_gameWidth / 2) - (_gridSize / 2), position.Y);
+                    if (position.X < (gameWidth / 2) - (_gridSize / 2))
+                        position = new Vector2((gameWidth / 2) - (_gridSize / 2), position.Y);
                     // Limit the camera to the right edge of the map
-                    if (position.X > (_levelSize.X * _gridSize) - (_gameWidth / 2) - (_gridSize / 2))
-                        position = new Vector2((_levelSize.X * _gridSize) - (_gameWidth / 2) - (_gridSize / 2), position.Y);
+                    if (position.X > (_levelSize.X * _gridSize) - (gameWidth / 2) - (_gridSize / 2))
+                        position = new Vector2((_levelSize.X * _gridSize) - (gameWidth / 2) - (_gridSize / 2), position.Y);
 
                     // Y axis
                     // If the lower bounds of the camera vieuwport is lower than the lowest pixel in the level (y+ == lower)
-                    if (position.Y + (_gameHeight / 2) >= (_levelSize.Y * _gridSize))
+                    if (position.Y + (gameHeight / 2) >= (_levelSize.Y * _gridSize))
                     {
                         // Set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
-                        position = new Vector2(position.X, (_levelSize.Y * _gridSize) - (_gameHeight / 2));
+                        position = new Vector2(position.X, (_levelSize.Y * _gridSize) - (gameHeight / 2));
 
                         // If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
-                        if (delta.Y < -(_gameHeight / 4))
+                        if (delta.Y < -(gameHeight / 4))
                         {
                             position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                         }
