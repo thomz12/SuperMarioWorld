@@ -24,6 +24,51 @@ namespace SMWUT
         }
 
         [TestMethod]
+        public void UTMario()
+        {
+            score = new ScoreHandler();
+            player = new Player(new Point(0, 0), score, Player.Character.Mario);
+
+            Assert.IsNotNull(player);
+        }
+
+        [TestMethod]
+        public void UTLuigi()
+        {
+            score = new ScoreHandler();
+            player = new Player(new Point(0, 0), score, Player.Character.Luigi);
+
+            Assert.IsNotNull(player);
+        }
+
+        [TestMethod]
+        public void UTWario()
+        {
+            score = new ScoreHandler();
+            player = new Player(new Point(0, 0), score, Player.Character.Wario);
+
+            Assert.IsNotNull(player);
+        }
+
+        [TestMethod]
+        public void UTWaluigi()
+        {
+            score = new ScoreHandler();
+            player = new Player(new Point(0, 0), score, Player.Character.Waluigi);
+
+            Assert.IsNotNull(player);
+        }
+
+        [TestMethod]
+        public void UTPeach()
+        {
+            score = new ScoreHandler();
+            player = new Player(new Point(0, 0), score, Player.Character.Peach);
+
+            Assert.IsNotNull(player);
+        }
+
+        [TestMethod]
         public void UTDieing()
         {
             player.powerState = Player.PowerState.normal;
