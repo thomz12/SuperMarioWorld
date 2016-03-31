@@ -13,15 +13,15 @@ namespace SuperMarioWorld
         private bool _moveable;
 
         //Zoom of the camera
-        public float Zoom { get; set; }
+        public float zoom;
 
         public Matrix transformMatrix;
 
         //Current position of the camera
-        public Vector2 Position { get; set; }
+        public Vector2 position;
 
         //Current rotation of the camera
-        public float Rotation { get; set; }
+        public float rotation;
 
         //The player the camera should track
         private GameObject _target;
@@ -29,11 +29,11 @@ namespace SuperMarioWorld
         /// <summary>
         /// Height of the default SNES resolution (in px)
         /// </summary>
-        public int GameHeight { get; set; }
+        public int gameHeight;
         /// <summary>
         /// Width of the default SNES resolution (in px)
         /// </summary>
-        public int GameWidth { get; set; }
+        public int gameWidth;
 
         private float _smoothness = 4f;
 
@@ -54,28 +54,28 @@ namespace SuperMarioWorld
             _levelSize = size;
             _gridSize = grid;
 
-            Zoom = 1.0f;
-            Rotation = 0;
+            zoom = 1.0f;
+            rotation = 0;
 
             if(target != null)
-                Position = target.position;
+                position = target.position;
 
             _moveable = true;
         }
 
         /// <summary>
-        /// default update function
+        /// Default update function
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            //check if the target exists
+            //Check if the target exists
             if (_target != null)
             {
                 //Check if the camera is allowed to move
                 if (_moveable)
                 {
                     //Difference between camera and target position
-                    Vector2 delta = _target.position - Position;
+                    Vector2 delta = _target.position - position;
 
                     //The camera uses smooth damping.
                     float smoothDamping = _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000);
@@ -84,40 +84,40 @@ namespace SuperMarioWorld
                     //If the player moves out of the dead zone, move the camera to the player
                     if (delta.X < -_xDeadZone || delta.X > _xDeadZone)
                     {
-                        Position = new Vector2(Position.X + (_target.position.X - Position.X) * smoothDamping, Position.Y);
+                        position = new Vector2(position.X + (_target.position.X - position.X) * smoothDamping, position.Y);
                     }
 
                     //Limit the camera to the left edge of the map
-                    if (Position.X < GameWidth / 2 - _gridSize / 2)
-                        Position = new Vector2(GameWidth / 2 - _gridSize / 2, Position.Y);
+                    if (position.X < gameWidth / 2 - _gridSize / 2)
+                        position = new Vector2(gameWidth / 2 - _gridSize / 2, position.Y);
                     //Limit the camera to the right edge of the map
-                    if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
-                        Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
+                    if (position.X > _levelSize.X * _gridSize - gameWidth / 2 - _gridSize / 2)
+                        position = new Vector2(_levelSize.X * _gridSize - gameWidth / 2 - _gridSize / 2, position.Y);
 
                     //Y axis
                     //if the lower bounds of the camera vieuwport is lower than the lowest pixel in the level (y+ == lower)
-                    if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
+                    if (position.Y + gameHeight / 2 >= _levelSize.Y * _gridSize)
                     {
                         //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
-                        Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
+                        position = new Vector2(position.X, _levelSize.Y * _gridSize - gameHeight / 2);
 
                         //If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
-                        if (delta.Y < -(GameHeight / 4))
+                        if (delta.Y < -(gameHeight / 4))
                         {
-                            Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
+                            position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                         }
                     }
                     else
                     {
                         //If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
-                        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * smoothDamping);
+                        position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                     }
                 }
             }
             else
             {
                 //Set the position of the camera to the center of the level
-                Position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
+                position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
             }
         }
 
@@ -128,7 +128,7 @@ namespace SuperMarioWorld
         /// <returns>Returns a Matrix type.</returns>
         public Matrix GetTransformation(GraphicsDevice device)
         {
-            transformMatrix = Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) * Matrix.CreateRotationZ(Rotation) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) * Matrix.CreateTranslation(new Vector3(device.Viewport.Width * 0.5f, device.Viewport.Height * 0.5f, 0));
+            transformMatrix = Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0)) * Matrix.CreateRotationZ(rotation) * Matrix.CreateScale(new Vector3(zoom, zoom, 1)) * Matrix.CreateTranslation(new Vector3(device.Viewport.Width * 0.5f, device.Viewport.Height * 0.5f, 0));
             return transformMatrix;
         }
     }

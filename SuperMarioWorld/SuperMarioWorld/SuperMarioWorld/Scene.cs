@@ -277,8 +277,8 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            int camX = (int)cam.Position.X;
-            int camY = (int)cam.Position.Y;
+            int camX = (int)cam.position.X;
+            int camY = (int)cam.position.Y;
 
             _collidables.Clear();
 
@@ -310,12 +310,12 @@ namespace SuperMarioWorld
             for (int i = 0; i < objects.Count; i++)
             {
                 //Check if the game object is within the screen
-                if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
+                if (Math.Abs(camX - objects[i].position.X) < cam.gameWidth)
                 {
                     //Add the objects that are in the frame to the collision list to be checked for collisions
                     if(objects[i] is StaticBlock)
                         _collidables.Add(objects[i]);
-                    else if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
+                    else if (Math.Abs(camX - objects[i].position.X) < cam.gameWidth / 1.5f)
                     {
                         if (_edit && objects[i] is Enemy)
                             continue;
@@ -377,12 +377,12 @@ namespace SuperMarioWorld
         public void DrawLevel(SpriteBatch batch)
         {
             //Draw background(s)
-            int xPos = (int)Math.Round(cam.Position.X / 2);
-            int yPos = (int)Math.Round(cam.Position.Y / 2);
+            int xPos = (int)Math.Round(cam.position.X / 2);
+            int yPos = (int)Math.Round(cam.position.Y / 2);
 
             batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
-            if (cam.Position.X < _backOffset + xPos)
+            if (cam.position.X < _backOffset + xPos)
                 _backOffset -= _backgroundTexture.Width;
             else
                 _backOffset += _backgroundTexture.Width;
@@ -435,7 +435,7 @@ namespace SuperMarioWorld
         /// <param name="writer">the xmlWriter</param>
         /// <param name="obj">the object to add</param>
         private void AddGameObjectXML(XmlWriter writer, GameObject obj)
-        {
+        { 
             if (obj is MysteryBlock)
             {
                 writer.WriteStartElement(obj.GetType().Name);
