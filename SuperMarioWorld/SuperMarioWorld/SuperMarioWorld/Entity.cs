@@ -8,31 +8,49 @@ namespace SuperMarioWorld
 {
     public abstract class Entity : GameObject
     {
-        //Boolean to see if the enemy is affected by gravity (flying keepo ignore the laws of physics)
+        /// <summary>
+        /// Boolean to see if the enemy is affected by gravity (flying keepo ignore the laws of physics)
+        /// </summary>
         protected bool affectedByGravity;
 
-        //Boolean to see if the Entity was on the ground in the last update
+        /// <summary>
+        /// Boolean to see if the Entity was on the ground in the last update
+        /// </summary>
         public bool grounded;
 
-        //Boolean to see if the Entity is looking to the right or to the left
+        /// <summary>
+        /// Boolean to see if the Entity is looking to the right or to the left
+        /// </summary>
         public bool lookRight;
 
-        //Boolean to see if the Entity is dead, a dead entity will enter its "dead" animation (falling down)
+        /// <summary>
+        /// Boolean to see if the Entity is dead, a dead entity will enter its "dead" animation (falling down)
+        /// </summary>
         public bool dead;
 
-        //Boolean to see if the object has already turned around this update (in order to prevent multiple turns per update when the OnCollision function is called twice)
+        /// <summary>
+        /// Boolean to see if the object has already turned around this update (in order to prevent multiple turns per update when the OnCollision function is called twice)
+        /// </summary>
         public bool hasTurned;
 
-        //Value that is added to the position of the Entity
+        /// <summary>
+        /// Value that is added to the position of the Entity
+        /// </summary>
         public Vector2 velocity;
 
-        //Maxiumum velocity that can be gained per frame.
+        /// <summary>
+        /// Maxiumum velocity that can be gained per frame.
+        /// </summary>
         protected float acceleration;
 
-        //The maximum velocity on the X axis
+        /// <summary>
+        /// The maximum velocity on the X axis
+        /// </summary>
         protected float maxSpeed;
 
-        //The maximum velocity on the Y axis
+        /// <summary>
+        /// The maximum velocity on the Y axis
+        /// </summary>
         protected float terminalVelocity;
 
 
