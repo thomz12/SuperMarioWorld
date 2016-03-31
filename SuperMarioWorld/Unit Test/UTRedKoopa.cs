@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
 using SuperMarioWorld;
 
 namespace SMWUT

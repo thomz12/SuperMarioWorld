@@ -117,7 +117,7 @@ namespace SuperMarioWorld
             else
             {
                 //Set the position of the camera to the center of the level
-                position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
+                Position = new Vector2((_levelSize.X * _gridSize / 2) - (_gridSize / 2), (_levelSize.Y * _gridSize / 2));
             }
         }
 
