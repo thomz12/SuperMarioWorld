@@ -813,6 +813,26 @@
             <classMoniker Id="bfece8c2-9a00-4ea9-8469-9a78b708a540" LastKnownName="InputManager" />
             <elementDefinition Id="c7de1c0c-c83b-4bf5-acd9-b60df023c96a" />
           </dependency>
+          <dependency Id="ecb6ffba-d9f3-4514-a2d0-8a68f4d4de14">
+            <classMoniker Id="a23952a1-53ec-42ad-bfb8-6bb934b9f239" LastKnownName="Coin" />
+            <elementDefinition Id="d550b36a-4cf3-42ec-942d-364f2796e047" />
+          </dependency>
+          <dependency Id="44dd4e8b-e51a-4d48-a344-f374591bdb52">
+            <classMoniker Id="63f4d229-d8e2-4b15-8619-2641242d6e40" LastKnownName="EmptyShell" />
+            <elementDefinition Id="429e5096-156f-469a-adfe-37482d06ac10" />
+          </dependency>
+          <dependency Id="d5682cc1-6d71-46eb-a6e9-96b660c9e8c0">
+            <classMoniker Id="14136816-ea2c-442a-a082-e858bb48eab6" LastKnownName="Mushroom" />
+            <elementDefinition Id="cd587fde-1b5d-42d3-831c-91ad2cccf0a7" />
+          </dependency>
+          <dependency Id="05a4f7d1-e9f1-4ba3-a9e9-21eff5498eee">
+            <classMoniker Id="5c0d08c8-b16a-4dba-91f1-cd2faf5f7658" LastKnownName="OneUp" />
+            <elementDefinition Id="0b5c51b7-56de-4346-8bf6-47e601a3045e" />
+          </dependency>
+          <dependency Id="279c7be9-cda7-4f67-8fb6-4b6c84afb3e3">
+            <classMoniker Id="ee41c187-3820-426f-9dd9-5e99fea78f22" LastKnownName="Enemy" />
+            <elementDefinition Id="e07da943-28a4-416b-9ab2-7938976fd5a1" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization Id="ec75cfcc-073f-4dd8-b1d0-40cdcab5a813" isSubstitutable="false">
@@ -1104,6 +1124,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="a73d70ae-a71e-40e6-8dc3-1aaab8965996" name="Checkpoint" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="10c183e7-4489-44c8-bbbe-fe7012e23122" />
+        <suppliersInternal>
+          <dependency Id="cbb8d725-1239-4875-9040-266197fcc755">
+            <classMoniker Id="e0d39640-f51e-4e20-a7cd-6b4d9a4d6bc2" LastKnownName="SceneManager" />
+            <elementDefinition Id="569603d0-3c45-459b-b89c-8591a8dc41c3" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="84091a3a-a939-447c-b242-dde2f981f46e" isSubstitutable="false">
             <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="StaticObject" />
@@ -1151,6 +1177,20 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="d316d3df-c03e-4758-98cc-6db476ba022c" name="MysteryBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="836d9907-2d50-467a-8060-39314740fa64" />
+        <suppliersInternal>
+          <dependency Id="ab1c3050-c34b-4bd9-af71-032bd62068bd">
+            <classMoniker Id="a23952a1-53ec-42ad-bfb8-6bb934b9f239" LastKnownName="Coin" />
+            <elementDefinition Id="12a21e39-f713-453d-b34f-930261a9b675" />
+          </dependency>
+          <dependency Id="50c87a5c-a5c0-496a-a7a4-b0c8d577735f">
+            <classMoniker Id="4d21dca8-2fb5-408d-be60-6d7ef6cc3049" LastKnownName="Player" />
+            <elementDefinition Id="11ca9492-09f5-4dfb-86da-5ec3afcafcbe" />
+          </dependency>
+          <dependency Id="37694ae4-3118-46f8-81ce-9fbb97ea6baf">
+            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
+            <elementDefinition Id="94388f70-81e6-4363-906f-89ea23e9380d" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="442c7c3b-affb-46dc-9bdc-f552a0145811" isSubstitutable="false">
             <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="StaticObject" />
@@ -1657,6 +1697,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="50265fb4-91dc-480a-8021-212e596c66ea" name="GreenKoopa" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="fedf896f-0fc9-4622-8011-3290e68c6e61" />
+        <suppliersInternal>
+          <dependency Id="a7daaaae-16b1-4183-835a-daa367eb9483">
+            <classMoniker Id="63f4d229-d8e2-4b15-8619-2641242d6e40" LastKnownName="EmptyShell" />
+            <elementDefinition Id="ddec0726-f107-48bb-a05c-c981653a6355" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="9c8a5844-fccf-4a0e-9e05-aae6328c6682" isSubstitutable="false">
             <classMoniker Id="ee41c187-3820-426f-9dd9-5e99fea78f22" LastKnownName="Enemy" />
@@ -1709,6 +1755,16 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="fbd4ba2f-0402-44a8-8d58-6788e0efd477" name="RedKoopa" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="95ee5f82-477e-4087-8a0e-8f42eeddfdaf" />
+        <suppliersInternal>
+          <dependency Id="adb87610-8a0f-45b2-969f-622bb2a31bf0">
+            <classMoniker Id="63f4d229-d8e2-4b15-8619-2641242d6e40" LastKnownName="EmptyShell" />
+            <elementDefinition Id="98390ccf-d0b4-49de-9db3-a327e74711db" />
+          </dependency>
+          <dependency Id="f3223eea-3044-48c9-9dfe-172e9d36f6d7">
+            <classMoniker Id="e4ad735a-b82a-4881-811d-06f599e26e92" LastKnownName="StaticBlock" />
+            <elementDefinition Id="5b35a748-a4fd-4cce-996e-bfd954eee655" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="a833d509-eea2-4506-8df4-cf0f5d731ea6" isSubstitutable="false">
             <classMoniker Id="ee41c187-3820-426f-9dd9-5e99fea78f22" LastKnownName="Enemy" />
@@ -1926,6 +1982,12 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="e4ad735a-b82a-4881-811d-06f599e26e92" name="StaticBlock" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="5e2ba612-c7e1-4ce6-93eb-6740dccd297c" />
+        <suppliersInternal>
+          <dependency Id="30b62003-0ae5-4942-94f0-c48e4383090c">
+            <classMoniker Id="88f2acea-387e-45eb-a2d0-fc8db6fa655f" LastKnownName="Entity" />
+            <elementDefinition Id="92b8c271-d68e-4d82-8668-2c447bb3516e" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization Id="b1da5dbb-7262-4aec-bc83-f2b617f6d2c0" isSubstitutable="false">
             <classMoniker Id="9bf83310-0b33-4851-8264-3ef30b5e8fc6" LastKnownName="StaticObject" />

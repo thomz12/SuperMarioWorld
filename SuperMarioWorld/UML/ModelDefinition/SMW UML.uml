@@ -1900,6 +1900,41 @@
               LastKnownName="InputManager"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
+          <dependency
+            Id="d550b36a-4cf3-42ec-942d-364f2796e047">
+            <classMoniker
+              Id="3ace137d-219c-4c2c-aca0-a0b08a303333"
+              LastKnownName="Coin"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="429e5096-156f-469a-adfe-37482d06ac10">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="cd587fde-1b5d-42d3-831c-91ad2cccf0a7">
+            <classMoniker
+              Id="b6c2266a-7d31-4d5c-ade8-5940c18c6187"
+              LastKnownName="Mushroom"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="0b5c51b7-56de-4346-8bf6-47e601a3045e">
+            <classMoniker
+              Id="77966e4e-b463-4f56-85ad-0f1808544860"
+              LastKnownName="OneUp"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="e07da943-28a4-416b-9ab2-7938976fd5a1">
+            <classMoniker
+              Id="3ba0ce59-8df5-47f4-a330-f903fb1dfded"
+              LastKnownName="Enemy"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -2657,6 +2692,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="569603d0-3c45-459b-b89c-8591a8dc41c3">
+            <classMoniker
+              Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+              LastKnownName="SceneManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="b5eac759-f61e-41fe-b62c-405076eb4fc0"
@@ -2748,6 +2792,29 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="12a21e39-f713-453d-b34f-930261a9b675">
+            <classMoniker
+              Id="3ace137d-219c-4c2c-aca0-a0b08a303333"
+              LastKnownName="Coin"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="11ca9492-09f5-4dfb-86da-5ec3afcafcbe">
+            <classMoniker
+              Id="f325bf86-4a3f-4301-99e4-5ea62f4f224e"
+              LastKnownName="Player"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="94388f70-81e6-4363-906f-89ea23e9380d">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="f2c357ca-9548-47d3-8684-3a9c2670c0f6"
@@ -3928,6 +3995,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ddec0726-f107-48bb-a05c-c981653a6355">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="a25ebe1e-18ff-4801-800f-f6b018810e95"
@@ -4024,6 +4100,22 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="98390ccf-d0b4-49de-9db3-a327e74711db">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="5b35a748-a4fd-4cce-996e-bfd954eee655">
+            <classMoniker
+              Id="5e2ba612-c7e1-4ce6-93eb-6740dccd297c"
+              LastKnownName="StaticBlock"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="95731b19-71e5-4a93-a218-2adb4528c4e6"
@@ -4571,6 +4663,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="92b8c271-d68e-4d82-8668-2c447bb3516e">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="dce768ec-bcdc-4439-b578-d4095eb36fd3"
