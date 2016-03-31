@@ -27,13 +27,6 @@ namespace SuperMarioWorld
 
         public SMWGame game;
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public SceneManager()
-        {
-
-        }
 
         /// <summary>
         /// Load a scene

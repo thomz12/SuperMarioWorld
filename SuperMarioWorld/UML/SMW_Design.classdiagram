@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="566a00ef-4f25-4d51-8219-9298387105ac" name="SMW_Design" linkedPackageId="d913c215-6805-4549-82da-cabd1137dc53" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="21ce5d09-23f9-49b1-bb16-5032f833a8d0">
       <elementDefinition Id="b4b733d1-cc9f-4edf-b545-423237c25182" />
@@ -14,6 +14,10 @@
           <dependency Id="46b9c229-7a07-46e9-be75-f6d8e067e24d">
             <classMoniker Id="bfece8c2-9a00-4ea9-8469-9a78b708a540" LastKnownName="InputManager" />
             <elementDefinition Id="06ff83c5-02dd-4805-8d58-96601b589a3d" />
+          </dependency>
+          <dependency Id="4db496bb-d182-44b9-ab49-f4004bf81a43">
+            <classMoniker Id="e0d39640-f51e-4e20-a7cd-6b4d9a4d6bc2" LastKnownName="SceneManager" />
+            <elementDefinition Id="27bc118a-6f5a-459b-8b52-78b57f6e96d7" />
           </dependency>
         </suppliersInternal>
         <generalsInternal>
@@ -3168,6 +3172,48 @@
     <packageHasNamedElement>
       <referencedType Id="09d97f04-ea15-4eec-ad94-e0ead10ef4ec" name="BlockType" isAbstract="false" isLeaf="false" cachedFullName="UML::BlockType">
         <elementDefinition Id="32630b96-94c4-4d85-95e5-a109a222292b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e0d39640-f51e-4e20-a7cd-6b4d9a4d6bc2" name="SceneManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="82ad8e05-7550-4360-b9a3-430330cc880f" />
+        <targetEnds>
+          <association Id="1845961a-5e04-4f03-857e-c593ab6a5a4f" isDerived="false" sourceEndRoleName="SceneManager" targetEndRoleName="SMWGame" isLeaf="false" isAbstract="false">
+            <classMoniker Id="481014b1-cfc5-4ee3-9816-11b9fbeb43e5" LastKnownName="SMWGame" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cabe0cd1-57fc-433e-8806-1d7781376e9f" name="SceneManager" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9f04caf5-4e1c-4d41-aec3-31e1fc551ca0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="96b571a0-23d9-4d01-a250-61d3e6921229" name="SMWGame" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5aefe1fa-035c-4fc1-ab72-2e5f7708ce3d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="43013082-9ccd-4603-8906-cebec6a741be" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="0e7e1dd3-5f17-4514-a9c4-c13a60796b5a" name="instance" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8631d0d1-7c84-41c6-a0e8-d8e3a29fa6a8" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="17e69795-d1c5-464a-bdee-3100bc475c59" LastKnownName="SceneManager" />
+            </type_NamedElement>
+          </property>
+          <property Id="57333e06-9c2e-4ec7-865f-682b60e86e0b" name="Instance" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ce5a4f6b-588e-4b8a-97fe-d562dae15f1c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="17e69795-d1c5-464a-bdee-3100bc475c59" LastKnownName="SceneManager" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="17e69795-d1c5-464a-bdee-3100bc475c59" name="SceneManager" isAbstract="false" isLeaf="false" cachedFullName="UML::SceneManager">
+        <elementDefinition Id="82ad8e05-7550-4360-b9a3-430330cc880f" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
