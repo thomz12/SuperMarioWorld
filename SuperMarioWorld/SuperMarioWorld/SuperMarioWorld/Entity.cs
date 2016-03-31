@@ -42,7 +42,7 @@ namespace SuperMarioWorld
         /// <param name="position">X and Y position in Pixels</param>
         public Entity(Point position) : base (position)
         {
-            //Default values, to prevent null values
+            // Default values, to prevent null values
             affectedByGravity = true;
             lookRight = true;
             grounded = false;
@@ -58,12 +58,13 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            //reset the hasTurned boolean
+            // Reset the hasTurned boolean
             hasTurned = false;
-            //reset the grounded value to false
+
+            // Reset the grounded value to false
             grounded = false;
 
-            //Flip sprite when looking left/right
+            // Flip sprite when looking left/right
             if (!dead)
             {
                 if (lookRight)
@@ -72,14 +73,14 @@ namespace SuperMarioWorld
                     sprite.effect = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
             }
 
-            //Call this entities movement function
+            // Call this entities movement function
             Movement(gameTime);
 
-            //Move the bounding box of the object
+            // Move the bounding box of the object
             boundingBox.X = (int)Math.Round(position.X) - boundingBox.Width / 2;
             boundingBox.Y = (int)Math.Round(position.Y) - boundingBox.Height;
 
-            //Call the GameObject.Update() function
+            // Call the GameObject.Update() function
             base.Update(gameTime);
         }
 
@@ -91,16 +92,16 @@ namespace SuperMarioWorld
         {
             if (!dead)
             {
-                //Set dead to true
+                // Set dead to true
                 dead = true;
-                //Launch the entity upwards
+                // Launch the entity upwards
                 velocity.Y = -200;
-                //Cut the entities velocity
+                // Cut the entities velocity
                 velocity.X /= 4;
-                //Disable the bounding box
+                // Disable the bounding box
                 boundingBox.Height = 0;
                 boundingBox.Width = 0;
-                //Flip the entities sprite upside down
+                // Flip the entities sprite upside down
                 sprite.effect |= Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically;
             }
         }
@@ -111,7 +112,7 @@ namespace SuperMarioWorld
         /// <param name="collider">GameObject that is collided with</param>
         public override void OnCollision(GameObject collider)
         {
-            //By default a collision between two object does nothing.
+            // By default a collision between two object does nothing.
         }
 
         /// <summary>
@@ -119,16 +120,16 @@ namespace SuperMarioWorld
         /// </summary>
         protected virtual void Movement(GameTime gameTime)
         {
-            //Check if entity is not dead
+            // Check if entity is not dead
             if (!dead)
             {
-                //add or substract the acceleration to the velocity depending on the Entities facing
+                // Add or substract the acceleration to the velocity depending on the Entities facing
                 if (lookRight)
                     velocity = new Vector2(velocity.X + acceleration, velocity.Y);
                 else
                     velocity = new Vector2(velocity.X - acceleration, velocity.Y);
 
-                //Limit the momentum for the object on the X and Y axis
+                // Limit the momentum for the object on the X and Y axis
                 if (velocity.X > maxSpeed)
                     velocity = new Vector2(maxSpeed, velocity.Y);
                 if (velocity.X < -maxSpeed)
@@ -140,11 +141,11 @@ namespace SuperMarioWorld
                     velocity.Y = -terminalVelocity;
             }
 
-            //Add gravity when the Entity is off the ground and is affected by gravity
+            // Add gravity when the Entity is off the ground and is affected by gravity
             if(!grounded && affectedByGravity)
                 velocity.Y += 1000 * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
 
-            //add momentum to position
+            // Add momentum to position
             position += velocity * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f);
         }
     }
