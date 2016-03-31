@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xna.Framework;
 using SuperMarioWorld;
+using System;
 
 namespace SMWUT
 {
@@ -90,6 +91,21 @@ namespace SMWUT
         {
             player.SetAnimation(Player.PlayerAnimationState.idle);
             
+        }
+
+        [TestMethod]
+        public void UTPlayerUpdate()
+        {
+            TimeSpan totalGameTime = new TimeSpan(0, 0, 0, 0, 1000);
+            TimeSpan elapsedGameTime = new TimeSpan(0, 0, 0, 0, 25);
+            GameTime gameTime = new GameTime(totalGameTime, elapsedGameTime);
+
+            player.velocity = new Vector2(10, 10);
+            player.Update(gameTime);
+            player.Update(gameTime);
+            player.Update(gameTime);
+
+            Assert.IsTrue(player.position.X > 1);
         }
 
         [TestMethod]
