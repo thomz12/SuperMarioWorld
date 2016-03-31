@@ -9,6 +9,11 @@
       <elementDefinition Id="ef65e983-c091-4caa-a1c8-ebbaf2380371" />
       <body>XNA Class</body>
     </comment>
+    <comment Id="d5b23ab7-002f-427d-af46-2c21916f7ecd">
+      <elementDefinition Id="31d49a04-ab8a-44fb-a49c-f088427e4a60" />
+      <body>Builder has a dependency to almost all Game Objects
+</body>
+    </comment>
   </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
@@ -2379,9 +2384,42 @@
         <ownedOperationsInternal>
           <operation Id="25f325bf-7a6c-402b-99d7-691aaca204ad" name="AddCombo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="59482d3b-c69f-4121-a6e0-f6d749334dac" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="83ad9ea1-1281-4c78-93c9-8df261c0f3cb" direction="Return" isUnique="false">
+                  <elementDefinition Id="32425fe8-e63c-43d8-99fd-5b65ab9a8539" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4f952e38-29d9-4dab-bc99-394a1e60d5dc" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
           <operation Id="0be706f3-e3b5-4b07-880d-98e05e5d3ebd" name="ScoreHandler" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="834d1553-cc4e-43c2-9f7c-3c692b454710" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="38377642-31fe-4392-9efe-f29f8bf485ad" direction="Return" isUnique="false">
+                  <elementDefinition Id="612e6066-f3c0-4e51-9300-4927e931b416" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4f952e38-29d9-4dab-bc99-394a1e60d5dc" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="7316c9a1-df2e-4428-8cac-c716d2684d94" name="ResetCombo" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d04e222f-836d-4a44-b2c3-79e6824349e2" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="b64857c8-6478-4f92-ba65-9470ba869848" direction="Return" isUnique="false">
+                  <elementDefinition Id="087f8b6c-bbee-4e21-8dc0-bfaba97417fb" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="4f952e38-29d9-4dab-bc99-394a1e60d5dc" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -2525,6 +2563,10 @@
             <enumerationMoniker Id="5724bcf4-c72d-4f95-9b07-bb2f10502f8f" LastKnownName="Menu" />
             <elementDefinition Id="9e80e579-6344-4eaf-b73a-25d8a734279d" />
           </dependency>
+          <dependency Id="400b05d5-6971-4367-a3e5-29d50367be0c">
+            <classMoniker Id="e0d39640-f51e-4e20-a7cd-6b4d9a4d6bc2" LastKnownName="SceneManager" />
+            <elementDefinition Id="6097e2e3-f2bf-4082-a3f8-ed6894d2a79b" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization Id="6a3abed2-f8d2-462a-9de8-86ba4c4bf56f" isSubstitutable="false">
@@ -2605,7 +2647,7 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
-          <operation Id="517b1188-8d1b-498c-96ae-9343fe284fda" name="GetLevels" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="517b1188-8d1b-498c-96ae-9343fe284fda" name="GetLevels" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="cd9e09e4-2959-47f7-8e38-b23f09e49f29" />
           </operation>
           <operation Id="29ef4d53-c9b0-4126-b7b4-f581c23a20cc" name="OnCollision" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -3075,11 +3117,14 @@
       <enumeration Id="5724bcf4-c72d-4f95-9b07-bb2f10502f8f" name="Menu" isAbstract="false" isLeaf="false">
         <elementDefinition Id="400dbbcb-7f08-4c56-b662-0595b4eb8755" />
         <ownedLiterals>
-          <enumerationLiteral Id="18fa832e-fb43-409f-9dad-c69060b6e413" name="MainMenu">
+          <enumerationLiteral Id="18fa832e-fb43-409f-9dad-c69060b6e413" name="Main">
             <elementDefinition Id="611199bb-511d-4a71-85e5-1f9ccce363b8" />
           </enumerationLiteral>
-          <enumerationLiteral Id="18d67ebb-aadd-4d0f-84e2-08bf22ff8834" name="Playing">
+          <enumerationLiteral Id="18d67ebb-aadd-4d0f-84e2-08bf22ff8834" name="Play">
             <elementDefinition Id="5b57104a-e832-40e5-a085-1254878c3d9b" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="79c9d72b-9cb3-4721-a6e9-c368c294110b" name="Edit">
+            <elementDefinition Id="03a84b96-78c5-47c5-823a-c84ce9d07d68" />
           </enumerationLiteral>
         </ownedLiterals>
       </enumeration>
