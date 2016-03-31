@@ -12,8 +12,7 @@ namespace SuperMarioWorld
     /// </summary>
     public class SceneManager
     {
-
-        //Singleton instance
+        // Singleton instance
         private static SceneManager instance;
         public static SceneManager Instance
         {
@@ -25,8 +24,8 @@ namespace SuperMarioWorld
             }
         }
 
+        // Variable for the game instance
         public SMWGame game;
-
 
         /// <summary>
         /// Load a scene
@@ -35,14 +34,14 @@ namespace SuperMarioWorld
         /// <param name="edit">in edit mode</param>
         public void LoadScene(string scene, bool edit)
         {
-            //Create new scene
+            // Create new scene
             Scene s = new Scene(scene, game.scores, edit);
             s.cam.zoom = game.scale;
             s.cam.gameHeight = game.gameHeight;
             s.cam.gameWidth = game.gameWidth;         
             s.LoadContent(game.Content);
 
-            //Set the new scene
+            // Set the new scene
             game.scene = s;
             game.currentGameState = SMWGame.GameState.Playing;
         }
@@ -52,6 +51,7 @@ namespace SuperMarioWorld
         /// </summary>
         public void LoadMainMenu()
         {
+            // Creates a new MainMenu
             LoadScene("Main_Menu.sml", false);
             game.currentGameState = SMWGame.GameState.MainMenu;
         }
