@@ -11,6 +11,16 @@ namespace SuperMarioWorld
     {
         private static InputManager _inputManager;
 
+        public static InputManager Instance
+        {
+            get
+            {
+                if (_inputManager == null)
+                    _inputManager = new InputManager();
+                return _inputManager;
+            }
+        }
+
         //Keyboard states
         private KeyboardState _priorKeyboardState;
         private KeyboardState _curKeyboardState;
@@ -25,19 +35,9 @@ namespace SuperMarioWorld
         public InputManager()
         {
             _curKeyboardState = Keyboard.GetState();
-
             _curGamepadState = GamePad.GetState(PlayerIndex.One);
         }
 
-        public static InputManager Instance
-        {
-            get
-            {
-                if (_inputManager == null)
-                    _inputManager = new InputManager();
-                return _inputManager;
-            }
-        }
 
         public void Update()
         {
