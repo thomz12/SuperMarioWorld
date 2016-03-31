@@ -88,18 +88,18 @@ namespace SuperMarioWorld
                     }
 
                     //Limit the camera to the left edge of the map
-                    if (position.X < gameWidth / 2 - _gridSize / 2)
-                        position = new Vector2(gameWidth / 2 - _gridSize / 2, position.Y);
+                    if (Position.X < (GameWidth / 2) - (_gridSize / 2))
+                        Position = new Vector2((GameWidth / 2) - (_gridSize / 2), Position.Y);
                     //Limit the camera to the right edge of the map
-                    if (position.X > _levelSize.X * _gridSize - gameWidth / 2 - _gridSize / 2)
-                        position = new Vector2(_levelSize.X * _gridSize - gameWidth / 2 - _gridSize / 2, position.Y);
+                    if (Position.X > (_levelSize.X * _gridSize) - (GameWidth / 2) - (_gridSize / 2))
+                        Position = new Vector2((_levelSize.X * _gridSize) - (GameWidth / 2) - (_gridSize / 2), Position.Y);
 
                     //Y axis
                     //if the lower bounds of the camera vieuwport is lower than the lowest pixel in the level (y+ == lower)
-                    if (position.Y + gameHeight / 2 >= _levelSize.Y * _gridSize)
+                    if (Position.Y + (GameHeight / 2) >= (_levelSize.Y * _gridSize))
                     {
                         //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
-                        position = new Vector2(position.X, _levelSize.Y * _gridSize - gameHeight / 2);
+                        Position = new Vector2(Position.X, (_levelSize.Y * _gridSize) - (GameHeight / 2));
 
                         //If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
                         if (delta.Y < -(gameHeight / 4))

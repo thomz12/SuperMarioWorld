@@ -32,13 +32,18 @@ namespace SuperMarioWorld
         private int _timeLeft;
         private int _elapsedMiliseconds;
 
+        //The player
+        private Player _player;
+
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="scoreHandler">Score handler to read  out information</param>
-        public HUD(ScoreHandler scoreHandler)
+        /// <param name="scoreHandler">The score tracking object where the score is pulled from</param>
+        /// <param name="player">this must be an Player object or NULL</param>
+        public HUD(ScoreHandler scoreHandler, Player player)
         {
             _scores = scoreHandler;
+            _player = player;
 
             //Set the time left in current level tot the maximum time allowed by level
             _timeLeft = _scores.maxTime;
@@ -98,7 +103,12 @@ namespace SuperMarioWorld
             }
             if(_timeLeft < 0)
             {
-                //GAME OVER
+                //kill the player
+                if (_player != null)
+                    if(!_player.dead)
+                        _player.Death(null);
+
+                //Set time left to zero to prevent negative numbers from throwing erros
                 _timeLeft = 0;
             }
             if(_scores.coins >= 100)

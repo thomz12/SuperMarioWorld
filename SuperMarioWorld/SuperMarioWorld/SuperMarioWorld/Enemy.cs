@@ -41,7 +41,7 @@ namespace SuperMarioWorld
                 Player player = (Player)collider;
 
                 //When the players Y velocity is high the player comes from above
-                if (player.velocity.Y > 10)
+                if (player.velocity.Y > 3)
                 {
                     //Bounce the player back up
                     player.velocity.Y = -110;
