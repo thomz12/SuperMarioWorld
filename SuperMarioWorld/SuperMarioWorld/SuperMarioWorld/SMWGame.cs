@@ -182,21 +182,12 @@ namespace SuperMarioWorld
             // Set clear color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (currentGameState == GameState.MainMenu)
-            {
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, scene.cam.GetTransformation(GraphicsDevice));
-                scene.DrawLevel(_spriteBatch);
 
-                _spriteBatch.End();
-
-            }
-            // Only do this when the game is in a level
-            else if (currentGameState == GameState.Playing)
-            {
-                // Draw level
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, scene.cam.GetTransformation(GraphicsDevice));
 #if DEBUG
-                //Draw each object that is in the level
+            if (InputManager.Instance.KeyboardIsPressed(Keys.LeftShift) || InputManager.Instance.GamePadIsPressed(Buttons.X))
+            {
+                //Draw each object that is in the level (bounding box
                 for (int i = 0; i < scene.objects.Count; i++)
                 {
                     _spriteBatch.Draw(_debugTexture, scene.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
@@ -206,14 +197,18 @@ namespace SuperMarioWorld
                         _spriteBatch.Draw(_debugTexture, r.checkPlatformBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
                     }
                 }
+            }
 #endif
                 scene.DrawLevel(_spriteBatch);
                 _spriteBatch.End();
 
-                // Draw HUD
+            //Draw HUD
+            if (currentGameState != GameState.MainMenu)
+            {
                 Matrix HUDMatrix = Matrix.CreateScale(new Vector3(scale, scale, 1));
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
                 scene.DrawHUD(_spriteBatch);
+
                 _spriteBatch.End();
             }
 #if DEBUG
