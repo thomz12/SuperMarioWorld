@@ -44,9 +44,9 @@ namespace SuperMarioWorld
         {
             //Create new scene
             Scene s = new Scene(scene, game.scores, edit);
-            s.cam.Zoom = game.scale;
-            s.cam.GameHeight = game.gameHeight;
-            s.cam.GameWidth = game.gameWidth;         
+            s.cam.zoom = game.scale;
+            s.cam.gameHeight = game.gameHeight;
+            s.cam.gameWidth = game.gameWidth;         
             s.LoadContent(game.Content);
 
             //Set the new scene
