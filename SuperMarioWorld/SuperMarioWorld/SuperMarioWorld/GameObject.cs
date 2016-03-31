@@ -9,18 +9,19 @@ namespace SuperMarioWorld
 { 
     public abstract class GameObject
     {
+        // Delegate for creating and destroying objects while in game
         public delegate void DestroyObject(GameObject gameObject);
         public delegate void CreateObject(GameObject gameObject);
 
-        //Sprite (texture) of this object
-        public Sprite sprite;
-        //Collision box of this object
-        public Rectangle boundingBox;
-        //Current position of this object
-        public Vector2 position;
-
         public CreateObject create;
         public DestroyObject destroy;
+
+        // Sprite (texture) of this object
+        public Sprite sprite;
+        // Collision box of this object
+        public Rectangle boundingBox;
+        // Current position of this object
+        public Vector2 position;
 
         /// <summary>
         /// Default constructor
@@ -59,7 +60,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Gametime that has passed since prev. frame</param>
         public virtual void Update(GameTime gameTime)
         {
-            //call this objects sprite to update its animation
+            // Call this objects sprite to update its animation
             sprite.UpdateAnimation(gameTime);
         }
 
@@ -69,7 +70,7 @@ namespace SuperMarioWorld
         /// <param name="batch">Spritebatch to draw to</param>
         public virtual void DrawObject(SpriteBatch batch)
         {
-            //Call the draw function of sprite
+            // Call the draw function of sprite
             sprite.DrawSpriteCentered(batch, position);
         }
     }
