@@ -9,57 +9,65 @@ namespace SuperMarioWorld
 {
     public class Camera2D
     {
-        //Non moving
+        // Non moving
         private bool _moveable;
 
-        //Zoom of the camera
+        // Zoom of the camera
         public float zoom;
 
+        // A matrix to scale, rotate and translate the spritebatch
         public Matrix transformMatrix;
 
-        //Current position of the camera
+        // Current position of the camera
         public Vector2 position;
 
-        //Current rotation of the camera
+        // Current rotation of the camera
         public float rotation;
 
-        //The player the camera should track
+        // The player the camera should track
         private GameObject _target;
 
-        /// <summary>
-        /// Height of the default SNES resolution (in px)
-        /// </summary>
+        /// <summary>Height of the default SNES resolution (in px)</summary>
         public int gameHeight;
-        /// <summary>
-        /// Width of the default SNES resolution (in px)
-        /// </summary>
+        /// <summary>Width of the default SNES resolution (in px)</summary>
         public int gameWidth;
 
+        // A value for smooth damping, the higher the value the faster the camera moves to its target position.
         private float _smoothness = 4f;
 
+        // A value for the deadzone measured in pixels, in that zone the camera does not move
         private float _xDeadZone = 32.0f;
 
+        // Size of the level in pixels
         private Point _levelSize;
+
+        // Size of the grid in pixels
         private int _gridSize;
 
         /// <summary>
         /// Constructor for a camera that follows a target
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="size"></param>
-        /// <param name="grid"></param>
+        /// <param name="target">The target that the camera should focus on</param>
+        /// <param name="size">The size of the level</param>
+        /// <param name="grid">The size of the grid</param>
         public Camera2D(GameObject target, Point size, int grid)
         {
+            // Set private variables to the corresponding parameters
             _target = target;
             _levelSize = size;
             _gridSize = grid;
 
+            // Default zoom
             zoom = 1.0f;
+
+            // Default rotation
             rotation = 0;
 
+            // If there is a target for the camera, move the camera to its position
             if(target != null)
                 position = target.position;
 
+            // Default value of movable
             _moveable = true;
         }
 
@@ -68,20 +76,20 @@ namespace SuperMarioWorld
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            //Check if the target exists
+            // Check if the target exists
             if (_target != null)
             {
-                //Check if the camera is allowed to move
+                // Check if the camera is allowed to move
                 if (_moveable)
                 {
-                    //Difference between camera and target position
+                    // Difference between camera and target position
                     Vector2 delta = _target.position - position;
 
-                    //The camera uses smooth damping.
+                    // The camera uses smooth damping.
                     float smoothDamping = _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000);
 
-                    //X axis
-                    //If the player moves out of the dead zone, move the camera to the player
+                    // X axis
+                    // If the player moves out of the dead zone, move the camera to the player
                     if (delta.X < -_xDeadZone || delta.X > _xDeadZone)
                     {
                         position = new Vector2(position.X + (_target.position.X - position.X) * smoothDamping, position.Y);
@@ -101,7 +109,7 @@ namespace SuperMarioWorld
                         //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
                         position = new Vector2(position.X, (_levelSize.Y * _gridSize) - (gameHeight / 2));
 
-                        //If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
+                        // If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
                         if (delta.Y < -(gameHeight / 4))
                         {
                             position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
@@ -109,7 +117,7 @@ namespace SuperMarioWorld
                     }
                     else
                     {
-                        //If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
+                        // If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
                         position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                     }
                 }
