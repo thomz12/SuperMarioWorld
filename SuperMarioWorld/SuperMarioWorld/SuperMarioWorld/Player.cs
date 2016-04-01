@@ -155,65 +155,68 @@ namespace SuperMarioWorld
         /// <param name="collider">Collision with the collider object</param>
         public override void OnCollision(GameObject collider)
         {
-            // All the scoring is done by the player.
-            if(collider is Coin)
+            if (!dead)
             {
-                // Destroy the coin
-                destroy(collider);
-                // If player is Wario, collect bonus coins
-                if (_character == Character.Wario)
-                    _scores.coins += 2;
-                else
-                    _scores.coins++;
-            }
-            else if (collider is OneUp)
-            {
-                // Destroy the OneUP
-                destroy(collider);
-                // Add a live
-                _scores.lives++;
-                // Add a bunch of score
-                _scores.score += 1000;
-            }
-            else if (collider is Mushroom)
-            {
-                // Destroy the Mushroom
-                destroy(collider);
-                // If the player is not
-                if(powerState != PowerState.small)
+                // All the scoring is done by the player.
+                if (collider is Coin)
                 {
-                    // Put the mushroom in the powerup slot
-                    _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                    // Destroy the coin
+                    destroy(collider);
+                    // If player is Wario, collect bonus coins
+                    if (_character == Character.Wario)
+                        _scores.coins += 2;
+                    else
+                        _scores.coins++;
+                }
+                else if (collider is OneUp)
+                {
+                    // Destroy the OneUP
+                    destroy(collider);
+                    // Add a live
+                    _scores.lives++;
                     // Add a bunch of score
                     _scores.score += 1000;
                 }
-                else
+                else if (collider is Mushroom)
                 {
-                    // The player is small
-                    // Reset the animation
-                    SetAnimation(PlayerAnimationState.dead);
-                    // Set the powerstate to nromal
-                    powerState = PowerState.normal;
-                    // Change the height of the bounding box
-                    boundingBox.Height = 24;
+                    // Destroy the Mushroom
+                    destroy(collider);
+                    // If the player is not
+                    if (powerState != PowerState.small)
+                    {
+                        // Put the mushroom in the powerup slot
+                        _scores.powerUp = ScoreHandler.PowerUp.mushroom;
+                        // Add a bunch of score
+                        _scores.score += 1000;
+                    }
+                    else
+                    {
+                        // The player is small
+                        // Reset the animation
+                        SetAnimation(PlayerAnimationState.dead);
+                        // Set the powerstate to nromal
+                        powerState = PowerState.normal;
+                        // Change the height of the bounding box
+                        boundingBox.Height = 24;
+                    }
                 }
-            }
-            else if (collider is Enemy)
-            {
-                // If the player lands on top of the enemies head
-                if(velocity.Y > 3)
+                else if (collider is Enemy)
                 {
-                    // Add a combo to score
-                    _scores.AddCombo();
+                    // If the player lands on top of the enemies head
+                    if (velocity.Y > 3)
+                    {
+                        // Add a combo to score
+                        _scores.AddCombo();
+                    }
                 }
-            }
-            else if (collider is EmptyShell)
-            {
-                // If the player lands on top of the shell
-                if (velocity.Y > 3)
+                else if (collider is EmptyShell)
                 {
-                    // Add a combo to score
-                    _scores.AddCombo();
+                    // If the player lands on top of the shell
+                    if (velocity.Y > 3)
+                    {
+                        // Add a combo to score
+                        _scores.AddCombo();
+                    }
                 }
             }
         }
@@ -445,7 +448,7 @@ namespace SuperMarioWorld
                         }
                     }
                 }
-                else if (powerState == PowerState.small)
+                else if (powerState == PowerState.small && !dead)
                 {
                     // Powerstate is small so the player dies
                     dead = true;
