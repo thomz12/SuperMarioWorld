@@ -140,7 +140,7 @@ namespace SuperMarioWorld
                 case Character.Peach:
                     sprite.sourceName = @"Players\Peach";
                     terminalVelocity = 150;
-                    _fallVelocity = terminalVelocity / 2;
+                    _fallVelocity = terminalVelocity / 2.4f;
                     _jumpForce = -150;
                     _airControl = 4.0f;
                     break;
@@ -447,21 +447,24 @@ namespace SuperMarioWorld
                 }
                 else if (powerState == PowerState.small)
                 {
-                    // Powerstate is small so the player dies
-                    dead = true;
+                    if (!dead)
+                    {
+                        // Powerstate is small so the player dies
+                        dead = true;
 
-                    // Set x velocity to 0 and y velocity to 500 so the player goes up
-                    velocity.X = 0;
-                    velocity.Y = -500;
+                        // Set x velocity to 0 and y velocity to 500 so the player goes up
+                        velocity.X = 0;
+                        velocity.Y = -500;
 
-                    // Remove the bounding box
-                    boundingBox.Width = 0;
-                    boundingBox.Height = 0;
+                        // Remove the bounding box
+                        boundingBox.Width = 0;
+                        boundingBox.Height = 0;
 
-                    // Remove a live from the score
-                    _scores.lives--;
-                    // Reset the combo the player is on
-                    _scores.ResetCombo();
+                        // Remove a live from the score
+                        _scores.lives--;
+                        // Reset the combo the player is on
+                        _scores.ResetCombo();
+                    }
                 }
             }
         }
