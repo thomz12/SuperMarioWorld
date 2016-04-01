@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
 {
-    class Sprite
+    public class Sprite
     {
-        //Speed of the animation of the sprite. (ms per frame)
-        public float animationSpeed = 250.0f;
+        // Speed of the animation of the sprite. (ms per frame)
+        public float animationSpeed;
         private float _animationProgress;
 
         /// <summary>
@@ -21,23 +21,23 @@ namespace SuperMarioWorld
         /// </summary>
         public Texture2D texture { get; set; }
 
-        //X & Y size of a single sprite in sprite sheet
+        // X & Y size of a single sprite in sprite sheet
         public int xSize;
         public int ySize;
 
-        //Vars for cycling and displaying animated sprite sheets
+        // Vars for cycling and displaying animated sprite sheets
         private List<Point> animationPositions;
         public bool animated;
 
-        //Coords of frame (top left)
+        // Coords of frame (top left)
         private int _texCoordX;
         private int _texCoordY;
 
-        //The frame the animation is at
-        private int _animIndex = 0;
-        //effect to flip the sprite
-        public SpriteEffects effect = SpriteEffects.None;
-        //set the layer of this sprite to be drawn in.
+        // The frame the animation is at
+        private int _animIndex;
+        // Effect to flip the sprite
+        public SpriteEffects effect;
+        // Set the layer of this sprite to be drawn in.
         public float layer;
 
         /// <summary>
@@ -45,9 +45,12 @@ namespace SuperMarioWorld
         /// </summary>
         public Sprite()
         {
+            _animIndex = 0;
             animationPositions = new List<Point>();
+            animationSpeed = 250.0f;
             _animationProgress = animationSpeed;
             animated = true;
+            effect = SpriteEffects.None;
         }
 
         /// <summary>
@@ -56,10 +59,13 @@ namespace SuperMarioWorld
         /// <param name="sourceName">Name of the sprite that should be loaded from the Content folder without extension.</param>
         public Sprite(string sourceName)
         {
+            _animIndex = 0;
             this.sourceName = sourceName;
             animationPositions = new List<Point>();
+            animationSpeed = 250.0f;
             _animationProgress = animationSpeed;
             animated = true;
+            effect = SpriteEffects.None;
         }
 
         /// <summary>
@@ -67,30 +73,30 @@ namespace SuperMarioWorld
         /// </summary>
         public void UpdateAnimation(GameTime gameTime)
         {
-            //if there are animation frames
+            // If there are animation frames
             if (animationPositions.Count != 0 && animated)
             {
-                //take update time (ms) from animation progress
+                // Take update time (ms) from animation progress
                 _animationProgress += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                //When it reaches 0 or less, set next frame.
+                // When it reaches 0 or less, set next frame.
                 if (_animationProgress >= animationSpeed)
                 {
                     _animIndex++;
 
-                    //if index is higher then the amount of frames, reset it
+                    // If index is higher then the amount of frames, reset it
                     if (_animIndex >= animationPositions.Count)
                         _animIndex = 0;
 
-                    //reset progress
+                    // Reset progress
                     _animationProgress = 0;
 
-                    //Set frame coords
+                    // Set frame coords
                     _texCoordX = (int)animationPositions[_animIndex].X * xSize;
                     _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
                 }
             }
-            //else, display entire image
+            // Else, display entire image
             else if(animationPositions.Count == 0)
             {
                 xSize = texture.Width;
@@ -107,8 +113,8 @@ namespace SuperMarioWorld
             NewAnimation();
             animationPositions.Add(new Point(x, y));
 
-            _texCoordX = (int)animationPositions[_animIndex].X * xSize;
-            _texCoordY = (int)animationPositions[_animIndex].Y * ySize;
+            _texCoordX = animationPositions[_animIndex].X * xSize;
+            _texCoordY = animationPositions[_animIndex].Y * ySize;
         }
 
         /// <summary>
@@ -119,6 +125,8 @@ namespace SuperMarioWorld
             _animIndex = 0;
             _animationProgress = animationSpeed;
             animationPositions.Clear();
+
+
         }
 
         /// <summary>
@@ -129,6 +137,8 @@ namespace SuperMarioWorld
         public void AddFrame(int x, int y)
         {
             animationPositions.Add(new Point(x, y));
+            _texCoordX = animationPositions[0].X * xSize;
+            _texCoordY = animationPositions[0].Y * ySize;
         }
 
         /// <summary>

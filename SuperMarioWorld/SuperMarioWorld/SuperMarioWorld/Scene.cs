@@ -11,299 +11,122 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SuperMarioWorld
 {
-    delegate void LoadScene(string level);
-
-    class Scene
+    public class Scene
     {
-        //Content manager
+        // Content manager
         private ContentManager _contentManager;
 
-        //HUD
+        // HUD
         private HUD _hud;
 
-        //Score handler
+        // Score handler
         private ScoreHandler _scores;
 
-        //Size of the level.
+        // Size of the level.
         private Point _size;
 
-        //Size of the grid
+        // Size of the grid
         private int _gridSize;
 
-        //Camera object
+        // Camera object
         public Camera2D cam;
-        //player object
+        // Player object
         private GameObject _player;
+
+        // Is the level in edit mode?
+        private bool _edit;
+        private string _name;
 
         /// <summary>
         /// List of all the GameObjects in the current level, loaded from a .sml file.
         /// </summary>
         public List<GameObject> objects = new List<GameObject>();
 
-        //Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
+        // Dictionary of all the sprites that the gameobjects use, so they dont have to be loaded in multiple times
         private Dictionary<string, Texture2D> loadedSprites = new Dictionary<string, Texture2D>();
 
-        public LoadScene load;
-
-        //Variables for the background
+        // Variables for the background
         private string _backgroundSourceName;
         private Texture2D _backgroundTexture;
 
-        //Position of the background texture
+        // Position of the background texture
         private int _backOffset;
 
+        // This list contains all the gameobjects in the current scene
         private List<GameObject> _collidables = new List<GameObject>();
 
         /// <summary>
         /// Constructs the level from a chosen file
         /// </summary>
         /// <param name="fileName">Give the name of the file without extension</param>
-        public Scene(string fileName, ScoreHandler scoreHandler, LoadScene loadScene, bool edit)
-        {
-            #region oldStuff
-            /*
-            //Create the scorehandler so the level file can put information in it.
+        public Scene(string fileName, ScoreHandler scoreHandler, bool edit)
+        { 
+            // Set score handler
             _scores = scoreHandler;
+            _scores.maxTime = 200;
 
+            // Set if the scene is in edit mode
+            _edit = edit;
+
+            // Set background texture
             _backgroundSourceName = @"Background\BushBackground";
 
-            //Set the gridsize
-            _gridSize = 16;
-
-            _backOffset = 0;
-            
-            //Create a streamreader
-            StreamReader sr;
-
-            fileName = @"Content\Levels\" + fileName;
-            
-            //LOAD LEVEL FROM FILE
-            /*
-            Appearantly loading the level from a file like this prevents us from generating contents in f.ex Mystery boxes or changing the way some objects behave
-            We need to generate an XML file from the level maker to make this work.
-
-            So basically all this code is useless. but it provides us with a working project for the demo.
-            */
-            /*
-            try
-            {
-                sr = new StreamReader(@"Content\Levels\Edit.sml");
-            }
-            catch (Exception e)
-            {
-                throw new FileLoadException("Could not load file " + fileName, e);
-            }
-            
-            //Read information about the level from the file
-            //Read level name
-            _levelName = sr.ReadLine().Split('\"')[1].Split('\"')[0];
-            //Read x size of level
-            string xSize = sr.ReadLine();
-            //Read y size of level
-            string ySize = sr.ReadLine();
-            
-            //Convert x and y size to Point _size
-            _size.X = int.Parse(xSize.Substring(xSize.LastIndexOf("=") + 1));
-            _size.Y = int.Parse(ySize.Substring(ySize.LastIndexOf("=") + 1));
-
-            while (true)
-            {
-                if (sr.ReadLine().Equals("[Level]"))
-                {
-                    break;
-                }
-            }
-
-            //Loops through the read lines
-            for (int y = 0; y < _size.Y; y++)
-            {
-                //Get the line that needs to be used right now
-                string thisLine = sr.ReadLine();
-                char[] objectChars = thisLine.ToCharArray();
-
-                for (int x = 0; x < _size.X; x++)
-                {
-                    GameObject obj = null;
-
-                    //Checks the file for a character and creates the corresponding object
-                    #region CreateObjects
-                    //Convert the line into objects on correct positions
-                    if (objectChars[x].Equals('M')) //If the char represents a MysteryBlock
-                    {
-                        obj = new MysteryBlock(new Point((x * _gridSize), (y * _gridSize)), new Mushroom(Point.Zero));
-                    }
-                    else if (objectChars[x].Equals('1')) //If the char represents a Player
-                    {
-                        Random r = new Random();
-                        obj = new Player(new Point((x * _gridSize), (y * _gridSize)), _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
-                        _player = (Player)obj;
-                    }
-                    else if (objectChars[x].Equals('G')) //If the char represents a Goomba
-                    {
-                        obj = new Goomba(new Point((x * _gridSize), (y * _gridSize)));
-                    }
-                    else if (objectChars[x].Equals('C')) //If the char represents a coin which moves
-                    {
-                        obj = new Coin(new Point((x * _gridSize), (y * _gridSize)), true);
-                    }
-                    else if (objectChars[x].Equals('c')) //If the char represents a coin which doesnt move
-                    {
-                        obj = new Coin(new Point((x * _gridSize), (y * _gridSize)), false);
-                    }
-                    else if(objectChars[x].Equals('R')) //If the char represents a Grass
-                    {
-                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassMiddle, 0.4f);
-                        obj = grass;
-                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
-                        {
-                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtMiddle, 0.1f + (float)y * (float) _gridSize / 1000f));
-                        }
-                    }
-                    else if (objectChars[x].Equals('>')) //If the char represents a Grass right block
-                    {
-                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassRight, 0.4f);
-                        obj = grass;
-                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
-                        {
-                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtRight, 0.1f + (float)y * (float)_gridSize / 1000f));
-                        }
-                    }
-                    else if (objectChars[x].Equals('<')) //If the char represents a Grass left block
-                    {
-                        StaticBlock grass = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.grassLeft, 0.4f);
-                        obj = grass;
-                        for (int i = (int)((grass.position.Y + 1) / _gridSize); i < _size.Y; i++)
-                        {
-                            objects.Add(new StaticBlock(new Point((int)grass.position.X, (i + 1) * _gridSize), StaticBlock.BlockType.dirtLeft, 0.1f + (float)y * (float)_gridSize / 1000f));
-                        }
-                    }
-                    else if (objectChars[x].Equals('K')) //If the char represents a Koopa
-                    {
-                        obj = new GreenKoopa(new Point((x * _gridSize), (y * _gridSize)));
-                    }
-                    else if (objectChars[x].Equals('S')) //If the char represents a Shell
-                    {
-                        obj = new EmptyShell(new Point((x * _gridSize), (y * _gridSize)), EmptyShell.KoopaType.green);
-                    }
-                    else if (objectChars[x].Equals('L')) //If the char represents a cloud
-                    {
-                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.cloud, 0.4f);
-                    }
-                    else if (objectChars[x].Equals('O')) //If the char represents a rock
-                    {
-                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.rock, 0.4f);
-                    }
-                    else if (objectChars[x].Equals('H')) //If the char represents a help
-                    {
-                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.help, 0.4f);
-                    }
-                    else if (objectChars[x].Equals('U')) //If the char represents a used block (brown one)
-                    {
-                        obj = new StaticBlock(new Point((x * _gridSize), (y * _gridSize)), StaticBlock.BlockType.used, 0.4f);
-                    }
-                    else if (objectChars[x].Equals('Y')) //If the char represents a mushroom
-                    {
-                        obj = new Mushroom(new Point((x * _gridSize), (y * _gridSize)));
-                    }
-                    else if (objectChars[x].Equals('P')) //If the char represents a one up
-                    {
-                        obj = new OneUp(new Point((x * _gridSize), (y * _gridSize)));
-                    }
-                    else if (objectChars[x].Equals('r')) //If the char represents a red koopa
-                    {
-                        obj = new RedKoopa(new Point(x * _gridSize, y * _gridSize));
-                    }
-                    else if(objectChars[x].Equals('f')) //If the char represents a checkpoint
-                    {
-                        obj = new Checkpoint(new Point(x * _gridSize, y * _gridSize));
-                    }
-                    else if (objectChars[x].Equals('+')) //If the char represents a menu
-                    {
-                        obj = new MainMenu(new Point(0, 0), _contentManager);
-                    }
-                    #endregion
-
-                    if (obj != null)
-                    {
-                        obj.create = new CreateObject(CreateObject);
-                        obj.destory = new DestoryObject(DestroyObject);
-                        objects.Add(obj);
-                    }
-                }
-            }
-            
-            //Load in formation from the level file
-            //TODO add a time to load from the level file
-            _scores.maxTime = 420;
-
-            //TODO load information from a savefile
-
-            //Create a new HUD for this level
-            _hud = new HUD(scoreHandler);
-
-
-            //Create camera object
-            if (_player != null)
-            {
-                cam = new Camera2D(_player, _size, _gridSize);
-            }
-            else
-            {
-                cam = new Camera2D(null, _size, _gridSize);
-            }*/
-            #endregion
-            
-            #region new stuff
-            //Set score handler
-            _scores = scoreHandler;
-
-            load = loadScene;
-
-            //Set background texture
-            _backgroundSourceName = @"Background\BushBackground";
-
-            //Set the gridsize
+            // Set the gridsize
             _gridSize = 16;
             _backOffset = 0;
 
+            // Add file path to lvl name
             fileName = @"Content\Levels\" + fileName;
             if (!fileName.Contains(".sml"))
                 fileName += ".sml";
 
+            _name = fileName;
+
+            //Create all objects and add them to the objects array
             try
             {
+                //Create new xml document (to read XML)
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(fileName);
 
+                //get root node
                 XmlNode root = xmlDoc.ChildNodes[1];
                 _size.X = int.Parse(root.Attributes[0].Value);
                 _size.Y = int.Parse(root.Attributes[1].Value);
 
+                //Gameobject to add
                 GameObject obj = null;
+                //At position
                 Point pos = new Point();
 
+                //Go through all elements
                 foreach (XmlNode node in root.ChildNodes)
                 {
+                    //Get the position first
                     pos.X = int.Parse(node.LastChild.Attributes["xPos"].Value);
                     pos.Y = int.Parse(node.LastChild.Attributes["yPos"].Value);
 
+                    //Check element name, and create object corresponding to that name
                     if (node.Name.Equals("MainMenu"))
                     {
                         obj = new MainMenu(pos, _contentManager);
-                        MainMenu mm = (MainMenu)obj;
-                        mm.load = loadScene;
+                        MainMenu mm = (MainMenu)obj;                  
                     }
                     else if (node.Name.Equals("Player"))
                     {
+                        // Check if the game is not in edit mode
                         if (!edit)
                         {
+                            // Generate a random number for a random player
                             Random r = new Random();
+                            // Create a random player
                             obj = new Player(pos, _scores, (Player.Character)r.Next(0, Enum.GetNames(typeof(Player.Character)).Length));
                             _player = (Player)obj;
                         }
                         else
                         {
-                            obj = new Builder(pos);
+                            // Create a builder if the game is in edit mode
+                            obj = new Builder(pos, _size, _gridSize);
                             _player = obj;
                         }
                     }
@@ -321,7 +144,19 @@ namespace SuperMarioWorld
                     }
                     else if (node.Name.Equals("MysteryBlock"))
                     {
-                        obj = new MysteryBlock(pos, null);
+                        // Create new gameobject
+                        GameObject content;
+
+                        // Get the node for content
+                        if (node.FirstChild.Attributes[0].Value.Equals("Mushroom"))
+                            content = new Mushroom(Point.Zero);
+                        else if (node.FirstChild.Attributes[0].Value.Equals("OneUp"))
+                            content = new OneUp(Point.Zero);
+                        else
+                            content = new Coin(Point.Zero, true);
+
+                        // Create the mystery block with correct content
+                        obj = new MysteryBlock(pos, content);
                     }
                     else if (node.Name.Equals("StaticBlock"))
                     {
@@ -343,34 +178,42 @@ namespace SuperMarioWorld
                     {
                         obj = new OneUp(pos);
                     }
+                    else if(node.Name.Equals("Checkpoint"))
+                    {
+                        obj = new Checkpoint(pos, bool.Parse(node.FirstChild.InnerText));
+                    }
 
                     if (obj != null)
                     {
-                        obj.create = new CreateObject(CreateObject);
-                        obj.destory = new DestoryObject(DestroyObject);
+                        // Add the delecates to the gameobjects
+                        obj.create = new GameObject.CreateObject(CreateObject);
+                        obj.destroy = new GameObject.DestroyObject(DestroyObject);
+                        // Add the object to the objects array
                         objects.Add(obj);
                     }
                 }
 
-                //Create HUD object
-                _hud = new HUD(_scores);
-
-                //Create camera object
-                if (_player != null)
+                // Create HUD object when a player is present
+                if (_player is Player)
                 {
-                    cam = new Camera2D(_player, _size, _gridSize);
+                    Player player = (Player)_player;
+                    _hud = new HUD(_scores, player);
                 }
                 else
                 {
-                    cam = new Camera2D(null, _size, _gridSize);
+                    // Create an hud without a player
+                    _hud = new HUD(_scores, null);
                 }
+
+                // Create camera object
+                cam = new Camera2D(_player, _size, _gridSize);
             }
             //something went wrong, we have to do something here
             catch(Exception e)
             {
+                // Go to Thom for help (cuz he needs to fix his shit then)
                 throw e;
             }
-            #endregion
         }
 
         /// <summary>
@@ -379,12 +222,13 @@ namespace SuperMarioWorld
         /// <param name="contentManager"></param>
         public void LoadContent(ContentManager contentManager)
         {
-            //Set a content manager so new items can be spawned in.
+            // Set a content manager so new items can be spawned in.
             _contentManager = contentManager;
 
-            //Load all the assets that belong to level
+            // Load all the assets that belong to level
             _backgroundTexture = contentManager.Load<Texture2D>(_backgroundSourceName);
 
+            // Load all the content for each gameobject
             foreach (GameObject go in objects)
             {
                 if (!loadedSprites.ContainsKey(go.sprite.sourceName))
@@ -397,11 +241,16 @@ namespace SuperMarioWorld
                     MainMenu mainMenu = (MainMenu)go;
                     mainMenu.LoadContent(contentManager);
                 }
+                if(go is Builder)
+                {
+                    Builder builder = (Builder)go;
+                    builder.LoadContent(contentManager);
+                }
 
                 go.sprite.texture = loadedSprites[go.sprite.sourceName];
             }
 
-            //Tell HUD to load its content too
+            // Tell HUD to load its content too
             _hud.LoadContent(contentManager);
         }
 
@@ -411,19 +260,20 @@ namespace SuperMarioWorld
         /// <param name="gameObject">GameObject that should be created</param>
         public void CreateObject(GameObject gameObject)
         {
-            //Create a temp object
+            // Create a temp object
             GameObject obj = gameObject;
 
-            //load in the sprites (if nesecarry)
+            // Load in the sprites (if nesecarry)
             if (loadedSprites.ContainsKey(obj.sprite.sourceName))
                 obj.sprite.texture = loadedSprites[obj.sprite.sourceName];
             else
                obj.sprite.texture = _contentManager.Load<Texture2D>(obj.sprite.sourceName);
 
-            //Add a create and destroy function
-            obj.create = new CreateObject(CreateObject);
-            obj.destory = new DestoryObject(DestroyObject);
+            // Add a create and destroy function
+            obj.create = new GameObject.CreateObject(CreateObject);
+            obj.destroy = new GameObject.DestroyObject(DestroyObject);
 
+            // Add the object to the objects list
             objects.Add(obj);
         }
 
@@ -433,6 +283,7 @@ namespace SuperMarioWorld
         /// <param name="gameObject">Destroy this GameObject</param>
         public void DestroyObject(GameObject gameObject)
         {
+            // Remove the object
             objects.Remove(gameObject);
         }
 
@@ -442,46 +293,83 @@ namespace SuperMarioWorld
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            int camX = (int)cam.Position.X;
-            int camY = (int)cam.Position.Y;
+            // Get the current camera position 
+            int camX = (int)cam.position.X;
+            int camY = (int)cam.position.Y;
 
+            // Clear the array with objects that should have their collision checked
             _collidables.Clear();
 
-            //Call the update method for all gameobjects
+            // Give Builder object all the level information
+            if (_player is Builder)
+            {
+                Builder builder = (Builder)_player;
+                builder.allObjects = objects;
+            }
+
+            // Kill the player when it falls out of the scene
+            if(_player is Player)
+            {
+                // Cast player
+                Player player = (Player)_player;
+                // Check if player is already dead
+                if (player.dead)
+                {
+                    // Check if the player is outside of the map, then load the main menu
+                    if (player.position.Y >= _size.Y * _gridSize + 30)
+                        SceneManager.Instance.LoadMainMenu();
+                }
+                else if(player.position.Y >= _size.Y * _gridSize + 20)
+                {
+                    // Kill the player instantly
+                    player.powerState = Player.PowerState.small;
+                    player.Death(null);
+                }
+            }
+
+            // Call the update method for all gameobjects
             for (int i = 0; i < objects.Count; i++)
             {
-                //Check if the game object is within the screen
-                if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth)
+                // Check if the game object is within the screen
+                if (Math.Abs(camX - objects[i].position.X) < cam.gameWidth)
                 {
-                    //Add the objects that are in the frame to the collision list to be checked for collisions
+                    // Add the objects that are in the frame to the collision list to be checked for collisions
                     if(objects[i] is StaticBlock)
                         _collidables.Add(objects[i]);
-                    if (Math.Abs(camX - objects[i].position.X) < cam.GameWidth / 1.5f)
+                    else if (Math.Abs(camX - objects[i].position.X) < cam.gameWidth / 1.5f)
                     {
+                        if (_edit && objects[i] is Enemy)
+                            continue;
+
                         objects[i].Update(gameTime);
+
                         _collidables.Add(objects[i]);
                     }
 
-                    //Check if the object has fallen out of the map (downwards)
+                    // Check if the object has fallen out of the map (downwards)
                     if(objects[i].position.Y > _size.Y * _gridSize + 50)
                     {
-                        //Destroy the object if it is still alive.
+                        // Destroy the object if it is present in the objects array.
                         if(objects[i] != null)
                         {
-                            objects[i].destory(objects[i]);
+                            objects[i].destroy(objects[i]);
                         }
                     }
                 }
             }
-        
-            //Check collisions
+
+            // Check collisions
             CheckCollisions();
 
-            //Update the camera position
+            // Update the camera position
             cam.Update(gameTime);
 
-            //Tell HUD to update
+            // Tell HUD to update
             _hud.Update(gameTime);
+
+            // Save level when <enter>  is pressed
+            if (_edit && ( InputManager.Instance.KeyboardOnPress(Microsoft.Xna.Framework.Input.Keys.Enter) || InputManager.Instance.GamePadOnPress(Microsoft.Xna.Framework.Input.Buttons.Start)))
+                SaveLevel();
         }
 
         /// <summary>
@@ -489,22 +377,16 @@ namespace SuperMarioWorld
         /// </summary>
         public void CheckCollisions()
         {
-            //Cycle through every GameObject in _collidables
+            // Cycle through every GameObject in _collidables
             for(int i  = 0; i < _collidables.Count; i++)
             {
-                if (_collidables[i] is Entity)
-                {
-                    Entity e = (Entity)_collidables[i];
-                    if (e.dead)
-                        continue;
-                }
-
+                // Cycle through every gameobject in _collidables that comes after the first object (optimalisation)
                 for (int j = i + 1; j < _collidables.Count; j++)
                 {
-                    //Check if two objects collide
+                    // Check if two objects collide
                     if (_collidables[i].boundingBox.Intersects(_collidables[j].boundingBox))
                     {
-                        //Call the OnCollision functions of both objects.
+                        // Call the OnCollision functions of both objects.
                         _collidables[i].OnCollision(_collidables[j]);
                         _collidables[j].OnCollision(_collidables[i]);
                     }
@@ -517,23 +399,25 @@ namespace SuperMarioWorld
         /// </summary>
         public void DrawLevel(SpriteBatch batch)
         {
-            //Draw background(s)
-            int xPos = (int)Math.Round(cam.Position.X / 2);
-            int yPos = (int)Math.Round(cam.Position.Y / 2);
+            // Draw background(s)
+            int xPos = (int)Math.Round(cam.position.X / 2);
+            int yPos = (int)Math.Round(cam.position.Y / 2);
 
+            // Draw the first background with parallax scrolling
             batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
-            if (cam.Position.X < _backOffset + xPos)
+            if (cam.position.X < _backOffset + xPos)
                 _backOffset -= _backgroundTexture.Width;
             else
                 _backOffset += _backgroundTexture.Width;
 
+            // Draw the second background with parallax scrolling
             batch.Draw(_backgroundTexture, new Rectangle(_backOffset + xPos - _backgroundTexture.Width / 2, yPos - _backgroundTexture.Height / 2, _backgroundTexture.Width, _backgroundTexture.Height), Color.White);
 
-            //Draw every object
+            // Draw every object
             foreach (GameObject go in objects)
             {
-                //Call the draw method of gameobject
+                // Call the draw method of gameobject
                 go.DrawObject(batch);
             }
         }
@@ -544,7 +428,7 @@ namespace SuperMarioWorld
         /// <param name="batch"></param>
         public void DrawHUD(SpriteBatch batch)
         {
-            //Tell HUD to draw itself
+            // Tell HUD to draw itself
             _hud.DrawHUD(batch);
         }
 
@@ -553,20 +437,31 @@ namespace SuperMarioWorld
         /// </summary>
         public void SaveLevel()
         {
-            XmlWriter writer = XmlWriter.Create(@"Content\Levels\Template.sml");
+            // Create a new XML Writer to write in a document
+            XmlWriter writer = XmlWriter.Create(_name);
+
+            // Start with writing in a document
             writer.WriteStartDocument();
 
+            // Create a new element
             writer.WriteStartElement("Level");
+
+            // Give the new level an attribute xSize and ySize
             writer.WriteAttributeString("xSize", _size.X.ToString());
             writer.WriteAttributeString("ySize", _size.Y.ToString());
 
+            // Add all the objects in the level to the xml file
             foreach(GameObject obj in objects)
             {
+                // Call function that adds a gameobject to xml
                 AddGameObjectXML(writer, obj);
             }
 
+            // End
             writer.WriteEndElement();
+            // End
             writer.WriteEndDocument();
+            // End
             writer.Close();
         }
 
@@ -576,7 +471,8 @@ namespace SuperMarioWorld
         /// <param name="writer">the xmlWriter</param>
         /// <param name="obj">the object to add</param>
         private void AddGameObjectXML(XmlWriter writer, GameObject obj)
-        {
+        { 
+            // Checks which block is currently being writtten and writes it on the file
             if (obj is MysteryBlock)
             {
                 writer.WriteStartElement(obj.GetType().Name);
@@ -606,6 +502,21 @@ namespace SuperMarioWorld
                 writer.WriteStartElement("Type");
                 writer.WriteString(t.koopaType.ToString());
                 writer.WriteEndElement();
+            }
+            else if (obj is Checkpoint)
+            {
+                Checkpoint c = (Checkpoint)obj;
+                writer.WriteStartElement(obj.GetType().Name);
+                writer.WriteStartElement("Finish");
+                if (c.isFinish)
+                    writer.WriteString("true");
+                else
+                    writer.WriteString("false");
+                writer.WriteEndElement();
+            }
+            else if(obj is Builder)
+            {
+                writer.WriteStartElement("Player");
             }
             else
                 writer.WriteStartElement(obj.GetType().Name);

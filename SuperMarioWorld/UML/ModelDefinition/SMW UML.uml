@@ -1,8 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="82743d2c-bfbd-4ab0-93e7-0fd03125f498"
   name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="b4b733d1-cc9f-4edf-b545-423237c25182">
+      <body>Scene has a dependency to almost every GameObject :(</body>
+    </comment>
+    <comment
+      Id="ef65e983-c091-4caa-a1c8-ebbaf2380371">
+      <body>XNA Class</body>
+    </comment>
+    <comment
+      Id="31d49a04-ab8a-44fb-a49c-f088427e4a60">
+      <body>Builder has a dependency to almost all Game Objects
+</body>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -33,6 +48,13 @@
               LastKnownName="InputManager"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
+          <dependency
+            Id="27bc118a-6f5a-459b-8b52-78b57f6e96d7">
+            <classMoniker
+              Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+              LastKnownName="SceneManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -45,84 +67,6 @@
           </generalization>
         </generalsInternal>
         <targetEnds>
-          <association
-            Id="29c28931-9ab7-47e5-b8d9-817cc4258d38"
-            isDerived="false"
-            sourceEndRoleName="MainGame"
-            targetEndRoleName="A Level"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="f673c9bd-50b5-463d-afef-72b4ebe1050d"
-              LastKnownName="Scene"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="9d2d7914-9780-4a9e-bcb1-a349ab8cc63e"
-                  name="MainGame"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="2d18f988-e2f7-4804-ac15-c4ece5de112b"
-                  name="A Level"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="00cecae3-c394-44f5-8bce-feee7c24950c"
-            isDerived="false"
-            sourceEndRoleName="is created by"
-            targetEndRoleName="creates"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
-              LastKnownName="ScoreHandler"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e7101a15-8383-45d6-9bd9-27b4ea2c7087"
-                  name="is created by"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Shared"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="9a4968d7-9706-42dd-9909-141f2dd257a9"
-                  name="creates"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
           <association
             Id="ef4ffc56-a8c6-4ccb-9725-0a99cc430267"
             isDerived="false"
@@ -152,6 +96,84 @@
                 <memberEnd
                   Id="21ecf750-102c-4183-a909-546626e57bde"
                   name="GameState"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="7f161692-4a1f-433d-8143-843a47bcbc45"
+            isDerived="false"
+            sourceEndRoleName="SMWGame"
+            targetEndRoleName="Scene"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f673c9bd-50b5-463d-afef-72b4ebe1050d"
+              LastKnownName="Scene"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="41adba6a-ad7a-46d3-b3cd-6ad656d133bc"
+                  name="SMWGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b193e890-0dd8-49e3-bd2c-9951198b8cd6"
+                  name="Scene"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="54cd20cf-48f4-4d43-8178-6527d280b4e7"
+            isDerived="false"
+            sourceEndRoleName="SMWGame"
+            targetEndRoleName="ScoreHandler"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="70136d25-cba5-473f-8c7e-2a7e651f2a99"
+              LastKnownName="ScoreHandler"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f20bb7b9-e6a2-44d8-89f3-bcde47f776e1"
+                  name="SMWGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="badd9ece-8805-4ca6-ae82-5ae117e60b65"
+                  name="ScoreHandler"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -572,15 +594,47 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="20bfe1f6-7fff-4f81-8c3e-91c763842133">
+        <targetEnds>
+          <association
+            Id="a716a1d5-ad04-41ce-962f-00666432f404"
+            isDerived="false"
+            sourceEndRoleName="Is started by"
+            targetEndRoleName="Starts"
+            isLeaf="false"
+            isAbstract="false">
             <classMoniker
               Id="68ed9228-83a6-4748-9982-b7e5155ebeee"
               LastKnownName="SMWGame"
               LastKnownLocation="SMW UML.uml" />
-          </dependency>
-        </suppliersInternal>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2ba0fa1b-b7ed-4d19-a3eb-b161b279fbd4"
+                  name="Is started by"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9824bca9-8f8a-4d43-a62a-0b3ee40131b1"
+                  name="Starts"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedOperationsInternal>
           <operation
             Id="f1b364e1-73dc-439b-a645-ffcbdb1acd39"
@@ -1846,6 +1900,41 @@
               LastKnownName="InputManager"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
+          <dependency
+            Id="d550b36a-4cf3-42ec-942d-364f2796e047">
+            <classMoniker
+              Id="3ace137d-219c-4c2c-aca0-a0b08a303333"
+              LastKnownName="Coin"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="429e5096-156f-469a-adfe-37482d06ac10">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="cd587fde-1b5d-42d3-831c-91ad2cccf0a7">
+            <classMoniker
+              Id="b6c2266a-7d31-4d5c-ade8-5940c18c6187"
+              LastKnownName="Mushroom"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="0b5c51b7-56de-4346-8bf6-47e601a3045e">
+            <classMoniker
+              Id="77966e4e-b463-4f56-85ad-0f1808544860"
+              LastKnownName="OneUp"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="e07da943-28a4-416b-9ab2-7938976fd5a1">
+            <classMoniker
+              Id="3ba0ce59-8df5-47f4-a330-f903fb1dfded"
+              LastKnownName="Enemy"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -2603,6 +2692,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="569603d0-3c45-459b-b89c-8591a8dc41c3">
+            <classMoniker
+              Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+              LastKnownName="SceneManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="b5eac759-f61e-41fe-b62c-405076eb4fc0"
@@ -2659,6 +2757,31 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="374e57bf-6c76-48c4-abcc-42e4a46ef317"
+            name="OnCollision"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="aa11cc1c-47e5-4b50-b693-644a3827f9fd"
+                  name="collider"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+                      LastKnownName="GameObject"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -2669,6 +2792,29 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="12a21e39-f713-453d-b34f-930261a9b675">
+            <classMoniker
+              Id="3ace137d-219c-4c2c-aca0-a0b08a303333"
+              LastKnownName="Coin"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="11ca9492-09f5-4dfb-86da-5ec3afcafcbe">
+            <classMoniker
+              Id="f325bf86-4a3f-4301-99e4-5ea62f4f224e"
+              LastKnownName="Player"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="94388f70-81e6-4363-906f-89ea23e9380d">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="f2c357ca-9548-47d3-8684-3a9c2670c0f6"
@@ -3094,60 +3240,22 @@
               LastKnownName="SMWGame"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
+          <dependency
+            Id="9ee61ee8-f66f-4f68-86ee-ada94fa7d4bd">
+            <classMoniker
+              Id="32ccd428-a322-4201-a9cc-8105fc31ae28"
+              LastKnownName="InputManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="d3131b3b-c748-4a11-8f5c-ad88f0d214a1">
+            <classMoniker
+              Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+              LastKnownName="SceneManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
         </suppliersInternal>
         <targetEnds>
-          <association
-            Id="459dd8f2-6c59-4c96-98c9-a5bb9c187f9e"
-            isDerived="false"
-            sourceEndRoleName="Is in a"
-            targetEndRoleName="contains"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
-              LastKnownName="GameObject"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="771666a1-cd45-4e6f-a926-0d3f8da2e4a8"
-                  name="Is in a"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f23326a8-223d-4a06-b553-ff110ee3b168"
-                  name="contains"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="4cbe0f1e-4134-4332-848d-167d34ce27fe"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="d5773ee8-3ed4-4019-a82b-7ed1cb5f52b2"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
           <association
             Id="772e0b29-3a60-4d60-aaf0-e75f3c5f3ecd"
             isDerived="false"
@@ -3201,10 +3309,10 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="5ce1e299-9aed-4bc0-b3f8-a0aa547e5e87"
+            Id="988a5306-83ed-4466-9bb9-9e46d212e853"
             isDerived="false"
-            sourceEndRoleName="is part of"
-            targetEndRoleName="has a"
+            sourceEndRoleName="Scene"
+            targetEndRoleName="HUD"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -3214,28 +3322,80 @@
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="d4fedd26-f94f-4cde-bb82-32aeb2610b23"
-                  name="is part of"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="0cdecba2-d5db-46d8-bafc-70f97b5c4bde"
-                  name="has a"
+                  Id="fadc5a34-37ed-4b3a-ade2-7f45ccf84894"
+                  name="Scene"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true" />
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a4c73a13-2852-4896-9147-3e7635614e40"
+                  name="HUD"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="df51ecba-34f9-4baa-89d3-e17927c58473"
+            isDerived="false"
+            sourceEndRoleName="Scene"
+            targetEndRoleName="Contains"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+              LastKnownName="GameObject"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3baaeab9-1b37-4d35-b19d-1fee4cd4c55e"
+                  name="Scene"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="63f2dd2e-a5b1-4d4d-be0d-5cc121c9c7b9"
+                  name="Contains"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="91b13377-6cf4-4d5b-aeb2-b1d12640a17b"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="591400b3-ce12-4a25-bbdc-6dbd4aad8eab"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -3427,6 +3587,25 @@
               <undefinedTypeMoniker
                 Id="31dcaf2a-5f74-4b1c-b5b2-67aaf26a109d"
                 LastKnownName="LoadScene"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="eb09c270-d8d7-46c3-9f1c-25070ef94ce4"
+            name="_name"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="e9140a44-bc77-48ba-b254-d4d9b28d8e7e"
+                LastKnownName="string"
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
@@ -3816,6 +3995,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ddec0726-f107-48bb-a05c-c981653a6355">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="a25ebe1e-18ff-4801-800f-f6b018810e95"
@@ -3912,6 +4100,22 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="98390ccf-d0b4-49de-9db3-a327e74711db">
+            <classMoniker
+              Id="94f62426-addf-4c1b-95f2-1687057f2c13"
+              LastKnownName="EmptyShell"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="5b35a748-a4fd-4cce-996e-bfd954eee655">
+            <classMoniker
+              Id="5e2ba612-c7e1-4ce6-93eb-6740dccd297c"
+              LastKnownName="StaticBlock"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="95731b19-71e5-4a93-a218-2adb4528c4e6"
@@ -4118,6 +4322,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="be1a3b62-fff4-4c9a-9781-89de895d21ca">
+            <classMoniker
+              Id="843b9e8d-a6b4-4af0-8393-328bd218ad66"
+              LastKnownName="GameObject"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <ownedAttributesInternal>
           <property
             Id="b8292211-c214-49cc-b479-5c9566c59588"
@@ -4359,31 +4572,6 @@
             </ownedParameters>
           </operation>
           <operation
-            Id="39051c96-33a6-4a0a-aecd-9a2a71794598"
-            name="Move"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="8e0e3f3c-6953-4161-8942-d0879571cce7"
-                  name="amount"
-                  direction="In"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="b3f44126-a6a5-4913-bc96-831af4e685b5"
-                      LastKnownName="Vector2"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
             Id="08e6b60b-5975-4fe3-bebb-a10d337d90c3"
             name="GetTransformation"
             isLeaf="false"
@@ -4475,6 +4663,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="92b8c271-d68e-4d82-8668-2c447bb3516e">
+            <classMoniker
+              Id="4158a942-7217-4424-bfa2-8c09bb986f31"
+              LastKnownName="Entity"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="dce768ec-bcdc-4439-b578-d4095eb36fd3"
@@ -4919,21 +5116,12 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="9c73773d-4c57-43ef-b4a9-9805648b4fd3">
-            <classMoniker
-              Id="317b6438-c0ca-4d42-b842-69170769e238"
-              LastKnownName="Sprite"
-              LastKnownLocation="SMW UML.uml" />
-          </dependency>
-        </suppliersInternal>
         <targetEnds>
           <association
-            Id="d55ee32e-2c62-4077-a0cb-092553490516"
+            Id="22783293-4462-43ff-add0-abed7954a57e"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="gets information from"
+            targetEndRoleName="Gets info from"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -4943,20 +5131,20 @@
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="4f4771fa-f633-4796-bb67-35501c2d79a6"
+                  Id="127bdba6-c054-4591-a12c-5d10398080a4"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Shared"
+                  aggregation="None"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="280c71b9-6794-4898-bdf3-bae9c7321536"
-                  name="gets information from"
+                  Id="16ebde2b-0852-461f-b2a6-a526d75d5f54"
+                  name="Gets info from"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -4964,6 +5152,57 @@
                   isDerivedUnion="false"
                   aggregation="None"
                   isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d04ec359-6970-433e-b350-310e0568cc0c"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Has"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="317b6438-c0ca-4d42-b842-69170769e238"
+              LastKnownName="Sprite"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fa0a3968-5362-4036-ab6a-981189624a86"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="266ab911-41dd-40ea-9fb0-34a809b39fed"
+                  name="Has"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="bc4a7f80-1b0a-456c-962a-66e12cbe6146"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fe1a568a-c090-4bd8-bdd0-6693f3591ca1"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -5450,26 +5689,17 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="8ec71960-9dd8-48f8-b2da-eff3a1c94c40"
-            name="Update"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
             isQuery="false">
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="895f9267-5100-424e-a8db-18c108950258"
-                  name="gameTime"
-                  direction="In"
+                  Id="32425fe8-e63c-43d8-99fd-5b65ab9a8539"
+                  direction="Return"
                   isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="f8f13406-ed3f-42c1-83e3-c18097f81469"
-                      LastKnownName="GameTimer"
+                      Id="93d05505-4e70-4d88-a0d6-750537208563"
+                      LastKnownName="void"
                       LastKnownLocation="SMW UML.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -5483,7 +5713,47 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="612e6066-f3c0-4e51-9300-4927e931b416"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="93d05505-4e70-4d88-a0d6-750537208563"
+                      LastKnownName="void"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d04e222f-836d-4a44-b2c3-79e6824349e2"
+            name="ResetCombo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="087f8b6c-bbee-4e21-8dc0-bfaba97417fb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="93d05505-4e70-4d88-a0d6-750537208563"
+                      LastKnownName="void"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -5586,9 +5856,6 @@
           <enumerationLiteral
             Id="402c0e40-0724-4465-b694-314b12c15103"
             name="Playing" />
-          <enumerationLiteral
-            Id="1e475313-8e25-41df-bba6-9ecac3243874"
-            name="Pause" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>
@@ -5614,6 +5881,20 @@
               LastKnownName="Scene"
               LastKnownLocation="SMW UML.uml" />
           </dependency>
+          <dependency
+            Id="9e80e579-6344-4eaf-b73a-25d8a734279d">
+            <enumerationMoniker
+              Id="400dbbcb-7f08-4c56-b662-0595b4eb8755"
+              LastKnownName="Menu"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
+          <dependency
+            Id="6097e2e3-f2bf-4082-a3f8-ed6894d2a79b">
+            <classMoniker
+              Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+              LastKnownName="SceneManager"
+              LastKnownLocation="SMW UML.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -5625,47 +5906,6 @@
               LastKnownLocation="SMW UML.uml" />
           </generalization>
         </generalsInternal>
-        <targetEnds>
-          <association
-            Id="48a19329-972c-4784-8669-47d0b8d8d10e"
-            isDerived="false"
-            sourceEndRoleName="MainMenu"
-            targetEndRoleName="Menu"
-            isLeaf="false"
-            isAbstract="false">
-            <enumerationMoniker
-              Id="400dbbcb-7f08-4c56-b662-0595b4eb8755"
-              LastKnownName="Menu"
-              LastKnownLocation="SMW UML.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="042038f1-ddcb-4c3e-b0fa-b130b549f9e9"
-                  name="MainMenu"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="75d85560-c3f7-480a-ab10-8b478eb61d6e"
-                  name="Menu"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="afaf245f-88d8-4851-976b-8794f532e98e"
@@ -5849,6 +6089,7 @@
           <operation
             Id="cd9e09e4-2959-47f7-8e38-b23f09e49f29"
             name="GetLevels"
+            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -5990,6 +6231,61 @@
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="2fb55894-bf70-4f07-82ac-520ea19c441b"
+            name="_size"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="98db0961-f717-4d8d-98b6-621610516098"
+                LastKnownName="Point"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="79d08da5-aa69-41ec-8ba7-b74fb7970043"
+            name="allObjects"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="0b92a07a-ad8c-4033-8365-cd1e2ed7221f"
+                LastKnownName="List&lt;GameObject&gt;"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="7c0604ac-3aec-42e3-8fd4-07dd3b2c4316"
+            name="font"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="4095554d-c176-4577-80eb-b18bb75194ab"
+                LastKnownName="SpriteFont"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -6127,6 +6423,40 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="6d46b867-c93e-43b6-9d1d-8e8f27b4397f"
+            name="LoadContent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="def0675c-fcd1-4830-aafe-2091cf300c13"
+                  name="content"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="067f13b7-3016-41b2-a35f-1fd863dca136"
+                      LastKnownName="ContentManager"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="07b2506e-8733-4448-a63d-bad64a1a6521"
+            name="PlaceBlock"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -6248,6 +6578,24 @@
                 LastKnownLocation="SMW UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="5e520533-7cc3-414b-b3b6-3ed556bc3ba0"
+            name="Instance"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="32ccd428-a322-4201-a9cc-8105fc31ae28"
+                LastKnownName="InputManager"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -6258,30 +6606,6 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
-          <operation
-            Id="9c3d9a0b-5532-46ad-b833-7c71e7f80c18"
-            name="Instance"
-            isLeaf="false"
-            isStatic="true"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="9293e2f7-725b-47b5-bf1a-2c9ca48ca245"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <classMoniker
-                      Id="32ccd428-a322-4201-a9cc-8105fc31ae28"
-                      LastKnownName="InputManager"
-                      LastKnownLocation="SMW UML.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation
             Id="2627a267-dc97-498f-999b-a77b2542d06c"
             name="Update"
@@ -6633,7 +6957,7 @@
             Id="5b57104a-e832-40e5-a085-1254878c3d9b"
             name="Play" />
           <enumerationLiteral
-            Id="ac8b74e4-3035-4c95-87fc-d3dd865a7fea"
+            Id="03a84b96-78c5-47c5-823a-c84ce9d07d68"
             name="Edit" />
         </ownedLiterals>
       </enumeration>
@@ -6714,6 +7038,178 @@
             name="help" />
         </ownedLiterals>
       </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+        name="SceneManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="43013082-9ccd-4603-8906-cebec6a741be"
+            isDerived="false"
+            sourceEndRoleName="SceneManager"
+            targetEndRoleName="SMWGame"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="68ed9228-83a6-4748-9982-b7e5155ebeee"
+              LastKnownName="SMWGame"
+              LastKnownLocation="SMW UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9f04caf5-4e1c-4d41-aec3-31e1fc551ca0"
+                  name="SceneManager"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5aefe1fa-035c-4fc1-ab72-2e5f7708ce3d"
+                  name="SMWGame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="8631d0d1-7c84-41c6-a0e8-d8e3a29fa6a8"
+            name="instance"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+                LastKnownName="SceneManager"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ce5a4f6b-588e-4b8a-97fe-d562dae15f1c"
+            name="Instance"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="82ad8e05-7550-4360-b9a3-430330cc880f"
+                LastKnownName="SceneManager"
+                LastKnownLocation="SMW UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="cc4f8387-3a4b-4e8f-af3e-508de3a2e652"
+            name="LoadScene"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4fe903d7-9d13-41b7-9439-9243df68de52"
+                  name="scene"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="e9140a44-bc77-48ba-b254-d4d9b28d8e7e"
+                      LastKnownName="string"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8dcf3d0c-50d2-40f6-bf2b-f713dcc27cd1"
+                  name="edit"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="de1ef457-7847-4f4e-bc81-aa68797293d2"
+                      LastKnownName="bool"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="adc14915-b98d-4560-b611-3f409c4589b5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="93d05505-4e70-4d88-a0d6-750537208563"
+                      LastKnownName="void"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="dc61c6b9-2149-4d8f-a9df-84a303ed7e01"
+            name="LoadMainMenu"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="26ba5601-ce18-45fd-b7f0-a42d75b37d9d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="93d05505-4e70-4d88-a0d6-750537208563"
+                      LastKnownName="void"
+                      LastKnownLocation="SMW UML.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="93d05505-4e70-4d88-a0d6-750537208563"
+        name="void" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

@@ -15,42 +15,42 @@ namespace SuperMarioWorld
     /// </summary>
     public class SMWGame : Game
     {
-        //Graphics
+        // Graphics
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        
         /// <summary>
         /// Default SNES height in pixels.
         /// </summary>
-        private const int _gameHeight = 224;
+        public int gameHeight = 224;
         /// <summary>
         /// Default SNES width in pixels.
         /// </summary>
-        private const int _gameWidth = 256;
+        public int gameWidth = 256;
 
 #if DEBUG
         private Texture2D _debugTexture;
         private SpriteFont _debugFont;
 #endif
-        //Gamestate and menus
+        // Gamestate and menus
         public enum GameState
         {
             MainMenu,
-            Playing,
-            Pause
+            Playing
         }
         public GameState currentGameState;
 
-        private string _scenePath;
+        // A Level
+        public Scene scene;
 
-        //A Level
-        private Scene _scene;
+        // Create a score tracker
+        public ScoreHandler scores;
 
-        //Create a score tracker
-        private ScoreHandler _scores;
-
+        // Enables or disables VSync
         private bool _vSync;
-        private const int _scale = 3;
+
+        // Sets the scale of the game, the larger the scale the larger the game
+        public int scale = 4;
 
 #if DEBUG
         private int _totalFrames;
@@ -63,27 +63,28 @@ namespace SuperMarioWorld
         public SMWGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            //Set default resolution (SNES resolution) and scale it
-            _graphics.PreferredBackBufferHeight = _gameHeight * _scale;
-            _graphics.PreferredBackBufferWidth = _gameWidth * _scale;
+            // Set default resolution (SNES resolution) and scale it
+            _graphics.PreferredBackBufferHeight = gameHeight * scale;
+            _graphics.PreferredBackBufferWidth = gameWidth * scale;
 
             _graphics.SynchronizeWithVerticalRetrace = _vSync;
 
-            //Make game fullscreen
+            // Make game fullscreen
             _graphics.IsFullScreen = false;
 
             IsFixedTimeStep = true;
             _vSync = true;
-            _scenePath = "Main_Menu.sml";
-            currentGameState = GameState.MainMenu;
 
-            //Make sure mouse is visable
+
+            // Make sure mouse is visable
             IsMouseVisible = true;
 
-            //Create the new ScoreHandler
-            _scores = new ScoreHandler();
-            
-            //TODO load from a savefile
+            // Create the new ScoreHandler
+            scores = new ScoreHandler();
+
+            SceneManager.Instance.game = this;
+
+            // TODO load from a savefile
 
             Content.RootDirectory = "Content";
         }
@@ -96,8 +97,7 @@ namespace SuperMarioWorld
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            // Initialize game
             base.Initialize();
         }
 
@@ -113,26 +113,9 @@ namespace SuperMarioWorld
             _debugTexture = Content.Load<Texture2D>("DebugTexture");
             _debugFont = Content.Load<SpriteFont>(@"Fonts\DefaultFont");
 #endif
-            LoadScene(_scenePath);
-        }
 
-        /// <summary>
-        /// Changes the scene to the scene of the given file path
-        /// </summary>
-        /// <param name="sceneSourceFile">Name of the scene in the \Content\Levels folder, including extension.</param>
-        public void LoadScene(string scene)
-        {
-            _scenePath = scene;
-            _scene = new Scene(_scenePath, _scores, new LoadScene(LoadScene), false);
-            _scene.cam.Zoom = _scale;
-            _scene.cam.GameHeight = _gameHeight;
-            _scene.cam.GameWidth = _gameWidth;
-            _scene.LoadContent(this.Content);
-
-            if (scene.Equals("Main_Menu.sml"))
-                currentGameState = GameState.MainMenu;
-            else
-                currentGameState = GameState.Playing;
+            SceneManager.Instance.LoadMainMenu();
+            currentGameState = GameState.MainMenu;
         }
 
         /// <summary>
@@ -141,7 +124,7 @@ namespace SuperMarioWorld
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // No content needs to be unloaded
         }
 
         /// <summary>
@@ -151,7 +134,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            _scores.Update(gameTime);
+            // Call the update function from the input manager
             InputManager.Instance.Update();
 #if DEBUG
             //FPS Counter
@@ -164,17 +147,24 @@ namespace SuperMarioWorld
             }
 #endif
             // Allows the game to exit
-            if (InputManager.Instance.KeyboardOnPress(Keys.Escape))
-                this.Exit();
+            if (InputManager.Instance.KeyboardOnPress(Keys.Escape) || InputManager.Instance.GamePadOnPress(Buttons.Back))
+            {
+                if (currentGameState == GameState.MainMenu)
+                    this.Exit();
+                else
+                    SceneManager.Instance.LoadMainMenu();
+            }
 
-            //Toggle Fullscreen when F11 is pressed
+            // Toggle Fullscreen when F11 is pressed
             if (InputManager.Instance.KeyboardOnPress(Keys.F11))
             {
                 _graphics.ToggleFullScreen();
             }
 
-            _scene.Update(gameTime);
+            // Calls the update function from scene
+            scene.Update(gameTime);
 
+            // Calls the update function from parent
             base.Update(gameTime);
         }
 
@@ -189,41 +179,36 @@ namespace SuperMarioWorld
             _totalFrames++;
 #endif
 
-            //Set clear color
+            // Set clear color
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (currentGameState == GameState.MainMenu)
-            {
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _scene.cam.GetTransformation(GraphicsDevice));
-                _scene.DrawLevel(_spriteBatch);
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, scene.cam.GetTransformation(GraphicsDevice));
 
-                _spriteBatch.End();
-
-            }
-            //Only do this when the game is in a level
-            else if (currentGameState == GameState.Playing)
-            {
-                //Draw level
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, _scene.cam.GetTransformation(GraphicsDevice));
 #if DEBUG
-                //Draw each object that is in the level
-                for (int i = 0; i < _scene.objects.Count; i++)
+            if (InputManager.Instance.KeyboardIsPressed(Keys.LeftShift) || InputManager.Instance.GamePadIsPressed(Buttons.X))
+            {
+                //Draw each object that is in the level (bounding box
+                for (int i = 0; i < scene.objects.Count; i++)
                 {
-                    _spriteBatch.Draw(_debugTexture, _scene.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
-                    if (_scene.objects[i] is RedKoopa)
+                    _spriteBatch.Draw(_debugTexture, scene.objects[i].boundingBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
+                    if (scene.objects[i] is RedKoopa)
                     {
-                        RedKoopa r = (RedKoopa)_scene.objects[i];
+                        RedKoopa r = (RedKoopa)scene.objects[i];
                         _spriteBatch.Draw(_debugTexture, r.checkPlatformBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
                     }
                 }
+            }
 #endif
-                _scene.DrawLevel(_spriteBatch);
+                scene.DrawLevel(_spriteBatch);
                 _spriteBatch.End();
 
-                //Draw HUD
-                Matrix HUDMatrix = Matrix.CreateScale(new Vector3(_scale, _scale, 1));
+            //Draw HUD
+            if (currentGameState != GameState.MainMenu)
+            {
+                Matrix HUDMatrix = Matrix.CreateScale(new Vector3(scale, scale, 1));
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, HUDMatrix);
-                _scene.DrawHUD(_spriteBatch);
+                scene.DrawHUD(_spriteBatch);
+
                 _spriteBatch.End();
             }
 #if DEBUG
@@ -233,8 +218,12 @@ namespace SuperMarioWorld
             _spriteBatch.DrawString(_debugFont, "Session time: " + gameTime.TotalGameTime, new Vector2(10, 20), Color.Black);
             _spriteBatch.DrawString(_debugFont, "Update time: " + gameTime.ElapsedGameTime.TotalMilliseconds, new Vector2(10, 40), Color.Black);
             _spriteBatch.DrawString(_debugFont, GraphicsDevice.Adapter.Description, new Vector2(10, 60), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Preferred Backbuffer: " + _graphics.PreferredBackBufferWidth + "x" + _graphics.PreferredBackBufferHeight, new Vector2(10, 80), Color.Black);
+            _spriteBatch.DrawString(_debugFont, "Actual Backbuffer: " + GraphicsDevice.Viewport.Width + "x" + GraphicsDevice.Viewport.Height, new Vector2(10, 100), Color.Black);
+
             _spriteBatch.End();
 #endif
+            // Calls the draw from the parent
             base.Draw(gameTime);
         }
     }

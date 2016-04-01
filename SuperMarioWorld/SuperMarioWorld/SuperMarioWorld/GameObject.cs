@@ -6,21 +6,22 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace SuperMarioWorld
-{
-    delegate void CreateObject(GameObject gameObject);
-    delegate void DestoryObject(GameObject gameObject);
-
-    abstract class GameObject
+{ 
+    public abstract class GameObject
     {
-        //Sprite (texture) of this object
-        public Sprite sprite;
-        //Collision box of this object
-        public Rectangle boundingBox;
-        //Current position of this object
-        public Vector2 position;
+        // Delegate for creating and destroying objects while in game
+        public delegate void DestroyObject(GameObject gameObject);
+        public delegate void CreateObject(GameObject gameObject);
 
         public CreateObject create;
-        public DestoryObject destory;
+        public DestroyObject destroy;
+
+        // Sprite (texture) of this object
+        public Sprite sprite;
+        // Collision box of this object
+        public Rectangle boundingBox;
+        // Current position of this object
+        public Vector2 position;
 
         /// <summary>
         /// Default constructor
@@ -46,7 +47,6 @@ namespace SuperMarioWorld
             sprite = new Sprite();
             sprite.layer = 0.5f;
         }
-        // details
 
         /// <summary>
         /// Execute this function when colliding with something.
@@ -60,6 +60,7 @@ namespace SuperMarioWorld
         /// <param name="gameTime">Gametime that has passed since prev. frame</param>
         public virtual void Update(GameTime gameTime)
         {
+            // Call this objects sprite to update its animation
             sprite.UpdateAnimation(gameTime);
         }
 
@@ -69,7 +70,7 @@ namespace SuperMarioWorld
         /// <param name="batch">Spritebatch to draw to</param>
         public virtual void DrawObject(SpriteBatch batch)
         {
-            //Call the draw function of sprite
+            // Call the draw function of sprite
             sprite.DrawSpriteCentered(batch, position);
         }
     }

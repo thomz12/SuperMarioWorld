@@ -7,129 +7,126 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SuperMarioWorld
 {
-    class Camera2D
+    public class Camera2D
     {
-        //Non moving
+        // Non moving
         private bool _moveable;
 
-        //Zoom of the camera
-        public float Zoom { get; set; }
+        // Zoom of the camera
+        public float zoom;
 
+        // A matrix to scale, rotate and translate the spritebatch
         public Matrix transformMatrix;
 
-        //Current position of the camera
-        public Vector2 Position { get; set; }
+        // Current position of the camera
+        public Vector2 position;
 
-        //Current rotation of the camera
-        public float Rotation { get; set; }
+        // Current rotation of the camera
+        public float rotation;
 
-        //The player the camera should track
+        // The player the camera should track
         private GameObject _target;
 
-        /// <summary>
-        /// Height of the default SNES resolution (in px)
-        /// </summary>
-        public int GameHeight { get; set; }
-        /// <summary>
-        /// Width of the default SNES resolution (in px)
-        /// </summary>
-        public int GameWidth { get; set; }
+        /// <summary>Height of the default SNES resolution (in px)</summary>
+        public int gameHeight;
+        /// <summary>Width of the default SNES resolution (in px)</summary>
+        public int gameWidth;
 
+        // A value for smooth damping, the higher the value the faster the camera moves to its target position.
         private float _smoothness = 4f;
 
+        // A value for the deadzone measured in pixels, in that zone the camera does not move
         private float _xDeadZone = 32.0f;
-        private bool movingRight;
 
+        // Size of the level in pixels
         private Point _levelSize;
+
+        // Size of the grid in pixels
         private int _gridSize;
 
         /// <summary>
         /// Constructor for a camera that follows a target
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="size"></param>
-        /// <param name="grid"></param>
+        /// <param name="target">The target that the camera should focus on</param>
+        /// <param name="size">The size of the level</param>
+        /// <param name="grid">The size of the grid</param>
         public Camera2D(GameObject target, Point size, int grid)
         {
+            // Set private variables to the corresponding parameters
             _target = target;
             _levelSize = size;
             _gridSize = grid;
 
-            Zoom = 1.0f;
-            Rotation = 0;
+            // Default zoom
+            zoom = 1.0f;
 
+            // Default rotation
+            rotation = 0;
+
+            // If there is a target for the camera, move the camera to its position
             if(target != null)
-                Position = target.position;
+                position = target.position;
 
+            // Default value of movable
             _moveable = true;
         }
 
         /// <summary>
-        /// default update function
+        /// Default update function
         /// </summary>
         public void Update(GameTime gameTime)
         {
+            // Check if the target exists
             if (_target != null)
             {
+                // Check if the camera is allowed to move
                 if (_moveable)
                 {
-                    Vector2 delta = _target.position - Position;
+                    // Difference between camera and target position
+                    Vector2 delta = _target.position - position;
 
-                    //X axis
-                    if (delta.X < -_xDeadZone)
-                        movingRight = false;
-                    if (delta.X > _xDeadZone)
-                        movingRight = true;
+                    // The camera uses smooth damping.
+                    float smoothDamping = _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000);
 
-                    float targetX = _target.position.X;
-
-                    if (movingRight)
+                    // X axis
+                    // If the player moves out of the dead zone, move the camera to the player
+                    if (delta.X < -_xDeadZone || delta.X > _xDeadZone)
                     {
-                        if (delta.X > 0)
-                            Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
+                        position = new Vector2(position.X + (_target.position.X - position.X) * smoothDamping, position.Y);
+                    }
 
-                    }
-                    else
-                    {
-                        if (delta.X < 0)
-                            Position = new Vector2(Position.X + (targetX - Position.X) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f), Position.Y);
-                    }
+                    //Limit the camera to the left edge of the map
+                    if (position.X < (gameWidth / 2) - (_gridSize / 2))
+                        position = new Vector2((gameWidth / 2) - (_gridSize / 2), position.Y);
+                    //Limit the camera to the right edge of the map
+                    if (position.X > (_levelSize.X * _gridSize) - (gameWidth / 2) - (_gridSize / 2))
+                        position = new Vector2((_levelSize.X * _gridSize) - (gameWidth / 2) - (_gridSize / 2), position.Y);
 
                     //Y axis
-                    if (Position.Y + GameHeight / 2 >= _levelSize.Y * _gridSize)
+                    //if the lower bounds of the camera vieuwport is lower than the lowest pixel in the level (y+ == lower)
+                    if (position.Y + (gameHeight / 2) >= (_levelSize.Y * _gridSize))
                     {
-                        Position = new Vector2(Position.X, _levelSize.Y * _gridSize - GameHeight / 2);
-                        if (delta.Y < -(GameHeight / 4))
+                        //set the camera position to snap to the bottom edge (use levelSize for Y coord instead of player Y)
+                        position = new Vector2(position.X, (_levelSize.Y * _gridSize) - (gameHeight / 2));
+
+                        // If the player is in the top 1/4th half of the screen, the camera breaks free from the snap.
+                        if (delta.Y < -(gameHeight / 4))
                         {
-                            Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                            position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                         }
                     }
                     else
                     {
-                        Position = new Vector2(Position.X, Position.Y + (_target.position.Y - Position.Y) * _smoothness * ((float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000f));
+                        // If the camera not beneath the lower bounds of the level, the position of the camera is the position of the player.
+                        position = new Vector2(position.X, position.Y + (_target.position.Y - position.Y) * smoothDamping);
                     }
-
-                    if (Position.X < GameWidth / 2 - _gridSize / 2)
-                        Position = new Vector2(GameWidth / 2 - _gridSize / 2, Position.Y);
-
-                    if (Position.X > _levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2)
-                        Position = new Vector2(_levelSize.X * _gridSize - GameWidth / 2 - _gridSize / 2, Position.Y);
                 }
             }
             else
             {
-                Position = new Vector2(_levelSize.X * _gridSize / 2 - _gridSize / 2, _levelSize.Y * _gridSize / 2);
+                //Set the position of the camera to the center of the level
+                position = new Vector2((_levelSize.X * _gridSize / 2) - (_gridSize / 2), (_levelSize.Y * _gridSize / 2));
             }
-        }
-
-        /// <summary>
-        /// Change the position of the cameraby a specific amount.
-        /// </summary>
-        /// <param name="amount">The amount which a camera should move.</param>
-        public void Move(Vector2 amount)
-        {
-            if(_moveable)
-            Position += amount;
         }
 
         /// <summary>
@@ -139,7 +136,7 @@ namespace SuperMarioWorld
         /// <returns>Returns a Matrix type.</returns>
         public Matrix GetTransformation(GraphicsDevice device)
         {
-            transformMatrix = Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) * Matrix.CreateRotationZ(Rotation) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) * Matrix.CreateTranslation(new Vector3(device.Viewport.Width * 0.5f, device.Viewport.Height * 0.5f, 0));
+            transformMatrix = Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0)) * Matrix.CreateRotationZ(rotation) * Matrix.CreateScale(new Vector3(zoom, zoom, 1)) * Matrix.CreateTranslation(new Vector3(device.Viewport.Width * 0.5f, device.Viewport.Height * 0.5f, 0));
             return transformMatrix;
         }
     }

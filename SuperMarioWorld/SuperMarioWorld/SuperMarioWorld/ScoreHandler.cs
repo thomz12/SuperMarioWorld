@@ -10,18 +10,22 @@ namespace SuperMarioWorld
     /// This class has every score that needs to be displayed int he HUD
     /// and tracks the maximum allowed time for a level
     /// </summary>
-    class ScoreHandler
+    public class ScoreHandler
     {
+        // Variables for different scores that should be tracked
         public int coins;
         public int lives = 3;
         public int maxTime;
         public int score;
         public int starPoints;
 
+        // Variables for the combo
         private bool _combo;
         private int _comboPoints;
-        private float _comboTimer;
 
+        /// <summary>
+        /// The different powerups that can be in the powerup slot
+        /// </summary>
         public enum PowerUp
         {
             none,
@@ -29,33 +33,15 @@ namespace SuperMarioWorld
             fireFlower,
             feather
         }
-
         public PowerUp powerUp;
 
-        private string _scoreFilePath = "score.sms";
-
         /// <summary>
-        /// Default Constructor
+        /// Default constructor
         /// </summary>
         public ScoreHandler()
         {
             _combo = false;
             _comboPoints = 100;
-            _comboTimer = 0;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            if (_combo)
-            {
-                _comboTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(_comboTimer >= 1000)
-                {
-                    _combo = false;
-                    _comboTimer = 0;
-                    _comboPoints = 100;
-                }
-            }
         }
 
         /// <summary>
@@ -64,13 +50,14 @@ namespace SuperMarioWorld
         /// </summary>
         public void AddCombo()
         {
+            // If the combo hasnt been started yet, start it
             if (!_combo)
             {
                 _combo = true;
             }
 
+            // Add the points to score
             score += _comboPoints;
-            _comboTimer = 0;
 
             //This ugly switch should do the trick for the irregular combo points rewarded.
             switch (_comboPoints)
@@ -94,6 +81,15 @@ namespace SuperMarioWorld
                     lives++;
                     break;
             }
+        }
+        
+        /// <summary>
+        /// Reset the current combo
+        /// </summary>
+        public void ResetCombo()
+        {
+            _comboPoints = 100;
+            _combo = false;
         }
     }
 }

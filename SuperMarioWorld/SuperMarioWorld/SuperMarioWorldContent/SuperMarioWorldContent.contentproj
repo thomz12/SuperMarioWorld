@@ -116,24 +116,32 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Levels\DemoLevel.sml">
-      <Name>DemoLevel</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Levels\Custom 2.sml">
+      <Name>Custom 2</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Custom 1.sml">
+      <Name>Custom 1</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\Main_Menu.sml">
       <Name>Main_Menu</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Levels\OLDEDIT.osml">
-      <Name>OLDEDIT</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Levels\OLDMAINMENU.osml">
-      <Name>OLDMAINMENU</Name>
-    </None>
-    <None Include="Levels\OLDSMWLVL.osml">
-      <Name>OLDSMWLVL</Name>
-    </None>
+    <Content Include="Levels\Custom 3.sml">
+      <Name>Custom 3</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Custom 4.sml">
+      <Name>Custom 4</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Custom 5.sml">
+      <Name>Custom 5</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Misc\Coin.png">
       <Name>Coin</Name>
       <Importer>TextureImporter</Importer>
@@ -165,19 +173,6 @@
       <Processor>FontDescriptionProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
-    <Content Include="Levels\SMW Level 1.sml">
-      <Name>SMW Level 1</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Levels\Template.sml">
-      <Name>Template</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Levels\OLDDEMOLVL.osml">
-      <Name>OLDDEMOLVL</Name>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PowerUps\FireFlower.png">
@@ -209,6 +204,28 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Levels\1  Koopa Island.sml">
+      <Name>1  Koopa Island</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\2  Koopa Heaven.sml">
+      <Name>2  Koopa Heaven</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\3  KoopaSanctuary.sml">
+      <Name>3  KoopaSanctuary</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\4  KoopaMounttain.sml">
+      <Name>4  KoopaMounttain</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\5  KoopaParkour.sml">
+      <Name>5  KoopaParkour</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

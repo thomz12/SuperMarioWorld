@@ -7,8 +7,9 @@ using System.Text;
 
 namespace SuperMarioWorld
 {
-    class MysteryBlock : StaticObject
+    public class MysteryBlock : StaticObject
     {
+        // The object that the mystery block contains
         public GameObject content;
 
         /// <summary>
@@ -18,95 +19,112 @@ namespace SuperMarioWorld
         /// <param name="contents">What the object contains</param>
         public MysteryBlock(Point position, GameObject contents) : base (position)
         {
-            //Sets the contents of the mysteryblock
+            // Sets the contents of the mysteryblock
             if (contents != null)
-            {
                 content = contents;
-            }
             else
                 content = new Coin(position, true);
 
             content.position = new Vector2(position.X, position.Y - 16);
-            //Generates a boundingbox around the block
+            // Generates a boundingbox around the block
             boundingBox = new Rectangle((int)position.X - 8, (int)position.Y - 16, 16, 16);
             
-            //Sets the sizes of the sprite
+            // Sets the sizes of the sprite
             sprite.xSize = 16;
             sprite.ySize = 16;
 
-            //Call sprite class to load the texture
+            // Call sprite class to load the texture
             sprite.sourceName = @"Blocks\MysteryBlock";
 
-            //Sprite animation
+            // Sprite animation
             sprite.NewAnimation();
             sprite.animationSpeed = 128.0f;
 
-            //Add all sprites from the file to the list
+            // Add all sprites from the file to the list
             for (int i = 0; i < 4; i++)
             {
                 sprite.AddFrame(i, 0);
             }
         }
 
+        /// <summary>
+        /// This is called when something collides with the mystery block
+        /// </summary>
+        /// <param name="collider"></param>
         public override void OnCollision(GameObject collider)
         {
+            // If the collider is an entity
             if (collider is Entity)
             {
-                Entity p = (Entity)collider;
+                // Cast the entity
+                Entity entity = (Entity)collider;
 
+                // Create a rectangle for overlap
                 Rectangle overlap;
+                // Set the overlap rectanble to be as big as the overlap between the two colliding bounding boxes
                 Rectangle.Intersect(ref collider.boundingBox, ref boundingBox, out overlap);
+
+                // IF the width of the overlap is bigger than the hight the colliding object comes from the top
                 if (overlap.Width > overlap.Height)
                 {
-                    if (p.position.Y < position.Y)
+                    // Check if the colliding entity is on the top of bottom
+                    if (entity.position.Y < position.Y)
                     {
-                        if (p.momentum.Y > 0)
+                        // Check if the entity is coming from above
+                        if (entity.velocity.Y > 0)
                         {
-                            //When entity collides from the top
-                            p.position.Y = position.Y - boundingBox.Height + 1;
-                            p.momentum.Y = 16;
-                            p.grounded = true;
-                            p.momentum.Y = 0;
+                            // Set the entity outside of the block
+                            entity.position.Y = position.Y - boundingBox.Height + 1;
+                            // Set the entities grounded value to true
+                            entity.grounded = true;
+                            // Set the entities Y velcity to 0
+                            entity.velocity.Y = 0;
                         }
                     }
                     else
                     {
-                        p.position.Y = position.Y + p.boundingBox.Height;
-                        if (p is Player)
-                        {
-                            //When player collides from the bottom
-                            create(new StaticBlock(new Point((int)position.X, (int)position.Y), StaticBlock.BlockType.used, 0.5f));
+                        // The entity comes from below
+                        // Set the entity outside of the box
+                        entity.position.Y = position.Y + entity.boundingBox.Height;
 
-                            if (content != null)
-                            {
-                                create(content);
-                                content = null;
-                            }
+                        // Push the entity back down
+                        entity.velocity.Y = 16;
 
-                            destory(this);
-                        }
+                        // Spawn the content of the box
+                        create(content);
 
-                        p.momentum.Y = 16;
+                        // Create a new used block on this blocks position
+                        create(new StaticBlock(new Point((int)position.X, (int)position.Y), StaticBlock.BlockType.used, 0.5f));
+
+                        // Destroy this object
+                        destroy(this);
                     }
                 }
                 else
                 {
-                    if (Math.Abs(p.boundingBox.Bottom - boundingBox.Top) > 2)
+                    // The entity comes from the side
+                    if (Math.Abs(entity.boundingBox.Bottom - boundingBox.Top) > 2)
                     {
-                        if (p.position.X < position.X)
+                        // If it comes from the right
+                        if (entity.position.X < position.X)
                         {
-                            p.position.X = position.X - boundingBox.Width / 2 - p.boundingBox.Width / 2 - 1;
+                            // Push the entity out of the box
+                            entity.position.X = position.X - boundingBox.Width / 2 - entity.boundingBox.Width / 2 - 1;
                         }
 
-                        if (p.position.X > position.X)
+                        // If it comes from the left
+                        if (entity.position.X > position.X)
                         {
-                            p.position.X = position.X + boundingBox.Width / 2 + p.boundingBox.Width / 2;
+                            // Pus the entity out of th ebox
+                            entity.position.X = position.X + boundingBox.Width / 2 + entity.boundingBox.Width / 2;
                         }
 
-                        if (!(p is Player))
-                            p.lookRight = !p.lookRight;
+                        // Make the entity turn around when it is not a player
+                        if (!(entity is Player))
+                            entity.lookRight = !entity.lookRight;
 
-                        p.momentum.X = 0;
+                        // Reset the entities velocity
+                        entity.velocity.X = 0;
                     }
                 }
             }
