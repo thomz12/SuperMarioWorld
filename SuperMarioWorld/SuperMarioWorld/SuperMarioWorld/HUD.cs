@@ -122,7 +122,10 @@ namespace SuperMarioWorld
             if(_scores.lives < 0)
             {
                 // Lives can't go lower than zero
-                _scores.lives = 0;
+                _scores.score = 0;
+                _scores.coins = 0;
+                _scores.ResetCombo();
+                _scores.lives = 3;
             }
         }
 
